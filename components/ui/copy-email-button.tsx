@@ -123,16 +123,11 @@ export function CopyEmailButton({
             <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
               E-mail
             </span>
-            <span
-              className={cn(
-                "text-[11px] font-mono transition-opacity duration-200",
-                isCopied
-                  ? "text-accent-text font-semibold opacity-100"
-                  : "text-muted-foreground opacity-0 group-hover:opacity-100"
-              )}
-            >
-              {isCopied ? "Skopiowano do schowka!" : "Kliknij, aby skopiować"}
-            </span>
+            {isCopied && (
+              <span className="text-[11px] font-mono text-accent-text font-semibold animate-in fade-in duration-200">
+                Skopiowano!
+              </span>
+            )}
           </div>
           <div className="font-medium text-foreground truncate">{email}</div>
         </div>
