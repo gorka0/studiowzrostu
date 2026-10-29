@@ -27,17 +27,17 @@ export function ServicesBento() {
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-baseline">
                   {/* Numer porządkowy w stylu redakcyjnym */}
-                  <div className="md:col-span-1 font-mono text-sm text-primary font-semibold">
+                  <div className="md:col-span-1 font-mono text-sm text-accent-text font-semibold">
                     {indexNumber}
                   </div>
 
                   {/* Tytuł usługi */}
                   <div className="md:col-span-5 space-y-1">
-                    <div className="text-xl sm:text-2xl font-bold font-heading text-ink group-hover:text-primary transition-colors flex items-center gap-2">
+                    <div className="text-xl sm:text-2xl font-bold font-heading text-ink group-hover:text-accent-text transition-colors flex items-center gap-2">
                       <span>{service.title}</span>
-                      <ArrowUpRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all -translate-y-0.5 group-hover:translate-x-0.5 text-primary shrink-0" />
+                      <ArrowUpRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all -translate-y-0.5 group-hover:translate-x-0.5 text-accent-text shrink-0" />
                     </div>
-                    <div className="text-xs text-primary font-medium md:hidden">
+                    <div className="text-xs text-accent-text font-medium md:hidden">
                       {service.tagline}
                     </div>
                   </div>
@@ -49,7 +49,7 @@ export function ServicesBento() {
 
                   {/* Bezpośredni wskaźnik linku */}
                   <div className="md:col-span-2 text-right hidden md:flex justify-end items-center">
-                    <span className="text-xs font-mono font-medium text-ink-muted group-hover:text-primary transition-colors inline-flex items-center gap-1">
+                    <span className="text-xs font-mono font-medium text-ink-muted group-hover:text-accent-text transition-colors inline-flex items-center gap-1">
                       Szczegóły
                       <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
@@ -67,7 +67,7 @@ export function ServicesBento() {
           </div>
           <Link
             href="/uslugi"
-            className="text-primary hover:underline font-semibold inline-flex items-center gap-1"
+            className="text-accent-text hover:underline font-semibold inline-flex items-center gap-1"
           >
             Pełny przegląd usług i procesu
             <ArrowUpRight className="h-3.5 w-3.5" />

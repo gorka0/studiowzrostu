@@ -51,13 +51,13 @@ export function AudienceSection() {
               className="flex flex-col justify-between border-t border-line pt-6 space-y-4 text-left"
             >
               <div className="space-y-2">
-                <div className="font-mono text-xs font-semibold text-primary">
+                <div className="font-mono text-xs font-semibold text-accent-text">
                   {segment.number}
                 </div>
                 <h3 className="font-heading font-bold text-lg sm:text-xl text-ink leading-snug">
                   {segment.title}
                 </h3>
-                <div className="text-xs font-medium text-primary">
+                <div className="text-xs font-medium text-accent-text">
                   {segment.subtitle}
                 </div>
                 <p className="text-xs sm:text-sm text-ink-muted leading-relaxed pt-1">
@@ -75,6 +75,16 @@ export function AudienceSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Naturalny sygnał lokalny: Bydgoszcz + cała Polska */}
+        <div className="mt-12 p-4 rounded-xl border border-line bg-surface-subtle text-xs text-ink-muted flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-accent-text shrink-0" />
+            <span>
+              <strong className="text-ink">Obszar działania:</strong> Spotkania stacjonarne realizujemy w Bydgoszczy i województwie kujawsko-pomorskim. Zdalnie wdrażamy serwisy dla firm z całej Polski.
+            </span>
+          </div>
         </div>
       </Container>
     </Section>

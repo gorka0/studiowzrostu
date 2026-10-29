@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CookieConsentProvider } from "@/components/ui/cookie-banner";
 import { ConsentManager } from "@/components/analytics/consent-manager";
 import { SkipLink } from "@/components/ui/skip-link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { MobileStickyCTA } from "@/components/layout/mobile-sticky-cta";
 import { GlobalJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import "./globals.css";
@@ -14,18 +15,14 @@ const fontHeading = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
   display: "swap",
+  preload: true,
 });
 
 const fontSans = Instrument_Sans({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
   display: "swap",
-});
-
-const fontMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = buildMetadata();
@@ -39,7 +36,7 @@ export default function RootLayout({
     <html
       lang="pl"
       suppressHydrationWarning
-      className={`${fontHeading.variable} ${fontSans.variable} ${fontMono.variable} h-full antialiased`}
+      className={`${fontHeading.variable} ${fontSans.variable} ${fontHeading.className} ${fontSans.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground transition-colors duration-200">
         <ThemeProvider
@@ -53,10 +50,11 @@ export default function RootLayout({
           <CookieConsentProvider>
             <SkipLink />
             <Header />
-            <div id="main-content" className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col">
               {children}
             </div>
             <Footer />
+            <MobileStickyCTA />
           </CookieConsentProvider>
         </ThemeProvider>
       </body>

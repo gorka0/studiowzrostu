@@ -15,7 +15,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ContactPage() {
   return (
-    <main className="flex-1 pb-16">
+    <main id="main-content" className="flex-1 pb-16">
       <Section spacing="sm">
         <Container>
           <Breadcrumbs items={[{ label: "Kontakt" }]} className="mb-8" />

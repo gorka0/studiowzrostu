@@ -1,6 +1,6 @@
 /**
  * Baza najczęściej zadawanych pytań (FAQ)
- * STATUS: Szkic do autorskiej redakcji przez Tomasza Górkę
+ * Odpowiedzi na kluczowe wątpliwości biznesowe, technologiczne i lokalne.
  */
 
 export interface FaqItem {
@@ -11,33 +11,45 @@ export interface FaqItem {
 
 export const faqData: FaqItem[] = [
   {
-    id: "ile-trwa-zrobienie-strony",
-    question: "Ile trwa zrobienie strony?",
+    id: "jak-strona-wplywa-na-rozwoj",
+    question: "Jak strona internetowa wpływa na rozwój biznesu i liczbę zapytań?",
     answer:
-      "Dla typowej strony firmowej lub landing page przygotowanie zajmuje nam zwykle 3–4 dni robocze od momentu akceptacji wyceny i dostarczenia kompletu materiałów (warunki orientacyjne – do potwierdzenia przed realizacją).",
+      "Profesjonalna strona eliminuje wątpliwości klienta w pierwszych sekundach wizyty. Zamiast chaotycznej wizytówki otrzymujesz narzędzie, które natychmiast wyjaśnia zakres usług, buduje wiarygodność techniczną i prowadzi użytkownika do bezpośredniego kontaktu. Błyskawiczny czas ładowania na telefonie zapobiega ucieczce potencjalnych klientów przed przeczytaniem oferty.",
   },
   {
-    id: "skad-wiem-ile-zaplace",
-    question: "Skąd wiem, ile zapłacę?",
+    id: "ile-trwa-i-od-czego-zalezy-wycena",
+    question: "Ile trwa stworzenie strony internetowej dla firmy i od czego zależy wycena?",
     answer:
-      "Wycenę otrzymujesz z góry, zanim cokolwiek zaczniemy, więc wiesz dokładnie, za co płacisz. Zakres prac i specyfikacja elementów ustalane są przed przystąpieniem do realizacji.",
+      "Dla typowej strony firmowej lub landing page przygotowanie zajmuje nam zwykle 3–4 dni robocze od akceptacji założeń i dostarczenia kompletu materiałów (warunki orientacyjne – do potwierdzenia przed realizacją). Wycenę podajemy ze stałą kwotą z góry, zanim cokolwiek zaczniemy – jej wysokość zależy od liczby podstron, specyfikacji formularzy i wymaganych integracji.",
   },
   {
-    id: "dlaczego-nextjs",
-    question: "Dlaczego tworzycie strony w Next.js i React, a nie na popularnych szablonach?",
+    id: "dlaczego-react-nextjs-zamiast-wordpress",
+    question: "Dlaczego warto wybrać stronę w React/Next.js zamiast gotowego szablonu WordPress?",
     answer:
-      "Strony oparte na Next.js działają błyskawicznie, nie są obciążone zbędnymi wtyczkami i są znacznie bezpieczniejsze od typowych systemów CMS. Zapewniają lepsze wyniki w Google (Core Web Vitals) i wyższą konwersję z odwiedzających na klientów.",
+      "Tradycyjne szablony cierpią na nadmiar wtyczek, wolne ładowanie na smartfonach oraz ryzyko awarii po automatycznych aktualizacjach motywu. Next.js generuje lekki kod HTML na serwerze, który ładuje się w ułamku sekundy, osiąga maksymalne noty Google Core Web Vitals i nie wymaga opłat za licencje wtyczek ani drogiego hostingu.",
+  },
+  {
+    id: "czy-pomagacie-w-seo-i-rozwoju",
+    question: "Czy po wdrożeniu strony pomagacie w SEO i dalszym rozwoju?",
+    answer:
+      "Tak. Każda wdrażana przez nas strona posiada wbudowany fundament technicznego SEO: semantykę HTML5, automatyczną sitemapę, metadane OpenGraph i precyzyjne dane strukturalne JSON-LD. Oferujemy również audyty rozszerzone, rozbudowę architektury treści pod frazy kluczowe oraz wsparcie w skalowaniu serwisu.",
+  },
+  {
+    id: "czy-tylko-bydgoszcz",
+    question: "Czy współpracujecie tylko z firmami z Bydgoszczy?",
+    answer:
+      "Pracujemy stacjonarnie w Bydgoszczy i województwie kujawsko-pomorskim, gdzie chętnie spotykamy się osobiście. Jednocześnie z powodzeniem realizujemy projekty w 100% zdalnie dla przedsiębiorstw z całej Polski, gwarantując przejrzysty proces, bezpośredni kontakt z inżynierem i regularne prezentacje postępów.",
   },
   {
     id: "co-z-hostingiem",
     question: "Gdzie będzie utrzymywana strona i jak wygląda sprawa hostingu?",
     answer:
-      "Stronę wdrażamy na nowoczesnej, bezserwerowej platformie hostingowej (np. Vercel lub Cloudflare), która zapewnia wysoką dostępność, darmowy certyfikat SSL i globalny CDN. Pomagamy skonfigurować Twoją domenę bez zbędnych formalności.",
+      "Stronę wdrażamy na nowoczesnej, bezserwerowej platformie hostingowej (np. Vercel lub Cloudflare), która zapewnia darmowy certyfikat SSL, globalny CDN i brak przestojów serwera. Pomagamy bezpłatnie skonfigurować Twoją domenę.",
   },
   {
     id: "czy-pomagacie-w-tresciach",
     question: "Czy muszę mieć przygotowane gotowe teksty przed rozpoczęciem prac?",
     answer:
-      "Nie musisz. Pomożemy Ci ustrukturyzować ofertę i przygotować treści, które w prosty i czytelny sposób wyjaśnią Twoim klientom wartość Twoich usług.",
+      "Nie musisz. Pomożemy Ci ustrukturyzować ofertę i przygotować konkretne treści, które w prosty, techniczny sposób wyjaśnią Twoim klientom wartość Twoich usług i korzyści ze współpracy.",
   },
 ];

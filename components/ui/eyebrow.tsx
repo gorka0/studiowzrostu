@@ -15,13 +15,13 @@ export function Eyebrow({
   ...props
 }: EyebrowProps) {
   const variantStyles = {
-    growth: "border-primary/25 bg-primary/10 text-primary dark:bg-primary/15",
-    coral: "border-accent/35 bg-accent/10 text-foreground dark:text-accent",
+    growth: "border-accent/25 bg-accent/10 text-accent-text dark:bg-accent/15",
+    coral: "border-coral/35 bg-coral/10 text-coral-text",
     neutral: "border-border bg-secondary/60 text-muted-foreground",
   };
 
   const dotColors = {
-    growth: "bg-primary",
+    growth: "bg-accent",
     coral: "bg-coral",
     neutral: "bg-muted-foreground",
   };

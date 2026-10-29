@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { RevealHeading } from "@/components/effects/reveal-heading";
 
 interface SectionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   as?: "h1" | "h2" | "h3";
@@ -26,9 +27,17 @@ export function SectionHeader({
       )}
       {...props}
     >
-      <HeadingTag className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-heading">
-        {title}
-      </HeadingTag>
+      {HeadingTag === "h1" ? (
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-heading">
+          {title}
+        </h1>
+      ) : (
+        <RevealHeading
+          as={HeadingTag}
+          text={title}
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-heading"
+        />
+      )}
       {description && (
         <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed text-balance">
           {description}

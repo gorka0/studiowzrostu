@@ -16,14 +16,14 @@ export const metadata: Metadata = buildMetadata({
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="flex-1 pb-20">
+    <main id="main-content" className="flex-1 pb-20">
       <Section spacing="sm">
         <Container>
           <Breadcrumbs items={[{ label: "Polityka prywatności" }]} className="mb-8" />
 
           {/* Nagłówek dokumentu */}
           <div className="max-w-3xl space-y-4 border-b border-border pb-8">
-            <div className="text-xs font-mono text-primary font-semibold tracking-wider">
+            <div className="text-xs font-mono text-accent-text font-semibold tracking-wider">
               STANDARD RODO / GDPR • WERSJA {privacyPolicyContent.version}
             </div>
 
@@ -45,7 +45,7 @@ export default function PrivacyPolicyPage() {
             {/* Spis treści (Sticky Sidebar na desktopie - 4 kolumny) */}
             <aside className="lg:col-span-4 sticky top-24 rounded-2xl border border-border bg-card p-5 space-y-3 hidden lg:block">
               <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground font-heading flex items-center gap-1.5">
-                <Info className="h-4 w-4 text-primary" />
+                <Info className="h-4 w-4 text-accent-text" />
                 <span>Spis treści</span>
               </div>
               <nav className="space-y-1.5 text-xs">
@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
                   <a
                     key={sec.id}
                     href={`#${sec.id}`}
-                    className="block py-1 text-muted-foreground hover:text-primary transition-colors leading-snug"
+                    className="block py-1 text-muted-foreground hover:text-accent-text transition-colors leading-snug"
                   >
                     {sec.title}
                   </a>
@@ -86,7 +86,7 @@ export default function PrivacyPolicyPage() {
                 Zobacz także:{" "}
                 <Link
                   href="/polityka-cookies"
-                  className="text-foreground font-medium underline underline-offset-2 hover:text-primary transition-colors"
+                  className="text-foreground font-medium underline underline-offset-2 hover:text-accent-text transition-colors"
                 >
                   Polityka Plików Cookies i wykaz znaczników
                 </Link>

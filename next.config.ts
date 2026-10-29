@@ -47,6 +47,20 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    return [
+      {
+        source: "/realizacje",
+        destination: "/projekty",
+        permanent: true,
+      },
+      {
+        source: "/realizacje/:slug*",
+        destination: "/projekty",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

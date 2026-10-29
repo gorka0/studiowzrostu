@@ -90,8 +90,8 @@ export function Logo({
     >
       {mark}
       <div className={cn("flex items-baseline font-bold leading-none", currentSize.text)}>
-        <span>Studio</span>
-        <span className="text-primary ml-1">Wzrostu</span>
+        <span>Studio</span>{" "}
+        <span className="text-accent-text ml-1">Wzrostu</span>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import {
   useReducedMotion,
 } from "motion/react";
 import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
+import { RevealHeading } from "@/components/effects/reveal-heading";
 import { cn } from "@/lib/utils";
 
 // 1. Znormalizowane punkty danych (0-1) - jedno źródło prawdy dla krzywych
@@ -159,24 +160,48 @@ export function GrowthChart() {
   const guideLineRef = React.useRef<SVGLineElement>(null);
   const maskGradRef = React.useRef<SVGLinearGradientElement>(null);
   const verticalProgressRef = React.useRef<HTMLDivElement>(null);
-  const stepItemsRef = React.useRef<(HTMLDivElement | null)[]>([]);
+  const stepItemsRef = React.useRef<(HTMLButtonElement | null)[]>([]);
   const svgMilestonesRef = React.useRef<(SVGGElement | null)[]>([]);
 
   const shouldReduceMotion = useReducedMotion();
   const [activeStepIndex, setActiveStepIndex] = React.useState(0);
 
-  // Śledzenie postępu przewijania w obrębie wysokiego kontenera sekcji
+  // Śledzenie postępu przewijania w obrębie kontenera sekcji
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Wygładzona dynamika sprężyny dla naturalnego wrażenia scrolla
+  // Wygładzona dynamika sprężyny - natychmiastowa reakcja bez opóźnień
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 26,
+    stiffness: 280,
+    damping: 32,
     restDelta: 0.0005,
   });
+
+  const scrollToMilestone = (threshold: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const scrollTop = window.scrollY + rect.top;
+    const totalDistance = containerRef.current.offsetHeight - window.innerHeight;
+    if (totalDistance <= 0) return;
+
+    const targetY = scrollTop + Math.min(threshold + 0.02, 1) * totalDistance;
+    window.scrollTo({
+      top: targetY,
+      behavior: "smooth",
+    });
+  };
+
+  const skipPastChart = () => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const endY = window.scrollY + rect.bottom;
+    window.scrollTo({
+      top: endY,
+      behavior: "smooth",
+    });
+  };
 
   // Reakcja na zmianę postępu - bezpośrednie atrybuty DOM bez re-renderów React
   useMotionValueEvent(smoothProgress, "change", (latest) => {
@@ -252,9 +277,11 @@ export function GrowthChart() {
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-left max-w-2xl mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-ink">
-              Architektura serwisu a tempo rozwoju firmy
-            </h2>
+            <RevealHeading
+              as="h2"
+              text="Architektura serwisu a tempo rozwoju firmy"
+              className="text-3xl sm:text-4xl font-bold font-heading text-ink"
+            />
             <p className="mt-3 text-ink-muted text-sm sm:text-base">
               Od stabilnego fundamentu technologicznego do regularnego pozyskiwania klientów.
             </p>
@@ -275,7 +302,7 @@ export function GrowthChart() {
                   Strona bez optymalizacji
                 </text>
                 <path d={AREA_PATH_D} fill="url(#static-area-grad)" />
-                <path d={CURVE_PATH_D} fill="none" stroke="var(--primary)" strokeWidth="3.5" strokeLinecap="round" />
+                <path d={CURVE_PATH_D} fill="none" stroke="var(--accent)" strokeWidth="3.5" strokeLinecap="round" />
                 <circle cx={BOUNDS.xMax} cy={SCALED_CURVE_POINTS[SCALED_CURVE_POINTS.length - 1].y} r="6" className="fill-coral" />
               </svg>
               <p className="mt-4 text-[11px] text-ink-muted text-center font-mono">
@@ -286,7 +313,7 @@ export function GrowthChart() {
             <div className="lg:col-span-4 space-y-4">
               {MILESTONES.map((m) => (
                 <div key={m.step} className="p-4 rounded-xl border border-line bg-surface space-y-1">
-                  <div className="font-mono text-xs text-primary font-bold">{m.step}</div>
+                  <div className="font-mono text-xs text-accent-text font-bold">{m.step}</div>
                   <div className="font-heading font-bold text-sm text-ink">{m.title}</div>
                   <div className="text-xs text-ink-muted">{m.desc}</div>
                 </div>
@@ -301,7 +328,7 @@ export function GrowthChart() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[260vh] md:h-[320vh] bg-background border-b border-line"
+      className="relative w-full h-[140vh] sm:h-[160vh] md:h-[180vh] bg-background border-b border-line"
       aria-label="Interaktywny wykres wzrostu"
     >
       {/* Treść dostępna dla czytników ekranu (A11y & SEO) */}
@@ -318,16 +345,31 @@ export function GrowthChart() {
 
       {/* Sticky viewport container (100svh) */}
       <div className="sticky top-0 h-[100svh] w-full flex flex-col justify-center overflow-clip px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-6xl flex flex-col h-full max-h-[900px] justify-between py-6 md:py-10">
+        <div className="mx-auto w-full max-w-6xl flex flex-col h-full max-h-[900px] justify-between py-4 sm:py-6 md:py-10">
           
-          {/* Nagłówek sekcji wyrównany do lewej z wymaganym odstępem min. 40px */}
-          <div className="text-left max-w-2xl shrink-0 mb-8 sm:mb-10 lg:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading tracking-tight text-ink">
-              Architektura serwisu a tempo rozwoju firmy
-            </h2>
-            <p className="mt-2 text-xs sm:text-sm text-ink-muted leading-relaxed">
-              Przewiń stronę w dół, aby zobaczyć, jak inwestycja w szybkość i semantykę przekłada się na stabilny napływ zapytań ofertowych.
-            </p>
+          {/* Nagłówek sekcji wyrównany do lewej z przyciskiem szybkiego pominięcia */}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 max-w-6xl shrink-0 mb-4 sm:mb-8 lg:mb-10">
+            <div className="text-left max-w-2xl">
+              <RevealHeading
+                as="h2"
+                text="Architektura serwisu a tempo rozwoju firmy"
+                className="text-xl sm:text-3xl lg:text-4xl font-bold font-heading tracking-tight text-ink"
+              />
+              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-ink-muted leading-relaxed">
+                Przewiń stronę lub kliknij wybrany etap, aby zobaczyć tempo wzrostu.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={skipPastChart}
+              className="self-start sm:self-auto text-xs font-mono text-ink hover:text-accent-text transition-colors inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text rounded-md px-2.5 py-1.5 border border-line bg-surface hover:bg-surface/80 cursor-pointer"
+              aria-label="Pomiń wykres i przejdź do kolejnej sekcji"
+            >
+              <span>Pomiń wykres</span>
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </button>
           </div>
 
           {/* Główny układ: Wykres (8 kolumn) + Lista etapów (4 kolumny) */}
@@ -345,14 +387,14 @@ export function GrowthChart() {
                   <defs>
                     {/* Gradient pionowy dla wypełnienia pod krzywą */}
                     <linearGradient id="area-vertical-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.25" />
-                      <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.0" />
+                      <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.25" />
+                      <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.0" />
                     </linearGradient>
 
                     {/* Gradient dla linii głównej */}
                     <linearGradient id="curve-stroke-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.7" />
-                      <stop offset="100%" stopColor="var(--primary)" stopOpacity="1.0" />
+                      <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.7" />
+                      <stop offset="100%" stopColor="var(--accent)" stopOpacity="1.0" />
                     </linearGradient>
 
                     {/* Maska z miękką prawą krawędzią synchronizowaną z czubkiem */}
@@ -412,7 +454,7 @@ export function GrowthChart() {
                   <motion.path
                     d={CURVE_PATH_D}
                     fill="none"
-                    stroke="var(--primary)"
+                    stroke="var(--accent)"
                     strokeWidth="8"
                     strokeOpacity="0.16"
                     strokeLinecap="round"
@@ -465,7 +507,17 @@ export function GrowthChart() {
                         key={m.step}
                         ref={(el) => { svgMilestonesRef.current[idx] = el; }}
                         data-state="future"
-                        className="transition-all duration-300 group"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => scrollToMilestone(m.threshold)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            scrollToMilestone(m.threshold);
+                          }
+                        }}
+                        aria-label={`${m.step}. ${m.title}`}
+                        className="transition-all duration-300 group cursor-pointer focus-visible:outline-none"
                       >
                         {/* Linia łącząca marker z etykietą */}
                         <line
@@ -476,7 +528,7 @@ export function GrowthChart() {
                           stroke="currentColor"
                           strokeDasharray="2 2"
                           strokeWidth="1"
-                          className="text-line group-data-[state=reached]:text-primary/60"
+                          className="text-line group-data-[state=reached]:text-accent/60"
                         />
 
                         {/* Punkt na krzywej */}
@@ -484,7 +536,7 @@ export function GrowthChart() {
                           cx={targetX}
                           cy={targetY}
                           r="4"
-                          className="fill-surface stroke-line stroke-2 group-data-[state=reached]:fill-primary group-data-[state=reached]:stroke-surface"
+                          className="fill-surface stroke-line stroke-2 group-data-[state=reached]:fill-accent group-data-[state=reached]:stroke-surface"
                         />
 
                         {/* Etykieta kamienia milowego w wolnej przestrzeni */}
@@ -495,13 +547,13 @@ export function GrowthChart() {
                             width="140"
                             height="24"
                             rx="6"
-                            className="fill-surface/95 stroke-line stroke-1 group-data-[state=reached]:stroke-primary/40 shadow-xs"
+                            className="fill-surface/95 stroke-line stroke-1 group-data-[state=reached]:stroke-accent/40 shadow-xs"
                           />
                           <text
                             x={m.textAnchor === "end" ? -6 : m.textAnchor === "middle" ? 0 : 8}
                             y="2"
                             textAnchor={m.textAnchor}
-                            className="text-[10px] font-heading font-semibold fill-ink group-data-[state=reached]:fill-primary leading-none"
+                            className="text-[10px] font-heading font-semibold fill-ink group-data-[state=reached]:fill-accent-text leading-none"
                           >
                             {m.step}. {m.title}
                           </text>
@@ -526,43 +578,47 @@ export function GrowthChart() {
                 <div className="absolute left-2 top-2 bottom-2 w-[2px] bg-line rounded-full overflow-hidden">
                   <div
                     ref={verticalProgressRef}
-                    className="w-full bg-primary transition-all duration-75 rounded-full"
+                    className="w-full bg-accent transition-all duration-75 rounded-full"
                     style={{ height: "0%" }}
                   />
                 </div>
 
-                {/* 4 kroki procesu */}
+                {/* 4 kroki procesu jako interaktywne etapy */}
                 {MILESTONES.map((m, idx) => {
                   const isActive = activeStepIndex === idx;
-                  const isPast = activeStepIndex > idx;
 
                   return (
-                    <div
+                    <button
                       key={m.step}
+                      type="button"
+                      onClick={() => scrollToMilestone(m.threshold)}
                       ref={(el) => { stepItemsRef.current[idx] = el; }}
                       className={cn(
-                        "relative transition-all duration-300 text-left",
-                        isActive ? "opacity-100 translate-x-1" : isPast ? "opacity-75" : "opacity-40"
+                        "group w-full block text-left transition-all duration-200 rounded-lg p-1.5 sm:p-2 -ml-1.5 sm:-ml-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text cursor-pointer",
+                        isActive ? "translate-x-1 bg-surface/80 shadow-xs" : "hover:bg-surface/40"
                       )}
                     >
                       <div className="flex items-center gap-2">
                         <span className={cn(
                           "font-mono text-xs font-bold transition-colors",
-                          isActive ? "text-primary" : "text-ink-muted"
+                          isActive ? "text-accent-text" : "text-ink-muted group-hover:text-ink"
                         )}>
                           {m.step}
                         </span>
                         <h3 className={cn(
-                          "font-heading font-bold text-sm sm:text-base transition-colors",
-                          isActive ? "text-ink" : "text-ink-muted"
+                          "font-heading font-bold text-xs sm:text-sm lg:text-base transition-colors",
+                          isActive ? "text-ink font-extrabold" : "text-ink group-hover:text-accent-text"
                         )}>
                           {m.title}
                         </h3>
                       </div>
-                      <p className="mt-1 text-xs text-ink-muted leading-relaxed max-w-sm">
+                      <p className={cn(
+                        "mt-0.5 sm:mt-1 text-[11px] sm:text-xs text-ink-muted leading-relaxed max-w-sm transition-all",
+                        isActive ? "block" : "hidden sm:block"
+                      )}>
                         {m.desc}
                       </p>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
@@ -643,8 +699,8 @@ function StaticChartDefs() {
   return (
     <defs>
       <linearGradient id="static-area-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.22" />
-        <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.0" />
+        <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.22" />
+        <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.0" />
       </linearGradient>
     </defs>
   );

@@ -29,7 +29,7 @@ export default function DesignPage() {
   return (
     <main className="flex-1 pb-24">
       {/* Pasek informacyjny trybu deweloperskiego */}
-      <div className="bg-primary/10 border-b border-primary/20 py-2.5 px-4 text-center text-xs font-medium text-primary">
+      <div className="bg-primary/10 border-b border-primary/20 py-2.5 px-4 text-center text-xs font-medium text-accent-text">
         Środowisko Development – Strona <code>/design</code> jest zablokowana na produkcji (zwraca 404 + noindex).
       </div>
 
@@ -66,7 +66,7 @@ export default function DesignPage() {
                 </div>
                 <div className="text-sm font-semibold">Tło Główne</div>
                 <div className="text-xs text-muted-foreground font-mono">Jasny: #FBFAF6 | Ciemny: #0B1410</div>
-                <div className="text-[11px] text-primary flex items-center gap-1 font-medium">
+                <div className="text-[11px] text-accent-text flex items-center gap-1 font-medium">
                   <ShieldCheck className="h-3.5 w-3.5" /> Kontrast tekstu: &gt; 15:1 (AAA)
                 </div>
               </div>
@@ -78,19 +78,19 @@ export default function DesignPage() {
                 </div>
                 <div className="text-sm font-semibold">Powierzchnie / Karty</div>
                 <div className="text-xs text-muted-foreground font-mono">Jasny: #FFFFFF | Ciemny: #121E18</div>
-                <div className="text-[11px] text-primary flex items-center gap-1 font-medium">
+                <div className="text-[11px] text-accent-text flex items-center gap-1 font-medium">
                   <ShieldCheck className="h-3.5 w-3.5" /> Ostre obramowanie 1px
                 </div>
               </div>
 
               {/* Akcent Główny: Zieleń */}
               <div className="p-4 rounded-2xl border border-border bg-card space-y-2">
-                <div className="h-16 rounded-xl bg-primary text-primary-foreground rounded-xl flex items-center justify-center text-xs font-mono font-bold">
+                <div className="h-16 rounded-xl bg-primary text-accent-text-foreground rounded-xl flex items-center justify-center text-xs font-mono font-bold">
                   --primary
                 </div>
                 <div className="text-sm font-semibold">Zieleń Wzrostowa</div>
                 <div className="text-xs text-muted-foreground font-mono">Jasny: #188755 | Ciemny: #4ADE9C</div>
-                <div className="text-[11px] text-primary flex items-center gap-1 font-medium">
+                <div className="text-[11px] text-accent-text flex items-center gap-1 font-medium">
                   <ShieldCheck className="h-3.5 w-3.5" /> WCAG AA: &gt; 4.5:1
                 </div>
               </div>
@@ -201,13 +201,13 @@ export default function DesignPage() {
             <div className="space-y-3 pt-4 border-t border-border">
               <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Przyciski</h4>
               <div className="flex flex-wrap items-center gap-4">
-                <Button size="default" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button size="default" className="rounded-full bg-primary text-accent-text-foreground hover:bg-primary/90">
                   <span>Rozpocznij projekt</span>
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
 
                 <Button variant="secondary" size="default" className="rounded-full">
-                  Zobacz realizacje
+                  Zobacz projekty
                 </Button>
 
                 <Button variant="outline" size="default" className="rounded-full">
@@ -233,7 +233,7 @@ export default function DesignPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card>
                 <CardHeader>
-                  <div className="h-10 w-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-2">
+                  <div className="h-10 w-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-accent-text mb-2">
                     <Zap className="h-5 w-5" />
                   </div>
                   <CardTitle>Szybkość i Performance</CardTitle>
@@ -243,11 +243,11 @@ export default function DesignPage() {
                 </CardHeader>
                 <CardContent className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-primary shrink-0" />
+                    <Check className="h-4 w-4 text-accent-text shrink-0" />
                     <span>Czas ładowania poniżej 1.2 sekundy</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-primary shrink-0" />
+                    <Check className="h-4 w-4 text-accent-text shrink-0" />
                     <span>Certyfikat SSL i CDN Vercel</span>
                   </div>
                 </CardContent>
@@ -259,11 +259,11 @@ export default function DesignPage() {
               </Card>
 
               <Card className="border-primary/30 relative overflow-hidden">
-                <div className="absolute top-0 right-0 px-3 py-1 bg-primary text-primary-foreground text-[10px] font-bold rounded-bl-xl uppercase tracking-wider">
+                <div className="absolute top-0 right-0 px-3 py-1 bg-primary text-accent-text-foreground text-[10px] font-bold rounded-bl-xl uppercase tracking-wider">
                   Popularne
                 </div>
                 <CardHeader>
-                  <div className="h-10 w-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center mb-2">
+                  <div className="h-10 w-10 rounded-xl bg-primary text-accent-text-foreground flex items-center justify-center mb-2">
                     <Sparkles className="h-5 w-5" />
                   </div>
                   <CardTitle>Dedykowane wdrożenie serwisu</CardTitle>
@@ -273,16 +273,16 @@ export default function DesignPage() {
                 </CardHeader>
                 <CardContent className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-primary shrink-0" />
+                    <Check className="h-4 w-4 text-accent-text shrink-0" />
                     <span>Dedykowana szata graficzna</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-primary shrink-0" />
+                    <Check className="h-4 w-4 text-accent-text shrink-0" />
                     <span>Formularz z ochroną antyspamową</span>
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button size="sm" className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button size="sm" className="w-full rounded-xl bg-primary text-accent-text-foreground hover:bg-primary/90">
                     Wybierz ten pakiet
                   </Button>
                 </CardFooter>
@@ -300,11 +300,11 @@ export default function DesignPage() {
                 </CardHeader>
                 <CardContent className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-primary shrink-0" />
+                    <Check className="h-4 w-4 text-accent-text shrink-0" />
                     <span>Wsparcie powdrożeniowe</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-primary shrink-0" />
+                    <Check className="h-4 w-4 text-accent-text shrink-0" />
                     <span>Pełna własność kodu źródłowego</span>
                   </div>
                 </CardContent>

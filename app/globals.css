@@ -9,7 +9,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
-  --font-mono: var(--font-mono);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* Semantyczne tokeny studia - bez domyślnych palet Tailwind */
   --color-surface: var(--card);
@@ -17,7 +17,7 @@
   --color-ink: var(--foreground);
   --color-ink-muted: var(--muted-foreground);
   --color-line: var(--border);
-  --color-accent-brand: var(--primary);
+  --color-accent-brand: var(--accent);
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -25,12 +25,14 @@
   --color-popover-foreground: var(--popover-foreground);
   
   --color-primary: var(--primary);
+  --color-primary-text: var(--primary-text);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
@@ -40,8 +42,10 @@
   --color-ring: var(--ring);
 
   --color-growth: var(--growth);
+  --color-growth-text: var(--growth-text);
   --color-growth-foreground: var(--growth-foreground);
   --color-coral: var(--coral);
+  --color-coral-text: var(--coral-text);
   --color-coral-foreground: var(--coral-foreground);
 
   /* Własna skala promieni i cieni o szwajcarskim charakterze */
@@ -60,6 +64,11 @@
   --shadow-elevated: 0 12px 24px -6px rgba(20, 35, 28, 0.08), 0 4px 8px -4px rgba(20, 35, 28, 0.04);
 }
 
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 600px;
+}
+
 :root {
   /* Motyw jasny - ciepła biel, głęboka zieleń grafitowa, zieleń wzrostowa, koral */
   --background: #FBFAF6;
@@ -68,14 +77,21 @@
   --card-foreground: #14231C;
   --popover: #FFFFFF;
   --popover-foreground: #14231C;
+
+  /* Akcent graficzny: jasna zieleń #188755 (wypełnienia, tła przycisków, linia/kropki wykresu, dekoracje) */
+  --accent: #188755;
+  --accent-foreground: #FFFFFF;
   --primary: #188755;
   --primary-foreground: #FFFFFF;
+
+  /* Akcent tekstowy: ciemna zieleń #136B43 (etykiety, pigułki, linki, eyebrowy, napisy) */
+  --accent-text: #136B43;
+  --primary-text: #136B43;
+
   --secondary: #F2EFE8;
   --secondary-foreground: #14231C;
   --muted: #F2EFE8;
-  --muted-foreground: #485950;
-  --accent: #FF7A45;
-  --accent-foreground: #14231C;
+  --muted-foreground: #3F5046;
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
   --border: #E5E0D5;
@@ -83,9 +99,11 @@
   --ring: #188755;
 
   --growth: #188755;
+  --growth-text: #136B43;
   --growth-foreground: #FFFFFF;
-  --coral: #FF7A45;
-  --coral-foreground: #14231C;
+  --coral: #D94E14;
+  --coral-text: #B83E0A;
+  --coral-foreground: #FFFFFF;
 
   --radius: 0.75rem;
 }
@@ -98,23 +116,32 @@
   --card-foreground: #EDF5F1;
   --popover: #121E18;
   --popover-foreground: #EDF5F1;
-  --primary: #4ADE9C;
+
+  /* Akcent graficzny: soczysta mięta #2ECC71 (kontrast 8.91:1) */
+  --accent: #2ECC71;
+  --accent-foreground: #0B1410;
+  --primary: #2ECC71;
   --primary-foreground: #0B1410;
+
+  /* Akcent tekstowy: jasna mięta #4ADE9C (kontrast 10.89:1) */
+  --accent-text: #4ADE9C;
+  --primary-text: #4ADE9C;
+
   --secondary: #182A22;
   --secondary-foreground: #EDF5F1;
   --muted: #182A22;
   --muted-foreground: #90A69A;
-  --accent: #FF7A45;
-  --accent-foreground: #0B1410;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
   --border: #1F3329;
   --input: #1F3329;
   --ring: #4ADE9C;
 
-  --growth: #4ADE9C;
+  --growth: #2ECC71;
+  --growth-text: #4ADE9C;
   --growth-foreground: #0B1410;
   --coral: #FF7A45;
+  --coral-text: #FF8F5E;
   --coral-foreground: #0B1410;
 }
 

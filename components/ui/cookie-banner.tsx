@@ -138,13 +138,12 @@ export function CookieConsentProvider({
       {/* 1. Baner zgody (pływający pasek na dole, bez wpływu na layout/LCP) */}
       {showBanner && (
         <aside
-          role="dialog"
           aria-label="Powiadomienie o plikach cookies"
           className="fixed bottom-3 sm:bottom-5 left-3 sm:left-6 right-3 sm:right-6 z-50 mx-auto max-w-4xl"
         >
           <div className="rounded-2xl border border-border/90 bg-background/95 backdrop-blur-md p-4 sm:p-5 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex items-start gap-3 max-w-2xl">
-              <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5">
+              <div className="h-8 w-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent-text shrink-0 mt-0.5">
                 <Cookie className="h-4 w-4" />
               </div>
               <div className="text-xs sm:text-sm text-foreground/90 leading-relaxed">
@@ -153,7 +152,7 @@ export function CookieConsentProvider({
                 </span>
                 <Link
                   href="/polityka-cookies"
-                  className="font-medium text-foreground underline underline-offset-2 hover:text-primary transition-colors"
+                  className="font-medium text-foreground underline underline-offset-2 hover:text-accent-text transition-colors"
                 >
                   Polityce Cookies
                 </Link>
@@ -181,10 +180,11 @@ export function CookieConsentProvider({
 
               <Button
                 type="button"
+                variant="ghost"
                 onClick={openPreferencesModal}
-                className="w-full sm:w-auto h-9 px-3 text-xs font-semibold rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors inline-flex items-center justify-center gap-1.5"
+                className="w-full sm:w-auto h-9 px-3 text-xs font-semibold rounded-xl text-foreground hover:bg-muted/60 transition-colors inline-flex items-center justify-center gap-1.5"
               >
-                <Settings className="h-3.5 w-3.5" />
+                <Settings className="h-3.5 w-3.5 text-foreground" />
                 <span>Dostosuj</span>
               </Button>
             </div>
@@ -207,7 +207,7 @@ export function CookieConsentProvider({
             {/* Nagłówek modala */}
             <div className="flex items-center justify-between pb-3 border-b border-border">
               <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
+                <Shield className="h-5 w-5 text-accent-text" />
                 <h2
                   id="cookie-modal-title"
                   className="font-heading font-bold text-lg sm:text-xl text-foreground"
@@ -237,7 +237,7 @@ export function CookieConsentProvider({
                   <div className="font-heading font-bold text-sm text-foreground">
                     Niezbędne pliki techniczne
                   </div>
-                  <span className="text-[11px] font-semibold font-mono text-primary px-2 py-0.5 rounded-md bg-primary/10 border border-primary/20">
+                  <span className="text-[11px] font-semibold font-mono text-accent-text px-2 py-0.5 rounded-md bg-accent/10 border border-accent/20">
                     Wymagane
                   </span>
                 </div>
@@ -260,7 +260,7 @@ export function CookieConsentProvider({
                     type="checkbox"
                     checked={analyticsChecked}
                     onChange={(e) => setAnalyticsChecked(e.target.checked)}
-                    className="h-4 w-4 rounded border-border text-primary focus:ring-ring accent-primary cursor-pointer"
+                    className="h-4 w-4 rounded border-border text-accent-text focus:ring-accent-text accent-accent cursor-pointer"
                   />
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
@@ -282,7 +282,7 @@ export function CookieConsentProvider({
                     type="checkbox"
                     checked={marketingChecked}
                     onChange={(e) => setMarketingChecked(e.target.checked)}
-                    className="h-4 w-4 rounded border-border text-primary focus:ring-ring accent-primary cursor-pointer"
+                    className="h-4 w-4 rounded border-border text-accent-text focus:ring-accent-text accent-accent cursor-pointer"
                   />
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
@@ -305,7 +305,7 @@ export function CookieConsentProvider({
                 <Button
                   type="button"
                   onClick={handleSaveCustom}
-                  className="w-full sm:w-auto h-10 px-5 text-xs font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-1.5"
+                  className="w-full sm:w-auto h-10 px-5 text-xs font-semibold rounded-xl bg-accent-text text-white hover:bg-accent transition-colors inline-flex items-center justify-center gap-1.5"
                 >
                   <Check className="h-3.5 w-3.5" />
                   <span>Zapisz preferencje</span>

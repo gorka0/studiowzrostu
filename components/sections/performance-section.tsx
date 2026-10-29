@@ -29,7 +29,7 @@ export function PerformanceSection() {
     <Section spacing="default" className="border-b border-line">
       <Container>
         <SectionHeader
-          title="Wpływ czasu reakcji serwisu na decyzje klientów"
+          title="Dlaczego szybka strona w Next.js pomaga zdobyć więcej klientów?"
           description="Szybkość to nie kwestia estetyki, lecz bezpośredni czynnik rankingowy w Google i warunek konieczny, by klient zapoznał się z ofertą, a nie opuszczał serwisu."
         />
 
@@ -41,14 +41,14 @@ export function PerformanceSection() {
               className="flex flex-col justify-between border-t border-line pt-6 space-y-4 text-left"
             >
               <div className="space-y-3">
-                <div className="font-mono text-3xl sm:text-4xl font-bold text-primary tracking-tight">
+                <div className="font-mono text-3xl sm:text-4xl font-bold text-accent-text tracking-tight">
                   {item.metricValue}
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-lg sm:text-xl text-ink leading-snug">
                     {item.name}
                   </h3>
-                  <div className="text-xs font-semibold text-primary mt-1">
+                  <div className="text-xs font-semibold text-accent-text mt-1">
                     {item.tagline}
                   </div>
                 </div>
@@ -71,7 +71,7 @@ export function PerformanceSection() {
             </p>
           </div>
 
-          <div className="font-mono text-xs text-primary font-semibold shrink-0">
+          <div className="font-mono text-xs text-accent-text font-semibold shrink-0">
             100/100 Google PageSpeed
           </div>
         </div>

@@ -18,19 +18,19 @@ export function AccordionItem({ question, answer, defaultOpen = false }: Accordi
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between text-left font-heading text-lg sm:text-xl font-semibold text-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg py-1"
+        className="flex w-full items-center justify-between text-left font-heading text-lg sm:text-xl font-semibold text-foreground hover:text-accent-text transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text rounded-lg py-1"
         aria-expanded={isOpen}
       >
         <span>{question}</span>
         <ChevronDown
           className={cn(
             "h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 ml-4",
-            isOpen && "rotate-180 text-primary"
+            isOpen && "rotate-180 text-accent-text"
           )}
         />
       </button>
       {isOpen && (
-        <div className="pt-3 pb-2 text-muted-foreground text-sm sm:text-base leading-relaxed animate-in fade-in-50 duration-200">
+        <div className="pt-3 pb-2 text-ink-muted text-sm sm:text-base leading-relaxed">
           <p>{answer}</p>
         </div>
       )}

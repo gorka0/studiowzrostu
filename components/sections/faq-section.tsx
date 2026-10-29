@@ -28,7 +28,7 @@ export function FaqSection() {
           <div className="pt-2">
             <Link
               href="/kontakt"
-              className="inline-flex items-center text-xs sm:text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+              className="inline-flex items-center text-xs sm:text-sm font-semibold text-accent-text hover:underline transition-colors"
             >
               <span>Napisz do nas lub zadzwoń</span>
               <ArrowRight className="ml-1.5 h-4 w-4" />

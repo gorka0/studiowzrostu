@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { href: "/uslugi", label: "Usługi" },
-  { href: "/realizacje", label: "Realizacje" },
+  { href: "/projekty", label: "Projekty" },
   { href: "/blog", label: "Blog" },
   { href: "/o-nas", label: "O nas" },
   { href: "/kontakt", label: "Kontakt" },
@@ -59,7 +59,6 @@ export function Header() {
         <Link
           href="/"
           className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md py-0.5"
-          aria-label="Studio Wzrostu – Strona główna"
         >
           <Logo size="sm" />
         </Link>
@@ -78,7 +77,7 @@ export function Header() {
                   "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isActive
-                    ? "text-primary font-semibold bg-primary/10"
+                    ? "text-accent-text font-semibold bg-accent/10"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                 )}
                 aria-current={isActive ? "page" : undefined}
@@ -96,7 +95,7 @@ export function Header() {
           {/* Desktop CTA */}
           <Link
             href="/kontakt"
-            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-xs h-8 bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs"
+            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-xs h-8 bg-accent-text text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-all shadow-xs"
           >
             <span>Wycena</span>
             <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
@@ -138,7 +137,7 @@ export function Header() {
                   className={cn(
                     "text-xl font-heading font-semibold py-2 px-3 rounded-xl transition-colors",
                     isActive
-                      ? "bg-primary/10 text-primary"
+                      ? "bg-accent/10 text-accent-text"
                       : "text-foreground hover:bg-muted/50"
                   )}
                 >

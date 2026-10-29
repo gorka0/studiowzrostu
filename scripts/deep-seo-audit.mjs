@@ -7,10 +7,7 @@ const ROUTES = [
   "/uslugi/landing-page",
   "/uslugi/seo-techniczne",
   "/uslugi/redesign-i-wydajnosc",
-  "/realizacje",
-  "/realizacje/serwis-b2b-uslugi",
-  "/realizacje/kancelaria-doradcza",
-  "/realizacje/firma-techniczna",
+  "/projekty",
   "/blog",
   "/blog/dlaczego-szybkosc-strony-decyduje-o-sprzedazy",
   "/blog/ile-kosztuje-nowoczesna-strona-www",
@@ -183,9 +180,6 @@ async function runAudit() {
         // Sprawdź specyficzne schematy
         if (route.startsWith("/blog/") && !html.includes("BlogPosting") && !html.includes("Article")) {
           warnings.push(`[${route}] Artykuł blogowy nie posiada schematu BlogPosting / Article JSON-LD!`);
-        }
-        if (route.startsWith("/realizacje/") && !html.includes("CreativeWork") && !html.includes("Article") && !html.includes("WebPage")) {
-          warnings.push(`[${route}] Realizacja portfolio nie posiada dedykowanego schematu CreativeWork / Project JSON-LD!`);
         }
       }
 

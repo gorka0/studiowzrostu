@@ -1,6 +1,6 @@
 /**
  * Baza danych usług studia
- * STATUS: Szkic do autorskiej redakcji przez Tomasza Górkę
+ * Silna architektura Topical Authority z intencją komercyjną i sygnałami lokalnymi (Bydgoszcz + cała Polska).
  */
 
 export interface ServiceDetail {
@@ -36,29 +36,34 @@ export interface ServiceDetail {
     title: string;
   }[];
   relatedBlogSlug: string;
+  relatedProject: {
+    title: string;
+    description: string;
+    href: string;
+  };
 }
 
 export const servicesList: ServiceDetail[] = [
   {
     slug: "strony-internetowe",
-    title: "Nowoczesne strony firmowe",
-    tagline: "Strony w Next.js i React, które budują autorytet i zdobywają klientów",
+    title: "Strony internetowe Bydgoszcz – Next.js i React",
+    tagline: "Dedykowane serwisy firmowe w React i Next.js, które budują autorytet i generują zapytania",
     shortDescription:
-      "Dedykowane serwisy internetowe zaprojektowane od zera. Bez ociężałych motywów, z błyskawicznym czasem ładowania na smartfonach.",
+      "Dedykowane serwisy internetowe zaprojektowane od zera. Bez ociężałych motywów, z błyskawicznym czasem ładowania na smartfonach dla firm z Bydgoszczy i całej Polski.",
     problem: {
       heading: "Dlaczego typowa strona firmowa nie przynosi zapytań?",
       description:
         "Większość stron powstaje na masowych szablonach z dziesiątkami zbędnych wtyczek. Ładują się po 4–6 sekund, rozjeżdżają się na telefonach i nie odpowiadają na kluczowe pytania potencjalnego klienta.",
       symptoms: [
         "Wysoki współczynnik odrzuceń – użytkownicy wychodzą przed załadowaniem oferty",
-        "Trudności z edycją i strach przed aktualizacją wtyczek",
-        "Brak wyróżnienia na tle branżowej konkurencji",
+        "Trudności z edycją i strach przed awariami po aktualizacji wtyczek",
+        "Brak wyróżnienia na tle lokalnej i ogólnopolskiej konkurencji",
       ],
     },
     solution: {
       heading: "Co konkretnie dla Ciebie robimy?",
       description:
-        "Tworzymy autorski serwis w Next.js, dopasowany w 100% do specyfiki Twojej branży. Każdy element układu ma jeden cel: przekonać odwiedzającego do kontaktu z Twoją firmą.",
+        "Tworzymy autorski serwis w Next.js, dopasowany w 100% do specyfiki Twojej branży. Każdy element układu ma jeden cel: przekonać odwiedzającego do kontaktu z Twoją firmą. Pracujemy stacjonarnie w Bydgoszczy oraz zdalnie z klientami z całego kraju.",
       deliverables: [
         "Indywidualny projekt graficzny w szwajcarskiej, czytelnej estetyce",
         "Architektura Next.js 16 z czasem renderowania poniżej 1 sekundy",
@@ -80,7 +85,7 @@ export const servicesList: ServiceDetail[] = [
     faq: [
       {
         question: "Ile trwa wdrożenie nowej strony firmowej?",
-        answer: "Standardowy czas realizacji wynosi od 2 do 4 tygodni od momentu akceptacji założeń i struktury.",
+        answer: "Dla typowej strony firmowej wdrożenie zajmuje zwykle 3–4 dni robocze od momentu akceptacji założeń i dostarczenia kompletu materiałów (warunki orientacyjne – do potwierdzenia przed realizacją).",
       },
       {
         question: "Czy po wdrożeniu otrzymuję kod na własność?",
@@ -91,12 +96,17 @@ export const servicesList: ServiceDetail[] = [
       { slug: "seo-techniczne", title: "SEO techniczne i widoczność" },
       { slug: "redesign-i-wydajnosc", title: "Przebudowa istniejącego serwisu" },
     ],
-    relatedBlogSlug: "dlaczego-szybkosc-strony-decyduje-o-sprzedazy",
+    relatedBlogSlug: "strona-dla-lokalnej-firmy-bydgoszcz-seo",
+    relatedProject: {
+      title: "Koncepcja serwisu maszyn B2B",
+      description: "Strona firmowa z formularzem zapytań bezpośrednio na pierwszym ekranie.",
+      href: "/projekty",
+    },
   },
   {
     slug: "landing-page",
-    title: "Landing Pages nastawione na konwersję",
-    tagline: "Jednostronicowe serwisy kampanijne, które maksymalizują zwrot z reklam",
+    title: "Projektowanie Landing Page pod konwersję",
+    tagline: "Jednostronicowe serwisy kampanijne, które maksymalizują zwrot z reklam Google Ads i Meta",
     shortDescription:
       "Strony docelowe zoptymalizowane pod płatne kampanie (Google Ads, Meta Ads) oraz premiery nowych usług i produktów.",
     problem: {
@@ -129,27 +139,32 @@ export const servicesList: ServiceDetail[] = [
     businessBenefits: [
       { title: "Niższy koszt pozyskania klienta", desc: "Szybka strona osiąga wyższy wynik jakości reklam, co obniża stawki za kliknięcie." },
       { title: "Większy procent konwersji", desc: "Brak menu rozpraszającego uwagę zatrzymuje użytkownika na ścieżce zakupu." },
-      { title: "Błyskawiczne uruchomienie", desc: "Prosty landing page jesteśmy w stanie wdrożyć już w 7–10 dni roboczych." },
+      { title: "Błyskawiczne uruchomienie", desc: "Przygotowanie typowego landing page zajmuje zwykle 3–4 dni robocze." },
     ],
     faq: [
       {
         question: "Czy landing page może być na mojej obecnej domenie?",
-        answer: "Tak, możemy uruchomić go na subdomenie (np. oferta.twojadomena.pl) lub w podkatalogu bez ingerencji w stary serwis.",
+        answer: "Tak, możemy uruchomić go na subdomenie (np. oferta.twojadomena.pl) lub w dedykowanym katalogu bez ingerencji w stary serwis.",
       },
       {
         question: "Czy pomagacie z tekstami na landing page?",
-        answer: "Tak, redagujemy nagłówki i sekcje korzyści w oparciu o informacje o Twojej ofercie.",
+        answer: "Tak, redagujemy nagłówki i sekcje korzyści w oparciu o informacje o Twojej ofercie i grupie docelowej.",
       },
     ],
     relatedServices: [
       { slug: "strony-internetowe", title: "Nowoczesne strony firmowe" },
       { slug: "seo-techniczne", title: "SEO techniczne" },
     ],
-    relatedBlogSlug: "ile-kosztuje-nowoczesna-strona-www",
+    relatedBlogSlug: "jak-zdobyc-wiecej-klientow-ze-strony-internetowej",
+    relatedProject: {
+      title: "Koncepcja landing page aplikacji",
+      description: "Układ produktowy typu single-feature z natychmiastowym interfejsem grafiku.",
+      href: "/projekty",
+    },
   },
   {
     slug: "seo-techniczne",
-    title: "Techniczne SEO i audyt architektury",
+    title: "Techniczne SEO i pozycjonowanie stron Bydgoszcz",
     tagline: "Solidny fundament pod wysokie pozycje w organicznych wynikach Google",
     shortDescription:
       "Optymalizacja kodu, struktury danych Schema.org i indeksowania SSR. Eliminujemy bariery, przez które roboty Google pomijają Twoją treść.",
@@ -199,12 +214,17 @@ export const servicesList: ServiceDetail[] = [
       { slug: "redesign-i-wydajnosc", title: "Przebudowa i wydajność" },
       { slug: "strony-internetowe", title: "Nowoczesne strony firmowe" },
     ],
-    relatedBlogSlug: "dlaczego-szybkosc-strony-decyduje-o-sprzedazy",
+    relatedBlogSlug: "strona-dla-lokalnej-firmy-bydgoszcz-seo",
+    relatedProject: {
+      title: "Koncepcja redesignu i optymalizacji",
+      description: "Porównanie parametrów czytelności i czasu ładowania przed i po optymalizacji.",
+      href: "/projekty",
+    },
   },
   {
     slug: "redesign-i-wydajnosc",
-    title: "Przebudowa i optymalizacja wydajności",
-    tagline: "Nowe życie dla Twojego obecnego serwisu bez utraty pozycji w Google",
+    title: "Przebudowa i optymalizacja wydajności stron",
+    tagline: "Nowe życie dla Twojego obecnego serwisu bez utraty wypracowanych pozycji w Google",
     shortDescription:
       "Zastępujemy przestarzałe, wolno działające strony nowoczesnym rozwiązaniem w Next.js. Przenosimy wypracowany ruch i pozycje.",
     problem: {
@@ -253,11 +273,16 @@ export const servicesList: ServiceDetail[] = [
       { slug: "strony-internetowe", title: "Nowoczesne strony firmowe" },
       { slug: "landing-page", title: "Landing Pages" },
     ],
-    relatedBlogSlug: "ile-kosztuje-nowoczesna-strona-www",
+    relatedBlogSlug: "strona-internetowa-a-rozwoj-biznesu",
+    relatedProject: {
+      title: "Interaktywne porównanie przed i po redesignie",
+      description: "Zobacz suwak porównujący starą i nową wersję serwisu samochodowego.",
+      href: "/projekty",
+    },
   },
 ];
 
-// Zachowujemy kompatybilność z poprzednim interfejsem dla Bento Grid
+// Kompatybilność z Bento Grid
 export const servicesData = servicesList.map((s) => ({
   id: s.slug,
   title: s.title,

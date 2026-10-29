@@ -17,14 +17,14 @@ export const metadata: Metadata = buildMetadata({
 
 export default function CookiesPolicyPage() {
   return (
-    <main className="flex-1 pb-20">
+    <main id="main-content" className="flex-1 pb-20">
       <Section spacing="sm">
         <Container>
           <Breadcrumbs items={[{ label: "Polityka cookies" }]} className="mb-8" />
 
           {/* Nagłówek dokumentu */}
           <div className="max-w-3xl space-y-4 border-b border-border pb-8">
-            <div className="text-xs font-mono text-primary font-semibold tracking-wider">
+            <div className="text-xs font-mono text-accent-text font-semibold tracking-wider">
               STANDARD EPRIVACY & CONSENT MODE V2
             </div>
 
@@ -47,7 +47,7 @@ export default function CookiesPolicyPage() {
             <div className="p-6 rounded-2xl border border-primary/30 bg-card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="space-y-1">
                 <div className="font-heading font-bold text-base text-foreground flex items-center gap-2">
-                  <Cookie className="h-4 w-4 text-primary" />
+                  <Cookie className="h-4 w-4 text-accent-text" />
                   <span>Twoje bieżące preferencje</span>
                 </div>
                 <div className="text-xs sm:text-sm text-muted-foreground">
@@ -99,7 +99,7 @@ export default function CookiesPolicyPage() {
                             <span
                               className={`px-2 py-0.5 rounded-md font-mono text-[11px] font-semibold border ${
                                 row.category === "Niezbędne"
-                                  ? "bg-primary/10 text-primary border-primary/20"
+                                  ? "bg-primary/10 text-accent-text border-primary/20"
                                   : row.category === "Funkcjonalne"
                                   ? "bg-secondary text-secondary-foreground border-border"
                                   : "bg-coral/10 text-coral border-coral/30"
@@ -122,7 +122,7 @@ export default function CookiesPolicyPage() {
             {/* Zgodność i bezpieczeństwo */}
             <div className="p-6 rounded-2xl border border-border bg-card/60 space-y-2 text-xs sm:text-sm text-muted-foreground">
               <div className="flex items-center gap-2 text-foreground font-semibold font-heading text-base">
-                <ShieldCheck className="h-5 w-5 text-primary" />
+                <ShieldCheck className="h-5 w-5 text-accent-text" />
                 <span>Zgodność z Consent Mode v2 i wytycznymi UODO</span>
               </div>
               <p className="leading-relaxed">
@@ -132,7 +132,7 @@ export default function CookiesPolicyPage() {
                 Zobacz również naszą pełną{" "}
                 <Link
                   href="/polityka-prywatnosci"
-                  className="text-primary underline underline-offset-2 hover:text-primary/80"
+                  className="text-accent-text underline underline-offset-2 hover:text-accent-text/80"
                 >
                   Politykę Prywatności (RODO)
                 </Link>

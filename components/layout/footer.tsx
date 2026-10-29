@@ -6,6 +6,7 @@ import { siteConfig } from "@/site.config";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "@/components/ui/container";
 import { useCookieConsent } from "@/components/ui/cookie-banner";
+import { CopyEmailButton } from "@/components/ui/copy-email-button";
 
 export function Footer() {
   const { openPreferencesModal } = useCookieConsent();
@@ -16,7 +17,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Kolumna 1: Marka & Misja */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-block" aria-label="Studio Wzrostu">
+            <Link href="/" className="inline-block">
               <Logo size="md" />
             </Link>
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
@@ -34,27 +35,27 @@ export function Footer() {
             </div>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/uslugi" className="hover:text-primary transition-colors">
+                <Link href="/uslugi" className="hover:text-accent-text transition-colors">
                   Usługi
                 </Link>
               </li>
               <li>
-                <Link href="/realizacje" className="hover:text-primary transition-colors">
-                  Realizacje
+                <Link href="/projekty" className="hover:text-accent-text transition-colors">
+                  Projekty
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-primary transition-colors">
+                <Link href="/blog" className="hover:text-accent-text transition-colors">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/o-nas" className="hover:text-primary transition-colors">
+                <Link href="/o-nas" className="hover:text-accent-text transition-colors">
                   O nas
                 </Link>
               </li>
               <li>
-                <Link href="/kontakt" className="hover:text-primary transition-colors">
+                <Link href="/kontakt" className="hover:text-accent-text transition-colors">
                   Kontakt
                 </Link>
               </li>
@@ -67,18 +68,13 @@ export function Footer() {
               Kontakt
             </div>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className="hover:text-primary transition-colors font-medium text-foreground"
-                >
-                  {siteConfig.contact.email}
-                </a>
+              <li className="pt-0.5">
+                <CopyEmailButton />
               </li>
               <li>
                 <a
                   href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-accent-text transition-colors"
                 >
                   {siteConfig.contact.phone}
                 </a>
@@ -95,7 +91,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/polityka-prywatnosci"
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-accent-text transition-colors"
                 >
                   Polityka prywatności
                 </Link>
@@ -103,7 +99,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/polityka-cookies"
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-accent-text transition-colors"
                 >
                   Polityka cookies
                 </Link>
@@ -112,7 +108,7 @@ export function Footer() {
                 <button
                   type="button"
                   onClick={openPreferencesModal}
-                  className="hover:text-primary transition-colors text-left cursor-pointer"
+                  className="hover:text-accent-text transition-colors text-left cursor-pointer"
                 >
                   Ustawienia cookies
                 </button>

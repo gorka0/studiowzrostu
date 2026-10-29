@@ -22,7 +22,7 @@ export function generateStaticParams() {
 
 export default function AboutPage() {
   return (
-    <main className="flex-1 pb-16">
+    <main id="main-content" className="flex-1 pb-16">
       <Section spacing="sm">
         <Container>
           <Breadcrumbs items={[{ label: "O nas" }]} className="mb-8" />
@@ -45,7 +45,7 @@ export default function AboutPage() {
               <div className="pt-4 border-t border-line space-y-3 font-medium text-ink text-sm">
                 {aboutContent.commitments.map((commitment, idx) => (
                   <div key={idx} className="flex items-baseline gap-3">
-                    <span className="font-mono text-xs text-primary font-bold">0{idx + 1}</span>
+                    <span className="font-mono text-xs text-accent-text font-bold">0{idx + 1}</span>
                     <span>{commitment}</span>
                   </div>
                 ))}
@@ -63,7 +63,7 @@ export default function AboutPage() {
                   <span className="text-xs text-ink-muted mt-1 font-mono">
                     Założyciel & Główny Architekt
                   </span>
-                  <span className="text-[11px] font-mono text-primary mt-4 border border-line bg-surface px-3 py-1 rounded">
+                  <span className="text-[11px] font-mono text-accent-text mt-4 border border-line bg-surface px-3 py-1 rounded">
                     [Zdjęcie założyciela – do uzupełnienia]
                   </span>
                 </div>
@@ -87,7 +87,7 @@ export default function AboutPage() {
                   key={val.title}
                   className="border-t border-line pt-6 space-y-3 text-left"
                 >
-                  <div className="font-mono text-xs font-semibold text-primary">
+                  <div className="font-mono text-xs font-semibold text-accent-text">
                     {val.number}
                   </div>
                   <h3 className="font-heading font-bold text-lg text-ink">

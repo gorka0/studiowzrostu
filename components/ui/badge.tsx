@@ -8,14 +8,14 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+          "border-transparent bg-accent-text text-white shadow-xs hover:bg-accent",
         secondary:
           "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
         outline: "border-border text-foreground hover:bg-muted/50",
         growth:
-          "border-primary/20 bg-primary/10 text-primary dark:bg-primary/15 dark:text-primary",
+          "border-accent/20 bg-accent/10 text-accent-text",
         coral:
-          "border-accent/30 bg-accent/10 text-accent-foreground dark:bg-accent/20 dark:text-accent-foreground",
+          "border-coral/30 bg-coral/10 text-coral-text",
       },
       size: {
         sm: "text-[11px] px-2 py-0.5",

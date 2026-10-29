@@ -7,6 +7,7 @@ export interface BuildMetadataParams {
   description?: string;
   path?: string;
   image?: string;
+  category?: string;
   noIndexOverride?: boolean;
 }
 
@@ -15,6 +16,7 @@ export function buildMetadata({
   description = siteConfig.description,
   path = "",
   image,
+  category = "STUDIO WZROSTU",
   noIndexOverride,
 }: BuildMetadataParams = {}): Metadata {
   const allowIndexing = isIndexingAllowed() && !noIndexOverride;
@@ -31,7 +33,11 @@ export function buildMetadata({
     formattedTitle = `${title} | ${siteConfig.name}`;
   }
 
-  const ogImageUrl = image || `${siteConfig.canonicalUrl}/opengraph-image`;
+  const ogImageUrl =
+    image ||
+    `${siteConfig.canonicalUrl}/api/og?title=${encodeURIComponent(
+      formattedTitle
+    )}&category=${encodeURIComponent(category)}`;
 
   return {
     title: formattedTitle,

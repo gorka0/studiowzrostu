@@ -13,8 +13,9 @@ import {
   BUDGET_RANGE_LABELS,
 } from "@/lib/contact-schema";
 import { Button } from "@/components/ui/button";
+import { CopyEmailButton } from "@/components/ui/copy-email-button";
 import { siteConfig } from "@/site.config";
-import { Mail, Phone, Clock, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Mail, Phone, Clock, MapPin, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ContactFormProps {
@@ -111,7 +112,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
         role="status"
         className={cn(
           "mb-6 p-4 rounded-xl text-sm transition-all",
-          submitStatus === "success" && "bg-primary/10 border border-primary/30 text-primary flex items-start gap-3",
+          submitStatus === "success" && "bg-accent/10 border border-accent/30 text-accent-text flex items-start gap-3",
           submitStatus === "error" && "bg-destructive/10 border border-destructive/30 text-destructive flex items-start gap-3",
           submitStatus === "idle" && "hidden",
           submitStatus === "submitting" && "hidden"
@@ -155,7 +156,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           {/* Imię */}
           <div className="space-y-1.5">
             <label htmlFor="name" className="text-xs font-semibold text-foreground">
-              Imię i nazwisko <span className="text-coral">*</span>
+              Imię i nazwisko <span className="text-coral-text">*</span>
             </label>
             <input
               id="name"
@@ -286,18 +287,18 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           <label className="flex items-start gap-3 cursor-pointer group">
             <input
               type="checkbox"
-              className="mt-1 h-4 w-4 rounded border-border text-primary focus:ring-ring accent-primary cursor-pointer shrink-0"
+              className="mt-1 h-4 w-4 rounded border-border text-accent-text focus:ring-accent-text accent-accent cursor-pointer shrink-0"
               {...register("consent")}
             />
             <span className="text-xs text-muted-foreground leading-snug select-none">
               Wyrażam zgodę na przetwarzanie moich danych osobowych w celu udzielenia odpowiedzi na przesłane zapytanie. Szczegóły znajdują się w{" "}
               <Link
                 href="/polityka-prywatnosci"
-                className="text-foreground underline underline-offset-2 hover:text-primary transition-colors"
+                className="text-foreground underline underline-offset-2 hover:text-accent-text transition-colors"
               >
                 Polityce Prywatności
               </Link>
-              . <span className="text-coral">*</span>
+              . <span className="text-coral-text">*</span>
             </span>
           </label>
           {errors.consent && (
@@ -305,12 +306,12 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           )}
         </div>
 
-        {/* Przycisk wysyłki - zwykły shadcn Button */}
+        {/* Przycisk wysyłki - wysoki kontrast tła akcentu tekstowego z białym tekstem (6.54:1) */}
         <div className="pt-3">
           <Button
             type="submit"
             disabled={submitStatus === "submitting"}
-            className="w-full sm:w-auto min-w-[200px] h-11 px-8 rounded-xl font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all cursor-pointer shadow-xs"
+            className="w-full sm:w-auto min-w-[200px] h-11 px-8 rounded-xl font-semibold bg-accent-text text-white hover:bg-accent transition-all cursor-pointer shadow-xs"
           >
             {submitStatus === "submitting" ? (
               <span className="flex items-center gap-2">
@@ -339,25 +340,27 @@ export function ContactInfoBlock() {
         </p>
       </div>
 
-      <div className="space-y-4 text-sm">
+      <div className="space-y-3 text-sm">
         <a
           href={`mailto:${siteConfig.contact.email}`}
-          className="flex items-center gap-3 p-3 rounded-xl border border-border/80 bg-background hover:border-primary/40 transition-colors group"
+          className="flex items-center gap-3 p-3 rounded-xl border border-border/80 bg-background hover:border-accent transition-colors group"
         >
-          <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+          <div className="h-9 w-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent-text group-hover:scale-105 transition-transform">
             <Mail className="h-4 w-4" />
           </div>
-          <div>
+          <div className="flex-1">
             <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">E-mail</div>
             <div className="font-medium text-foreground">{siteConfig.contact.email}</div>
           </div>
         </a>
 
+        <CopyEmailButton className="w-full justify-center py-2.5" />
+
         <a
           href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
-          className="flex items-center gap-3 p-3 rounded-xl border border-border/80 bg-background hover:border-primary/40 transition-colors group"
+          className="flex items-center gap-3 p-3 rounded-xl border border-border/80 bg-background hover:border-accent transition-colors group"
         >
-          <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+          <div className="h-9 w-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent-text group-hover:scale-105 transition-transform">
             <Phone className="h-4 w-4" />
           </div>
           <div>
@@ -373,6 +376,19 @@ export function ContactInfoBlock() {
           <div>
             <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Czas odpowiedzi</div>
             <div className="font-medium text-foreground">Maksymalnie 24 godziny</div>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-3 p-3 rounded-xl border border-border/80 bg-background">
+          <div className="h-9 w-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent-text shrink-0">
+            <MapPin className="h-4 w-4" />
+          </div>
+          <div>
+            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Lokalizacja i zasięg</div>
+            <div className="text-xs text-foreground font-medium leading-relaxed mt-0.5">
+              Spotkania stacjonarne: Bydgoszcz (po wcześniejszym umówieniu)<br />
+              Współpraca zdalna: Cała Polska
+            </div>
           </div>
         </div>
       </div>

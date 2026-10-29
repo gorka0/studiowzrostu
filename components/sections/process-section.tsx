@@ -41,7 +41,7 @@ export function ProcessSection() {
 
         {/* Pasek orientacyjnej osi czasu */}
         <div className="mb-10 p-4 rounded-xl border border-line bg-surface flex flex-col sm:flex-row items-baseline justify-between gap-3 text-xs">
-          <div className="font-mono text-primary font-semibold uppercase tracking-wider">
+          <div className="font-mono text-accent-text font-semibold uppercase tracking-wider">
             Orientacyjna oś czasu: 3–4 dni robocze
           </div>
           <div className="text-ink-muted">
@@ -57,7 +57,7 @@ export function ProcessSection() {
               className="flex flex-col justify-between border-t border-line pt-6 space-y-4 text-left"
             >
               <div className="flex items-baseline justify-between">
-                <span className="font-mono text-2xl font-bold text-primary">
+                <span className="font-mono text-2xl font-bold text-accent-text">
                   {step.number}
                 </span>
                 <span className="font-mono text-xs text-ink-muted">

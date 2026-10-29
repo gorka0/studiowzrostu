@@ -1,17 +1,27 @@
+import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { routesSeo } from "@/content/seo";
 import { HeroSection } from "@/components/sections/hero-section";
 import { AudienceSection } from "@/components/sections/audience-section";
 import { ServicesBento } from "@/components/sections/services-bento";
-import { GrowthChart } from "@/components/effects/growth-chart";
 import { WhyUsSection } from "@/components/sections/why-us-section";
 import { ProcessSection } from "@/components/sections/process-section";
 import { PerformanceSection } from "@/components/sections/performance-section";
 import { SeoAdvantageSection } from "@/components/sections/seo-advantage-section";
 import { ProjectsPreview } from "@/components/sections/projects-preview";
+import { BlogPreviewSection } from "@/components/sections/blog-preview";
 import { FaqSection } from "@/components/sections/faq-section";
 import { CtaSection } from "@/components/sections/cta-section";
+
+const GrowthChart = dynamic(
+  () => import("@/components/effects/growth-chart").then((mod) => mod.GrowthChart),
+  {
+    loading: () => (
+      <div className="w-full py-16 md:py-24 bg-surface/30 border-b border-line min-h-[520px]" />
+    ),
+  }
+);
 
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.home.title,
@@ -49,7 +59,10 @@ export default function Home() {
       {/* 9. Realizacje i koncepcje (z transparentnymi placeholderami) */}
       <ProjectsPreview />
 
-      {/* 10. Najczęściej zadawane pytania (FAQ) */}
+      {/* 10. Wiedza dla rosnących firm (Podgląd bloga) */}
+      <BlogPreviewSection />
+
+      {/* 11. Najczęściej zadawane pytania (FAQ) */}
       <FaqSection />
 
       {/* 11. Końcowe CTA */}

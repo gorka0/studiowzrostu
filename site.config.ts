@@ -11,6 +11,16 @@ export const siteConfig = {
     phone: "+48 000 000 000",
     email: "kontakt@studiowzrostu.pl",
   },
+  location: {
+    city: "Bydgoszcz",
+    region: "kujawsko-pomorskie",
+    serviceArea: [
+      "Bydgoszcz",
+      "Toruń",
+      "Województwo kujawsko-pomorskie",
+      "Cała Polska (zdalnie)",
+    ],
+  },
   legalAddress: "[ADRES DO UZUPEŁNIENIA]",
   registry: {
     nip: "[DO UZUPEŁNIENIA]",

@@ -31,8 +31,8 @@ export function SeoAdvantageSection() {
     <Section spacing="default" className="bg-surface/40 border-b border-line">
       <Container>
         <SectionHeader
-          title="Techniczne SEO wbudowane w kod od pierwszego dnia"
-          description="Nawet najlepsze treści nie przyniosą klientów, jeśli strona nie będzie prawidłowo odczytywana przez wyszukiwarkę. Dbamy o fundament, który ułatwia pozycjonowanie."
+          title="Jak techniczne SEO i czysta architektura wpływają na pozycje w Google?"
+          description="Nawet najlepsze treści nie przyniosą klientów, jeśli strona nie będzie prawidłowo odczytywana przez wyszukiwarkę. Dbamy o fundament, który ułatwia pozycjonowanie w Bydgoszczy i całej Polsce."
         />
 
         {/* 4 kolumny redakcyjne z numeracją bez ikon w kwadracikach */}
@@ -42,7 +42,7 @@ export function SeoAdvantageSection() {
               key={item.title}
               className="flex flex-col justify-between border-t border-line pt-6 space-y-3 text-left"
             >
-              <div className="font-mono text-xs font-semibold text-primary">
+              <div className="font-mono text-xs font-semibold text-accent-text">
                 {item.number}
               </div>
               <h3 className="font-heading font-bold text-lg text-ink leading-snug">

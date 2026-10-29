@@ -20,7 +20,7 @@ export function Section({
 
   return (
     <section
-      className={cn("w-full relative", spacingClasses[spacing], className)}
+      className={cn("w-full relative content-auto", spacingClasses[spacing], className)}
       {...props}
     >
       {children}
