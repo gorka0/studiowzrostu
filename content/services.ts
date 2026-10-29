@@ -46,10 +46,10 @@ export interface ServiceDetail {
 export const servicesList: ServiceDetail[] = [
   {
     slug: "strony-internetowe",
-    title: "Strony internetowe Bydgoszcz – Next.js i React",
+    title: "Nowoczesne strony internetowe – Next.js i React",
     tagline: "Dedykowane serwisy firmowe w React i Next.js, które budują autorytet i generują zapytania",
     shortDescription:
-      "Dedykowane serwisy internetowe zaprojektowane od zera. Bez ociężałych motywów, z błyskawicznym czasem ładowania na smartfonach dla firm z Bydgoszczy i całej Polski.",
+      "Dedykowane serwisy internetowe zaprojektowane od zera. Bez ociężałych motywów, z błyskawicznym czasem ładowania na smartfonach dla firm z całej Polski.",
     problem: {
       heading: "Dlaczego typowa strona firmowa nie przynosi zapytań?",
       description:
@@ -63,7 +63,7 @@ export const servicesList: ServiceDetail[] = [
     solution: {
       heading: "Co konkretnie dla Ciebie robimy?",
       description:
-        "Tworzymy autorski serwis w Next.js, dopasowany w 100% do specyfiki Twojej branży. Każdy element układu ma jeden cel: przekonać odwiedzającego do kontaktu z Twoją firmą. Pracujemy stacjonarnie w Bydgoszczy oraz zdalnie z klientami z całego kraju.",
+        "Tworzymy autorski serwis w Next.js, dopasowany w 100% do specyfiki Twojej branży. Każdy element układu ma jeden cel: przekonać odwiedzającego do kontaktu z Twoją firmą. Realizujemy projekty dla klientów z całej Polski.",
       deliverables: [
         "Indywidualny projekt graficzny w szwajcarskiej, czytelnej estetyce",
         "Architektura Next.js 16 z czasem renderowania poniżej 1 sekundy",
@@ -164,7 +164,7 @@ export const servicesList: ServiceDetail[] = [
   },
   {
     slug: "seo-techniczne",
-    title: "Techniczne SEO i pozycjonowanie stron Bydgoszcz",
+    title: "Techniczne SEO i pozycjonowanie stron",
     tagline: "Solidny fundament pod wysokie pozycje w organicznych wynikach Google",
     shortDescription:
       "Optymalizacja kodu, struktury danych Schema.org i indeksowania SSR. Eliminujemy bariery, przez które roboty Google pomijają Twoją treść.",

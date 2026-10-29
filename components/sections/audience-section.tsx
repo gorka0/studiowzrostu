@@ -70,12 +70,12 @@ export function AudienceSection() {
           ))}
         </div>
 
-        {/* Naturalny sygnał lokalny: Bydgoszcz + cała Polska */}
+        {/* Zasięg ogólnopolski */}
         <div className="mt-12 p-4 rounded-xl border border-line bg-surface-subtle text-xs text-ink-muted flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-accent-text shrink-0" />
             <span>
-              <strong className="text-ink">Obszar działania:</strong> Spotkania stacjonarne realizujemy w Bydgoszczy i województwie kujawsko-pomorskim. Zdalnie wdrażamy serwisy dla firm z całej Polski.
+              <strong className="text-ink">Obszar działania:</strong> Wdrażamy serwisy internetowe dla firm z całej Polski w 100% zdalnym, przejrzystym procesie.
             </span>
           </div>
         </div>

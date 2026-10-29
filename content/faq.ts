@@ -35,10 +35,10 @@ export const faqData: FaqItem[] = [
       "Tak. Każda wdrażana przez nas strona posiada wbudowany fundament technicznego SEO: semantykę HTML5, automatyczną sitemapę, metadane OpenGraph i precyzyjne dane strukturalne JSON-LD. Oferujemy również audyty rozszerzone, rozbudowę architektury treści pod frazy kluczowe oraz wsparcie w skalowaniu serwisu.",
   },
   {
-    id: "czy-tylko-bydgoszcz",
-    question: "Czy współpracujecie tylko z firmami z Bydgoszczy?",
+    id: "zasieg-i-wspolpraca-zdalna",
+    question: "Jak wygląda współpraca zdalna i jaki jest Wasz zasięg działania?",
     answer:
-      "Pracujemy stacjonarnie w Bydgoszczy i województwie kujawsko-pomorskim, gdzie chętnie spotykamy się osobiście. Jednocześnie z powodzeniem realizujemy projekty w 100% zdalnie dla przedsiębiorstw z całej Polski, gwarantując przejrzysty proces, bezpośredni kontakt z inżynierem i regularne prezentacje postępów.",
+      "Realizujemy projekty w 100% zdalnie dla przedsiębiorstw z całej Polski. Gwarantujemy przejrzysty proces, bezpośredni kontakt z inżynierem prowadzącym oraz regularne prezentacje postępów w działającym środowisku testowym.",
   },
   {
     id: "co-z-hostingiem",

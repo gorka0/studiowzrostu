@@ -13,18 +13,18 @@ export interface RouteSeoConfig {
  */
 export const routesSeo: Record<string, RouteSeoConfig> = {
   home: {
-    title: "Strony internetowe dla firm – Bydgoszcz | Studio Wzrostu",
+    title: "Nowoczesne strony internetowe dla firm | Studio Wzrostu",
     description:
-      "Nowoczesne strony www dla firm z Bydgoszczy i całej Polski. Czysty kod w Next.js, realizacja w 3–4 dni i stała wycena z góry. Zbuduj przewagę!",
+      "Nowoczesne strony www dla rozwijających się firm z całej Polski. Czysty kod w Next.js, realizacja w 3–4 dni i stała wycena z góry. Zbuduj przewagę!",
     keywords: [
-      "strony internetowe Bydgoszcz",
       "nowoczesne strony dla firm",
+      "strony internetowe dla firm",
       "rozwój biznesu w internecie",
       "tworzenie stron React",
       "szybka strona dla firmy",
       "optymalizacja Core Web Vitals",
     ],
-    ogTitle: "Strony internetowe dla firm – Bydgoszcz | Studio Wzrostu",
+    ogTitle: "Nowoczesne strony internetowe dla firm | Studio Wzrostu",
     ogDescription:
       "Nowoczesne strony www w Next.js. Realizacja w 3–4 dni, stała wycena z góry i kod nastawiony na pozyskiwanie klientów.",
   },
@@ -43,16 +43,16 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "Dedykowane strony w React i Next.js, landing page pod kampanie oraz audyty techniczne SEO. Poznaj naszą ofertę.",
   },
   servicesWebsites: {
-    title: "Strony internetowe Bydgoszcz – Next.js | Studio Wzrostu",
+    title: "Nowoczesne strony internetowe – Next.js | Studio Wzrostu",
     description:
-      "Szybkie strony firmowe B2B i B2C w React i Next.js. Tworzenie stron w Bydgoszczy i zdalnie w Polsce. Wdrożenie w 3–4 dni, cena z góry. Zamów wycenę!",
+      "Szybkie strony firmowe B2B i B2C w React i Next.js. Tworzenie serwisów dla firm z całej Polski. Wdrożenie w 3–4 dni, cena z góry. Zamów wycenę!",
     keywords: [
       "nowoczesne strony internetowe w React i Next.js",
       "szybkie strony firmowe B2B B2C",
-      "tworzenie stron Bydgoszcz",
+      "tworzenie stron www dla firm",
       "strona firmowa Next.js",
     ],
-    ogTitle: "Strony internetowe Bydgoszcz – Next.js | Studio Wzrostu",
+    ogTitle: "Nowoczesne strony internetowe – Next.js | Studio Wzrostu",
     ogDescription:
       "Dedykowane strony firmowe bez masowych szablonów. Czas realizacji 3–4 dni, wycena z góry i pełna własność kodu.",
   },
@@ -71,12 +71,12 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "Zwiększ rentowność kampanii Ads i Meta dzięki landing page ładowanemu w 0.5s zoptymalizowanemu pod konwersję.",
   },
   servicesSeo: {
-    title: "Techniczne SEO i Pozycjonowanie Bydgoszcz | Studio Wzrostu",
+    title: "Techniczne SEO i Pozycjonowanie stron | Studio Wzrostu",
     description:
-      "Audyt techniczny SEO i optymalizacja Core Web Vitals. Pozycjonowanie stron dla firm z Bydgoszczy i całej Polski. Zdobądź wyższe pozycje w Google!",
+      "Audyt techniczny SEO i optymalizacja Core Web Vitals. Pozycjonowanie stron dla firm z całej Polski. Zdobądź wyższe pozycje w Google!",
     keywords: [
       "techniczne SEO",
-      "pozycjonowanie stron Bydgoszcz",
+      "pozycjonowanie stron www",
       "audyt SEO",
       "indeksacja Google",
       "architektura informacji",
@@ -114,14 +114,14 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "Trzy autorskie koncepcje: serwis maszyn przemysłowych B2B, landing page aplikacji i interaktywne porównanie redesignu.",
   },
   about: {
-    title: "O studiu – Tomasz Górka, Bydgoszcz | Studio Wzrostu",
+    title: "O studiu – Tomasz Górka | Studio Wzrostu",
     description:
-      "Poznaj Studio Wzrostu i założyciela Tomasza Górkę. Tworzymy dedykowane serwisy bez szablonów dla firm z Bydgoszczy i całej Polski. Dowiedz się więcej!",
+      "Poznaj Studio Wzrostu i założyciela Tomasza Górkę. Tworzymy dedykowane serwisy bez szablonów dla firm z całej Polski. Dowiedz się więcej!",
     keywords: [
-      "studio web development Bydgoszcz",
+      "studio web development",
       "Tomasz Górka",
       "tworzenie stron bez szablonów",
-      "programista stron Bydgoszcz",
+      "programista stron www",
     ],
     ogTitle: "O Studio Wzrostu i Tomaszu Górce | Studio Wzrostu",
     ogDescription:
@@ -144,12 +144,12 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   contact: {
     title: "Kontakt i bezpłatna wycena strony | Studio Wzrostu",
     description:
-      "Skontaktuj się ze Studiem Wzrostu. Porozmawiajmy o nowej stronie dla firmy stacjonarnie w Bydgoszczy lub zdalnie. Otrzymaj bezpłatną wycenę z góry!",
+      "Skontaktuj się ze Studiem Wzrostu. Porozmawiajmy o nowej stronie dla firmy. Otrzymaj bezpłatną wycenę z góry!",
     keywords: [
       "kontakt studio wzrostu",
       "wycena strony internetowej",
       "bezpłatna konsultacja",
-      "strony internetowe Bydgoszcz kontakt",
+      "tworzenie stron kontakt",
     ],
     ogTitle: "Kontakt i bezpłatna wycena wdrożenia | Studio Wzrostu",
     ogDescription:

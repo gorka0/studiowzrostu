@@ -32,7 +32,7 @@ export function SeoAdvantageSection() {
       <Container>
         <SectionHeader
           title="Jak techniczne SEO i czysta architektura wpływają na pozycje w Google?"
-          description="Nawet najlepsze treści nie przyniosą klientów, jeśli strona nie będzie prawidłowo odczytywana przez wyszukiwarkę. Dbamy o fundament, który ułatwia pozycjonowanie w Bydgoszczy i całej Polsce."
+          description="Nawet najlepsze treści nie przyniosą klientów, jeśli strona nie będzie prawidłowo odczytywana przez wyszukiwarkę. Dbamy o fundament, który ułatwia pozycjonowanie i budowę widoczności w Google w całej Polsce."
         />
 
         {/* 4 kolumny redakcyjne z numeracją bez ikon w kwadracikach */}

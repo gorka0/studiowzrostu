@@ -1,10 +1,9 @@
 # Studio Wzrostu
-> Nowoczesne strony internetowe w React i Next.js dla rozwijających się firm. Bydgoszcz i cała Polska.
+> Nowoczesne strony internetowe w React i Next.js dla rozwijających się firm z całej Polski.
 
 - Właściciel / Założyciel: Tomasz Górka
 - Domena główna: https://studiowzrostu.pl
-- Lokalizacja: Bydgoszcz, woj. kujawsko-pomorskie (spotkania stacjonarne po umówieniu)
-- Zasięg obsługi: Bydgoszcz, Toruń, region kujawsko-pomorski oraz cała Polska (współpraca w 100% zdalna)
+- Zasięg obsługi: Cała Polska (współpraca w 100% zdalna)
 - Specjalizacja: Projektowanie i wdrażanie szybkich, dedykowanych stron internetowych, landing pages, audytów technicznych SEO oraz optymalizacji Core Web Vitals.
 - Stos technologiczny: Next.js (App Router), React 19, TypeScript (strict), Tailwind CSS, Base UI, Schema.org JSON-LD.
 - Standardy inżynierskie: Dedykowany kod, zero ociężałych szablonów/wtyczek, czas ładowania < 1s, pełna dostępność WCAG AA, Google Consent Mode v2, zgodność z RODO.
@@ -12,7 +11,7 @@
 ## Główne podstrony i usługi
 - [Strona główna](https://studiowzrostu.pl/): Prezentacja oferty, procesu realizacji (3–4 dni robocze, stała cena z góry) i wskaźników wzrostu.
 - [Usługi](https://studiowzrostu.pl/uslugi): Przegląd kompleksowej oferty studia.
-  - [Strony internetowe Bydgoszcz](https://studiowzrostu.pl/uslugi/strony-internetowe): Dedykowane serwisy firmowe B2B/B2C w Next.js.
+  - [Nowoczesne strony internetowe](https://studiowzrostu.pl/uslugi/strony-internetowe): Dedykowane serwisy firmowe B2B/B2C w Next.js.
   - [Landing Pages](https://studiowzrostu.pl/uslugi/landing-page): Strony docelowe zoptymalizowane pod konwersję kampanii Google Ads i Meta.
   - [SEO techniczne i Core Web Vitals](https://studiowzrostu.pl/uslugi/seo-techniczne): Audyty i optymalizacja szybkości, architektury informacji oraz indeksacji w Google.
   - [Redesign i wydajność](https://studiowzrostu.pl/uslugi/redesign-i-wydajnosc): Modernizacja i przebudowa przestarzałych serwisów na nowoczesny stos.

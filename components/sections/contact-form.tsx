@@ -384,10 +384,9 @@ export function ContactInfoBlock() {
             <MapPin className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Lokalizacja i zasięg</div>
+            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Obszar działania</div>
             <div className="text-xs text-foreground font-medium leading-relaxed mt-0.5">
-              Spotkania stacjonarne: Bydgoszcz (po wcześniejszym umówieniu)<br />
-              Współpraca zdalna: Cała Polska
+              Współpraca w 100% zdalna: Cała Polska
             </div>
           </div>
         </div>

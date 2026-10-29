@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
   const category = searchParams.get("category") || "STUDIO WZROSTU";
   const description =
     searchParams.get("description") ||
-    "Dedykowany kod w React i Next.js dla firm z Bydgoszczy i całej Polski.";
+    "Dedykowany kod w React i Next.js dla rozwijających się firm z całej Polski.";
 
   return createOgImage({
     title,
