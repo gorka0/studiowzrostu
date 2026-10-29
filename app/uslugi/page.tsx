@@ -43,7 +43,7 @@ export default function ServicesOverviewPage() {
                       <span>Next.js / React</span>
                     </div>
 
-                    <CardTitle className="text-2xl group-hover:text-primary transition-colors">
+                    <CardTitle as="h2" className="text-2xl group-hover:text-primary transition-colors">
                       {service.title}
                     </CardTitle>
 

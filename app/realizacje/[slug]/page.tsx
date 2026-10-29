@@ -6,6 +6,7 @@ import { projectsData, ProjectItem } from "@/content/projects";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { ProjectJsonLd } from "@/components/seo/json-ld";
 import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
 
 
@@ -46,6 +47,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
   return (
     <main className="flex-1 pb-16">
+      <ProjectJsonLd project={project} />
       <Section spacing="sm">
         <Container>
           <Breadcrumbs

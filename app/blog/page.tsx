@@ -43,7 +43,7 @@ export default function BlogListPage() {
                       <span className="text-coral">{post.draftNotice}</span>
                     </div>
 
-                    <CardTitle className="text-xl sm:text-2xl group-hover:text-primary transition-colors leading-tight">
+                    <CardTitle as="h2" className="text-xl sm:text-2xl group-hover:text-primary transition-colors leading-tight">
                       <Link href={`/blog/${post.slug}`}>
                         {post.title}
                       </Link>

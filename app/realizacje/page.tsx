@@ -70,7 +70,7 @@ export default function ProjectsOverviewPage() {
                   </div>
 
                   <CardHeader>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                    <CardTitle as="h2" className="text-xl group-hover:text-primary transition-colors">
                       {project.title}
                     </CardTitle>
                     <CardDescription className="text-xs sm:text-sm mt-1 leading-relaxed">

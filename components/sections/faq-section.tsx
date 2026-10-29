@@ -19,9 +19,9 @@ export function FaqSection() {
         <Accordion items={faqData} className="mt-8" />
 
         <div className="mt-10 p-6 rounded-2xl border border-border bg-card text-center space-y-3">
-          <h4 className="font-heading font-bold text-base text-foreground">
+          <h3 className="font-heading font-bold text-base text-foreground">
             Masz inne pytanie dotyczące Twojej branży?
-          </h4>
+          </h3>
           <p className="text-xs sm:text-sm text-muted-foreground max-w-md mx-auto">
             Chętnie odpowiemy podczas krótkiej, niezobowiązującej rozmowy. Bez presji sprzedażowej.
           </p>

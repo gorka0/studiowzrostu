@@ -331,9 +331,9 @@ export function ContactInfoBlock() {
   return (
     <div className="space-y-6 p-6 sm:p-8 rounded-3xl border border-border bg-card/60 backdrop-blur-xs">
       <div>
-        <h3 className="font-heading font-bold text-xl text-foreground">
+        <h2 className="font-heading font-bold text-xl text-foreground">
           Bezpośredni kontakt
-        </h3>
+        </h2>
         <p className="text-xs sm:text-sm text-muted-foreground mt-1 leading-relaxed">
           Wolisz porozmawiać telefonicznie lub napisać bezpośrednio? Jesteśmy do Twojej dyspozycji.
         </p>

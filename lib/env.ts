@@ -12,7 +12,7 @@ const envSchema = z.object({
 });
 
 export const isIndexingAllowed = (): boolean => {
-  return process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+  return process.env.NEXT_PUBLIC_ALLOW_INDEXING !== "false";
 };
 
 export const getEnv = () => {

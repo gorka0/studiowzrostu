@@ -31,6 +31,8 @@ export function buildMetadata({
     formattedTitle = `${title} | ${siteConfig.name}`;
   }
 
+  const ogImageUrl = image || `${siteConfig.canonicalUrl}/opengraph-image`;
+
   return {
     title: formattedTitle,
     description,
@@ -67,13 +69,20 @@ export function buildMetadata({
       siteName: siteConfig.name,
       locale: "pl_PL",
       type: "website",
-      images: image ? [{ url: image }] : undefined,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: formattedTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: formattedTitle,
       description,
-      images: image ? [image] : undefined,
+      images: [ogImageUrl],
     },
   };
 }

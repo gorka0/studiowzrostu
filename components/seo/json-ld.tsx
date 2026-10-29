@@ -2,6 +2,7 @@ import * as React from "react";
 import { siteConfig } from "@/site.config";
 import type { ServiceDetail } from "@/content/services";
 import type { BlogPost } from "@/content/blog";
+import type { ProjectItem } from "@/content/projects";
 import type { BreadcrumbItem } from "@/components/ui/breadcrumbs";
 
 /**
@@ -179,6 +180,38 @@ export function BreadcrumbListJsonLd({ items }: { items: BreadcrumbItem[] }) {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+    />
+  );
+}
+
+export function ProjectJsonLd({ project }: { project: ProjectItem }) {
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    headline: project.title,
+    description: project.shortDescription,
+    creator: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.canonicalUrl,
+    },
+    about: {
+      "@type": "Thing",
+      name: project.clientIndustry,
+    },
+    genre: project.category,
+    keywords: project.stack.join(", "),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteConfig.canonicalUrl}/realizacje/${project.slug}`,
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
     />
   );
 }

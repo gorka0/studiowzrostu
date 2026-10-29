@@ -21,7 +21,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full">
+    <main id="main-content" className="flex-1 flex flex-col w-full">
       {/* 1. Hero */}
       <HeroSection />
 
@@ -54,6 +54,6 @@ export default function Home() {
 
       {/* 11. Końcowe CTA */}
       <CtaSection />
-    </div>
+    </main>
   );
 }

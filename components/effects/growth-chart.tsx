@@ -306,7 +306,6 @@ export function GrowthChart() {
     >
       {/* Treść dostępna dla czytników ekranu (A11y & SEO) */}
       <div className="sr-only">
-        <h2>Architektura serwisu a tempo rozwoju firmy</h2>
         <p>Wykres ilustruje fazy wzrostu firmy dzięki wdrożeniu nowoczesnej strony internetowej:</p>
         <ol>
           {MILESTONES.map((m) => (

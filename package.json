@@ -10,6 +10,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "audit:generator": "node scripts/audit-generator-traces.mjs",
+    "audit:seo": "node scripts/deep-seo-audit.mjs",
     "check:placeholders": "node scripts/check-placeholders.mjs"
   },
   "dependencies": {
