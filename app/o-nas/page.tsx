@@ -1,0 +1,124 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { buildMetadata } from "@/lib/seo";
+import { routesSeo } from "@/content/seo";
+import { siteConfig } from "@/site.config";
+import { aboutContent } from "@/content/about";
+import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
+import { SectionHeader } from "@/components/ui/section-header";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
+
+export const metadata: Metadata = buildMetadata({
+  title: routesSeo.about.title,
+  description: routesSeo.about.description,
+  path: "/o-nas",
+});
+
+export function generateStaticParams() {
+  return [];
+}
+
+export default function AboutPage() {
+  return (
+    <main className="flex-1 pb-16">
+      <Section spacing="sm">
+        <Container>
+          <Breadcrumbs items={[{ label: "O nas" }]} className="mb-8" />
+
+          <SectionHeader
+            as="h1"
+            title={aboutContent.heading}
+            description={aboutContent.subheading}
+            align="left"
+          />
+
+          {/* O założycielu i filozofii studia */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mt-12">
+            {/* Lewa kolumna: Tekst i zasady (7 kolumn) */}
+            <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-ink-muted leading-relaxed text-left">
+              {aboutContent.paragraphs.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
+
+              <div className="pt-4 border-t border-line space-y-3 font-medium text-ink text-sm">
+                {aboutContent.commitments.map((commitment, idx) => (
+                  <div key={idx} className="flex items-baseline gap-3">
+                    <span className="font-mono text-xs text-primary font-bold">0{idx + 1}</span>
+                    <span>{commitment}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Prawa kolumna: Założyciel z oznaczonym placeholderem */}
+            <div className="lg:col-span-5">
+              <div className="rounded-xl border border-line bg-surface p-6 sm:p-8 space-y-5 text-left">
+                {/* Oznaczony transparentny placeholder na zdjęcie */}
+                <div className="h-64 sm:h-72 w-full rounded-lg bg-surface-subtle border border-line flex flex-col items-center justify-center p-6 text-center">
+                  <span className="font-heading font-bold text-ink text-base">
+                    {siteConfig.owner}
+                  </span>
+                  <span className="text-xs text-ink-muted mt-1 font-mono">
+                    Założyciel & Główny Architekt
+                  </span>
+                  <span className="text-[11px] font-mono text-primary mt-4 border border-line bg-surface px-3 py-1 rounded">
+                    [Zdjęcie założyciela – do uzupełnienia]
+                  </span>
+                </div>
+
+                <div className="text-xs text-ink-muted leading-relaxed italic border-l-2 border-primary pl-3">
+                  &quot;{aboutContent.quote}&quot;
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Zasady studia w układzie redakcyjnym */}
+          <div className="mt-20 space-y-8 text-left">
+            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
+              Zasady inżynieryjne studia
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {aboutContent.principles.map((val) => (
+                <div
+                  key={val.title}
+                  className="border-t border-line pt-6 space-y-3 text-left"
+                >
+                  <div className="font-mono text-xs font-semibold text-primary">
+                    {val.number}
+                  </div>
+                  <h3 className="font-heading font-bold text-lg text-ink">
+                    {val.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
+                    {val.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dolne CTA */}
+          <div className="mt-20 p-8 sm:p-12 rounded-xl border border-line bg-surface/50 text-left space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
+              Porozmawiajmy o nowym serwisie dla Twojej firmy
+            </h2>
+            <p className="text-sm text-ink-muted max-w-xl">
+              Napisz do nas lub zadzwoń. Chętnie przeanalizujemy obecne rozwiązanie i zaproponujemy optymalny kierunek technologiczny.
+            </p>
+            <div className="pt-2">
+              <Link href="/kontakt">
+                <InteractiveHoverButton>
+                  Skontaktuj się ze studiem
+                </InteractiveHoverButton>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    </main>
+  );
+}

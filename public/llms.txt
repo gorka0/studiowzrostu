@@ -1,0 +1,22 @@
+# Studio Wzrostu
+> Nowoczesne strony internetowe w React i Next.js dla rozwijających się firm.
+
+- Właściciel / Założyciel: Tomasz Górka
+- Domena główna: https://studiowzrostu.pl
+- Specjalizacja: Projektowanie i wdrażanie szybkich, dedykowanych stron internetowych, landing pages oraz audytów wydajności Core Web Vitals.
+- Stos technologiczny: Next.js (App Router), React 19, TypeScript (strict), Tailwind CSS, shadcn/ui.
+- Standardy inżynierskie: Dedykowany kod, zero ociężałych szablonów, czas ładowania < 1s, pełna dostępność WCAG AA, Google Consent Mode v2, zgodność z RODO.
+
+## Główne podstrony i usługi
+- [Strona główna](https://studiowzrostu.pl/): Prezentacja oferty, procesu współpracy i wskaźników wzrostu.
+- [Usługi](https://studiowzrostu.pl/uslugi): Przegląd kompleksowej oferty studia.
+  - [Strony internetowe](https://studiowzrostu.pl/uslugi/strony-internetowe): Dedykowane serwisy firmowe w Next.js.
+  - [Landing Pages](https://studiowzrostu.pl/uslugi/landing-page): Strony docelowe zoptymalizowane pod konwersję kampanii.
+  - [SEO techniczne i Core Web Vitals](https://studiowzrostu.pl/uslugi/seo-techniczne): Audyty i optymalizacja szybkości oraz indeksacji w Google.
+  - [Redesign i wydajność](https://studiowzrostu.pl/uslugi/redesign-i-wydajnosc): Modernizacja i przebudowa przestarzałych serwisów na nowoczesny stos.
+- [Realizacje](https://studiowzrostu.pl/realizacje): Koncepcje architektoniczne i studia przypadków.
+- [O nas](https://studiowzrostu.pl/o-nas): Misja, wartości inżynierskie i profil założyciela.
+- [Blog](https://studiowzrostu.pl/blog): Artykuły eksperckie o szybkości stron, Core Web Vitals i kosztach wdrożenia.
+- [Kontakt](https://studiowzrostu.pl/kontakt): Bezpłatna wycena i formularz kontaktowy.
+- [Polityka prywatności](https://studiowzrostu.pl/polityka-prywatnosci): Standard RODO/GDPR (wersja v1.0).
+- [Polityka cookies](https://studiowzrostu.pl/polityka-cookies): Transparentny wykaz plików cookies i Consent Mode v2.
