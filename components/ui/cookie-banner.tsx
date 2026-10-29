@@ -138,7 +138,7 @@ export function CookieConsentProvider({
       {/* 1. Baner zgody (pływający pasek na dole, bez wpływu na layout/LCP) */}
       {showBanner && (
         <aside
-          role="region"
+          role="dialog"
           aria-label="Powiadomienie o plikach cookies"
           className="fixed bottom-3 sm:bottom-5 left-3 sm:left-6 right-3 sm:right-6 z-50 mx-auto max-w-4xl"
         >

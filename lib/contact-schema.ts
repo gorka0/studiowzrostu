@@ -37,10 +37,10 @@ export const contactFormSchema = z.object({
     .min(2, "Imię musi zawierać minimum 2 znaki")
     .max(100, "Imię może zawierać maksymalnie 100 znaków"),
   email: z
-    .string({ message: "Adres e-mail jest wymagany" })
+    .string({ message: "E-mail jest wymagany" })
     .trim()
-    .email("Wprowadź poprawny adres e-mail")
-    .max(254, "Adres e-mail jest zbyt długi"),
+    .email("Wprowadź poprawny e-mail")
+    .max(254, "E-mail jest zbyt długi"),
   phone: z
     .string()
     .trim()

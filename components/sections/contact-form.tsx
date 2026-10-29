@@ -14,7 +14,7 @@ import {
 } from "@/lib/contact-schema";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/site.config";
-import { Mail, Phone, Clock, MapPin, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Mail, Phone, Clock, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ContactFormProps {
@@ -177,7 +177,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           {/* E-mail */}
           <div className="space-y-1.5">
             <label htmlFor="email" className="text-xs font-semibold text-foreground">
-              Adres e-mail <span className="text-coral">*</span>
+              E-mail <span className="text-coral">*</span>
             </label>
             <input
               id="email"
@@ -373,16 +373,6 @@ export function ContactInfoBlock() {
           <div>
             <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Czas odpowiedzi</div>
             <div className="font-medium text-foreground">Maksymalnie 24 godziny</div>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3 p-3 rounded-xl border border-border/80 bg-background">
-          <div className="h-9 w-9 rounded-lg bg-secondary flex items-center justify-center text-foreground">
-            <MapPin className="h-4 w-4" />
-          </div>
-          <div>
-            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Lokalizacja</div>
-            <div className="font-medium text-foreground">{siteConfig.contact.address}</div>
           </div>
         </div>
       </div>

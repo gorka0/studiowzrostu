@@ -26,7 +26,7 @@ export const aboutContent: AboutContent = {
     "Studio Wzrostu powstało z prostego założenia: rozwijająca się firma zasługuje na szybką, dopracowaną stronę bez długu technologicznego i szablonowego chaosu.",
   paragraphs: [
     "Nazywam się Tomasz Górka i założyłem Studio Wzrostu, aby pomóc przedsiębiorcom w budowie niezależnych, szybkich serwisów w oparciu o czysty kod.",
-    "Współczesny klient oczekuje natychmiastowej odpowiedzi. Każda sekunda opóźnienia w ładowaniu oferty na smartfonie zmniejsza szansę na pozyskanie zapytania.",
+    "Współczesny klient oczekuje błyskawicznej odpowiedzi. Każda sekunda opóźnienia w ładowaniu oferty na smartfonie zmniejsza szansę na pozyskanie zapytania.",
     "Dlatego wdrażamy serwisy w Next.js, React i TypeScript. Łączymy precyzyjne programowanie z czytelną, szwajcarską dyscypliną typograficzną.",
   ],
   commitments: [
@@ -37,7 +37,7 @@ export const aboutContent: AboutContent = {
   principles: [
     {
       number: "01",
-      title: "Czysty kod zamiast szablonów",
+      title: "Autorski kod bez szablonów",
       desc: "Nie instalujemy masowych motywów z dziesiątkami zbędnych wtyczek. Piszemy dedykowany kod w React i TypeScript, który pozostaje szybki i bezpieczny.",
     },
     {

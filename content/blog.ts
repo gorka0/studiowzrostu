@@ -70,10 +70,10 @@ export const blogPosts: BlogPost[] = [
         {
           heading: "Jak Next.js rozwiązuje problem raz na zawsze?",
           paragraphs: [
-            "Nowoczesne podejście oparte na Next.js przesyła do przeglądarki gotowy, lekki kod HTML wygenerowany na serwerze (Server-Side Rendering). Użytkownik widzi treść natychmiast – w ułamku sekundy, nawet na słabym zasięgu LTE.",
+            "Nowoczesne podejście oparte na Next.js przesyła do przeglądarki gotowy, lekki kod HTML wygenerowany na serwerze (Server-Side Rendering). Użytkownik widzi treść w ułamku sekundy, nawet na słabym zasięgu LTE.",
             "Dzięki temu nie musisz rezygnować z nowoczesnej estetyki na rzecz szybkości. Zyskujesz jedno i drugie: profesjonalny design i bezkonkurencyjny czas reakcji.",
           ],
-          keyTakeaway: "Server-side rendering łączy elegancję z natychmiastowym ładowaniem.",
+          keyTakeaway: "Server-side rendering łączy elegancję z błyskawicznym ładowaniem.",
         },
       ],
     },

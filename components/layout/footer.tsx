@@ -83,9 +83,6 @@ export function Footer() {
                   {siteConfig.contact.phone}
                 </a>
               </li>
-              <li className="text-xs text-muted-foreground pt-1">
-                {siteConfig.contact.address}
-              </li>
             </ul>
           </div>
 

@@ -29,14 +29,14 @@ export const privacyPolicyContent: PrivacyPolicyData = {
     firmName: siteConfig.name,
     email: siteConfig.contact.email,
     phone: siteConfig.contact.phone,
-    address: siteConfig.contact.address,
+    address: siteConfig.legalAddress,
   },
   sections: [
     {
       id: "administrator",
       title: "1. Kto jest Administratorem Twoich danych osobowych?",
       content: [
-        `Administratorem danych osobowych zbieranych za pośrednictwem serwisu internetowego ${siteConfig.domain} jest ${siteConfig.owner}, prowadzący działalność pod marką ${siteConfig.name}, adres do korespondencji: ${siteConfig.contact.address}, adres e-mail: ${siteConfig.contact.email}, telefon: ${siteConfig.contact.phone}.`,
+        `Administratorem danych osobowych zbieranych za pośrednictwem serwisu internetowego ${siteConfig.domain} jest ${siteConfig.owner}, prowadzący działalność pod marką ${siteConfig.name}, adres do korespondencji: ${siteConfig.legalAddress}, adres e-mail: ${siteConfig.contact.email}, telefon: ${siteConfig.contact.phone}.`,
         "Administrator dokłada szczególnej staranności w celu ochrony interesów osób, których dane dotyczą, a w szczególności zapewnia, że zbierane dane są przetwarzane zgodnie z prawem, rzetelnie i w sposób przejrzysty dla osoby, której dane dotyczą.",
       ],
     },

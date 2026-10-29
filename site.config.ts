@@ -10,8 +10,8 @@ export const siteConfig = {
   contact: {
     phone: "+48 000 000 000",
     email: "kontakt@studiowzrostu.pl",
-    address: "[ADRES DO UZUPEŁNIENIA]",
   },
+  legalAddress: "[ADRES DO UZUPEŁNIENIA]",
   registry: {
     nip: "[DO UZUPEŁNIENIA]",
     regon: "[DO UZUPEŁNIENIA]",

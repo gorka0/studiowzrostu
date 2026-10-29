@@ -7,48 +7,50 @@ export interface RouteSeoConfig {
 }
 
 /**
- * Główna mapa SEO serwisu Studio Wzrostu.
+ * Główna konfiguracja SEO serwisu Studio Wzrostu.
  * Plik przeznaczony do bezpośredniej edycji przez właściciela serwisu.
  * Zasady: title ≤ ~60 znaków, description ≤ ~155 znaków.
  */
 export const routesSeo: Record<string, RouteSeoConfig> = {
   home: {
-    title: `${siteConfig.name} – Nowoczesne strony w Next.js`,
+    title: `${siteConfig.name} – Strona w 3–4 dni | Cena z góry`,
     description:
-      "Projektujemy i wdrażamy szybkie strony internetowe w React i Next.js. Pomagamy firmom zdobywać klientów i budować zaufanie w sieci.",
+      "Nowoczesne strony internetowe w Next.js. Strona w 3–4 dni, stała cena z góry, czysty kod i pełna własność. Sprawdź naszą ofertę.",
     keywords: [
       "tworzenie stron www",
+      "strona w 3-4 dni",
+      "cena z góry strony",
       "strony next.js",
       "strony react",
       "studio wzrostu",
       "nowoczesne strony internetowe",
-      "optymalizacja stron www",
       "strony internetowe dla firm",
     ],
   },
   services: {
-    title: `Usługi tworzenia stron | ${siteConfig.name}`,
+    title: `Usługi tworzenia stron w 3–4 dni | ${siteConfig.name}`,
     description:
-      "Projektowanie i programowanie stron w Next.js, audyty Core Web Vitals, landing page i optymalizacja konwersji. Sprawdź naszą ofertę.",
+      "Projektowanie i programowanie stron w Next.js. Realizacja w 3–4 dni, stała cena z góry, wysoka wydajność i pełna własność serwisu.",
     keywords: [
       "usługi web development",
+      "strona w 3-4 dni",
+      "cena z góry",
       "tworzenie stron react",
       "strony firmowe next.js",
       "audyt wydajności strony",
-      "kodowanie stron www",
     ],
   },
   servicesWebsites: {
-    title: `Strony internetowe Next.js | ${siteConfig.name}`,
+    title: `Strony internetowe Next.js w 3–4 dni | ${siteConfig.name}`,
     description:
-      "Dedykowane strony firmowe w React i Next.js. Błyskawiczne ładowanie, czysty kod i pełna własność bez uzależnienia od abonamentów.",
-    keywords: ["strony internetowe next.js", "nowoczesna strona www", "tworzenie stron react"],
+      "Dedykowane strony firmowe w React i Next.js. Czas wdrożenia 3–4 dni, wycena z góry, błyskawiczne ładowanie i brak abonamentów.",
+    keywords: ["strony internetowe next.js", "strona w 3-4 dni", "cena z góry", "tworzenie stron react"],
   },
   servicesLandingPage: {
-    title: `Skuteczne landing page | ${siteConfig.name}`,
+    title: `Landing Page w 3–4 dni | Cena z góry | ${siteConfig.name}`,
     description:
-      "Jednostronicowe serwisy nastawione na maksymalną konwersję kampanii reklamowych. Szybkie ładowanie i bezbłędna responsywność.",
-    keywords: ["landing page next.js", "tworzenie landing page", "strona docelowa", "konwersja strony"],
+      "Skuteczne landing pages pod kampanie reklamowe. Realizacja w 3–4 dni, stała cena z góry i optymalizacja pod konwersję.",
+    keywords: ["landing page next.js", "landing page w 3-4 dni", "cena z góry", "konwersja strony"],
   },
   servicesSeo: {
     title: `SEO techniczne i Core Web Vitals | ${siteConfig.name}`,

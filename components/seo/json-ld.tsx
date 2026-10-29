@@ -51,14 +51,6 @@ export function GlobalJsonLd() {
     orgSchema.telephone = siteConfig.contact.phone;
   }
 
-  if (isRealValue(siteConfig.contact.address)) {
-    orgSchema.address = {
-      "@type": "PostalAddress",
-      streetAddress: siteConfig.contact.address,
-      addressCountry: "PL",
-    };
-  }
-
   if (isRealValue(siteConfig.registry.nip)) {
     orgSchema.taxID = siteConfig.registry.nip;
     orgSchema.vatID = `PL${siteConfig.registry.nip}`;
@@ -102,10 +94,6 @@ export function ServiceJsonLd({ service }: { service: ServiceDetail }) {
       "@type": "ProfessionalService",
       name: siteConfig.name,
       url: siteConfig.canonicalUrl,
-    },
-    areaServed: {
-      "@type": "Country",
-      name: "Polska",
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",

@@ -44,7 +44,7 @@ export const servicesList: ServiceDetail[] = [
     title: "Nowoczesne strony firmowe",
     tagline: "Strony w Next.js i React, które budują autorytet i zdobywają klientów",
     shortDescription:
-      "Dedykowane serwisy internetowe zaprojektowane od zera. Bez ociężałych motywów, z natychmiastowym czasem ładowania na smartfonach.",
+      "Dedykowane serwisy internetowe zaprojektowane od zera. Bez ociężałych motywów, z błyskawicznym czasem ładowania na smartfonach.",
     problem: {
       heading: "Dlaczego typowa strona firmowa nie przynosi zapytań?",
       description:
@@ -52,7 +52,7 @@ export const servicesList: ServiceDetail[] = [
       symptoms: [
         "Wysoki współczynnik odrzuceń – użytkownicy wychodzą przed załadowaniem oferty",
         "Trudności z edycją i strach przed aktualizacją wtyczek",
-        "Brak wyróżnienia na tle lokalnej i branżowej konkurencji",
+        "Brak wyróżnienia na tle branżowej konkurencji",
       ],
     },
     solution: {
@@ -156,7 +156,7 @@ export const servicesList: ServiceDetail[] = [
     problem: {
       heading: "Piszesz świetne artykuły, ale Google ich nie docenia?",
       description:
-        "Nawet najlepsze treści nie przyniosą ruchu, jeśli bot wyszukiwarki napotka błędy w kodzie, zablokowane zasoby, zduplikowane adresy URL lub zbyt wolne renderowanie po stronie klienta.",
+        "Nawet najlepsze treści nie przyniosą ruchu, jeśli bot wyszukiwarki napotka błędy w kodzie, zablokowane zasoby, zduplikowane linki URL lub zbyt wolne renderowanie po stronie klienta.",
       symptoms: [
         "Spadek pozycji po aktualizacjach algorytmów Google",
         "Strony nie chcą się zaindeksować w Google Search Console",
@@ -166,11 +166,11 @@ export const servicesList: ServiceDetail[] = [
     solution: {
       heading: "Co optymalizujemy w kodzie strony?",
       description:
-        "Wdrażamy architekturę Server-Side Rendering w Next.js. Sprawiamy, że każda strona ma unikalny kanoniczny adres, idealną strukturę nagłówków i precyzyjne metadane.",
+        "Wdrażamy architekturę Server-Side Rendering w Next.js. Sprawiamy, że każda strona ma unikalny link kanoniczny, idealną strukturę nagłówków i precyzyjne metadane.",
       deliverables: [
         "Audyt techniczny i usunięcie wąskich gardeł indeksowania",
         "Wdrożenie danych strukturalnych JSON-LD (Schema.org)",
-        "Optymalizacja sitemap.xml, robots.txt i tagów kanonicznych",
+        "Optymalizacja indeksacji stron (sitemap, robots.txt i tagi kanoniczne)",
         "Wyeliminowanie błędów w raportach Core Web Vitals",
       ],
     },
@@ -192,7 +192,7 @@ export const servicesList: ServiceDetail[] = [
       },
       {
         question: "Czy gwarantujecie 1. miejsce w Google?",
-        answer: "Nie składamy fałszywych obietnic. Gwarantujemy natomiast bezbłędny fundament techniczny zgodny z oficjalnymi wytycznymi Google Search Central.",
+        answer: "Nie składamy fałszywych obietnic. Gwarantujemy jednak bezbłędny fundament techniczny zgodny z oficjalnymi wytycznymi Google Search Central.",
       },
     ],
     relatedServices: [
@@ -220,9 +220,9 @@ export const servicesList: ServiceDetail[] = [
     solution: {
       heading: "Bezpieczna modernizacja krok po kroku",
       description:
-        "Przeprowadzamy migrację z zachowaniem wszystkich dotychczasowych adresów URL lub przygotowaniem precyzyjnych przekierowań 301. Zyskujesz nowoczesny wizerunek bez ryzyka.",
+        "Przeprowadzamy migrację z zachowaniem wszystkich dotychczasowych linków URL lub przygotowaniem precyzyjnych przekierowań 301. Zyskujesz nowoczesny wizerunek bez ryzyka.",
       deliverables: [
-        "Pełne mapowanie istniejących adresów URL pod kątem zachowania SEO",
+        "Pełne zachowanie dotychczasowych struktur URL i przekierowania pod kątem SEO",
         "Nowy, świeży projekt graficzny zgodny ze współczesnymi trendami",
         "Skrócenie czasu ładowania strony z kilku sekund do poniżej 1 sekundy",
         "Przeniesienie i uporządkowanie dotychczasowych treści ofertowych",

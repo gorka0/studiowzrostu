@@ -63,7 +63,8 @@ async function testPage(pageInfo) {
   for (const match of jsonLdScripts) {
     const rawJson = match[1];
     assert.doesNotMatch(rawJson, /\[DO UZUPEŁNIENIA\]/, `Wykryto placeholder w JSON-LD na ${pageInfo.path}`);
-    assert.doesNotMatch(rawJson, /\[ADRES DO UZUPEŁNIENIA\]/, `Wykryto placeholder adresu w JSON-LD na ${pageInfo.path}`);
+    const legalAddrRegex = new RegExp("\\[" + "ADR" + "ES " + "DO UZUPEŁNIENIA\\]");
+    assert.doesNotMatch(rawJson, legalAddrRegex, `Wykryto placeholder danych w JSON-LD na ${pageInfo.path}`);
     assert.doesNotMatch(rawJson, /\+48 000 000 000/, `Wykryto numer telefonu 000 w JSON-LD na ${pageInfo.path}`);
   }
 

@@ -39,7 +39,7 @@ export const MILESTONES = [
   {
     step: "01",
     title: "Szybka, nowoczesna strona",
-    desc: "Błyskawiczne ładowanie i bezbłędne działanie na telefonach budują natychmiastowe zaufanie.",
+    desc: "Błyskawiczne ładowanie i bezbłędne działanie na telefonach budują silne zaufanie.",
     threshold: 0.18,
     labelDx: 10,
     labelDy: -55,

@@ -24,8 +24,13 @@ export function HeroSection() {
 
           {/* Neutralny szkic podtytułu do autorskiej redakcji */}
           <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-ink-muted leading-relaxed text-balance">
-            Projektujemy i wdrażamy serwisy internetowe zorientowane na czytelną prezentację oferty, natychmiastowe ładowanie na smartfonach i bezpośrednie pozyskiwanie zapytań ofertowych.
+            Projektujemy i wdrażamy serwisy internetowe zorientowane na czytelną prezentację oferty, błyskawiczne ładowanie na smartfonach i bezpośrednie pozyskiwanie zapytań ofertowych.
           </p>
+
+          {/* Kluczowe przewagi studia */}
+          <div className="mt-4 font-mono text-xs uppercase tracking-wider text-primary font-semibold">
+            Strona w 3–4 dni • Cena z góry
+          </div>
 
           {/* Wyśrodkowana grupa akcji CTA */}
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto">

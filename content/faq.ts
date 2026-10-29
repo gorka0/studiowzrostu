@@ -11,10 +11,16 @@ export interface FaqItem {
 
 export const faqData: FaqItem[] = [
   {
-    id: "ile-trwa-realizacja",
-    question: "Ile czasu zajmuje wdrożenie nowej strony internetowej?",
+    id: "ile-trwa-zrobienie-strony",
+    question: "Ile trwa zrobienie strony?",
     answer:
-      "Standardowy czas realizacji strony firmowej wynosi zazwyczaj od 2 do 4 tygodni, w zależności od liczby podstron i stopnia przygotowania materiałów (tekstów, zdjęć). Na każdym etapie informujemy Cię o postępach i pracujemy w ustalonym harmonogramie.",
+      "Dla typowej strony firmowej lub landing page przygotowanie zajmuje nam zwykle 3–4 dni robocze od momentu akceptacji wyceny i dostarczenia kompletu materiałów (warunki orientacyjne – do potwierdzenia przed realizacją).",
+  },
+  {
+    id: "skad-wiem-ile-zaplace",
+    question: "Skąd wiem, ile zapłacę?",
+    answer:
+      "Wycenę otrzymujesz z góry, zanim cokolwiek zaczniemy, więc wiesz dokładnie, za co płacisz. Zakres prac i specyfikacja elementów ustalane są przed przystąpieniem do realizacji.",
   },
   {
     id: "dlaczego-nextjs",
@@ -27,12 +33,6 @@ export const faqData: FaqItem[] = [
     question: "Gdzie będzie utrzymywana strona i jak wygląda sprawa hostingu?",
     answer:
       "Stronę wdrażamy na nowoczesnej, bezserwerowej platformie hostingowej (np. Vercel lub Cloudflare), która zapewnia wysoką dostępność, darmowy certyfikat SSL i globalny CDN. Pomagamy skonfigurować Twoją domenę bez zbędnych formalności.",
-  },
-  {
-    id: "jak-wyglada-kontakt",
-    question: "Jak wygląda proces współpracy i rozliczeń?",
-    answer:
-      "Zaczynamy od bezpłatnej rozmowy wstępnej i analizy Twoich potrzeb. Następnie przygotowujemy plan prac i przejrzystą wycenę. Rozliczamy się etapami po zatwierdzeniu kolejnych części projektu.",
   },
   {
     id: "czy-pomagacie-w-tresciach",

@@ -237,12 +237,15 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </div>
 
           {/* Końcowe CTA usługi */}
-          <div className="mt-16 p-8 rounded-3xl border border-primary/30 bg-card text-center space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-foreground">
+          <div className="mt-16 p-8 rounded-2xl border border-line bg-surface text-center space-y-4">
+            <div className="font-mono text-xs uppercase tracking-wider text-primary font-semibold">
+              Realizacja w 3–4 dni robocze • Stała wycena z góry
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
               Chcesz porozmawiać o wdrożeniu: {service.title}?
             </h2>
-            <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-              Napisz do nas lub zadzwoń. Przygotujemy bezpłatną kalkulację dopasowaną do Twoich celów biznesowych.
+            <p className="text-sm text-ink-muted max-w-lg mx-auto">
+              Napisz do nas lub zadzwoń. Wycenę otrzymasz przed startem prac, na podstawie ustalonego zakresu.
             </p>
             <div className="pt-2 flex justify-center">
               <Link href="/kontakt">

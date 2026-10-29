@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/sections/hero-section";
 import { AudienceSection } from "@/components/sections/audience-section";
 import { ServicesBento } from "@/components/sections/services-bento";
 import { GrowthChart } from "@/components/effects/growth-chart";
+import { WhyUsSection } from "@/components/sections/why-us-section";
 import { ProcessSection } from "@/components/sections/process-section";
 import { PerformanceSection } from "@/components/sections/performance-section";
 import { SeoAdvantageSection } from "@/components/sections/seo-advantage-section";
@@ -33,7 +34,10 @@ export default function Home() {
       {/* 5. Centralny wykres wzrostu z animacją scrolla */}
       <GrowthChart />
 
-      {/* 6. Proces współpracy (5 kroków) */}
+      {/* 6. Dlaczego Studio Wzrostu (Przewagi: 3–4 dni & Cena z góry) */}
+      <WhyUsSection />
+
+      {/* 7. Proces współpracy (4 etapy z osią czasu 3–4 dni) */}
       <ProcessSection />
 
       {/* 7. Dlaczego React i wydajność (Core Web Vitals) */}

@@ -6,7 +6,7 @@ import { projectsData } from "@/content/projects";
 import { blogPosts } from "@/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Jeśli indeksowanie jest wyłączone (np. w fazie stagingu z placeholderami), sitemap nie udostępnia adresów
+  // Jeśli indeksowanie jest wyłączone (np. w fazie stagingu z placeholderami), sitemap nie udostępnia wpisów
   if (!isIndexingAllowed()) {
     return [];
   }

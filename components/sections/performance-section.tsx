@@ -7,14 +7,14 @@ const METRICS_DATA = [
   {
     metricValue: "< 1.2 s",
     name: "Czas pierwszego wrażenia",
-    tagline: "Natychmiastowe wyświetlenie treści",
+    tagline: "Błyskawiczne wyświetlenie treści",
     business: "Gdy strona ładuje się dłużej niż 3 sekundy, ponad połowa odwiedzających wraca do wyszukiwarki. Nasze serwisy wyświetlają ofertę w ułamku sekundy, zatrzymując uwagę klienta od pierwszej chwili.",
   },
   {
     metricValue: "0 ms",
     name: "Płynność reakcji na dotyk",
     tagline: "Brak zawieszeń interfejsu",
-    business: "Kliknięcie w menu, ofertę czy numer telefonu następuje bez najmniejszego opóźnienia. Użytkownik ma natychmiastowe poczucie stabilności i obcowania z dopracowanym serwisem.",
+    business: "Kliknięcie w menu, ofertę czy numer telefonu następuje bez najmniejszego opóźnienia. Użytkownik ma pełne poczucie stabilności i obcowania z dopracowanym serwisem.",
   },
   {
     metricValue: "0 px",
@@ -30,7 +30,7 @@ export function PerformanceSection() {
       <Container>
         <SectionHeader
           title="Wpływ czasu reakcji serwisu na decyzje klientów"
-          description="Szybkość to nie kwestia estetyki, lecz bezpośredni czynnik rankingowy w Google i warunek konieczny, by klient zapoznał się z ofertą zamiast opuścić stronę."
+          description="Szybkość to nie kwestia estetyki, lecz bezpośredni czynnik rankingowy w Google i warunek konieczny, by klient zapoznał się z ofertą, a nie opuszczał serwisu."
         />
 
         {/* Trzy kolumny redakcyjne z mocną typografią metryk bez sztucznych ikonek w ramkach */}
@@ -67,7 +67,7 @@ export function PerformanceSection() {
               Architektura React Server Components w Next.js
             </div>
             <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-              Większość obliczeń wykonuje się na szybkich serwerach brzegowych. Smartfon Twojego klienta pobiera wyłącznie niezbędny, lekki kod, co gwarantuje natychmiastowe działanie na słabszych łączach mobilnych.
+              Większość obliczeń wykonuje się na szybkich serwerach brzegowych. Smartfon Twojego klienta pobiera wyłącznie niezbędny, lekki kod, co gwarantuje błyskawiczne działanie na słabszych łączach mobilnych.
             </p>
           </div>
 

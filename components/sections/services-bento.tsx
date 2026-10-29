@@ -12,10 +12,10 @@ export function ServicesBento() {
       <Container>
         <SectionHeader
           title="Zakres usług inżynieryjnych i projektowych"
-          description="Projektujemy serwisy od fundamentów lub przebudowujemy istniejące rozwiązania, kładąc nacisk na natychmiastowe ładowanie i konwersję."
+          description="Projektujemy serwisy od fundamentów lub przebudowujemy istniejące rozwiązania, kładąc nacisk na błyskawiczne ładowanie i konwersję."
         />
 
-        {/* Układ redakcyjny (Editorial Service Index) zamiast szablonowego Bento Grid */}
+        {/* Układ redakcyjny (Editorial Service Index) w miejsce szablonowego Bento Grid */}
         <div className="border-t border-line divide-y divide-line">
           {servicesList.map((service, idx) => {
             const indexNumber = String(idx + 1).padStart(2, "0");

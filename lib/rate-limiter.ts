@@ -8,7 +8,7 @@ interface RateLimitResult {
 }
 
 const WINDOW_MS = 10 * 60 * 1000; // 10 minut
-const MAX_REQUESTS = 5; // Maksymalnie 5 zgłoszeń na 10 minut z jednego adresu IP
+const MAX_REQUESTS = 5; // Maksymalnie 5 zgłoszeń na 10 minut z jednego IP
 
 // In-memory fallback dla środowiska lokalnego / deweloperskiego
 interface MemoryEntry {

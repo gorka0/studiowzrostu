@@ -148,7 +148,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
                 Chcesz wdrożyć te zasady w swojej firmie?
               </h3>
               <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                Skontaktuj się z nami. Zbadamy Twoją obecną stronę i podpowiemy, które elementy wymagają natychmiastowej poprawy.
+                Skontaktuj się z nami. Zbadamy Twoją obecną stronę i podpowiemy, które elementy wymagają pilnej poprawy.
               </p>
               <div className="pt-2 flex justify-center">
                 <Link href="/kontakt">

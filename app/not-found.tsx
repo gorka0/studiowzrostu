@@ -16,7 +16,7 @@ export default function NotFound() {
         </h1>
 
         <p className="text-base sm:text-lg text-muted-foreground max-w-md mx-auto leading-relaxed">
-          Adres, pod który próbujesz się dostać, nie istnieje lub został przeniesiony w trakcie modernizacji serwisu.
+          Strona, której szukasz, nie istnieje lub została przeniesiona w trakcie modernizacji serwisu.
         </p>
 
         <div className="pt-4 flex flex-wrap items-center justify-center gap-4">

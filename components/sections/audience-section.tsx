@@ -9,7 +9,7 @@ const AUDIENCE_SEGMENTS = [
     title: "Małe i średnie firmy",
     subtitle: "Gdy obecna witryna przestała wystarczać",
     desc: "Dla właścicieli, których obecna strona wygląda przestarzale, ładuje się wolno na telefonach i nie generuje nowych kontaktów biznesowych.",
-    deliverable: "Nowoczesny wizerunek, przejrzysta oferta i prosty formularz kontaktowy z natychmiastowym powiadomieniem.",
+    deliverable: "Nowoczesny wizerunek, przejrzysta oferta i prosty formularz kontaktowy z błyskawicznym powiadomieniem.",
   },
   {
     number: "02",
@@ -20,10 +20,10 @@ const AUDIENCE_SEGMENTS = [
   },
   {
     number: "03",
-    title: "Działalności regionalne",
-    subtitle: "Gdy liczy się bezpośredni kontakt lokalny",
-    desc: "Dla firm działających w konkretnym regionie, gdzie kluczowe jest natychmiastowe wyświetlenie numeru telefonu i adresu na smartfonie.",
-    deliverable: "Optymalizacja pod lokalne wyniki wyszukiwania, kod o zerowym opóźnieniu i bezpośrednie wywołanie połączenia.",
+    title: "Firmy inżynieryjne i techniczne",
+    subtitle: "Gdy precyzja oferty decyduje o zleceniu",
+    desc: "Dla wykonawców, producentów i zespołów technicznych, które potrzebują przejrzystego katalogu rozwiązań bez zbędnych ozdobników.",
+    deliverable: "Czytelna specyfikacja oferty, szybki formularz zapytań ofertowych i bezbłędne renderowanie na smartfonach.",
   },
   {
     number: "04",

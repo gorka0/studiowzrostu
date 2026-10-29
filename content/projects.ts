@@ -72,11 +72,11 @@ export const projectsData: ProjectItem[] = [
     clientIndustry: "Automatyka przemysłowa i montaż",
     category: "Katalog techniczny",
     shortDescription:
-      "Przykładowa realizacja serwisu prezentującego ofertę inżynieryjną z natychmiastowym czasem ładowania na smartfonach.",
+      "Przykładowa realizacja serwisu prezentującego ofertę inżynieryjną z błyskawicznym czasem ładowania na smartfonach.",
     challenge:
       "Rozbudowana oferta z dziesiątkami parametrów technicznych była nieczytelna na ekranach smartfonów pracowników na budowach.",
     solution:
-      "Zbudowano modułowy katalog usług z dynamicznym filtrowaniem, natychmiastowym wyszukiwaniem i bezpośrednim przyciskiem szybkiego kontaktu.",
+      "Zbudowano modułowy katalog usług z dynamicznym filtrowaniem, błyskawicznym wyszukiwaniem i bezpośrednim przyciskiem szybkiego kontaktu.",
     results: [
       "Błyskawiczny dostęp do specyfikacji technicznych w terenie",
       "Wyeliminowanie zapytań o nieaktualne wersje kart katalogowych",

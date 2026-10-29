@@ -136,7 +136,7 @@ export default function DesignPage() {
               <div className="space-y-1 pt-4 border-t border-border">
                 <span className="text-xs font-mono text-muted-foreground">Tekst podstawowy (18px / 16px)</span>
                 <p className="text-base sm:text-lg text-muted-foreground max-w-3xl leading-relaxed">
-                  Każda sekunda opóźnienia w ładowaniu strony zmniejsza liczbę zapytań od klientów. Tworzymy serwisy w Next.js i React, które działają natychmiastowo, budują zaufanie i zamieniają odwiedzających w klientów.
+                  Każda sekunda opóźnienia w ładowaniu strony zmniejsza liczbę zapytań od klientów. Tworzymy serwisy w Next.js i React, które działają błyskawicznie, budują zaufanie i zamieniają odwiedzających w klientów.
                 </p>
               </div>
 
@@ -238,7 +238,7 @@ export default function DesignPage() {
                   </div>
                   <CardTitle>Szybkość i Performance</CardTitle>
                   <CardDescription>
-                    Optymalizacja pod kątem wskaźników Google Core Web Vitals i natychmiastowego renderowania.
+                    Optymalizacja pod kątem wskaźników Google Core Web Vitals i błyskawicznego renderowania.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2 text-sm text-muted-foreground">
