@@ -68,8 +68,8 @@ export function Footer() {
               Kontakt
             </div>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="pt-0.5">
-                <CopyEmailButton />
+              <li>
+                <CopyEmailButton variant="text" />
               </li>
               <li>
                 <a

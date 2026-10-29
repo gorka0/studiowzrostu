@@ -341,20 +341,7 @@ export function ContactInfoBlock() {
       </div>
 
       <div className="space-y-3 text-sm">
-        <a
-          href={`mailto:${siteConfig.contact.email}`}
-          className="flex items-center gap-3 p-3 rounded-xl border border-border/80 bg-background hover:border-accent transition-colors group"
-        >
-          <div className="h-9 w-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent-text group-hover:scale-105 transition-transform">
-            <Mail className="h-4 w-4" />
-          </div>
-          <div className="flex-1">
-            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">E-mail</div>
-            <div className="font-medium text-foreground">{siteConfig.contact.email}</div>
-          </div>
-        </a>
-
-        <CopyEmailButton className="w-full justify-center py-2.5" />
+        <CopyEmailButton variant="card" />
 
         <a
           href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}

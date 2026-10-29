@@ -43,14 +43,7 @@ export function CtaSection() {
 
               <div className="pt-4 space-y-3 text-xs text-ink-muted border-t border-line">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                  <a
-                    href={`mailto:${siteConfig.contact.email}`}
-                    className="flex items-center gap-2 hover:text-accent-text hover:underline transition-colors font-medium text-ink"
-                  >
-                    <Mail className="h-4 w-4 text-accent-text shrink-0" />
-                    <span>{siteConfig.contact.email}</span>
-                  </a>
-                  <CopyEmailButton className="sm:ml-auto" />
+                  <CopyEmailButton variant="inline" />
                 </div>
 
                 <a
