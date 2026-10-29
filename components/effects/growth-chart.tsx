@@ -219,10 +219,10 @@ export function GrowthChart() {
     // Matematycznie dokładny punkt na krzywej z getPointAtLength
     const pt = path.getPointAtLength(targetLength);
 
-    // 1. Pozycja kropki na czubku krzywej (środek kropki dokładnie na końcu linii)
+    // 1. Pozycja kropki na czubku krzywej (zawsze na krzywej, widoczna od razu)
     if (tipGroupRef.current) {
       tipGroupRef.current.setAttribute("transform", `translate(${pt.x.toFixed(2)}, ${pt.y.toFixed(2)})`);
-      tipGroupRef.current.style.opacity = clamped > 0.01 ? "1" : "0";
+      tipGroupRef.current.style.opacity = "1";
     }
 
     // 2. Pionowa przerywana linia rzutująca do osi X
@@ -231,7 +231,7 @@ export function GrowthChart() {
       guideLineRef.current.setAttribute("y1", pt.y.toFixed(2));
       guideLineRef.current.setAttribute("x2", pt.x.toFixed(2));
       guideLineRef.current.setAttribute("y2", String(BOUNDS.yBaseline));
-      guideLineRef.current.style.opacity = clamped > 0.03 ? "0.6" : "0";
+      guideLineRef.current.style.opacity = clamped > 0.02 ? "0.6" : "0";
     }
 
     // 3. Dynamiczna maska wypełnienia z miękką prawą krawędzią (ok. 6% szerokości wykresu)
@@ -267,6 +267,17 @@ export function GrowthChart() {
 
     setActiveStepIndex(currentIdx);
   });
+
+  // Inicjalizacja pozycji kropki na początku krzywej po montowaniu
+  React.useEffect(() => {
+    if (shouldReduceMotion) return;
+    const path = mainPathRef.current;
+    if (path && tipGroupRef.current) {
+      const pt = path.getPointAtLength(0);
+      tipGroupRef.current.setAttribute("transform", `translate(${pt.x.toFixed(2)}, ${pt.y.toFixed(2)})`);
+      tipGroupRef.current.style.opacity = "1";
+    }
+  }, [shouldReduceMotion]);
 
   // Wersja statyczna dla preferencji ograniczonego ruchu (zero scroll-trap)
   if (shouldReduceMotion) {
@@ -305,9 +316,6 @@ export function GrowthChart() {
                 <path d={CURVE_PATH_D} fill="none" stroke="var(--accent)" strokeWidth="3.5" strokeLinecap="round" />
                 <circle cx={BOUNDS.xMax} cy={SCALED_CURVE_POINTS[SCALED_CURVE_POINTS.length - 1].y} r="6" className="fill-coral" />
               </svg>
-              <p className="mt-4 text-[11px] text-ink-muted text-center font-mono">
-                Ilustracja, nie obietnica konkretnych wyników.
-              </p>
             </div>
 
             <div className="lg:col-span-4 space-y-4">
@@ -344,25 +352,25 @@ export function GrowthChart() {
       </div>
 
       {/* Sticky viewport container (100svh) */}
-      <div className="sticky top-0 h-[100svh] w-full flex flex-col justify-center overflow-clip px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-6xl flex flex-col h-full max-h-[900px] justify-between py-4 sm:py-6 md:py-10">
+      <div className="sticky top-0 h-[100svh] w-full flex flex-col justify-center overflow-clip px-3 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-6xl flex flex-col h-full max-h-[900px] justify-between py-2 sm:py-5 md:py-8">
           
           {/* Nagłówek sekcji wyrównany do lewej z przyciskiem szybkiego pominięcia */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 max-w-6xl shrink-0 mb-4 sm:mb-8 lg:mb-10">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-3 max-w-6xl shrink-0 mb-2 sm:mb-5 lg:mb-7">
             <div className="text-left max-w-2xl">
               <RevealHeading
                 as="h2"
                 text="Architektura serwisu a tempo rozwoju firmy"
-                className="text-xl sm:text-3xl lg:text-4xl font-bold font-heading tracking-tight text-ink"
+                className="text-lg sm:text-2xl lg:text-3xl font-bold font-heading tracking-tight text-ink"
               />
-              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-ink-muted leading-relaxed">
+              <p className="mt-1 text-xs sm:text-sm text-ink-muted leading-relaxed hidden sm:block">
                 Przewiń stronę lub kliknij wybrany etap, aby zobaczyć tempo wzrostu.
               </p>
             </div>
             <button
               type="button"
               onClick={skipPastChart}
-              className="self-start sm:self-auto text-xs font-mono text-ink hover:text-accent-text transition-colors inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text rounded-md px-2.5 py-1.5 border border-line bg-surface hover:bg-surface/80 cursor-pointer"
+              className="self-start sm:self-auto text-xs font-mono text-ink-muted hover:text-accent-text transition-colors inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text rounded-md px-2.5 py-1 border border-line bg-surface hover:bg-surface/80 cursor-pointer"
               aria-label="Pomiń wykres i przejdź do kolejnej sekcji"
             >
               <span>Pomiń wykres</span>
@@ -372,11 +380,11 @@ export function GrowthChart() {
             </button>
           </div>
 
-          {/* Główny układ: Wykres (8 kolumn) + Lista etapów (4 kolumny) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center my-auto">
+          {/* Główny układ: Wykres (7 kolumn na md) + Lista etapów (5 kolumn na md) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-6 lg:gap-8 items-center my-auto">
             
             {/* Lewa kolumna: Wykres z symetrycznym paddingiem w karcie */}
-            <div className="lg:col-span-8 rounded-2xl border border-line bg-surface/80 shadow-card p-4 sm:p-6 lg:p-8 flex flex-col justify-between relative overflow-hidden">
+            <div className="md:col-span-7 lg:col-span-8 rounded-2xl border border-line bg-surface/80 shadow-card p-3 sm:p-5 lg:p-7 flex flex-col justify-between relative overflow-hidden">
               <div className="relative w-full aspect-[16/9] select-none">
                 <svg
                   viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
@@ -484,18 +492,6 @@ export function GrowthChart() {
                     vectorEffect="non-scaling-stroke"
                   />
 
-                  {/* Czubek krzywej: Koralowa kropka z pierścieniem pulsacyjnym */}
-                  <g ref={tipGroupRef} className="pointer-events-none transition-opacity duration-150">
-                    <circle
-                      r="12"
-                      className="fill-coral/20 animate-ping motion-reduce:hidden"
-                    />
-                    <circle
-                      r="5.5"
-                      className="fill-coral stroke-surface stroke-[1.5]"
-                    />
-                  </g>
-
                   {/* Kamienie milowe na wykresie z liniami łączącymi */}
                   {MILESTONES.map((m, idx) => {
                     // Wyznaczenie pozycji markera na znormalizowanej krzywej
@@ -519,7 +515,7 @@ export function GrowthChart() {
                         aria-label={`${m.step}. ${m.title}`}
                         className="transition-all duration-300 group cursor-pointer focus-visible:outline-none"
                       >
-                        {/* Linia łącząca marker z etykietą */}
+                        {/* Linia łącząca marker z etykietą (ukryta na mobile dla maksymalnej czytelności) */}
                         <line
                           x1={targetX}
                           y1={targetY}
@@ -528,7 +524,7 @@ export function GrowthChart() {
                           stroke="currentColor"
                           strokeDasharray="2 2"
                           strokeWidth="1"
-                          className="text-line group-data-[state=reached]:text-accent/60"
+                          className="text-line group-data-[state=reached]:text-accent/60 hidden sm:inline"
                         />
 
                         {/* Punkt na krzywej */}
@@ -539,8 +535,8 @@ export function GrowthChart() {
                           className="fill-surface stroke-line stroke-2 group-data-[state=reached]:fill-accent group-data-[state=reached]:stroke-surface"
                         />
 
-                        {/* Etykieta kamienia milowego w wolnej przestrzeni */}
-                        <g transform={`translate(${targetX + m.labelDx}, ${targetY + m.labelDy})`}>
+                        {/* Etykieta kamienia milowego (widoczna od sm: w górę) */}
+                        <g transform={`translate(${targetX + m.labelDx}, ${targetY + m.labelDy})`} className="hidden sm:inline">
                           <rect
                             x={m.textAnchor === "end" ? -140 : m.textAnchor === "middle" ? -70 : 0}
                             y="-14"
@@ -561,19 +557,30 @@ export function GrowthChart() {
                       </g>
                     );
                   })}
-                </svg>
-              </div>
 
-              {/* Podpis pod wykresem */}
-              <div className="mt-3 pt-3 border-t border-line flex items-center justify-between text-[11px] text-ink-muted font-mono">
-                <span>Wykres trajektorii optymalizacji</span>
-                <span>Ilustracja, nie obietnica konkretnych wyników.</span>
+                  {/* Czubek krzywej: Koralowa kropka z pierścieniem pulsacyjnym - ZAWSZE NA SAMEJ GÓRZE WARSTW */}
+                  <g
+                    ref={tipGroupRef}
+                    data-chart-tip="true"
+                    transform="translate(70.00, 369.30)"
+                    className="pointer-events-none transition-opacity duration-150"
+                  >
+                    <circle
+                      r="14"
+                      className="fill-coral/25 animate-ping motion-reduce:hidden"
+                    />
+                    <circle
+                      r="6"
+                      className="fill-coral stroke-surface stroke-2 shadow-sm"
+                    />
+                  </g>
+                </svg>
               </div>
             </div>
 
             {/* Prawa kolumna: Lista kroków 01-04 z pionowym wskaźnikiem postępu */}
-            <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-6 lg:pl-2">
-              <div className="relative pl-6 space-y-6">
+            <div className="md:col-span-5 lg:col-span-4 flex flex-col justify-between h-full space-y-3 sm:space-y-4 lg:space-y-6 md:pl-2">
+              <div className="relative pl-5 sm:pl-6 space-y-2 sm:space-y-3 lg:space-y-4">
                 {/* Oś pionowa postępu */}
                 <div className="absolute left-2 top-2 bottom-2 w-[2px] bg-line rounded-full overflow-hidden">
                   <div
@@ -614,7 +621,7 @@ export function GrowthChart() {
                       </div>
                       <p className={cn(
                         "mt-0.5 sm:mt-1 text-[11px] sm:text-xs text-ink-muted leading-relaxed max-w-sm transition-all",
-                        isActive ? "block" : "hidden sm:block"
+                        isActive ? "block" : "hidden md:block"
                       )}>
                         {m.desc}
                       </p>
@@ -624,7 +631,7 @@ export function GrowthChart() {
               </div>
 
               {/* Końcowe CTA zsynchronizowane z etapami */}
-              <div className="pt-2">
+              <div className="pt-1">
                 <Link href="/kontakt" className="inline-block w-full">
                   <InteractiveHoverButton className="w-full">
                     Zaplanujmy Twój wzrost
