@@ -52,7 +52,7 @@ export default function AboutPage() {
           {/* Zasady studia w układzie redakcyjnym */}
           <div className="mt-20 space-y-8 text-left">
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
-              Zasady inżynieryjne studia
+              Główne zasady studia
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
