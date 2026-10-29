@@ -13,14 +13,14 @@ const PROCESS_STEPS = [
   {
     number: "02",
     day: "Dzień 2",
-    title: "Projekt makiety",
-    desc: "Projektujemy architekturę podstron i szwajcarski układ typograficzny. Układamy hierarchię treści pod kątem czytelności oferty.",
+    title: "Układ i teksty",
+    desc: "Planujemy układ podstron i porządkujemy treści tak, aby Twój klient w kilka sekund zrozumiał ofertę i wiedział, jak się z Tobą skontaktować.",
   },
   {
     number: "03",
     day: "Dzień 3",
-    title: "Wdrożenie w Next.js",
-    desc: "Piszemy czysty kod w React i Next.js z rygorystycznym TypeScriptem. Dbamy o błyskawiczne ładowanie i zgodność z normami WCAG.",
+    title: "Budowa strony i testy",
+    desc: "Zamieniamy projekt w działającą, szybką stronę. Dopracowujemy widok na telefonach, podłączamy formularze kontaktowe i sprawdzamy każdy detal.",
   },
   {
     number: "04",
@@ -45,7 +45,7 @@ export function ProcessSection() {
             Orientacyjna oś czasu: 3–4 dni robocze
           </div>
           <div className="text-ink-muted">
-            Szkic harmonogramu (brief → projekt → wdrożenie → odbiór) – kroki i podział dni do potwierdzenia.
+            Czas liczony od momentu akceptacji założeń i przekazania materiałów wyjściowych.
           </div>
         </div>
 

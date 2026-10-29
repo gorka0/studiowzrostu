@@ -34,7 +34,7 @@ export function WhyUsSection() {
               </h3>
 
               <p className="text-sm sm:text-base text-ink-muted leading-relaxed">
-                Pracujemy w krótkich, skoncentrowanych cyklach wdrożeniowych. Od momentu akceptacji założeń kodujemy bezpośrednio w Next.js bez zbędnych przestojów.
+                Pracujemy w krótkich, dobrze zaplanowanych etapach. Od momentu ustalenia zakresu skupiamy się wyłącznie na Twoim projekcie, bez ciągnących się tygodniami przestojów.
               </p>
             </div>
 

@@ -38,7 +38,7 @@ export function CtaSection() {
               />
 
               <p className="text-sm sm:text-base text-ink-muted leading-relaxed">
-                Opowiedz o profilu swojej działalności. Przygotujemy bezpłatną analizę techniczną oraz precyzyjną wycenę wdrożenia serwisu w Next.js.
+                Opowiedz nam krótko, czym zajmuje się Twoja firma. W ciągu 24 godzin wrócimy z konkretną propozycją, terminem i bezpłatną wyceną.
               </p>
 
               <div className="pt-4 space-y-3 text-xs text-ink-muted border-t border-line">

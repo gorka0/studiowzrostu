@@ -36,8 +36,7 @@ const wordVariants: Variants = {
 
 /**
  * RevealHeading – Sekwencyjne odsłanianie nagłówków (h2/h3) słowo po słowie przy scrollowaniu.
- * SEO i A11y: Zawiera <span className="sr-only"> z pełnym tekstem dla robotów i czytników.
- * Ochrona polskich znaków: pb-[0.12em] -mb-[0.12em] zapobiega ucinaniu ogonków (ą, ę, g, j, y).
+ * Czysty DOM i A11y: Tekst występuje dokładnie raz z jawnymi spacjami {" "}, bez ucinania polskich znaków (pb-[0.14em]).
  * prefers-reduced-motion: zwraca statyczny czysty tag bez animacji.
  */
 export function RevealHeading({
@@ -56,12 +55,7 @@ export function RevealHeading({
 
   return (
     <Tag className={cn("relative font-heading", className)}>
-      {/* Pełny, czytelny tekst dla wyszukiwarki Google oraz czytników ekranowych */}
-      <span className="sr-only">{text}</span>
-
-      {/* Wizualny kontener animowanych słów wyłączony z drzewa dostępności */}
       <motion.span
-        aria-hidden="true"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -69,14 +63,14 @@ export function RevealHeading({
         className="inline-block"
       >
         {words.map((word, index) => (
-          <span
-            key={`${word}-${index}`}
-            className="inline-block overflow-hidden align-bottom pb-[0.14em] -mb-[0.14em] mr-[0.25em] last:mr-0"
-          >
-            <motion.span variants={wordVariants} className="inline-block">
-              {word}
-            </motion.span>
-          </span>
+          <React.Fragment key={`${word}-${index}`}>
+            <span className="inline-block overflow-hidden align-bottom pb-[0.14em] -mb-[0.14em]">
+              <motion.span variants={wordVariants} className="inline-block">
+                {word}
+              </motion.span>
+            </span>
+            {index < words.length - 1 && " "}
+          </React.Fragment>
         ))}
       </motion.span>
     </Tag>

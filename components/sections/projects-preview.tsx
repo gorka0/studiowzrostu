@@ -117,19 +117,20 @@ function ConceptCard({
       {/* 3. Treść karty */}
       <div className="flex flex-col flex-1 p-5 sm:p-6">
         {/* Plakietka "Koncepcja własna" + Tagi celu/rodzaju */}
-        <div className="flex flex-wrap items-center gap-1.5 mb-3">
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-surface-subtle text-accent-text border border-line">
-            Koncepcja własna
-          </span>
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center px-2 py-0.5 rounded text-[11px] text-ink-muted bg-surface-subtle border border-line"
-            >
-              {tag}
+        <ul aria-label="Kategorie projektu" className="flex flex-wrap items-center gap-1.5 mb-3 list-none p-0 m-0">
+          <li>
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-surface-subtle text-accent-text border border-line">
+              Koncepcja własna
             </span>
+          </li>
+          {project.tags.map((tag) => (
+            <li key={tag}>
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] text-ink-muted bg-surface-subtle border border-line">
+                {tag}
+              </span>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {/* Tytuł koncepcji */}
         <HeadingTag className="text-lg sm:text-xl font-heading font-bold text-ink group-hover:text-accent-text transition-colors leading-snug">

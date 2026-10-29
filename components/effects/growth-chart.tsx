@@ -49,7 +49,7 @@ export const MILESTONES = [
   {
     step: "02",
     title: "Widoczność w Google",
-    desc: "Czysty kod i zoptymalizowane Core Web Vitals ułatwiają robotom indeksowanie i pozycjonowanie.",
+    desc: "Czysty kod i zoptymalizowane parametry szybkości ułatwiają wyszukiwarce indeksowanie i pozycjonowanie.",
     threshold: 0.44,
     labelDx: 0,
     labelDy: -75,
@@ -58,7 +58,7 @@ export const MILESTONES = [
   {
     step: "03",
     title: "Więcej zapytań",
-    desc: "Przejrzysta architektura informacji prowadzi odwiedzających wprost do wysłania formularza.",
+    desc: "Przejrzysta struktura oferty prowadzi odwiedzających prosto do wysłania formularza.",
     threshold: 0.70,
     labelDx: -20,
     labelDy: -80,
@@ -345,7 +345,7 @@ export function GrowthChart() {
         <ol>
           {MILESTONES.map((m) => (
             <li key={m.step}>
-              <strong>{m.step}. {m.title}</strong>: {m.desc}
+              <strong>{m.title}:</strong> {m.desc}
             </li>
           ))}
         </ol>

@@ -46,8 +46,8 @@ export interface ServiceDetail {
 export const servicesList: ServiceDetail[] = [
   {
     slug: "strony-internetowe",
-    title: "Nowoczesne strony internetowe – Next.js i React",
-    tagline: "Dedykowane serwisy firmowe w React i Next.js, które budują autorytet i generują zapytania",
+    title: "Nowoczesne strony internetowe dla firm",
+    tagline: "Dedykowane strony firmowe, które budują autorytet i generują zapytania",
     shortDescription:
       "Dedykowane serwisy internetowe zaprojektowane od zera. Bez ociężałych motywów, z błyskawicznym czasem ładowania na smartfonach dla firm z całej Polski.",
     problem: {
@@ -105,7 +105,7 @@ export const servicesList: ServiceDetail[] = [
   },
   {
     slug: "landing-page",
-    title: "Projektowanie Landing Page pod konwersję",
+    title: "Strony docelowe (Landing Page) pod reklamy",
     tagline: "Jednostronicowe serwisy kampanijne, które maksymalizują zwrot z reklam Google Ads i Meta",
     shortDescription:
       "Strony docelowe zoptymalizowane pod płatne kampanie (Google Ads, Meta Ads) oraz premiery nowych usług i produktów.",
@@ -164,7 +164,7 @@ export const servicesList: ServiceDetail[] = [
   },
   {
     slug: "seo-techniczne",
-    title: "Techniczne SEO i pozycjonowanie stron",
+    title: "Pozycjonowanie i techniczne SEO",
     tagline: "Solidny fundament pod wysokie pozycje w organicznych wynikach Google",
     shortDescription:
       "Optymalizacja kodu, struktury danych Schema.org i indeksowania SSR. Eliminujemy bariery, przez które roboty Google pomijają Twoją treść.",
@@ -223,10 +223,10 @@ export const servicesList: ServiceDetail[] = [
   },
   {
     slug: "redesign-i-wydajnosc",
-    title: "Przebudowa i optymalizacja wydajności stron",
+    title: "Przebudowa i przyspieszenie starej strony",
     tagline: "Nowe życie dla Twojego obecnego serwisu bez utraty wypracowanych pozycji w Google",
     shortDescription:
-      "Zastępujemy przestarzałe, wolno działające strony nowoczesnym rozwiązaniem w Next.js. Przenosimy wypracowany ruch i pozycje.",
+      "Zmieniamy przestarzałą, wolną witrynę w nowoczesną i czytelną stronę, która na nowo budzi zaufanie. Zachowujemy Twoje dotychczasowe pozycje w Google.",
     problem: {
       heading: "Twoja obecna strona powstała kilka lat temu i wstyd ją pokazać?",
       description:

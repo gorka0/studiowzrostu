@@ -11,8 +11,8 @@ export function ServicesBento() {
     <Section spacing="default" id="uslugi" className="border-b border-line">
       <Container>
         <SectionHeader
-          title="Zakres usług inżynieryjnych i projektowych"
-          description="Projektujemy serwisy od fundamentów lub przebudowujemy istniejące rozwiązania, kładąc nacisk na błyskawiczne ładowanie i konwersję."
+          title="Jak możemy pomóc Twojej firmie urosnąć"
+          description="Tworzymy nowe strony od zera lub porządkujemy obecne – zawsze z naciskiem na czytelność oferty, szybkość działania i pozyskiwanie klientów."
         />
 
         {/* Układ redakcyjny (Editorial Service Index) w miejsce szablonowego Bento Grid */}

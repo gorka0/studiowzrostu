@@ -16,9 +16,9 @@ export function HeroSection() {
             <span className="text-accent-text">Czysty kod nastawiony na wzrost.</span>
           </h1>
 
-          {/* Neutralny szkic podtytułu do autorskiej redakcji */}
+          {/* Podtytuł w języku korzyści */}
           <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-ink-muted leading-relaxed text-pretty">
-            Projektujemy i wdrażamy serwisy internetowe zorientowane na czytelną prezentację oferty, błyskawiczne ładowanie na smartfonach i bezpośrednie pozyskiwanie zapytań ofertowych.
+            Projektujemy i wdrażamy szybkie strony firmowe, które czytelnie tłumaczą Twoją ofertę, świetnie działają na telefonach i zamieniają odwiedzających w zapytania ofertowe.
           </p>
 
           {/* Kluczowe przewagi studia */}
@@ -43,32 +43,32 @@ export function HeroSection() {
             </Link>
           </div>
 
-          {/* Dolny, wycentrowany pasek standardów inżynieryjnych */}
+          {/* Dolny, wycentrowany pasek korzyści biznesowych */}
           <div className="mt-16 pt-8 border-t border-line/80 w-full max-w-3xl grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             <div className="space-y-1">
               <div className="font-mono text-xs text-accent-text font-bold">
                 01 • Pełna własność
               </div>
               <p className="text-xs text-ink-muted leading-relaxed">
-                Czysty kod źródłowy bez comiesięcznych opłat za CMS.
+                Strona należy w 100% do Ciebie – bez abonamentów i uzależnienia od agencji.
               </p>
             </div>
 
             <div className="space-y-1">
               <div className="font-mono text-xs text-accent-text font-bold">
-                02 • Czas reakcji &lt; 1.2s
+                02 • Natychmiastowy start
               </div>
               <p className="text-xs text-ink-muted leading-relaxed">
-                Server-Side Rendering gwarantuje brak pustych ekranów.
+                Oferta wyświetla się od razu po kliknięciu – bez pustego ekranu i czekania.
               </p>
             </div>
 
             <div className="space-y-1">
               <div className="font-mono text-xs text-accent-text font-bold">
-                03 • Trwałość kodu
+                03 • Święty spokój
               </div>
               <p className="text-xs text-ink-muted leading-relaxed">
-                Architektura React i TypeScript wolna od podatnych wtyczek.
+                Brak kłopotliwych wtyczek, które psują stronę po automatycznej aktualizacji.
               </p>
             </div>
           </div>

@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Studio Wzrostu",
   legalName: "Studio Wzrostu – Tomasz Górka",
-  tagline: "Nowoczesne strony internetowe w Next.js dla rozwijających się firm",
+  tagline: "Nowoczesne strony internetowe dla rozwijających się firm",
   description:
-    "Tworzymy szybkie, nowoczesne strony internetowe w Next.js i React. Pomagamy firmom zdobywać klientów i budować zaufanie w sieci.",
+    "Tworzymy szybkie, nowoczesne strony internetowe dla firm. Pomagamy zdobywać klientów i budować zaufanie w sieci.",
   domain: "https://studiowzrostu.pl",
   canonicalUrl: "https://studiowzrostu.pl",
   owner: "Tomasz Górka",

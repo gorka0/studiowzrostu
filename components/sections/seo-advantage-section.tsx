@@ -6,23 +6,23 @@ import { SectionHeader } from "@/components/ui/section-header";
 const SEO_ADVANTAGES = [
   {
     number: "01",
-    title: "Błyskawiczne renderowanie serwerowe",
-    desc: "Roboty wyszukiwarki Google otrzymują gotowy, w pełni zrenderowany kod HTML w pierwszej milisekundzie, bez konieczności oczekiwania na wykonanie JavaScriptu.",
+    title: "Czytelna struktura dla wyszukiwarki",
+    desc: "Układamy nagłówki i treści w logiczny sposób, dzięki czemu roboty Google precyzyjnie indeksują każdą Twoją usługę.",
   },
   {
     number: "02",
-    title: "Czysty, semantyczny kod",
-    desc: "Uporządkowana hierarchia nagłówków, bezbłędne znaczniki Schema.org i atrybuty dostępności sprawiają, że algorytmy dokładnie rozumieją strukturę Twojej oferty.",
+    title: "Szybkość premiowana przez algorytmy",
+    desc: "Google oficjalnie promuje szybkie strony. Im szybciej Twoja witryna działa na telefonach, tym chętniej wyszukiwarka wyświetla ją wyżej.",
   },
   {
     number: "03",
-    title: "Optymalizacja metadanych i podglądu",
-    desc: "Dedykowane tagi OpenGraph, canonical URLs oraz automatyczne sitemapy gwarantują profesjonalny podgląd linków na LinkedIn, w komunikatorach i wyszukiwarkach.",
+    title: "Wizytówka i obecność lokalna",
+    desc: "Optymalizujemy stronę pod zapytania lokalne, aby klienci z Twojego miasta i regionu trafiali wprost do Ciebie.",
   },
   {
     number: "04",
-    title: "Trwałość i odporność technologiczna",
-    desc: "Czysty kod nie starzeje się tak jak szablony z dziesiątkami wtyczek. Nie musisz obawiać się, że kolejna automatyczna aktualizacja CMS zepsuje widoczność serwisu.",
+    title: "Gotowość na treści i bloga",
+    desc: "Gdy zechcesz rozbudować stronę o artykuły poradnikowe lub opisy kolejnych realizacji, masz do tego gotowy, szybki fundament.",
   },
 ];
 
@@ -31,11 +31,11 @@ export function SeoAdvantageSection() {
     <Section spacing="default" className="bg-surface/40 border-b border-line">
       <Container>
         <SectionHeader
-          title="Jak techniczne SEO i czysta architektura wpływają na pozycje w Google?"
-          description="Nawet najlepsze treści nie przyniosą klientów, jeśli strona nie będzie prawidłowo odczytywana przez wyszukiwarkę. Dbamy o fundament, który ułatwia pozycjonowanie i budowę widoczności w Google w całej Polsce."
+          title="Dlaczego nasze strony łatwiej zdobywają wysokie pozycje w Google?"
+          description="Dobra oferta nie zadziała, jeśli klienci nie mogą na nią trafić. Budujemy strony tak, aby wyszukiwarka Google od razu rozumiała, czym się zajmujesz i komu pomagasz."
         />
 
-        {/* 4 kolumny redakcyjne z numeracją bez ikon w kwadracikach */}
+        {/* 4 kolumny redakcyjne z numeracją */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {SEO_ADVANTAGES.map((item) => (
             <div
