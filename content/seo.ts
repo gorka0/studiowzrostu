@@ -15,7 +15,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   home: {
     title: "Nowoczesne strony internetowe dla firm | Studio Wzrostu",
     description:
-      "Nowoczesne strony www dla rozwijających się firm z całej Polski. Czysty kod w Next.js, realizacja w 3–4 dni i stała wycena z góry. Zbuduj przewagę!",
+      "Tworzymy nowoczesne strony internetowe dla firm z Bydgoszczy i całej Polski. Szybka realizacja, stała wycena z góry i pełna własność strony. Zamów bezpłatną wycenę!",
     keywords: [
       "nowoczesne strony dla firm",
       "strony internetowe dla firm",
@@ -23,6 +23,12 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "tworzenie stron React",
       "szybka strona dla firmy",
       "optymalizacja Core Web Vitals",
+      "strony internetowe Bydgoszcz",
+      "tworzenie stron www Bydgoszcz",
+      "strona internetowa dla firmy Bydgoszcz",
+      "nowoczesna strona firmowa",
+      "tworzenie stron www dla małych firm",
+      "cena strony internetowej dla firmy",
     ],
     ogTitle: "Nowoczesne strony internetowe dla firm | Studio Wzrostu",
     ogDescription:
@@ -37,6 +43,11 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "projektowanie stron dla biznesu",
       "usługi web development",
       "tworzenie stron Bydgoszcz",
+      "firma web design Bydgoszcz",
+      "agencja internetowa Bydgoszcz",
+      "strony www kujawsko-pomorskie",
+      "zamów stronę internetową",
+      "strona internetowa dla firmy usługowej",
     ],
     ogTitle: "Projektowanie i tworzenie stron www | Studio Wzrostu",
     ogDescription:
@@ -51,6 +62,10 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "szybkie strony firmowe B2B B2C",
       "tworzenie stron www dla firm",
       "strona firmowa Next.js",
+      "szybka strona internetowa",
+      "strona www bez wordpress",
+      "strona internetowa dla firmy B2B",
+      "projektowanie stron Bydgoszcz",
     ],
     ogTitle: "Nowoczesne strony internetowe – Next.js | Studio Wzrostu",
     ogDescription:
@@ -65,6 +80,8 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "strona lądująca pod kampanie Google Ads Meta",
       "jak zwiększyć konwersję z reklam",
       "landing page Bydgoszcz",
+      "strona pod kampanie Google Ads",
+      "jak zwiększyć sprzedaż przez internet",
     ],
     ogTitle: "Skuteczne Landing Pages pod kampanie reklamowe | Studio Wzrostu",
     ogDescription:
@@ -80,6 +97,9 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "audyt SEO",
       "indeksacja Google",
       "architektura informacji",
+      "pozycjonowanie stron Bydgoszcz",
+      "SEO Bydgoszcz",
+      "widoczność w Google",
     ],
     ogTitle: "Techniczne SEO i audyt Core Web Vitals | Studio Wzrostu",
     ogDescription:
@@ -94,6 +114,8 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "modernizacja starej strony",
       "optymalizacja szybkości strony",
       "poprawa Core Web Vitals",
+      "przebudowa strony Bydgoszcz",
+      "przyspieszenie wolnej strony",
     ],
     ogTitle: "Modernizacja i przebudowa stron firmowych | Studio Wzrostu",
     ogDescription:
@@ -108,6 +130,8 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "nowoczesny design www",
       "przykłady stron dla firm",
       "portfolio stron Next.js",
+      "przykłady stron firmowych Bydgoszcz",
+      "realizacje stron internetowych",
     ],
     ogTitle: "Koncepcje architektoniczne stron www | Studio Wzrostu",
     ogDescription:
@@ -122,6 +146,8 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "Tomasz Górka",
       "tworzenie stron bez szablonów",
       "programista stron www",
+      "webmaster Bydgoszcz",
+      "studio web design Bydgoszcz",
     ],
     ogTitle: "O Studio Wzrostu i Tomaszu Górce | Studio Wzrostu",
     ogDescription:
@@ -136,6 +162,8 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "jak zdobyć więcej klientów z internetu",
       "wzrost sprzedaży przez stronę www",
       "dlaczego strona nie sprzedaje",
+      "jak pozyskać klientów przez internet",
+      "strona internetowa dla małej firmy poradnik",
     ],
     ogTitle: "Blog inżynieryjno-biznesowy | Studio Wzrostu",
     ogDescription:
@@ -150,6 +178,9 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "wycena strony internetowej",
       "bezpłatna konsultacja",
       "tworzenie stron kontakt",
+      "wycena strony Bydgoszcz",
+      "strona firmowa Bydgoszcz cena",
+      "ile kosztuje strona internetowa",
     ],
     ogTitle: "Kontakt i bezpłatna wycena wdrożenia | Studio Wzrostu",
     ogDescription:

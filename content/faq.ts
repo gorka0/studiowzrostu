@@ -36,9 +36,9 @@ export const faqData: FaqItem[] = [
   },
   {
     id: "zasieg-i-wspolpraca-zdalna",
-    question: "Jak wygląda współpraca zdalna i jaki jest Wasz zasięg działania?",
+    question: "Jak wygląda współpraca zdalna i czy obsługujecie firmy spoza Bydgoszczy?",
     answer:
-      "Realizujemy projekty w 100% zdalnie dla przedsiębiorstw z całej Polski. Gwarantujemy przejrzysty proces, bezpośredni kontakt z inżynierem prowadzącym oraz regularne prezentacje postępów w działającym środowisku testowym.",
+      "Obsługujemy klientów z Bydgoszczy i całego województwa kujawsko-pomorskiego, a także w 100% zdalnie firmy z całej Polski. Gwarantujemy przejrzysty proces, bezpośredni kontakt z inżynierem prowadzącym oraz regularne prezentacje postępów w działającym środowisku testowym.",
   },
   {
     id: "co-z-hostingiem",

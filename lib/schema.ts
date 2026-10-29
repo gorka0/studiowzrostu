@@ -61,6 +61,58 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
       "Optymalizacja Core Web Vitals",
       "Rozwój biznesu online",
       "Projektowanie UX/UI",
+      "Tworzenie stron internetowych Bydgoszcz",
+      "Strony internetowe dla firm usługowych",
+      "Tworzenie stron www dla małych firm",
+      "Pozycjonowanie lokalne",
+      "Web design Bydgoszcz",
+    ],
+  };
+
+  organization.serviceType = [
+    "Tworzenie stron internetowych",
+    "Projektowanie stron www",
+    "Pozycjonowanie SEO",
+    "Landing page",
+    "Redesign strony",
+  ];
+
+  organization.hasOfferCatalog = {
+    "@type": "OfferCatalog",
+    name: "Usługi tworzenia stron internetowych",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Strona internetowa dla firmy",
+          areaServed: { "@type": "City", name: "Bydgoszcz" },
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Landing Page pod kampanie reklamowe",
+          areaServed: { "@type": "Country", name: "Polska" },
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Techniczne SEO i pozycjonowanie",
+          areaServed: { "@type": "Country", name: "Polska" },
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Przebudowa i modernizacja strony",
+          areaServed: { "@type": "Country", name: "Polska" },
+        },
+      },
     ],
   };
 
