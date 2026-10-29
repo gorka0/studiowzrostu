@@ -1,7 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
-  <rect width="32" height="32" rx="8" fill="#14231C" />
-  <rect x="5" y="18" width="5.5" height="9" rx="2.5" fill="#FFFFFF" opacity="0.4" />
-  <rect x="13.25" y="12" width="5.5" height="15" rx="2.5" fill="#1F9D6B" />
-  <rect x="21.5" y="6" width="5.5" height="21" rx="2.5" fill="#4ADE9C" />
-  <circle cx="24.25" cy="6" r="2" fill="#FF7A45" />
+  <!-- Tło z subtelnymi zaokrąglonymi rogami -->
+  <rect width="32" height="32" rx="7" fill="#14231C"/>
+  <!-- Słupek 1: niski, wyszarzony -->
+  <path d="M4 30 L4 22 Q4 19.5 6.5 19.5 Q9 19.5 9 22 L9 30 Z" fill="#FFFFFF" opacity="0.35"/>
+  <!-- Słupek 2: średni, główna zieleń -->
+  <path d="M12.5 30 L12.5 15 Q12.5 12.5 15 12.5 Q17.5 12.5 17.5 15 L17.5 30 Z" fill="#188755"/>
+  <!-- Słupek 3: wysoki, jasna mięta -->
+  <path d="M21 30 L21 7 Q21 4.5 23.5 4.5 Q26 4.5 26 7 L26 30 Z" fill="#4ADE9C"/>
+  <!-- Koralowy akcent -->
+  <circle cx="23.5" cy="5" r="2.5" fill="#D94E14"/>
 </svg>
