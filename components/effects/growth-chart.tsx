@@ -684,19 +684,19 @@ function GridAndAxes() {
         x={BOUNDS.xMax}
         y={BOUNDS.yBaseline + 20}
         textAnchor="end"
-        className="text-[11px] font-mono fill-ink-muted"
+        className="text-xs font-mono font-medium fill-ink/80 select-none"
       >
         Czas →
       </text>
 
       <text
-        x={BOUNDS.xMin - 12}
+        x={BOUNDS.xMin - 14}
         y={BOUNDS.yTop + 10}
-        transform={`rotate(-90 ${BOUNDS.xMin - 12} ${BOUNDS.yTop + 10})`}
+        transform={`rotate(-90 ${BOUNDS.xMin - 14} ${BOUNDS.yTop + 10})`}
         textAnchor="end"
-        className="text-[11px] font-mono fill-ink-muted hidden sm:inline"
+        className="text-xs font-mono font-medium fill-ink/80 select-none hidden sm:inline"
       >
-        Rozwój biznesu ↑
+        Rozwój biznesu →
       </text>
     </g>
   );
