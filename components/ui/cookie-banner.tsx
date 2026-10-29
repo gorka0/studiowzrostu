@@ -173,7 +173,7 @@ export function CookieConsentProvider({
               <Button
                 type="button"
                 onClick={handleAcceptAll}
-                className="flex-1 md:flex-initial h-9 px-4 text-xs font-semibold rounded-xl border border-border bg-background text-foreground hover:bg-muted/80 transition-colors"
+                className="flex-1 md:flex-initial h-9 px-4 text-xs font-semibold rounded-xl bg-accent-text text-white hover:bg-accent focus-visible:ring-2 focus-visible:ring-accent-text dark:bg-accent dark:text-background dark:hover:bg-accent/80 transition-colors shadow-xs"
               >
                 Akceptuj wszystkie
               </Button>
@@ -305,7 +305,7 @@ export function CookieConsentProvider({
                 <Button
                   type="button"
                   onClick={handleSaveCustom}
-                  className="w-full sm:w-auto h-10 px-5 text-xs font-semibold rounded-xl bg-accent-text text-white hover:bg-accent transition-colors inline-flex items-center justify-center gap-1.5"
+                  className="w-full sm:w-auto h-10 px-5 text-xs font-semibold rounded-xl bg-accent-text text-white hover:bg-accent dark:bg-accent dark:text-background dark:hover:bg-accent/80 transition-colors inline-flex items-center justify-center gap-1.5"
                 >
                   <Check className="h-3.5 w-3.5" />
                   <span>Zapisz preferencje</span>
