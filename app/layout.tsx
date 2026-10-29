@@ -7,6 +7,7 @@ import { SkipLink } from "@/components/ui/skip-link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MobileStickyCTA } from "@/components/layout/mobile-sticky-cta";
+import { ScrollToTopOnReload } from "@/components/layout/scroll-to-top";
 import { GlobalJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import "./globals.css";
@@ -38,6 +39,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${fontHeading.variable} ${fontSans.variable} ${fontHeading.className} ${fontSans.className} h-full antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(typeof window!=='undefined'){if('scrollRestoration' in history){history.scrollRestoration='manual';}if(!window.location.hash){window.scrollTo(0,0);}}`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground transition-colors duration-200">
         <ThemeProvider
           attribute="class"
@@ -45,6 +53,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange={false}
         >
+          <ScrollToTopOnReload />
           <ConsentManager />
           <GlobalJsonLd />
           <CookieConsentProvider>
