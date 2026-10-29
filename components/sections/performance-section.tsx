@@ -51,22 +51,6 @@ export function PerformanceSection() {
             </div>
           ))}
         </div>
-
-        {/* Dolny panel architektoniczny */}
-        <div className="mt-12 p-6 sm:p-8 rounded-xl border border-line bg-surface/60 flex flex-col md:flex-row items-baseline justify-between gap-6">
-          <div className="space-y-1 max-w-2xl text-left">
-            <div className="font-heading font-bold text-base text-ink">
-              Architektura React Server Components w Next.js
-            </div>
-            <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-              Większość obliczeń wykonuje się na szybkich serwerach brzegowych. Smartfon Twojego klienta pobiera wyłącznie niezbędny, lekki kod, co gwarantuje błyskawiczne działanie na słabszych łączach mobilnych.
-            </p>
-          </div>
-
-          <div className="font-mono text-xs text-accent-text font-semibold shrink-0">
-            100/100 Google PageSpeed
-          </div>
-        </div>
       </Container>
     </Section>
   );
