@@ -6,7 +6,6 @@ import { siteConfig } from "@/site.config";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "@/components/ui/container";
 import { useCookieConsent } from "@/components/ui/cookie-banner";
-import { CopyEmailButton } from "@/components/ui/copy-email-button";
 
 export function Footer() {
   const { openPreferencesModal } = useCookieConsent();
@@ -69,7 +68,12 @@ export function Footer() {
             </div>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <CopyEmailButton variant="text" />
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="hover:text-accent-text transition-colors"
+                >
+                  {siteConfig.contact.email}
+                </a>
               </li>
               <li>
                 <a
