@@ -21,7 +21,6 @@ export const siteConfig = {
       "Cała Polska (zdalnie)",
     ],
   },
-  legalAddress: "[ADRES DO UZUPEŁNIENIA]",
   social: {
     github: "",
     linkedin: "",

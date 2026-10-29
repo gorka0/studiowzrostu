@@ -121,15 +121,12 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
   }
 
 
-  if (isRealValue(siteConfig.legalAddress)) {
-    organization.address = {
-      "@type": "PostalAddress",
-      streetAddress: siteConfig.legalAddress,
-      addressLocality: siteConfig.location.city,
-      addressRegion: siteConfig.location.region,
-      addressCountry: "PL",
-    };
-  }
+  organization.address = {
+    "@type": "PostalAddress",
+    addressLocality: siteConfig.location.city,
+    addressRegion: siteConfig.location.region,
+    addressCountry: "PL",
+  };
 
   const socialLinks = [
     siteConfig.social.github,
