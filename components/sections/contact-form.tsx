@@ -357,7 +357,7 @@ export function ContactInfoBlock() {
         </a>
 
         <div className="flex items-center gap-3 p-3 rounded-xl border border-border/80 bg-background">
-          <div className="h-9 w-9 rounded-lg bg-secondary flex items-center justify-center text-foreground">
+          <div className="h-9 w-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent-text shrink-0">
             <Clock className="h-4 w-4" />
           </div>
           <div>
