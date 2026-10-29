@@ -42,36 +42,36 @@ export const MILESTONES = [
     title: "Szybka, nowoczesna strona",
     desc: "Błyskawiczne ładowanie i bezbłędne działanie na telefonach budują silne zaufanie.",
     threshold: 0.18,
-    labelDx: 10,
+    width: 180,
+    labelDx: 30,
     labelDy: -55,
-    textAnchor: "start" as const,
   },
   {
     step: "02",
     title: "Widoczność w Google",
     desc: "Czysty kod i zoptymalizowane parametry szybkości ułatwiają wyszukiwarce indeksowanie i pozycjonowanie.",
     threshold: 0.44,
+    width: 152,
     labelDx: 0,
     labelDy: -75,
-    textAnchor: "middle" as const,
   },
   {
     step: "03",
     title: "Więcej zapytań",
     desc: "Przejrzysta struktura oferty prowadzi odwiedzających prosto do wysłania formularza.",
     threshold: 0.70,
-    labelDx: -20,
-    labelDy: -80,
-    textAnchor: "middle" as const,
+    width: 128,
+    labelDx: 0,
+    labelDy: -75,
   },
   {
     step: "04",
     title: "Więcej klientów",
     desc: "Systematyczny napływ wartościowych kontaktów biznesowych wspiera stabilny rozwój firmy.",
     threshold: 0.92,
-    labelDx: -90,
-    labelDy: -40,
-    textAnchor: "end" as const,
+    width: 132,
+    labelDx: -85,
+    labelDy: -42,
   },
 ];
 
@@ -520,11 +520,11 @@ export function GrowthChart() {
                           x1={targetX}
                           y1={targetY}
                           x2={targetX + m.labelDx}
-                          y2={targetY + m.labelDy + 12}
+                          y2={targetY + m.labelDy + 13}
                           stroke="currentColor"
                           strokeDasharray="2 2"
                           strokeWidth="1"
-                          className="text-line group-data-[state=reached]:text-accent/60 hidden sm:inline"
+                          className="text-line group-data-[state=reached]:text-accent/60 group-hover:text-accent/70 hidden sm:inline transition-colors duration-200"
                         />
 
                         {/* Punkt na krzywej */}
@@ -532,24 +532,25 @@ export function GrowthChart() {
                           cx={targetX}
                           cy={targetY}
                           r="4"
-                          className="fill-surface stroke-line stroke-2 group-data-[state=reached]:fill-accent group-data-[state=reached]:stroke-surface"
+                          className="fill-surface stroke-line stroke-2 group-data-[state=reached]:fill-accent group-data-[state=reached]:stroke-surface group-hover:fill-accent transition-colors duration-200"
                         />
 
                         {/* Etykieta kamienia milowego (widoczna od sm: w górę) */}
                         <g transform={`translate(${targetX + m.labelDx}, ${targetY + m.labelDy})`} className="hidden sm:inline">
                           <rect
-                            x={m.textAnchor === "end" ? -140 : m.textAnchor === "middle" ? -70 : 0}
-                            y="-14"
-                            width="140"
-                            height="24"
-                            rx="6"
-                            className="fill-surface/95 stroke-line stroke-1 group-data-[state=reached]:stroke-accent/40 shadow-xs"
+                            x={-m.width / 2}
+                            y="-13"
+                            width={m.width}
+                            height="26"
+                            rx="7"
+                            className="fill-surface stroke-line stroke-1 group-data-[state=reached]:stroke-accent/60 group-hover:stroke-accent/70 transition-colors duration-200"
                           />
                           <text
-                            x={m.textAnchor === "end" ? -6 : m.textAnchor === "middle" ? 0 : 8}
-                            y="2"
-                            textAnchor={m.textAnchor}
-                            className="text-[10px] font-heading font-semibold fill-ink group-data-[state=reached]:fill-accent-text leading-none"
+                            x="0"
+                            y="0"
+                            textAnchor="middle"
+                            dominantBaseline="central"
+                            className="text-[10px] sm:text-[11px] font-heading font-semibold fill-ink group-data-[state=reached]:fill-accent-text group-hover:fill-accent-text leading-none select-none transition-colors duration-200"
                           >
                             {m.step}. {m.title}
                           </text>
