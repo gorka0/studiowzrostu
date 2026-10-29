@@ -65,7 +65,7 @@ export function BlogPreviewSection() {
 
                 <Link
                   href={`/blog/${post.slug}`}
-                  aria-label={`Przeczytaj artykuł: ${post.title}`}
+                  aria-label={`Czytaj artykuł: ${post.title}`}
                   className="inline-flex items-center text-xs font-semibold text-accent-text hover:text-accent-text/80 transition-colors"
                 >
                   <span>Czytaj artykuł</span>

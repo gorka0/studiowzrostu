@@ -37,7 +37,7 @@ export default function RootLayout({
     <html
       lang="pl"
       suppressHydrationWarning
-      className={`${fontHeading.variable} ${fontSans.variable} ${fontHeading.className} ${fontSans.className} h-full antialiased`}
+      className={`${fontHeading.variable} ${fontSans.variable} font-sans h-full antialiased`}
     >
       <head>
         <script
