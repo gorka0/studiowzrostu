@@ -22,10 +22,6 @@ export const siteConfig = {
     ],
   },
   legalAddress: "[ADRES DO UZUPEŁNIENIA]",
-  registry: {
-    nip: "[DO UZUPEŁNIENIA]",
-    regon: "[DO UZUPEŁNIENIA]",
-  },
   social: {
     github: "",
     linkedin: "",

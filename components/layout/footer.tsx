@@ -117,12 +117,7 @@ export function Footer() {
                   Ustawienia cookies
                 </button>
               </li>
-              <li className="text-xs text-muted-foreground pt-2">
-                NIP: {siteConfig.registry.nip}
-              </li>
-              <li className="text-xs text-muted-foreground">
-                REGON: {siteConfig.registry.regon}
-              </li>
+
             </ul>
           </div>
         </div>

@@ -68,10 +68,6 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
     organization.telephone = siteConfig.contact.phone;
   }
 
-  if (isRealValue(siteConfig.registry.nip)) {
-    organization.taxID = siteConfig.registry.nip;
-    organization.vatID = `PL${siteConfig.registry.nip}`;
-  }
 
   if (isRealValue(siteConfig.legalAddress)) {
     organization.address = {
