@@ -10,16 +10,10 @@ export function HeroSection() {
       <Container>
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
           
-          {/* Surowy znacznik studia bez pigułkowego obramowania */}
-          <div className="inline-flex items-center gap-2 text-xs font-mono text-accent-text font-semibold uppercase tracking-widest mb-6">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            <span>Niezależne studio projektowo-programistyczne</span>
-          </div>
-
           {/* Główny nagłówek - wyśrodkowany, wyrazisty, o szwajcarskiej skali */}
           <h1 className="font-heading font-bold text-ink tracking-tight text-pretty">
-            Strony internetowe dla firm – Bydgoszcz i cała Polska. <br className="hidden sm:inline" />
-            <span className="text-accent-text">Nowoczesna architektura Next.js nastawiona na wzrost.</span>
+            Nowoczesne strony internetowe dla rozwijających się firm. <br className="hidden sm:inline" />
+            <span className="text-accent-text">Czysty kod nastawiony na wzrost.</span>
           </h1>
 
           {/* Neutralny szkic podtytułu do autorskiej redakcji */}
