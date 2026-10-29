@@ -84,10 +84,11 @@ export const SpotlightCard = React.forwardRef<HTMLElement, SpotlightCardProps>(
         }
         {...props}
       >
-        {/* Warstwa poświaty tła (Radial Gradient spotlight) */}
+        {/* Warstwa poświaty tła (Radial Gradient spotlight) - absolutna, bez marginesów */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition-opacity duration-300 [@media(hover:hover)]:group-hover:opacity-100 bg-[radial-gradient(500px_circle_at_var(--mouse-x,0px)_var(--mouse-y,0px),var(--spotlight-light),transparent_40%)] dark:bg-[radial-gradient(500px_circle_at_var(--mouse-x,0px)_var(--mouse-y,0px),var(--spotlight-dark),transparent_40%)]"
+          className="pointer-events-none absolute -inset-px !m-0 rounded-[inherit] opacity-0 transition-opacity duration-300 [@media(hover:hover)]:group-hover:opacity-100 bg-[radial-gradient(500px_circle_at_var(--mouse-x,0px)_var(--mouse-y,0px),var(--spotlight-light),transparent_40%)] dark:bg-[radial-gradient(500px_circle_at_var(--mouse-x,0px)_var(--mouse-y,0px),var(--spotlight-dark),transparent_40%)]"
+          style={{ margin: 0 }}
         />
 
         {/* Zawartość karty */}

@@ -19,7 +19,7 @@ export function WhyUsSection() {
         {/* Dwa asymetryczne bloki oparte wyłącznie na wyrazistej typografii szwajcarskiej */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
           {/* Blok 1: Czas realizacji 3–4 dni (szerokość 6/12 na desktopie) */}
-          <SpotlightCard className="lg:col-span-6 p-8 sm:p-10 rounded-2xl border border-line bg-surface flex flex-col justify-between space-y-6">
+          <SpotlightCard className="lg:col-span-6 p-8 sm:p-10 rounded-2xl border border-line bg-surface flex flex-col justify-between">
             <div className="space-y-4">
               <div className="font-mono text-xs uppercase tracking-wider text-accent-text font-semibold">
                 01 / Termin wdrożenia
@@ -45,7 +45,7 @@ export function WhyUsSection() {
           </SpotlightCard>
 
           {/* Blok 2: Cena z góry (szerokość 6/12 na desktopie) */}
-          <SpotlightCard className="lg:col-span-6 p-8 sm:p-10 rounded-2xl border border-line bg-surface flex flex-col justify-between space-y-6">
+          <SpotlightCard className="lg:col-span-6 p-8 sm:p-10 rounded-2xl border border-line bg-surface flex flex-col justify-between">
             <div className="space-y-4">
               <div className="font-mono text-xs uppercase tracking-wider text-accent-text font-semibold">
                 02 / Zasady rozliczeń
