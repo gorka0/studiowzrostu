@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
 import { routesSeo } from "@/content/seo";
-import { siteConfig } from "@/site.config";
 import { aboutContent } from "@/content/about";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -35,43 +34,18 @@ export default function AboutPage() {
           />
 
           {/* O założycielu i filozofii studia */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mt-12">
-            {/* Lewa kolumna: Tekst i zasady (7 kolumn) */}
-            <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-ink-muted leading-relaxed text-left">
-              {aboutContent.paragraphs.map((p, idx) => (
-                <p key={idx}>{p}</p>
+          <div className="max-w-3xl space-y-6 text-sm sm:text-base text-ink-muted leading-relaxed text-left mt-12">
+            {aboutContent.paragraphs.map((p, idx) => (
+              <p key={idx}>{p}</p>
+            ))}
+
+            <div className="pt-6 border-t border-line space-y-3 font-medium text-ink text-sm">
+              {aboutContent.commitments.map((commitment, idx) => (
+                <div key={idx} className="flex items-baseline gap-3">
+                  <span className="font-mono text-xs text-accent-text font-bold">0{idx + 1}</span>
+                  <span>{commitment}</span>
+                </div>
               ))}
-
-              <div className="pt-4 border-t border-line space-y-3 font-medium text-ink text-sm">
-                {aboutContent.commitments.map((commitment, idx) => (
-                  <div key={idx} className="flex items-baseline gap-3">
-                    <span className="font-mono text-xs text-accent-text font-bold">0{idx + 1}</span>
-                    <span>{commitment}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Prawa kolumna: Założyciel z oznaczonym placeholderem */}
-            <div className="lg:col-span-5">
-              <div className="rounded-xl border border-line bg-surface p-6 sm:p-8 space-y-5 text-left">
-                {/* Oznaczony transparentny placeholder na zdjęcie */}
-                <div className="h-64 sm:h-72 w-full rounded-lg bg-surface-subtle border border-line flex flex-col items-center justify-center p-6 text-center">
-                  <span className="font-heading font-bold text-ink text-base">
-                    {siteConfig.owner}
-                  </span>
-                  <span className="text-xs text-ink-muted mt-1 font-mono">
-                    Założyciel & Główny Architekt
-                  </span>
-                  <span className="text-[11px] font-mono text-accent-text mt-4 border border-line bg-surface px-3 py-1 rounded">
-                    [Zdjęcie założyciela – do uzupełnienia]
-                  </span>
-                </div>
-
-                <div className="text-xs text-ink-muted leading-relaxed italic border-l-2 border-primary pl-3">
-                  &quot;{aboutContent.quote}&quot;
-                </div>
-              </div>
             </div>
           </div>
 
