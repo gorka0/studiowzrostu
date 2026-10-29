@@ -54,7 +54,7 @@ export function BeforeAfterSlider({
           src={beforeImage}
           alt={beforeAlt}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+          unoptimized
           className="object-cover object-top"
           priority={false}
           loading="lazy"
@@ -78,7 +78,7 @@ export function BeforeAfterSlider({
           src={afterImage}
           alt={afterAlt}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+          unoptimized
           className="object-cover object-top"
           priority={false}
           loading="lazy"

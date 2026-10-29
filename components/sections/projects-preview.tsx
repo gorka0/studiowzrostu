@@ -83,12 +83,12 @@ function ConceptCard({
           />
         ) : (
           <>
-            {/* Zrzut ekranu desktop */}
+            {/* Zrzut ekranu desktop - unoptimized dla krystalicznej ostrości tekstu przy małej wadze (72 KB) */}
             <Image
               src={project.desktopImage}
               alt={project.desktopAlt}
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+              unoptimized
               className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
               priority={isPriority}
               loading={isPriority ? undefined : "lazy"}
@@ -104,7 +104,7 @@ function ConceptCard({
                   src={project.mobileImage}
                   alt={project.mobileAlt || ""}
                   fill
-                  sizes="95px"
+                  unoptimized
                   className="object-cover object-top"
                   loading="lazy"
                 />
