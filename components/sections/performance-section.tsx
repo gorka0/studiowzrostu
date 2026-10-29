@@ -7,19 +7,16 @@ const METRICS_DATA = [
   {
     metricValue: "< 1.2 s",
     name: "Czas pierwszego wrażenia",
-    tagline: "Błyskawiczne wyświetlenie treści",
     business: "Gdy strona ładuje się dłużej niż 3 sekundy, ponad połowa odwiedzających wraca do wyszukiwarki. Nasze serwisy wyświetlają ofertę w ułamku sekundy, zatrzymując uwagę klienta od pierwszej chwili.",
   },
   {
     metricValue: "0 ms",
     name: "Płynność reakcji na dotyk",
-    tagline: "Brak zawieszeń interfejsu",
     business: "Kliknięcie w menu, ofertę czy numer telefonu następuje bez najmniejszego opóźnienia. Użytkownik ma pełne poczucie stabilności i obcowania z dopracowanym serwisem.",
   },
   {
     metricValue: "0 px",
     name: "Stabilność wizualna układu",
-    tagline: "Treść nie przeskakuje pod palcem",
     business: "Eliminujemy zjawisko przesuwających się nagle elementów podczas ładowania grafik i fontów. Układ jest zablokowany i stabilny od pierwszej klatki renderowania.",
   },
 ];
@@ -44,14 +41,9 @@ export function PerformanceSection() {
                 <div className="font-mono text-3xl sm:text-4xl font-bold text-accent-text tracking-tight">
                   {item.metricValue}
                 </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg sm:text-xl text-ink leading-snug">
-                    {item.name}
-                  </h3>
-                  <div className="text-xs font-semibold text-accent-text mt-1">
-                    {item.tagline}
-                  </div>
-                </div>
+                <h3 className="font-heading font-bold text-lg sm:text-xl text-ink leading-snug">
+                  {item.name}
+                </h3>
                 <p className="text-xs sm:text-sm text-ink-muted leading-relaxed pt-1">
                   {item.business}
                 </p>
