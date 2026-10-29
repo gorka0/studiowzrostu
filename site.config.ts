@@ -8,7 +8,7 @@ export const siteConfig = {
   canonicalUrl: "https://studiowzrostu.pl",
   owner: "Tomasz Górka",
   contact: {
-    phone: "+48 000 000 000",
+    phone: "+48 736 943 002",
     email: "kontakt@studiowzrostu.pl",
   },
   location: {
