@@ -106,7 +106,7 @@ export const blogPosts: BlogPost[] = [
         id: "zbyt-skomplikowane-formularze",
         heading: "Przeładowane, odstraszające formularze kontaktowe",
         paragraphs: [
-          "Formularz wymagający podania 8 różnych pól (NIP, adres firmy, stanowisko, budżet co do grosza) to najprostsza metoda na utratę leada. Na wczesnym etapie kontaktu klient chce zadać pytanie lub poprosić o wstępną wycenę, a nie wypełniać urzędowy kwestionariusz.",
+          "Formularz wymagający podania zbyt wielu zbędnych pól (dokładny adres, stanowisko, budżet co do grosza) to najprostsza metoda na utratę leada. Na wczesnym etapie kontaktu klient chce zadać pytanie lub poprosić o wstępną wycenę, a nie wypełniać urzędowy kwestionariusz.",
           "Wystarczą 3–4 kluczowe pola: imię, e-mail lub telefon oraz krótki opis potrzeby. Dodatkowo formularz musi natychmiast informować o błędach walidacji i potwierdzać pomyślne przesłanie wiadomości bez przeładowania całej strony.",
           "Wdrożenie zabezpieczenia honeypot zamiast uciążliwych obrazkowych kodów CAPTCHA sprawia, że człowiek wysyła wiadomość jednym kliknięciem, podczas gdy boty spamujące są skutecznie odrzucane na poziomie serwera.",
         ],
