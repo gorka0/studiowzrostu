@@ -4,16 +4,11 @@ import { buildMetadata } from "@/lib/seo";
 import { routesSeo } from "@/content/seo";
 import { HeroSection } from "@/components/sections/hero-section";
 import { TechMarquee } from "@/components/sections/tech-marquee";
+import { AudienceSection } from "@/components/sections/audience-section";
+import { ServicesBento } from "@/components/sections/services-bento";
 import { CleanCodeSection } from "@/components/sections/clean-code-section";
 import { ProjectsPreview } from "@/components/sections/projects-preview";
 import { BlogPreviewSection } from "@/components/sections/blog-preview";
-
-const AudienceSection = dynamic(() =>
-  import("@/components/sections/audience-section").then((mod) => mod.AudienceSection)
-);
-const ServicesBento = dynamic(() =>
-  import("@/components/sections/services-bento").then((mod) => mod.ServicesBento)
-);
 const WhyUsSection = dynamic(() =>
   import("@/components/sections/why-us-section").then((mod) => mod.WhyUsSection)
 );

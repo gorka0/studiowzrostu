@@ -9,158 +9,486 @@ import { servicesList } from "@/content/services";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// 4 Własne ilustracje liniowe SVG (120x80, styl linii 1.5px, brand tokeny)
+/**
+ * 4 Autorskie schematy techniczne SVG w standardzie inżynieryjnym (viewBox 380x220).
+ * Zastępują prymitywne szkice 120x80 precyzyjną architekturą Swiss Grid,
+ * cienkimi liniami 1px i semantycznymi tokenami marki.
+ */
 function ServiceIllustration({ slug }: { slug: string }) {
   if (slug === "strony-internetowe") {
-    // 1. Schemat strony firmowej (moduły, siatka, pasek nagłówka)
+    // 1. Schemat architektury dedykowanej strony firmowej (Next.js 16 SSR + Layout Swiss Grid)
     return (
       <svg
-        viewBox="0 0 120 80"
+        viewBox="0 0 380 220"
         className="w-full h-full select-none"
         fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
         aria-hidden="true"
       >
-        {/* Okno przeglądarki */}
-        <rect x="6" y="6" width="108" height="68" rx="6" className="text-line stroke-current" fill="var(--color-surface)" />
-        {/* Pasek adresu i 3 kropki */}
-        <line x1="6" y1="18" x2="114" y2="18" className="text-line stroke-current" />
-        <circle cx="14" cy="12" r="1.5" className="fill-ink-muted/40 stroke-none" />
-        <circle cx="20" cy="12" r="1.5" className="fill-ink-muted/40 stroke-none" />
-        <circle cx="26" cy="12" r="1.5" className="fill-ink-muted/40 stroke-none" />
-        <rect x="36" y="9.5" width="48" height="5" rx="2" className="text-line/60 stroke-current" />
-        {/* Hero: Lewo tekst nagłówka, prawo obrazek/akcent */}
-        <line x1="14" y1="28" x2="52" y2="28" stroke="var(--accent)" strokeWidth="2.5" />
-        <line x1="14" y1="35" x2="44" y2="35" className="text-ink-muted/60 stroke-current" strokeWidth="1.5" />
-        <rect x="14" y="42" width="22" height="7" rx="3.5" fill="var(--accent)" stroke="none" />
-        <rect x="64" y="25" width="42" height="26" rx="4" className="text-line stroke-current" fill="color-mix(in oklab, var(--accent) 8%, transparent)" />
-        <circle cx="85" cy="38" r="4" className="fill-coral stroke-none" />
-        {/* Dolne 3 kolumny */}
-        <rect x="14" y="57" width="28" height="11" rx="2" className="text-line/70 stroke-current" />
-        <rect x="46" y="57" width="28" height="11" rx="2" className="text-line/70 stroke-current" />
-        <rect x="78" y="57" width="28" height="11" rx="2" className="text-line/70 stroke-current" />
+        {/* Tło okna przeglądarki */}
+        <rect
+          x="1"
+          y="1"
+          width="378"
+          height="218"
+          rx="8"
+          stroke="var(--line)"
+          strokeWidth="1"
+          fill="var(--color-surface)"
+        />
+
+        {/* Belka nagłówka przeglądarki */}
+        <line x1="1" y1="32" x2="379" y2="32" stroke="var(--line)" strokeWidth="1" />
+        <circle cx="16" cy="16" r="3" fill="var(--line)" />
+        <circle cx="26" cy="16" r="3" fill="var(--line)" />
+        <circle cx="36" cy="16" r="3" fill="var(--line)" />
+
+        {/* Pasek adresu URL */}
+        <rect
+          x="54"
+          y="7"
+          width="230"
+          height="18"
+          rx="4"
+          stroke="var(--line)"
+          strokeWidth="1"
+          fill="var(--background)"
+        />
+        {/* Kłódka SSL + URL */}
+        <path
+          d="M 64 15.5 v -2 a 2.5 2.5 0 0 1 5 0 v 2 m -3.5 0 h 7 a 1 1 0 0 1 1 1 v 3 a 1 1 0 0 1 -1 1 h -7 a 1 1 0 0 1 -1 -1 v -3 a 1 1 0 0 1 1 -1 Z"
+          stroke="var(--accent-text)"
+          strokeWidth="1"
+          fill="none"
+        />
+        <text
+          x="80"
+          y="19"
+          className="font-mono text-[9px] fill-ink-muted select-none"
+        >
+          studiowzrostu.pl/<tspan className="fill-ink font-semibold">twoja-firma</tspan>
+        </text>
+
+        {/* Badge statusu HTTP 200 */}
+        <rect
+          x="292"
+          y="7"
+          width="48"
+          height="18"
+          rx="4"
+          fill="color-mix(in oklab, var(--accent) 12%, transparent)"
+          stroke="var(--accent)"
+          strokeWidth="1"
+        />
+        <text
+          x="316"
+          y="19"
+          textAnchor="middle"
+          className="font-mono text-[8.5px] font-bold fill-accent-text"
+        >
+          200 OK
+        </text>
+
+        {/* Lewa kolumna: Hero i hierarchia konwersji */}
+        <text
+          x="20"
+          y="54"
+          className="font-mono text-[8px] font-bold uppercase tracking-wider fill-accent-text"
+        >
+          DEDYKOWANY SERWIS WWW · NEXT.JS
+        </text>
+        {/* Nagłówek główny w formie typograficznych belek */}
+        <rect x="20" y="62" width="160" height="9" rx="2" fill="var(--color-ink)" opacity="0.9" />
+        <rect x="20" y="75" width="135" height="9" rx="2" fill="var(--color-ink)" opacity="0.9" />
+        <rect x="20" y="88" width="105" height="9" rx="2" fill="var(--accent-text)" />
+
+        {/* Podtytuł */}
+        <line x1="20" y1="106" x2="165" y2="106" stroke="var(--ink-muted)" strokeWidth="1.5" strokeOpacity="0.7" />
+        <line x1="20" y1="113" x2="140" y2="113" stroke="var(--ink-muted)" strokeWidth="1.5" strokeOpacity="0.7" />
+
+        {/* Przycisk CTA */}
+        <rect x="20" y="126" width="94" height="22" rx="11" fill="var(--accent)" />
+        <text
+          x="67"
+          y="140"
+          textAnchor="middle"
+          className="font-sans text-[8.5px] font-bold fill-surface select-none"
+        >
+          Zamów wycenę →
+        </text>
+
+        {/* Prawa kolumna: Karta interfejsu z zapytaniem ofertowym */}
+        <rect
+          x="195"
+          y="48"
+          width="168"
+          height="102"
+          rx="6"
+          stroke="var(--line)"
+          strokeWidth="1"
+          fill="var(--background)"
+        />
+        <rect
+          x="195"
+          y="48"
+          width="168"
+          height="22"
+          rx="6"
+          fill="color-mix(in oklab, var(--ink) 4%, transparent)"
+        />
+        <line x1="195" y1="70" x2="363" y2="70" stroke="var(--line)" strokeWidth="1" />
+        <text x="207" y="63" className="font-sans text-[9px] font-bold fill-ink">
+          Szybkie zapytanie ofertowe
+        </text>
+        <circle cx="349" cy="59" r="2.5" fill="var(--accent)" />
+
+        {/* Inputy w formularzu */}
+        <rect x="207" y="78" width="144" height="15" rx="3" stroke="var(--line)" strokeWidth="1" fill="var(--color-surface)" />
+        <text x="215" y="89" className="font-mono text-[7.5px] fill-ink-muted">Imię i nazwisko</text>
+
+        <rect x="207" y="99" width="144" height="15" rx="3" stroke="var(--line)" strokeWidth="1" fill="var(--color-surface)" />
+        <text x="215" y="110" className="font-mono text-[7.5px] fill-ink-muted">Numer telefonu / E-mail</text>
+
+        <rect x="207" y="120" width="144" height="18" rx="3" fill="var(--accent)" />
+        <text x="279" y="132" textAnchor="middle" className="font-sans text-[8px] font-bold fill-surface">
+          Wyślij bezpośrednio do studia
+        </text>
+
+        {/* Dolne moduły korzyści (3 kolumny) */}
+        <line x1="1" y1="162" x2="379" y2="162" stroke="var(--line)" strokeWidth="1" />
+        
+        {/* Kolumna 1 */}
+        <rect x="18" y="172" width="104" height="36" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+        <text x="26" y="186" className="font-sans text-[8.5px] font-bold fill-ink">Szybkość ładowania</text>
+        <text x="26" y="198" className="font-mono text-[7.5px] font-bold fill-accent-text">Core Web Vitals 100/100</text>
+
+        {/* Kolumna 2 */}
+        <rect x="138" y="172" width="104" height="36" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+        <text x="146" y="186" className="font-sans text-[8.5px] font-bold fill-ink">Responsywność RWD</text>
+        <text x="146" y="198" className="font-mono text-[7.5px] font-bold fill-accent-text">Mobile First 375–1920px</text>
+
+        {/* Kolumna 3 */}
+        <rect x="258" y="172" width="104" height="36" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+        <text x="266" y="186" className="font-sans text-[8.5px] font-bold fill-ink">Własność i kod</text>
+        <text x="266" y="198" className="font-mono text-[7.5px] font-bold fill-accent-text">100% kod na własność</text>
       </svg>
     );
   }
 
   if (slug === "landing-page") {
-    // 2. Łuk szybkości i konwersji (prędkościomierz z igłą na maksimum i koralowym akcentem)
+    // 2. Schemat lejka kampanijnego (Google Ads / Meta Ads ➔ Jednostronicowy Landing Page ➔ Lead)
     return (
       <svg
-        viewBox="0 0 120 80"
+        viewBox="0 0 380 220"
         className="w-full h-full select-none"
         fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
         aria-hidden="true"
       >
-        {/* Podstawa tarczy */}
-        <path
-          d="M 22 62 A 42 42 0 1 1 98 62"
-          className="text-line stroke-current"
-          strokeWidth="2"
+        <rect
+          x="1"
+          y="1"
+          width="378"
+          height="218"
+          rx="8"
+          stroke="var(--line)"
+          strokeWidth="1"
+          fill="var(--color-surface)"
         />
-        {/* Aktywny łuk wysokiej prędkości (zielony akcent) */}
-        <path
-          d="M 60 18 A 42 42 0 0 1 98 62"
-          stroke="var(--accent)"
-          strokeWidth="3.5"
-        />
-        {/* Znaczniki na tarczy */}
-        <line x1="28" y1="56" x2="34" y2="52" className="text-line/80 stroke-current" />
-        <line x1="38" y1="36" x2="43" y2="39" className="text-line/80 stroke-current" />
-        <line x1="60" y1="20" x2="60" y2="26" className="text-line/80 stroke-current" />
-        <line x1="82" y1="36" x2="77" y2="39" stroke="var(--accent)" strokeWidth="2" />
-        <line x1="92" y1="56" x2="86" y2="52" stroke="var(--accent)" strokeWidth="2" />
-        {/* Wskazówka skierowana na prawo (maksimum wydajności 100) */}
-        <line x1="60" y1="58" x2="88" y2="32" stroke="var(--accent)" strokeWidth="2.5" />
-        {/* Oś wskazówki z koralową kropką */}
-        <circle cx="60" cy="58" r="4.5" className="fill-coral stroke-none" />
-        <circle cx="60" cy="58" r="2" fill="white" stroke="none" />
-        {/* Etykieta CWV */}
-        <rect x="44" y="66" width="32" height="10" rx="3" className="text-line stroke-current" fill="var(--color-surface)" />
-        <text x="60" y="73.5" textAnchor="middle" className="text-[7px] font-mono font-bold fill-accent-text" stroke="none">
-          LCP 0.8s
+
+        {/* Górny pasek kontekstu */}
+        <line x1="1" y1="28" x2="379" y2="28" stroke="var(--line)" strokeWidth="1" />
+        <text x="16" y="18" className="font-mono text-[8px] font-bold uppercase tracking-wider fill-accent-text">
+          LEJEK KAMPANII ADS ➔ LANDING PAGE
         </text>
+        <rect x="286" y="6" width="78" height="16" rx="3" fill="color-mix(in oklab, var(--accent) 12%, transparent)" stroke="var(--accent)" strokeWidth="1" />
+        <text x="325" y="17.5" textAnchor="middle" className="font-mono text-[8px] font-bold fill-accent-text">
+          QUALITY: 10/10
+        </text>
+
+        {/* Lewa strona: Źródło ruchu (Reklama Google Ads) */}
+        <g transform="translate(18, 42)">
+          <rect width="150" height="96" rx="6" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+          <rect width="150" height="18" rx="6" fill="color-mix(in oklab, var(--ink) 4%, transparent)" />
+          <text x="10" y="13" className="font-mono text-[7.5px] font-bold fill-ink-muted">
+            ŹRÓDŁO RUCHU PŁATNEGO
+          </text>
+          
+          <g transform="translate(10, 26)">
+            <text x="0" y="10" className="font-mono text-[7.5px] font-bold fill-accent-text">
+              Reklama · twojadomena.pl/oferta
+            </text>
+            <text x="0" y="22" className="font-sans text-[8.5px] font-bold fill-ink">
+              Szukasz rzetelnej firmy?
+            </text>
+            <text x="0" y="32" className="font-sans text-[7.5px] font-semibold fill-ink-muted">
+              Wycena projektu w 24h
+            </text>
+            <line x1="0" y1="39" x2="115" y2="39" stroke="var(--ink-muted)" strokeWidth="1.2" strokeOpacity="0.6" />
+            <line x1="0" y1="45" x2="95" y2="45" stroke="var(--ink-muted)" strokeWidth="1.2" strokeOpacity="0.6" />
+            
+            <rect x="0" y="52" width="72" height="13" rx="2" fill="color-mix(in oklab, var(--accent) 15%, transparent)" />
+            <text x="36" y="61.5" textAnchor="middle" className="font-mono text-[7px] font-bold fill-accent-text">
+              Sprawdź cennik
+            </text>
+          </g>
+        </g>
+
+        {/* Środkowa strzałka konwersji */}
+        <path
+          d="M 174 90 L 194 90"
+          stroke="var(--accent)"
+          strokeWidth="2"
+          strokeDasharray="3 3"
+        />
+        <polygon points="194,87 200,90 194,93" fill="var(--accent)" />
+
+        {/* Prawa strona: Dedykowany Landing Page */}
+        <g transform="translate(206, 42)">
+          <rect width="156" height="96" rx="6" stroke="var(--accent)" strokeWidth="1.5" fill="var(--background)" />
+          {/* Header bez menu rozpraszającego */}
+          <rect width="156" height="18" rx="6" fill="color-mix(in oklab, var(--accent) 8%, transparent)" />
+          <text x="10" y="12.5" className="font-mono text-[7.5px] font-bold fill-accent-text">
+            BEZ ROZPRASZAJĄCYCH LINKÓW MENU
+          </text>
+
+          <g transform="translate(10, 26)">
+            <rect width="100" height="7" rx="1.5" fill="var(--color-ink)" opacity="0.9" />
+            <rect y="11" width="80" height="7" rx="1.5" fill="var(--color-ink)" opacity="0.9" />
+            
+            {/* Formularz leadowy */}
+            <rect y="24" width="136" height="18" rx="3" stroke="var(--line)" strokeWidth="1" fill="var(--color-surface)" />
+            <text x="8" y="35.5" className="font-mono text-[7.5px] fill-ink-muted">
+              Wpisz numer telefonu...
+            </text>
+
+            <rect y="46" width="136" height="18" rx="3" fill="var(--accent)" />
+            <text x="68" y="58" textAnchor="middle" className="font-sans text-[8px] font-bold fill-surface">
+              Odbierz natychmiastową ofertę
+            </text>
+          </g>
+        </g>
+
+        {/* Dolna linia telemetryczna */}
+        <line x1="1" y1="152" x2="379" y2="152" stroke="var(--line)" strokeWidth="1" />
+
+        <g transform="translate(18, 164)">
+          {/* Metryka 1 */}
+          <rect width="108" height="42" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+          <text x="12" y="16" className="font-mono text-[7.5px] fill-ink-muted">Średnia konwersja</text>
+          <text x="12" y="32" className="font-mono text-[14px] font-black fill-accent-text">+34%</text>
+
+          {/* Metryka 2 */}
+          <rect x="120" width="112" height="42" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+          <text x="132" y="16" className="font-mono text-[7.5px] fill-ink-muted">Koszt leada (CPA)</text>
+          <text x="132" y="32" className="font-mono text-[14px] font-black fill-accent-text">-42%</text>
+
+          {/* Metryka 3 */}
+          <rect x="244" width="108" height="42" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+          <text x="256" y="16" className="font-mono text-[7.5px] fill-ink-muted">Czas ładowania</text>
+          <text x="256" y="32" className="font-mono text-[14px] font-black fill-accent-text">0.4s</text>
+        </g>
       </svg>
     );
   }
 
-  if (slug === "audyt-optymalizacja") {
-    // 3. Linie wyników wyszukiwania (wyróżniona pierwsza pozycja z zielonym adresem)
+  if (slug === "seo-techniczne") {
+    // 3. Schemat SEO technicznego: Wyniki wyszukiwania Google + Walidacja Schema.org
     return (
       <svg
-        viewBox="0 0 120 80"
+        viewBox="0 0 380 220"
         className="w-full h-full select-none"
         fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
         aria-hidden="true"
       >
-        {/* Belka wyszukiwarki */}
-        <rect x="10" y="6" width="100" height="14" rx="4" className="text-line stroke-current" fill="var(--color-surface)" />
-        <circle cx="20" cy="13" r="3" className="text-ink-muted/50 stroke-current" />
-        <line x1="22.5" y1="15.5" x2="25" y2="18" className="text-ink-muted/50 stroke-current" />
-        <line x1="30" y1="13" x2="65" y2="13" className="text-ink-muted/80 stroke-current" strokeWidth="1.5" />
+        <rect
+          x="1"
+          y="1"
+          width="378"
+          height="218"
+          rx="8"
+          stroke="var(--line)"
+          strokeWidth="1"
+          fill="var(--color-surface)"
+        />
 
-        {/* Wynik #1 (Wyróżniony, pierwszy) */}
-        <rect x="10" y="26" width="100" height="26" rx="4" className="stroke-accent/40" fill="color-mix(in oklab, var(--accent) 6%, transparent)" />
-        <line x1="16" y1="33" x2="48" y2="33" stroke="var(--accent)" strokeWidth="1" />
-        <line x1="16" y1="39" x2="85" y2="39" stroke="var(--accent-text)" strokeWidth="2" />
-        <line x1="16" y1="46" x2="75" y2="46" className="text-ink-muted/60 stroke-current" strokeWidth="1" />
-        {/* Znacznik pozycji 1 */}
-        <circle cx="102" cy="39" r="4" className="fill-coral stroke-none" />
+        {/* Belka Google Search Console */}
+        <line x1="1" y1="28" x2="379" y2="28" stroke="var(--line)" strokeWidth="1" />
+        <text x="16" y="18" className="font-mono text-[8px] font-bold uppercase tracking-wider fill-accent-text">
+          GOOGLE SEARCH CONSOLE · AUDYT SEO
+        </text>
+        <rect x="296" y="6" width="68" height="16" rx="3" fill="color-mix(in oklab, var(--accent) 12%, transparent)" stroke="var(--accent)" strokeWidth="1" />
+        <text x="330" y="17.5" textAnchor="middle" className="font-mono text-[8px] font-bold fill-accent-text">
+          ZAINDEKSOWANO
+        </text>
 
-        {/* Wynik #2 (Standardowy, szary) */}
-        <line x1="16" y1="59" x2="40" y2="59" className="text-ink-muted/40 stroke-current" strokeWidth="1" />
-        <line x1="16" y1="65" x2="70" y2="65" className="text-ink-muted/70 stroke-current" strokeWidth="1.5" />
-        <line x1="16" y1="71" x2="60" y2="71" className="text-ink-muted/40 stroke-current" strokeWidth="1" />
+        {/* Symulacja wyróżnionego wyniku Google */}
+        <g transform="translate(18, 40)">
+          <rect width="344" height="88" rx="6" stroke="var(--accent)" strokeWidth="1.2" fill="var(--background)" />
+          
+          <g transform="translate(14, 14)">
+            {/* Adres URL z faviconką */}
+            <circle cx="5" cy="5" r="4.5" fill="var(--accent)" />
+            <text x="15" y="8" className="font-mono text-[8px] fill-ink-muted">
+              https://twojadomena.pl › <tspan className="fill-accent-text font-bold">uslugi-bydgoszcz</tspan>
+            </text>
+
+            {/* Tytuł SEO */}
+            <text x="0" y="27" className="font-sans text-[11.5px] font-bold fill-ink hover:underline cursor-pointer">
+              Nowoczesne Strony Internetowe Bydgoszcz | Studio Wzrostu
+            </text>
+
+            {/* Rich Snippets: Gwiazdki i opinie */}
+            <text x="0" y="42" className="font-mono text-[7.5px] font-bold fill-accent-text">
+              ★★★★★ 5.0 (28 opinii) · Cena ustalona z góry · Czas realizacji: 3–4 dni
+            </text>
+
+            {/* Meta opis */}
+            <text x="0" y="57" className="font-sans text-[8px] fill-ink-muted leading-tight">
+              Dedykowane strony firmowe w czystym Next.js. Błyskawiczny czas ładowania poniżej 1s,
+            </text>
+            <text x="0" y="68" className="font-sans text-[8px] fill-ink-muted leading-tight">
+              pełne techniczne SEO i wysoka konwersja dla firm z całej Polski. Zamów wycenę!
+            </text>
+          </g>
+        </g>
+
+        {/* Dolna tabela audytu technicznego */}
+        <line x1="1" y1="140" x2="379" y2="140" stroke="var(--line)" strokeWidth="1" />
+
+        <g transform="translate(18, 150)">
+          {/* Punkt 1 */}
+          <rect width="166" height="26" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+          <circle cx="12" cy="13" r="3.5" fill="var(--accent)" />
+          <text x="22" y="16" className="font-mono text-[7.5px] font-bold fill-ink">
+            Schema.org: LocalBusiness + FAQ
+          </text>
+
+          {/* Punkt 2 */}
+          <rect x="178" width="166" height="26" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+          <circle cx="190" cy="13" r="3.5" fill="var(--accent)" />
+          <text x="200" y="16" className="font-mono text-[7.5px] font-bold fill-ink">
+            Server-Side Rendering (SSR)
+          </text>
+
+          {/* Punkt 3 */}
+          <rect y="31" width="166" height="26" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+          <circle cx="12" cy="44" r="3.5" fill="var(--accent)" />
+          <text x="22" y="47" className="font-mono text-[7.5px] font-bold fill-ink">
+            Canonical URLs + Sitemap.xml
+          </text>
+
+          {/* Punkt 4 */}
+          <rect x="178" y="31" width="166" height="26" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+          <circle cx="190" cy="44" r="3.5" fill="var(--accent)" />
+          <text x="200" y="47" className="font-mono text-[7.5px] font-bold fill-ink">
+            Core Web Vitals: LCP 0.8s / CLS 0.00
+          </text>
+        </g>
       </svg>
     );
   }
 
-  // 4. Nawiasy kodu i tarcza opieki technicznej (opieka-i-rozwoj)
+  // 4. redesign-i-wydajnosc ("Przebudowa i przyspieszenie starej strony")
   return (
     <svg
-      viewBox="0 0 120 80"
+      viewBox="0 0 380 220"
       className="w-full h-full select-none"
       fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       aria-hidden="true"
     >
-      {/* Okno terminala */}
-      <rect x="8" y="6" width="104" height="68" rx="6" className="text-line stroke-current" fill="var(--color-surface)" />
-      <line x1="8" y1="18" x2="112" y2="18" className="text-line stroke-current" />
-      <circle cx="15" cy="12" r="1.5" className="fill-coral stroke-none" />
-      <circle cx="21" cy="12" r="1.5" className="fill-ink-muted/40 stroke-none" />
-      <circle cx="27" cy="12" r="1.5" className="fill-accent stroke-none" />
+      <rect
+        x="1"
+        y="1"
+        width="378"
+        height="218"
+        rx="8"
+        stroke="var(--line)"
+        strokeWidth="1"
+        fill="var(--color-surface)"
+      />
 
-      {/* Nawiasy kodu </> */}
-      <path d="M 28 32 L 20 40 L 28 48" stroke="var(--accent)" strokeWidth="2" />
-      <path d="M 44 32 L 52 40 L 44 48" stroke="var(--accent)" strokeWidth="2" />
-      <line x1="38" y1="30" x2="34" y2="50" stroke="var(--accent)" strokeWidth="2" />
-
-      {/* Linie kodu w edytorze */}
-      <line x1="62" y1="32" x2="98" y2="32" className="text-ink-muted/60 stroke-current" strokeWidth="1.5" />
-      <line x1="62" y1="40" x2="90" y2="40" stroke="var(--accent-text)" strokeWidth="2" />
-      <line x1="62" y1="48" x2="84" y2="48" className="text-ink-muted/60 stroke-current" strokeWidth="1.5" />
-
-      {/* Belka statusu z zielonym pulsem (status: active) */}
-      <rect x="18" y="58" width="84" height="10" rx="3" className="text-line/60 stroke-current" fill="color-mix(in oklab, var(--accent) 8%, transparent)" />
-      <circle cx="26" cy="63" r="2" className="fill-accent stroke-none" />
-      <text x="32" y="65.5" className="text-[7px] font-mono fill-accent-text font-bold" stroke="none">
-        status: 100% sprawny · kopia 24h
+      {/* Belka tytułowa */}
+      <line x1="1" y1="28" x2="379" y2="28" stroke="var(--line)" strokeWidth="1" />
+      <text x="16" y="18" className="font-mono text-[8px] font-bold uppercase tracking-wider fill-accent-text">
+        ARCHITEKTURA PRZED I PO
       </text>
+      <rect x="282" y="6" width="82" height="16" rx="3" fill="color-mix(in oklab, var(--accent) 12%, transparent)" stroke="var(--accent)" strokeWidth="1" />
+      <text x="323" y="17.5" textAnchor="middle" className="font-mono text-[8px] font-bold fill-accent-text">
+        MIGRACJA 301
+      </text>
+
+      {/* Podział na dwie połówki (PRZED vs PO) */}
+      <g transform="translate(18, 40)">
+        {/* LEWA STRONA: STARY SERWIS */}
+        <g>
+          <rect width="162" height="116" rx="6" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+          <rect width="162" height="20" rx="6" fill="color-mix(in oklab, var(--coral) 10%, transparent)" />
+          <text x="10" y="14" className="font-mono text-[8px] font-bold fill-coral">
+            PRZED: STARY SZABLON WP
+          </text>
+
+          <g transform="translate(10, 28)">
+            <rect width="84" height="14" rx="3" fill="color-mix(in oklab, var(--coral) 15%, transparent)" />
+            <text x="42" y="10" textAnchor="middle" className="font-mono text-[8px] font-bold fill-coral">
+              Ładowanie: 4.8s
+            </text>
+
+            <g transform="translate(0, 20)">
+              <text x="0" y="12" className="font-mono text-[8px] fill-ink-muted">PageSpeed Mobile:</text>
+              <text x="110" y="12" className="font-mono text-[9px] font-bold fill-coral">34/100</text>
+
+              <text x="0" y="27" className="font-mono text-[8px] fill-ink-muted">Aktywne wtyczki:</text>
+              <text x="110" y="27" className="font-mono text-[9px] font-bold fill-coral">38 szt.</text>
+
+              <text x="0" y="42" className="font-mono text-[8px] fill-ink-muted">Przesunięcia CLS:</text>
+              <text x="110" y="42" className="font-mono text-[9px] font-bold fill-coral">0.42</text>
+
+              <text x="0" y="57" className="font-mono text-[8px] fill-ink-muted">Odrzucenia ofert:</text>
+              <text x="110" y="57" className="font-mono text-[9px] font-bold fill-coral">68%</text>
+            </g>
+          </g>
+        </g>
+
+        {/* PRAWA STRONA: NOWE STUDIO WZROSTU */}
+        <g transform="translate(182, 0)">
+          <rect width="162" height="116" rx="6" stroke="var(--accent)" strokeWidth="1.2" fill="var(--background)" />
+          <rect width="162" height="20" rx="6" fill="color-mix(in oklab, var(--accent) 12%, transparent)" />
+          <text x="10" y="14" className="font-mono text-[8px] font-bold fill-accent-text">
+            PO: CZYSTY KOD NEXT.JS
+          </text>
+
+          <g transform="translate(10, 28)">
+            <rect width="84" height="14" rx="3" fill="color-mix(in oklab, var(--accent) 20%, transparent)" />
+            <text x="42" y="10" textAnchor="middle" className="font-mono text-[8px] font-bold fill-accent-text">
+              Ładowanie: 0.6s
+            </text>
+
+            <g transform="translate(0, 20)">
+              <text x="0" y="12" className="font-mono text-[8px] fill-ink-muted">PageSpeed Mobile:</text>
+              <text x="110" y="12" className="font-mono text-[9px] font-bold fill-accent-text">100/100</text>
+
+              <text x="0" y="27" className="font-mono text-[8px] fill-ink-muted">Aktywne wtyczki:</text>
+              <text x="110" y="27" className="font-mono text-[9px] font-bold fill-accent-text">0 (kod)</text>
+
+              <text x="0" y="42" className="font-mono text-[8px] fill-ink-muted">Przesunięcia CLS:</text>
+              <text x="110" y="42" className="font-mono text-[9px] font-bold fill-accent-text">0.00</text>
+
+              <text x="0" y="57" className="font-mono text-[8px] fill-ink-muted">Wzrost zapytań:</text>
+              <text x="110" y="57" className="font-mono text-[9px] font-bold fill-accent-text">+120%</text>
+            </g>
+          </g>
+        </g>
+      </g>
+
+      {/* Dolny pasek gwarancji migracji SEO */}
+      <line x1="1" y1="168" x2="379" y2="168" stroke="var(--line)" strokeWidth="1" />
+      <g transform="translate(18, 178)">
+        <rect width="344" height="30" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
+        <circle cx="15" cy="15" r="4.5" fill="var(--accent)" />
+        <path d="M 13 15 l 1.5 1.5 l 3 -3" stroke="white" strokeWidth="1" fill="none" />
+        <text x="26" y="18.5" className="font-mono text-[8px] font-bold fill-ink">
+          Gwarancja zachowania pozycji w Google: <tspan className="fill-accent-text font-black">Pełna mapa przekierowań 301</tspan>
+        </text>
+      </g>
     </svg>
   );
 }
@@ -194,9 +522,11 @@ export function ServicesBento() {
                 <div
                   key={service.slug}
                   onMouseEnter={() => setHoveredIdx(idx)}
+                  onPointerEnter={() => setHoveredIdx(idx)}
+                  onClick={() => setHoveredIdx(idx)}
                   className={cn(
-                    "group transition-all duration-200 text-left",
-                    isHovered ? "bg-surface/60" : "hover:bg-surface/40"
+                    "group transition-all duration-200 text-left cursor-pointer",
+                    isHovered ? "bg-surface/80" : "hover:bg-surface/40"
                   )}
                 >
                   {/* Wiersz na desktopie (link bezpośredni) / przycisk na mobile (akordeon) */}
@@ -241,15 +571,26 @@ export function ServicesBento() {
                     {/* Akordeon na mobile z własną ilustracją SVG */}
                     {isExpanded && (
                       <div className="mt-4 pt-4 border-t border-line/60 lg:hidden space-y-4">
-                        <div className="w-full max-w-[200px] mx-auto aspect-[12/8] p-2 bg-surface rounded-xl border border-line/70">
+                        <div className="w-full aspect-[16/10] bg-background rounded-xl border border-line p-2 sm:p-3">
                           <ServiceIllustration slug={service.slug} />
                         </div>
                         <div className="text-xs text-ink-muted font-mono leading-relaxed bg-surface/50 p-3 rounded-lg border border-line/50">
                           {service.tagline}
                         </div>
+                        <div className="space-y-1.5 pt-1">
+                          <div className="text-[11px] font-mono text-ink-muted uppercase tracking-wider font-semibold">
+                            W ramach wdrożenia:
+                          </div>
+                          {service.solution.deliverables.slice(0, 3).map((item) => (
+                            <div key={item} className="flex items-start gap-2 text-xs text-ink/90">
+                              <span className="text-accent-text font-bold">✓</span>
+                              <span>{item}</span>
+                            </div>
+                          ))}
+                        </div>
                         <Link
                           href={`/uslugi/${service.slug}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-text hover:underline"
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-text hover:underline pt-2"
                         >
                           <span>Zobacz pełną ofertę i cennik</span>
                           <ArrowUpRight className="h-3.5 w-3.5" />
@@ -262,44 +603,69 @@ export function ServicesBento() {
             })}
           </div>
 
-          {/* PRAWA KOLUMNA (Desktop): Panel podglądu z dynamiczną ilustracją SVG */}
+          {/* PRAWA KOLUMNA (Desktop): Panel podglądu z dynamiczną ilustracją SVG (Bez matrioszki) */}
           <div className="hidden lg:block lg:col-span-5 sticky top-24">
-            <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 shadow-card space-y-6 text-left">
-              <div className="flex items-center justify-between border-b border-line/70 pb-3">
-                <span className="font-mono text-xs text-accent-text font-bold">
-                  PODGLĄD / 0{hoveredIdx + 1}
-                </span>
-                <span className="text-[10px] font-mono text-ink-muted uppercase tracking-wider">
-                  Ilustracja SVG
+            <div className="rounded-2xl border border-line bg-surface overflow-hidden shadow-card text-left">
+              {/* Belka informacyjna konsoli */}
+              <div className="flex items-center justify-between px-5 py-3 border-b border-line bg-surface-subtle/50 text-xs font-mono">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                  <span className="text-accent-text font-bold">
+                    SCHEMAT // 0{hoveredIdx + 1}
+                  </span>
+                  <span className="text-line">|</span>
+                  <span className="text-ink-muted text-[11px] truncate max-w-[190px]">
+                    {activeService.title}
+                  </span>
+                </div>
+                <span className="text-[10px] uppercase tracking-wider text-ink-muted font-bold shrink-0">
+                  ARCHITEKTURA
                 </span>
               </div>
 
-              {/* Ramka z dedykowaną ilustracją 120x80 */}
-              <div className="w-full aspect-[12/8] rounded-xl border border-line/70 bg-background/80 p-4 flex items-center justify-center">
+              {/* Płótno schematu technicznego (Direct edge-to-edge with 1px border bottom) */}
+              <div className="w-full aspect-[16/10] bg-background border-b border-line p-3 sm:p-4 flex items-center justify-center">
                 <ServiceIllustration slug={activeService.slug} />
               </div>
 
-              {/* Informacje o usłudze */}
-              <div className="space-y-2">
-                <h3 className="font-heading font-bold text-lg text-ink">
-                  {activeService.title}
-                </h3>
-                <p className="text-xs text-accent-text font-mono">
-                  {activeService.tagline}
-                </p>
-                <p className="text-xs text-ink-muted leading-relaxed">
-                  {activeService.shortDescription}
-                </p>
-              </div>
+              {/* Informacje o usłudze i konkretne deliverable */}
+              <div className="p-5 sm:p-6 space-y-4">
+                <div className="space-y-1.5">
+                  <h3 className="font-heading font-bold text-lg text-ink leading-snug">
+                    {activeService.title}
+                  </h3>
+                  <p className="text-xs text-accent-text font-mono font-medium">
+                    {activeService.tagline}
+                  </p>
+                  <p className="text-xs text-ink-muted leading-relaxed pt-1">
+                    {activeService.shortDescription}
+                  </p>
+                </div>
 
-              <div className="pt-2">
-                <Link
-                  href={`/uslugi/${activeService.slug}`}
-                  className="inline-flex items-center text-xs font-semibold text-accent-text hover:text-accent-text/80 transition-colors gap-1 group"
-                >
-                  <span>Szczegóły usługi i zakres wdrożenia</span>
-                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
+                {/* Kluczowe elementy wdrożenia */}
+                <div className="pt-2 border-t border-line/60 space-y-2">
+                  <div className="text-[10.5px] font-mono text-ink-muted uppercase tracking-wider font-semibold">
+                    Kluczowe elementy wdrożenia:
+                  </div>
+                  <div className="grid grid-cols-1 gap-1.5">
+                    {activeService.solution.deliverables.slice(0, 3).map((item) => (
+                      <div key={item} className="flex items-start gap-2 text-xs text-ink/90">
+                        <span className="text-accent-text font-bold text-sm leading-none pt-0.5">✓</span>
+                        <span className="leading-tight">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <Link
+                    href={`/uslugi/${activeService.slug}`}
+                    className="inline-flex items-center text-xs font-semibold text-accent-text hover:text-accent-text/80 transition-colors gap-1.5 group"
+                  >
+                    <span>Szczegóły usługi, cennik i specyfikacja</span>
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
