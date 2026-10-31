@@ -49,7 +49,7 @@ export function CtaSection() {
         <rect width="100%" height="100%" fill="url(#cta-grid-pattern)" />
       </svg>
 
-      {/* 2. Zakończenie krzywej wzrostu - biegnie przez całą szerokość sekcji, nie jest zasłonięta kontenerem */}
+      {/* 2. Zakończenie krzywej wzrostu - biegnie przez całą sekcję i kończy się koralowym punktem zwieńczenia */}
       <div className="pointer-events-none absolute inset-0 w-full h-full overflow-hidden select-none z-0">
         <svg
           viewBox="0 0 1440 600"
@@ -64,26 +64,35 @@ export function CtaSection() {
               <stop offset="100%" stopColor="var(--darkband-accent)" stopOpacity="0.0" />
             </linearGradient>
           </defs>
-          {/* Półprzezroczysty obszar pod krzywą */}
+          {/* Półprzezroczysty obszar pod krzywą - kończy się dokładnie w punkcie x=1320, y=65 */}
           <path
-            d="M 0 540 C 320 520, 560 440, 800 280 C 1040 120, 1240 60, 1440 30 L 1440 600 L 0 600 Z"
+            d="M 0 540 C 320 520, 540 420, 780 240 C 980 120, 1160 80, 1320 65 L 1320 600 L 0 600 Z"
             fill="url(#cta-curve-area)"
           />
-          {/* Główna rosnąca linia wzrostu */}
+          {/* Główna rosnąca linia wzrostu - kończy się dokładnie w punkcie zwieńczenia x=1320, y=65 */}
           <path
-            d="M 0 540 C 320 520, 560 440, 800 280 C 1040 120, 1240 60, 1440 30"
+            d="M 0 540 C 320 520, 540 420, 780 240 C 980 120, 1160 80, 1320 65"
             stroke="var(--darkband-accent)"
             strokeWidth="3.5"
             strokeLinecap="round"
           />
+          {/* Koralowa kropka zwieńczenia - bezpośrednio w wektorze SVG na końcu linii (x=1320, y=65) */}
+          <circle
+            cx="1320"
+            cy="65"
+            r="5"
+            fill="var(--color-coral)"
+            stroke="var(--darkband-bg)"
+            strokeWidth="2"
+          />
         </svg>
 
-        {/* Koralowy punkt zwieńczenia z pulsacją - po prawej stronie na szczycie */}
-        <div className="absolute top-[8%] right-[4%] sm:right-[6%] flex items-center gap-2">
-          <span className="relative flex h-3.5 w-3.5">
-            <span className="relative inline-flex rounded-full size-2.5 bg-coral shadow-xs" />
-          </span>
-          <span className="text-xs font-mono text-darkband-accent-text font-medium hidden sm:inline">
+        {/* Etykieta tekstowa po prawej stronie kropki (1320/1440 = 91.667%, 65/600 = 10.833%) */}
+        <div
+          className="absolute -translate-y-1/2 flex items-center pointer-events-none select-none z-10 pl-3.5"
+          style={{ left: "91.667%", top: "10.833%" }}
+        >
+          <span className="text-[11px] font-mono text-darkband-accent-text font-medium hidden sm:inline whitespace-nowrap">
             Cel: stały wzrost
           </span>
         </div>
