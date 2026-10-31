@@ -6,7 +6,6 @@ import { HeroSection } from "@/components/sections/hero-section";
 import { TechMarquee } from "@/components/sections/tech-marquee";
 import { AudienceSection } from "@/components/sections/audience-section";
 import { ServicesBento } from "@/components/sections/services-bento";
-import { CleanCodeSection } from "@/components/sections/clean-code-section";
 import { ProjectsPreview } from "@/components/sections/projects-preview";
 import { BlogPreviewSection } from "@/components/sections/blog-preview";
 const WhyUsSection = dynamic(() =>
@@ -73,10 +72,7 @@ export default function Home() {
       {/* 9. Techniczne SEO (tło bazowe, makieta wyników wyszukiwania z płynnym ruchem FLIP na 1. miejsce) */}
       <SeoAdvantageSection />
 
-      {/* 10. Czysty kod (powierzchnia, krótki szkic copy + podświetlony kod w Shiki generowany w buildzie) */}
-      <CleanCodeSection />
-
-      {/* 11. Realizacje i koncepcje (tło bazowe, transparentne makiety) */}
+      {/* 10. Realizacje i koncepcje (tło bazowe, transparentne makiety) */}
       <ProjectsPreview />
 
       {/* 12. Wiedza dla rosnących firm (powierzchnia, typograficzne okładki SVG/CSS bez zdjęć stockowych) */}
