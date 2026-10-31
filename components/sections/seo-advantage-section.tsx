@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { motion, useInView, useReducedMotion } from "motion/react";
-import { Check, Search } from "lucide-react";
+import { Check, Search, MoreVertical } from "lucide-react";
 
 const SEO_ADVANTAGES = [
   {
@@ -88,85 +88,158 @@ export function SeoAdvantageSection() {
             ))}
           </div>
 
-          {/* PRAWA KOLUMNA: Makieta wyników wyszukiwania (z płynnym ruchem na 1. miejsce) */}
+          {/* PRAWA KOLUMNA: Autentyczna makieta Google SERP */}
           <div className="lg:col-span-6 w-full">
-            <div className="rounded-2xl border border-line bg-card p-5 sm:p-7 shadow-card text-left space-y-4">
+            <div className="rounded-2xl border border-line bg-surface overflow-hidden shadow-card text-left">
               
-              {/* Pasek wyszukiwania w tokenach marki (bez nazw korporacji) */}
-              <div className="flex items-center justify-between border-b border-line/70 pb-3">
-                <div className="flex items-center gap-2 text-xs font-mono font-semibold text-ink">
-                  <Search className="h-3.5 w-3.5 text-accent" />
-                  <span>Wyniki wyszukiwania</span>
+              {/* Belka wyszukiwarki Google z polem zapytania i filtrami */}
+              <div className="p-4 sm:p-5 border-b border-line bg-surface-subtle/40 space-y-3">
+                {/* Pasek wyszukiwania z zaokrągleniem, lupą i zapytaniem */}
+                <div className="flex items-center gap-2.5 px-3.5 py-2 sm:py-2.5 rounded-full border border-line bg-background shadow-xs">
+                  <Search className="h-4 w-4 text-accent shrink-0" />
+                  <span className="font-sans text-xs sm:text-sm text-ink font-medium truncate flex-1">
+                    nowoczesne strony internetowe dla firm
+                  </span>
+                  <div className="flex items-center gap-1.5 text-ink-muted shrink-0 text-xs font-mono">
+                    <span className="hidden sm:inline text-[10px] bg-surface px-1.5 py-0.5 rounded border border-line/60">
+                      Enter ↵
+                    </span>
+                  </div>
                 </div>
-                <span className="text-[10px] font-mono text-accent-text uppercase tracking-wider">
-                  Ilustracja
-                </span>
+
+                {/* Zakładki Google (Wszystko, Mapy, Grafika) + Metryka */}
+                <div className="flex items-center justify-between text-xs text-ink-muted px-1">
+                  <div className="flex items-center gap-3.5 sm:gap-5">
+                    <span className="font-bold text-ink border-b-2 border-accent pb-1 cursor-default">
+                      Wszystko
+                    </span>
+                    <span className="cursor-default hover:text-ink transition-colors">Mapy</span>
+                    <span className="cursor-default hover:text-ink transition-colors">Grafika</span>
+                    <span className="cursor-default hover:text-ink transition-colors hidden sm:inline">Wiadomości</span>
+                  </div>
+                  <span className="text-[10px] font-mono text-ink-muted/80 hidden sm:inline">
+                    Około 162 000 wyników (0,26 s)
+                  </span>
+                </div>
               </div>
 
-              {/* Okno wyników z płynną animacją FLIP (przejście z dołu na szczyt) */}
-              <div className="relative space-y-3 font-mono text-[11px] min-h-[300px]">
+              {/* Płótno wyników organicznych z animacją wejścia na #1 pozycję */}
+              <div className="p-4 sm:p-6 bg-background space-y-4 relative min-h-[380px]">
                 
-                {/* 1. Wyróżniony wynik firmy (animuje się z pozycji dolnej na samą górę) */}
+                {/* WYNIK #1: Twoja Firma (płynny ruch FLIP z dołu na sam szczyt) */}
                 <motion.div
-                  className="rounded-xl border border-accent/40 bg-accent/5 p-3.5 space-y-1.5 shadow-xs relative z-20"
+                  className="rounded-xl border border-accent/40 bg-accent/[0.04] p-4 space-y-2.5 relative z-20 shadow-xs"
                   initial={false}
                   animate={{
-                    y: isMoved ? 0 : 210,
+                    y: isMoved ? 0 : 200,
                   }}
                   transition={{
                     type: "spring",
-                    stiffness: 70,
+                    stiffness: 75,
                     damping: 14,
                   }}
                 >
-                  <div className="flex items-center gap-1.5 text-[10px] text-accent-text font-bold">
-                    <span>twojafirma.example</span>
-                    <span>›</span>
-                    <span>uslugi</span>
+                  {/* Nagłówek wyniku: Favicon + Nazwa firmy + Adres URL + Kebab menu */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-6 h-6 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center shrink-0">
+                        <span className="w-2.5 h-2.5 rounded-full bg-accent" />
+                      </div>
+                      <div className="flex flex-col leading-tight">
+                        <span className="text-xs font-bold text-ink">Twoja Firma</span>
+                        <span className="text-[11px] font-mono text-accent-text truncate">
+                          https://twojadomena.pl › uslugi
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      <span className="text-[9.5px] font-mono uppercase font-bold text-accent-text bg-accent/10 px-2 py-0.5 rounded border border-accent/20">
+                        POZYCJA #1
+                      </span>
+                      <MoreVertical className="w-3.5 h-3.5 text-ink-muted/60" />
+                    </div>
                   </div>
-                  <div className="font-heading font-bold text-sm sm:text-base text-ink text-left leading-snug">
-                    Twoja Firma · Nowoczesne usługi dla biznesu
+
+                  {/* Klikalny tytuł wyniku w stylu wyszukiwarki Google */}
+                  <div className="text-base sm:text-lg font-heading font-bold text-ink hover:text-accent-text hover:underline cursor-pointer leading-snug">
+                    Twoja Firma · Nowoczesne strony internetowe dla firm
                   </div>
-                  <div className="text-[11px] text-ink-muted leading-relaxed">
-                    Dedykowana oferta, przejrzysty cennik i szybka realizacja. Sprawdź referencje i zamów bezpłatną wycenę online.
+
+                  {/* Rich Snippets (Gwiazdki, opinie, czas realizacji) */}
+                  <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono text-ink-muted">
+                    <span className="text-coral font-bold tracking-tighter">★★★★★</span>
+                    <span className="font-bold text-ink">5.0 (32)</span>
+                    <span className="text-line">·</span>
+                    <span>Czas realizacji: 3–4 dni</span>
+                    <span className="text-line">·</span>
+                    <span className="text-accent-text font-semibold">Cena z góry</span>
+                  </div>
+
+                  {/* Snippet / Meta opis */}
+                  <p className="text-xs sm:text-[13px] text-ink-muted leading-relaxed font-sans">
+                    Dedykowane serwisy internetowe zaprojektowane od zera pod pozyskiwanie klientów. Błyskawiczny czas ładowania poniżej 1s, pełne techniczne SEO i 100% własności kodu.
+                  </p>
+
+                  {/* Podstrony (Google Sitelinks) */}
+                  <div className="pt-2 border-t border-accent/20 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <div className="p-2.5 rounded-lg bg-surface/80 border border-line/60">
+                      <div className="font-semibold text-accent-text hover:underline cursor-pointer">
+                        Cennik i zakres prac
+                      </div>
+                      <div className="text-[10.5px] text-ink-muted leading-tight mt-0.5">
+                        Stała wycena ustalona przed startem.
+                      </div>
+                    </div>
+                    <div className="p-2.5 rounded-lg bg-surface/80 border border-line/60">
+                      <div className="font-semibold text-accent-text hover:underline cursor-pointer">
+                        Bezpłatna wycena
+                      </div>
+                      <div className="text-[10.5px] text-ink-muted leading-tight mt-0.5">
+                        Odpowiedź i audyt w 24 godziny.
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
 
-                {/* 2. Szary wynik neutralny 1 */}
+                {/* WYNIK #2 (Konkurencja / Standardowy wynik organiczny Google) */}
                 <motion.div
-                  className="p-3 rounded-lg border border-line/50 bg-surface/40 space-y-1 opacity-70"
-                  animate={{ y: isMoved ? 0 : -85 }}
-                  transition={{ type: "spring", stiffness: 70, damping: 14 }}
+                  className="space-y-1.5 pt-1 opacity-70"
+                  animate={{ y: isMoved ? 0 : -100 }}
+                  transition={{ type: "spring", stiffness: 75, damping: 14 }}
                 >
-                  <div className="h-2 w-28 bg-line rounded" />
-                  <div className="h-3 w-3/4 bg-ink/30 rounded" />
-                  <div className="h-2 w-full bg-line/60 rounded" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-line/60 shrink-0" />
+                    <div className="h-2.5 w-36 bg-line/70 rounded" />
+                  </div>
+                  <div className="h-4 w-3/4 bg-ink/25 rounded" />
+                  <div className="space-y-1 pt-0.5">
+                    <div className="h-2.5 w-full bg-line/50 rounded" />
+                    <div className="h-2.5 w-4/5 bg-line/50 rounded" />
+                  </div>
                 </motion.div>
 
-                {/* 3. Szary wynik neutralny 2 */}
+                {/* WYNIK #3 (Konkurencja / Wolny szablon WordPress) */}
                 <motion.div
-                  className="p-3 rounded-lg border border-line/50 bg-surface/40 space-y-1 opacity-60"
-                  animate={{ y: isMoved ? 0 : -85 }}
-                  transition={{ type: "spring", stiffness: 70, damping: 14 }}
+                  className="space-y-1.5 pt-1 opacity-50"
+                  animate={{ y: isMoved ? 0 : -100 }}
+                  transition={{ type: "spring", stiffness: 75, damping: 14 }}
                 >
-                  <div className="h-2 w-32 bg-line rounded" />
-                  <div className="h-3 w-2/3 bg-ink/30 rounded" />
-                  <div className="h-2 w-4/5 bg-line/60 rounded" />
-                </motion.div>
-
-                {/* 4. Szary wynik neutralny 3 */}
-                <motion.div
-                  className="p-3 rounded-lg border border-line/50 bg-surface/40 space-y-1 opacity-50"
-                  animate={{ y: isMoved ? 0 : -85 }}
-                  transition={{ type: "spring", stiffness: 70, damping: 14 }}
-                >
-                  <div className="h-2 w-24 bg-line rounded" />
-                  <div className="h-3 w-1/2 bg-ink/30 rounded" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-line/60 shrink-0" />
+                    <div className="h-2.5 w-44 bg-line/70 rounded" />
+                  </div>
+                  <div className="h-4 w-2/3 bg-ink/25 rounded" />
+                  <div className="space-y-1 pt-0.5">
+                    <div className="h-2.5 w-5/6 bg-line/50 rounded" />
+                  </div>
                 </motion.div>
               </div>
 
-              <div className="pt-2 border-t border-line/60 text-[10px] font-mono text-ink-muted text-right">
-                Płynny wzrost widoczności dzięki czystej strukturze HTML i Core Web Vitals
+              {/* Dolny pasek parametrów */}
+              <div className="px-5 py-3 border-t border-line bg-surface-subtle/50 flex items-center justify-between text-[11px] font-mono text-ink-muted">
+                <span>Struktura Schema.org + SSR</span>
+                <span className="text-accent-text font-semibold">Organiczny wynik #1</span>
               </div>
             </div>
           </div>
