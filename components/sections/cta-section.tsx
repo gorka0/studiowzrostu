@@ -23,12 +23,12 @@ export function CtaSection() {
     <Section
       id="kontakt-cta"
       data-section="cta"
-      spacing="default"
-      className="relative border-b border-darkband-line bg-darkband-bg text-darkband-foreground overflow-hidden"
+      spacing="none"
+      className="relative border-t border-b border-darkband-line bg-darkband-bg text-darkband-foreground overflow-hidden py-14 sm:py-20 lg:py-24"
     >
-      {/* Subtelna kratka SVG w tle ciemnego pasa CTA (niskie krycie) */}
+      {/* 1. Subtelna kratka SVG w tle ciemnego pasa CTA (pełna szerokość sekcji) */}
       <svg
-        className="pointer-events-none absolute inset-0 h-full w-full select-none z-0 opacity-30"
+        className="pointer-events-none absolute inset-0 h-full w-full select-none z-0 opacity-25"
         aria-hidden="true"
       >
         <defs>
@@ -49,63 +49,101 @@ export function CtaSection() {
         <rect width="100%" height="100%" fill="url(#cta-grid-pattern)" />
       </svg>
 
-      <Container className="relative z-10">
-        <div className="rounded-2xl border border-darkband-line bg-darkband-bg/90 backdrop-blur-xs p-6 sm:p-10 md:p-12 shadow-elevated relative overflow-hidden">
-          
-          {/* Zakończenie krzywej wykresu w tle (SVG rosnąca linia z koralową kropką) */}
-          <svg
-            viewBox="0 0 600 300"
-            className="pointer-events-none absolute -bottom-10 -right-10 w-[360px] sm:w-[500px] h-auto select-none opacity-25 z-0"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M 0 280 C 180 260, 320 200, 480 80 L 520 40"
-              stroke="var(--darkband-accent)"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-            <circle cx="520" cy="40" r="7" className="fill-coral" />
-          </svg>
+      {/* 2. Zakończenie krzywej wzrostu - biegnie przez całą szerokość sekcji, nie jest zasłonięta kontenerem */}
+      <div className="pointer-events-none absolute inset-0 w-full h-full overflow-hidden select-none z-0">
+        <svg
+          viewBox="0 0 1440 600"
+          preserveAspectRatio="none"
+          className="w-full h-full opacity-40"
+          fill="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="cta-curve-area" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="var(--darkband-accent)" stopOpacity="0.16" />
+              <stop offset="100%" stopColor="var(--darkband-accent)" stopOpacity="0.0" />
+            </linearGradient>
+          </defs>
+          {/* Półprzezroczysty obszar pod krzywą */}
+          <path
+            d="M 0 540 C 320 520, 560 440, 800 280 C 1040 120, 1240 60, 1440 30 L 1440 600 L 0 600 Z"
+            fill="url(#cta-curve-area)"
+          />
+          {/* Główna rosnąca linia wzrostu */}
+          <path
+            d="M 0 540 C 320 520, 560 440, 800 280 C 1040 120, 1240 60, 1440 30"
+            stroke="var(--darkband-accent)"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+        </svg>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
-            {/* Lewa kolumna: Opis i dane kontaktowe */}
-            <div className="lg:col-span-5 text-left space-y-4">
+        {/* Koralowy punkt zwieńczenia z pulsacją - po prawej stronie na szczycie */}
+        <div className="absolute top-[8%] right-[4%] sm:right-[6%] flex items-center gap-2">
+          <span className="relative flex h-3.5 w-3.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-coral opacity-75" />
+            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-coral shadow-md" />
+          </span>
+          <span className="text-[11px] font-mono text-darkband-accent-text uppercase tracking-wider font-bold hidden sm:inline">
+            Cel: Stały wzrost
+          </span>
+        </div>
+      </div>
+
+      <Container className="relative z-10">
+        {/* Treść bezpośrednio w siatce 12-kolumnowej bez sztucznego zagnieżdżonego kontenera */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* Lewa kolumna: Opis i dane kontaktowe */}
+          <div className="lg:col-span-5 text-left space-y-6">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-darkband-line bg-darkband-bg/80 text-[11px] font-mono font-semibold text-darkband-accent-text">
+                <span className="w-1.5 h-1.5 rounded-full bg-darkband-accent animate-pulse" />
+                Darmowa konsultacja techniczna
+              </div>
+
               <RevealHeading
                 as="h2"
                 text="Rozpocznijmy współpracę nad Twoją nową stroną"
-                className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading text-darkband-foreground tracking-tight"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-darkband-foreground tracking-tight leading-tight"
               />
-
-              <p className="text-sm sm:text-base text-darkband-muted leading-relaxed">
-                Opowiedz nam krótko, czym zajmuje się Twoja firma. W ciągu 24 godzin wrócimy z konkretną propozycją, terminem i bezpłatną wyceną.
-              </p>
-
-              <div className="pt-4 space-y-3 text-xs text-darkband-muted border-t border-darkband-line">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                  <CopyEmailButton variant="inline" />
-                </div>
-
-                <a
-                  href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
-                  className="flex items-center gap-2 text-darkband-muted hover:text-darkband-accent-text hover:underline transition-colors"
-                >
-                  <Phone className="h-4 w-4 text-darkband-accent shrink-0" />
-                  <span>{siteConfig.contact.phone}</span>
-                </a>
-
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-darkband-accent shrink-0" />
-                  <span>Odpowiedź w 24 godziny (dni robocze)</span>
-                </div>
-              </div>
             </div>
 
-            {/* Prawa kolumna: Skrót formularza */}
-            <div className="lg:col-span-7 rounded-xl border border-line bg-background text-foreground p-6 sm:p-8 shadow-card relative">
-              <div className="text-sm font-bold font-heading text-ink mb-4 flex items-center justify-between">
+            <p className="text-sm sm:text-base text-darkband-muted leading-relaxed max-w-lg">
+              Opowiedz nam krótko, czym zajmuje się Twoja firma. W ciągu 24 godzin wrócimy z konkretną propozycją, terminem i bezpłatną wyceną.
+            </p>
+
+            <div className="pt-4 space-y-3.5 text-xs text-darkband-muted border-t border-darkband-line/60">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <CopyEmailButton
+                  variant="inline"
+                  className="text-darkband-muted hover:text-darkband-accent-text"
+                />
+              </div>
+
+              <a
+                href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
+                className="flex items-center gap-2.5 text-darkband-muted hover:text-darkband-accent-text hover:underline transition-colors"
+              >
+                <Phone className="h-4 w-4 text-darkband-accent shrink-0" />
+                <span className="font-mono text-sm">{siteConfig.contact.phone}</span>
+              </a>
+
+              <div className="flex items-center gap-2.5">
+                <Clock className="h-4 w-4 text-darkband-accent shrink-0" />
+                <span>Odpowiedź w 24 godziny (dni robocze)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Prawa kolumna: Formularz kontaktowy w czystej karcie */}
+          <div className="lg:col-span-7">
+            <div className="rounded-2xl border border-line bg-surface text-foreground p-6 sm:p-8 lg:p-10 shadow-elevated relative">
+              <div className="text-base sm:text-lg font-bold font-heading text-ink mb-5 flex items-center justify-between pb-3 border-b border-line/60">
                 <span>Szybkie zapytanie ofertowe</span>
-                <span className="text-[10px] font-mono text-accent-text font-bold">24h odpowiedź</span>
+                <span className="text-[11px] font-mono text-accent-text font-bold bg-accent/10 px-2 py-0.5 rounded border border-accent/20">
+                  24h odpowiedź
+                </span>
               </div>
               <ContactForm compact={true} />
             </div>
