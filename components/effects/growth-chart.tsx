@@ -23,6 +23,7 @@ const NORMALIZED_POINTS = [
 export const MILESTONES = [
   {
     step: "01",
+    shortLabel: "Szybka strona",
     title: "Szybka, nowoczesna strona",
     desc: "Błyskawiczne ładowanie i bezbłędne działanie na telefonach budują zaufanie odwiedzających od pierwszej sekundy.",
     xPct: 0.14,
@@ -30,6 +31,7 @@ export const MILESTONES = [
   },
   {
     step: "02",
+    shortLabel: "Widoczność",
     title: "Widoczność w Google",
     desc: "Czysty kod i zoptymalizowana struktura semantyczna ułatwiają robotom wyszukiwarki indeksowanie oferty.",
     xPct: 0.38,
@@ -37,6 +39,7 @@ export const MILESTONES = [
   },
   {
     step: "03",
+    shortLabel: "Więcej zapytań",
     title: "Więcej zapytań",
     desc: "Przejrzysta hierarchia treści prowadzi klientów prosto do formularza wyceny lub telefonu.",
     xPct: 0.65,
@@ -44,6 +47,7 @@ export const MILESTONES = [
   },
   {
     step: "04",
+    shortLabel: "Nowi klienci",
     title: "Więcej klientów",
     desc: "Systematyczny napływ zapytań od klientów szukających Twojej specjalizacji wspiera stabilny wzrost.",
     xPct: 0.90,
@@ -182,7 +186,7 @@ export function GrowthChart() {
                   textAnchor="end"
                   className="text-[11px] font-mono font-medium fill-ink-muted select-none hidden sm:inline"
                 >
-                  Wzrost zapytań ↑
+                  Rozwój biznesu ↑
                 </text>
 
                 {/* Linia odniesienia ("Strona bez optymalizacji") */}
@@ -261,15 +265,15 @@ export function GrowthChart() {
                         )}
                       />
 
-                      {/* Punkt na krzywej */}
+                      {/* Punkt na krzywej (czyste SVG geometryczne bez CSS transform scale-110) */}
                       <circle
                         cx={pt.x}
                         cy={pt.y}
-                        r={isSelected ? 6 : 4.5}
+                        r={isSelected ? 6.5 : 4.5}
                         className={cn(
-                          "transition-all duration-200 stroke-2",
+                          "transition-colors duration-200 stroke-2",
                           isSelected
-                            ? "fill-accent stroke-surface scale-110"
+                            ? "fill-accent stroke-surface shadow-xs"
                             : "fill-surface stroke-accent/80 group-hover:fill-accent"
                         )}
                       />
@@ -277,11 +281,11 @@ export function GrowthChart() {
                       {/* Etykieta etapu nad punktem (widoczna na sm+) */}
                       <g transform={`translate(${pt.x}, ${pt.y - 24})`} className="hidden sm:inline">
                         <rect
-                          x="-45"
-                          y="-10"
-                          width="90"
-                          height="20"
-                          rx="5"
+                          x="-57"
+                          y="-11"
+                          width="114"
+                          height="22"
+                          rx="6"
                           className={cn(
                             "stroke-1 transition-colors duration-200",
                             isSelected
@@ -294,11 +298,11 @@ export function GrowthChart() {
                           y="4"
                           textAnchor="middle"
                           className={cn(
-                            "text-[10px] font-mono font-bold select-none transition-colors",
+                            "text-[9.5px] font-mono font-bold select-none transition-colors",
                             isSelected ? "fill-accent-text" : "fill-ink-muted group-hover:fill-ink"
                           )}
                         >
-                          {m.step}. {m.title.split(" ")[0]}
+                          {m.step}. {m.shortLabel}
                         </text>
                       </g>
                     </g>
