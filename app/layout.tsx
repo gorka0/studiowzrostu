@@ -15,14 +15,14 @@ import "./globals.css";
 const fontHeading = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
-  display: "swap",
+  display: "optional",
   preload: true,
 });
 
 const fontSans = Instrument_Sans({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
-  display: "swap",
+  display: "optional",
   preload: true,
 });
 
@@ -42,7 +42,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `if(typeof window!=='undefined'){if('scrollRestoration' in history){history.scrollRestoration='manual';}if(!window.location.hash){window.scrollTo(0,0);}}`,
+            __html: `document.documentElement.classList.add('js');if(typeof window!=='undefined'){if('scrollRestoration' in history){history.scrollRestoration='manual';}if(!window.location.hash){window.scrollTo(0,0);}}`,
           }}
         />
       </head>

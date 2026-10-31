@@ -3,7 +3,7 @@ import fs from 'fs';
 const mobile = JSON.parse(fs.readFileSync('d:/home/strony/studiowzrostu/reports/lighthouse/lighthouse-mobile.report.json', 'utf8'));
 
 console.log('=== MOBILE AUDIT SCORES ===');
-for (const [key, cat] of Object.entries(mobile.categories)) {
+for (const cat of Object.values(mobile.categories)) {
   console.log(`${cat.title}: ${(cat.score * 100).toFixed(0)}`);
 }
 

@@ -5,7 +5,7 @@ import { Section } from "@/components/ui/section";
 import { siteConfig } from "@/site.config";
 import { RevealHeading } from "@/components/effects/reveal-heading";
 import { CopyEmailButton } from "@/components/ui/copy-email-button";
-import { Mail, Phone, Clock } from "lucide-react";
+import { Phone, Clock } from "lucide-react";
 
 const ContactForm = dynamic(
   () => import("@/components/sections/contact-form").then((m) => m.ContactForm),

@@ -45,7 +45,7 @@ try {
 
     if (scores.accessibility < 95 || scores.seo < 95) {
       console.log("\nSzczegóły niespełnionych audytów:");
-      for (const [key, audit] of Object.entries(data.audits)) {
+      for (const audit of Object.values(data.audits)) {
         if (audit.score !== null && audit.score < 1 && audit.details) {
           console.log(`- [${audit.score}] ${audit.title}: ${audit.description}`);
         }

@@ -3,7 +3,7 @@ import fs from 'fs';
 const desktop = JSON.parse(fs.readFileSync('d:/home/strony/studiowzrostu/reports/lighthouse/lighthouse-desktop.report.json', 'utf8'));
 
 console.log('=== DESKTOP AUDIT SCORES ===');
-for (const [key, cat] of Object.entries(desktop.categories)) {
+for (const cat of Object.values(desktop.categories)) {
   console.log(`${cat.title}: ${(cat.score * 100).toFixed(0)}`);
 }
 

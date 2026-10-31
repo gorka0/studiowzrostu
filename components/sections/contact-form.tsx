@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { CopyEmailButton } from "@/components/ui/copy-email-button";
 import { siteConfig } from "@/site.config";
-import { Mail, Phone, Clock, MapPin, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Phone, Clock, MapPin, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ContactFormProps {

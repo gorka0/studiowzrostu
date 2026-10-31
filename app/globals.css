@@ -172,3 +172,68 @@
     font-weight: 700;
   }
 }
+
+/* Hero Grid Tokens & Keyframes */
+:root {
+  --ink: var(--foreground);
+  --hero-grid-line: color-mix(in oklab, var(--foreground) 8%, transparent);
+  --hero-grid-line-strong: color-mix(in oklab, var(--foreground) 13%, transparent);
+  --hero-grid-marker: color-mix(in oklab, var(--foreground) 28%, transparent);
+}
+
+.dark {
+  --ink: var(--foreground);
+  --hero-grid-line: color-mix(in oklab, var(--accent) 10%, transparent);
+  --hero-grid-line-strong: color-mix(in oklab, var(--accent) 16%, transparent);
+  --hero-grid-marker: color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+.hero-grid-subline {
+  stroke: var(--hero-grid-line);
+}
+
+.hero-grid-majorline {
+  stroke: var(--hero-grid-line-strong);
+}
+
+.hero-grid-plus {
+  stroke: var(--hero-grid-marker);
+}
+
+@keyframes drawHeroCurve {
+  from {
+    stroke-dashoffset: 1600;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeHeroArea {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-bg-curve {
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 0;
+}
+
+.hero-bg-area {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js .hero-bg-curve {
+    stroke-dashoffset: 1600;
+    animation: drawHeroCurve 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  html.js .hero-bg-area {
+    opacity: 0;
+    animation: fadeHeroArea 1.6s ease-out 0.2s forwards;
+  }
+}
