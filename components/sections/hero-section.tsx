@@ -302,7 +302,7 @@ export function HeroSection() {
                       Widoczność w wyszukiwarce
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] tracking-wider uppercase text-ink-muted/70 bg-surface-subtle/80 px-1.5 py-0.5 rounded border border-line/50 select-none">
+                  <span className="font-mono text-[10px] tracking-wider uppercase text-ink-muted bg-surface px-1.5 py-0.5 rounded border border-line select-none">
                     Ilustracja
                   </span>
                 </div>
@@ -330,7 +330,7 @@ export function HeroSection() {
                       strokeWidth="2.25"
                       strokeLinecap="round"
                     />
-                    <circle cx="276" cy="8" r="7" className="fill-accent/20 animate-ping motion-reduce:hidden" />
+                    <circle cx="276" cy="8" r="7" className="fill-accent/20" />
                     <circle cx="276" cy="8" r="3.5" className="fill-accent stroke-card stroke-2" />
                   </svg>
                 </div>
@@ -349,7 +349,7 @@ export function HeroSection() {
                       Zapytania
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] tracking-wider uppercase text-ink-muted/70 bg-surface-subtle/80 px-1.5 py-0.5 rounded border border-line/50 select-none">
+                  <span className="font-mono text-[10px] tracking-wider uppercase text-ink-muted bg-surface px-1.5 py-0.5 rounded border border-line select-none">
                     Ilustracja
                   </span>
                 </div>
@@ -415,7 +415,7 @@ export function HeroSection() {
                       Szybkość strony
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] tracking-wider uppercase text-ink-muted/70 bg-surface-subtle/80 px-1.5 py-0.5 rounded border border-line/50 select-none">
+                  <span className="font-mono text-[10px] tracking-wider uppercase text-ink-muted bg-surface px-1.5 py-0.5 rounded border border-line select-none">
                     Ilustracja
                   </span>
                 </div>

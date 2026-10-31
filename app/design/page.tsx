@@ -12,7 +12,7 @@ import { InteractiveHoverButton } from "@/components/effects/interactive-hover-b
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Logo } from "@/components/ui/logo";
-import { Check, ArrowRight, ShieldCheck, Zap, Sparkles } from "lucide-react";
+import { Check, ArrowRight, ShieldCheck, Zap } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
   title: "Design System & Komponenty (Dev Only)",
@@ -103,7 +103,7 @@ export default function DesignPage() {
                 <div className="text-sm font-semibold">Akcent Koralowy (Oszczędny)</div>
                 <div className="text-xs text-muted-foreground font-mono">Token stały: #FF7A45</div>
                 <div className="text-[11px] text-foreground flex items-center gap-1 font-medium">
-                  <Sparkles className="h-3.5 w-3.5 text-coral" /> Używany w punktach akcji
+                  <Zap className="h-3.5 w-3.5 text-coral" /> Używany w punktach akcji
                 </div>
               </div>
             </div>
@@ -264,7 +264,7 @@ export default function DesignPage() {
                 </div>
                 <CardHeader>
                   <div className="h-10 w-10 rounded-xl bg-primary text-accent-text-foreground flex items-center justify-center mb-2">
-                    <Sparkles className="h-5 w-5" />
+                    <Zap className="h-5 w-5" />
                   </div>
                   <CardTitle>Dedykowane wdrożenie serwisu</CardTitle>
                   <CardDescription>

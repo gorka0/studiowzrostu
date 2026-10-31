@@ -2,714 +2,393 @@
 
 import * as React from "react";
 import Link from "next/link";
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useMotionValueEvent,
-  useReducedMotion,
-} from "motion/react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
-import { RevealHeading } from "@/components/effects/reveal-heading";
+import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
 
-// 1. Znormalizowane punkty danych (0-1) - jedno źródło prawdy dla krzywych
+// Znormalizowane punkty danych monotonicznej krzywej wzrostu
 const NORMALIZED_POINTS = [
-  { x: 0.0, y: 0.06 },
-  { x: 0.12, y: 0.08 },
-  { x: 0.22, y: 0.10 },
-  { x: 0.30, y: 0.09 },
-  { x: 0.40, y: 0.16 },
-  { x: 0.52, y: 0.26 },
-  { x: 0.62, y: 0.30 },
-  { x: 0.72, y: 0.46 },
-  { x: 0.84, y: 0.64 },
-  { x: 1.0, y: 0.90 },
+  { x: 0.0, y: 0.08 },
+  { x: 0.14, y: 0.10 },
+  { x: 0.26, y: 0.12 },
+  { x: 0.38, y: 0.18 },
+  { x: 0.52, y: 0.30 },
+  { x: 0.65, y: 0.44 },
+  { x: 0.78, y: 0.62 },
+  { x: 0.90, y: 0.78 },
+  { x: 1.0, y: 0.92 },
 ];
 
-// Prawie płaska linia odniesienia ("Strona bez optymalizacji")
-const REFERENCE_POINTS = [
-  { x: 0.0, y: 0.05 },
-  { x: 0.35, y: 0.065 },
-  { x: 0.70, y: 0.085 },
-  { x: 1.0, y: 0.11 },
-];
-
-// Kamienie milowe z progami aktywacji
 export const MILESTONES = [
   {
     step: "01",
     title: "Szybka, nowoczesna strona",
-    desc: "Błyskawiczne ładowanie i bezbłędne działanie na telefonach budują silne zaufanie.",
-    threshold: 0.18,
-    width: 180,
-    labelDx: 30,
-    labelDy: -55,
+    desc: "Błyskawiczne ładowanie i bezbłędne działanie na telefonach budują zaufanie odwiedzających od pierwszej sekundy.",
+    xPct: 0.14,
+    yPct: 0.10,
   },
   {
     step: "02",
     title: "Widoczność w Google",
-    desc: "Czysty kod i zoptymalizowane parametry szybkości ułatwiają wyszukiwarce indeksowanie i pozycjonowanie.",
-    threshold: 0.44,
-    width: 152,
-    labelDx: 0,
-    labelDy: -75,
+    desc: "Czysty kod i zoptymalizowana struktura semantyczna ułatwiają robotom wyszukiwarki indeksowanie oferty.",
+    xPct: 0.38,
+    yPct: 0.18,
   },
   {
     step: "03",
     title: "Więcej zapytań",
-    desc: "Przejrzysta struktura oferty prowadzi odwiedzających prosto do wysłania formularza.",
-    threshold: 0.70,
-    width: 128,
-    labelDx: 0,
-    labelDy: -75,
+    desc: "Przejrzysta hierarchia treści prowadzi klientów prosto do formularza wyceny lub telefonu.",
+    xPct: 0.65,
+    yPct: 0.44,
   },
   {
     step: "04",
     title: "Więcej klientów",
-    desc: "Systematyczny napływ wartościowych kontaktów biznesowych wspiera stabilny rozwój firmy.",
-    threshold: 0.92,
-    width: 132,
-    labelDx: -85,
-    labelDy: -42,
+    desc: "Systematyczny napływ zapytań od klientów szukających Twojej specjalizacji wspiera stabilny wzrost.",
+    xPct: 0.90,
+    yPct: 0.78,
   },
 ];
 
-// Geometria i układ współrzędnych viewBox 800x450
-const VIEWBOX = { width: 800, height: 450 };
+const VIEWBOX = { width: 800, height: 440 };
 const BOUNDS = {
   xMin: 70,
   xMax: 740,
-  yBaseline: 390,
-  yTop: 45,
+  yBaseline: 380,
+  yTop: 50,
 };
 
-// Generator monotonicznej krzywej sześciennej (Fritsch-Carlson)
-export function createMonotonePath(points: { x: number; y: number }[]): string {
-  const n = points.length;
-  if (n < 2) return "";
-  if (n === 2) return `M ${points[0].x} ${points[0].y} L ${points[1].x} ${points[1].y}`;
-
-  const dx: number[] = [];
-  const dy: number[] = [];
-  const slope: number[] = [];
-
-  for (let i = 0; i < n - 1; i++) {
-    const deltax = points[i + 1].x - points[i].x;
-    const deltay = points[i + 1].y - points[i].y;
-    dx.push(deltax);
-    dy.push(deltay);
-    slope.push(deltax === 0 ? 0 : deltay / deltax);
-  }
-
-  const d: number[] = [slope[0]];
-  for (let i = 0; i < n - 2; i++) {
-    if (slope[i] * slope[i + 1] <= 0) {
-      d.push(0);
-    } else {
-      const common = dx[i] + dx[i + 1];
-      d.push((3 * common) / ((common + dx[i + 1]) / slope[i] + (common + dx[i]) / slope[i + 1]));
-    }
-  }
-  d.push(slope[n - 2]);
-
-  let path = `M ${points[0].x.toFixed(2)} ${points[0].y.toFixed(2)}`;
-  for (let i = 0; i < n - 1; i++) {
-    const c1x = points[i].x + dx[i] / 3;
-    const c1y = points[i].y + (d[i] * dx[i]) / 3;
-    const c2x = points[i + 1].x - dx[i] / 3;
-    const c2y = points[i + 1].y - (d[i + 1] * dx[i]) / 3;
-    path += ` C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${c2x.toFixed(2)} ${c2y.toFixed(2)}, ${points[i + 1].x.toFixed(2)} ${points[i + 1].y.toFixed(2)}`;
-  }
-  return path;
+// Generowanie współrzędnych SVG
+function scalePoint(p: { x: number; y: number }) {
+  return {
+    x: BOUNDS.xMin + p.x * (BOUNDS.xMax - BOUNDS.xMin),
+    y: BOUNDS.yBaseline - p.y * (BOUNDS.yBaseline - BOUNDS.yTop),
+  };
 }
 
-// Przeliczenie punktów znormalizowanych do wymiarów układu
-function scalePoints(
-  pts: { x: number; y: number }[],
-  bounds: typeof BOUNDS
-): { x: number; y: number }[] {
-  return pts.map((p) => ({
-    x: bounds.xMin + p.x * (bounds.xMax - bounds.xMin),
-    y: bounds.yBaseline - p.y * (bounds.yBaseline - bounds.yTop),
-  }));
-}
+const SCALED_POINTS = NORMALIZED_POINTS.map(scalePoint);
 
-// Wygenerowane ścieżki SVG dla całego komponentu
-export const SCALED_CURVE_POINTS = scalePoints(NORMALIZED_POINTS, BOUNDS);
-export const SCALED_REFERENCE_POINTS = scalePoints(REFERENCE_POINTS, BOUNDS);
+// Ścieżka monotonicznej krzywej wzrostu
+const CURVE_PATH_D = SCALED_POINTS.reduce((acc, p, i, arr) => {
+  if (i === 0) return `M ${p.x.toFixed(1)} ${p.y.toFixed(1)}`;
+  const prev = arr[i - 1];
+  const cx1 = prev.x + (p.x - prev.x) * 0.5;
+  const cy1 = prev.y;
+  const cx2 = prev.x + (p.x - prev.x) * 0.5;
+  const cy2 = p.y;
+  return `${acc} C ${cx1.toFixed(1)} ${cy1.toFixed(1)}, ${cx2.toFixed(1)} ${cy2.toFixed(1)}, ${p.x.toFixed(1)} ${p.y.toFixed(1)}`;
+}, "");
 
-export const CURVE_PATH_D = createMonotonePath(SCALED_CURVE_POINTS);
-export const REFERENCE_PATH_D = createMonotonePath(SCALED_REFERENCE_POINTS);
+const AREA_PATH_D = `${CURVE_PATH_D} L ${BOUNDS.xMax} ${BOUNDS.yBaseline} L ${BOUNDS.xMin} ${BOUNDS.yBaseline} Z`;
 
-// Ścieżka wypełnienia z domknięciem do osi X
-export const AREA_PATH_D = `${CURVE_PATH_D} L ${BOUNDS.xMax} ${BOUNDS.yBaseline} L ${BOUNDS.xMin} ${BOUNDS.yBaseline} Z`;
-
-// Poziome linie pomocnicze siatki
-const GRID_Y_LINES = [
-  BOUNDS.yBaseline - (BOUNDS.yBaseline - BOUNDS.yTop) * 0.25,
-  BOUNDS.yBaseline - (BOUNDS.yBaseline - BOUNDS.yTop) * 0.5,
-  BOUNDS.yBaseline - (BOUNDS.yBaseline - BOUNDS.yTop) * 0.75,
-  BOUNDS.yBaseline - (BOUNDS.yBaseline - BOUNDS.yTop) * 1.0,
-];
+const REFERENCE_PATH_D = `M ${BOUNDS.xMin} ${BOUNDS.yBaseline - 20} L ${BOUNDS.xMax} ${BOUNDS.yBaseline - 45}`;
 
 export function GrowthChart() {
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const mainPathRef = React.useRef<SVGPathElement>(null);
-  const tipGroupRef = React.useRef<SVGGElement>(null);
-  const guideLineRef = React.useRef<SVGLineElement>(null);
-  const maskGradRef = React.useRef<SVGLinearGradientElement>(null);
-  const verticalProgressRef = React.useRef<HTMLDivElement>(null);
-  const stepItemsRef = React.useRef<(HTMLButtonElement | null)[]>([]);
-  const svgMilestonesRef = React.useRef<(SVGGElement | null)[]>([]);
-
+  const isInView = useInView(containerRef, { once: true, amount: 0.25 });
   const shouldReduceMotion = useReducedMotion();
-  const [activeStepIndex, setActiveStepIndex] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState<number>(3);
 
-  // Śledzenie postępu przewijania w obrębie kontenera sekcji
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Wygładzona dynamika sprężyny - natychmiastowa reakcja bez opóźnień
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 280,
-    damping: 32,
-    restDelta: 0.0005,
-  });
-
-  const scrollToMilestone = (threshold: number) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const scrollTop = window.scrollY + rect.top;
-    const totalDistance = containerRef.current.offsetHeight - window.innerHeight;
-    if (totalDistance <= 0) return;
-
-    const targetY = scrollTop + Math.min(threshold + 0.02, 1) * totalDistance;
-    window.scrollTo({
-      top: targetY,
-      behavior: "smooth",
-    });
-  };
-
-  const skipPastChart = () => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const endY = window.scrollY + rect.bottom;
-    window.scrollTo({
-      top: endY,
-      behavior: "smooth",
-    });
-  };
-
-  // Reakcja na zmianę postępu - bezpośrednie atrybuty DOM bez re-renderów React
-  useMotionValueEvent(smoothProgress, "change", (latest) => {
-    if (shouldReduceMotion) return;
-
-    const path = mainPathRef.current;
-    if (!path) return;
-
-    const totalLen = path.getTotalLength();
-    if (!totalLen || isNaN(totalLen)) return;
-
-    const clamped = Math.max(0, Math.min(1, latest));
-    const targetLength = clamped * totalLen;
-
-    // Matematycznie dokładny punkt na krzywej z getPointAtLength
-    const pt = path.getPointAtLength(targetLength);
-
-    // 1. Pozycja kropki na czubku krzywej (zawsze na krzywej, widoczna od razu)
-    if (tipGroupRef.current) {
-      tipGroupRef.current.setAttribute("transform", `translate(${pt.x.toFixed(2)}, ${pt.y.toFixed(2)})`);
-      tipGroupRef.current.style.opacity = "1";
-    }
-
-    // 2. Pionowa przerywana linia rzutująca do osi X
-    if (guideLineRef.current) {
-      guideLineRef.current.setAttribute("x1", pt.x.toFixed(2));
-      guideLineRef.current.setAttribute("y1", pt.y.toFixed(2));
-      guideLineRef.current.setAttribute("x2", pt.x.toFixed(2));
-      guideLineRef.current.setAttribute("y2", String(BOUNDS.yBaseline));
-      guideLineRef.current.style.opacity = clamped > 0.02 ? "0.6" : "0";
-    }
-
-    // 3. Dynamiczna maska wypełnienia z miękką prawą krawędzią (ok. 6% szerokości wykresu)
-    if (maskGradRef.current) {
-      const featherWidth = (BOUNDS.xMax - BOUNDS.xMin) * 0.06;
-      const x1 = Math.max(BOUNDS.xMin - 20, pt.x - featherWidth);
-      const x2 = pt.x + 2;
-      maskGradRef.current.setAttribute("x1", x1.toFixed(2));
-      maskGradRef.current.setAttribute("x2", x2.toFixed(2));
-    }
-
-    // 4. Pionowy pasek postępu w kolumnie kroków
-    if (verticalProgressRef.current) {
-      verticalProgressRef.current.style.height = `${(clamped * 100).toFixed(1)}%`;
-    }
-
-    // 5. Aktualizacja aktywnego kroku i markerów SVG
-    let currentIdx = 0;
-    MILESTONES.forEach((m, idx) => {
-      const isReached = clamped >= m.threshold;
-      if (isReached) currentIdx = idx;
-
-      // Aktualizacja klas markerów SVG
-      const markerEl = svgMilestonesRef.current[idx];
-      if (markerEl) {
-        if (isReached) {
-          markerEl.setAttribute("data-state", "reached");
-        } else {
-          markerEl.setAttribute("data-state", "future");
-        }
-      }
-    });
-
-    setActiveStepIndex(currentIdx);
-  });
-
-  // Inicjalizacja pozycji kropki na początku krzywej po montowaniu
-  React.useEffect(() => {
-    if (shouldReduceMotion) return;
-    const path = mainPathRef.current;
-    if (path && tipGroupRef.current) {
-      const pt = path.getPointAtLength(0);
-      tipGroupRef.current.setAttribute("transform", `translate(${pt.x.toFixed(2)}, ${pt.y.toFixed(2)})`);
-      tipGroupRef.current.style.opacity = "1";
-    }
-  }, [shouldReduceMotion]);
-
-  // Wersja statyczna dla preferencji ograniczonego ruchu (zero scroll-trap)
-  if (shouldReduceMotion) {
-    return (
-      <section
-        className="w-full py-16 md:py-24 bg-surface/30 border-b border-line"
-        aria-label="Wykres ilustrujący wzrost biznesu dzięki nowoczesnej stronie"
-      >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="text-left max-w-2xl mb-10">
-            <RevealHeading
-              as="h2"
-              text="Architektura serwisu a tempo rozwoju firmy"
-              className="text-3xl sm:text-4xl font-bold font-heading text-ink"
-            />
-            <p className="mt-3 text-ink-muted text-sm sm:text-base">
-              Od stabilnego fundamentu technologicznego do regularnego pozyskiwania klientów.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-8 rounded-2xl border border-line bg-surface p-6 sm:p-8">
-              <svg
-                viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
-                className="w-full h-auto overflow-visible select-none"
-                role="img"
-                aria-label="Statyczny wykres etapów wzrostu"
-              >
-                <StaticChartDefs />
-                <GridAndAxes />
-                <path d={REFERENCE_PATH_D} fill="none" stroke="currentColor" strokeOpacity="0.35" strokeWidth="2" strokeDasharray="4 4" />
-                <text x={BOUNDS.xMax} y={BOUNDS.yBaseline - 25} textAnchor="end" className="text-[11px] font-mono fill-ink-muted">
-                  Strona bez optymalizacji
-                </text>
-                <path d={AREA_PATH_D} fill="url(#static-area-grad)" />
-                <path d={CURVE_PATH_D} fill="none" stroke="var(--accent)" strokeWidth="3.5" strokeLinecap="round" />
-                <circle cx={BOUNDS.xMax} cy={SCALED_CURVE_POINTS[SCALED_CURVE_POINTS.length - 1].y} r="6" className="fill-coral" />
-              </svg>
-            </div>
-
-            <div className="lg:col-span-4 space-y-4">
-              {MILESTONES.map((m) => (
-                <div key={m.step} className="p-4 rounded-xl border border-line bg-surface space-y-1">
-                  <div className="font-mono text-xs text-accent-text font-bold">{m.step}</div>
-                  <div className="font-heading font-bold text-sm text-ink">{m.title}</div>
-                  <div className="text-xs text-ink-muted">{m.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  // Bez JS lub z reduced-motion krzywa jest natychmiast w 100% widoczna
+  const animateProgress = isInView && !shouldReduceMotion;
 
   return (
-    <div
+    <section
       ref={containerRef}
-      className="relative w-full h-[140vh] sm:h-[160vh] md:h-[180vh] bg-background border-b border-line"
-      aria-label="Interaktywny wykres wzrostu"
+      aria-label="Wykres ilustrujący wzrost biznesu dzięki nowoczesnej stronie"
+      className="relative w-full py-14 sm:py-20 lg:py-24 border-b border-line bg-surface/35 overflow-hidden"
     >
-      {/* Treść dostępna dla czytników ekranu (A11y & SEO) */}
-      <div className="sr-only">
-        <p>Wykres ilustruje fazy wzrostu firmy dzięki wdrożeniu nowoczesnej strony internetowej:</p>
-        <ol>
-          {MILESTONES.map((m) => (
-            <li key={m.step}>
-              <strong>{m.title}:</strong> {m.desc}
-            </li>
-          ))}
-        </ol>
-      </div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Nagłówek sekcji wyrównany do lewej */}
+        <SectionHeader
+          title="Architektura serwisu a tempo rozwoju firmy"
+          description="Od czystego fundamentu technologicznego i szybkiego ładowania na smartfonach do stałego pozyskiwania wartościowych zapytań ofertowych."
+          align="left"
+        />
 
-      {/* Sticky viewport container (100svh) */}
-      <div className="sticky top-0 h-[100svh] w-full flex flex-col justify-center overflow-clip px-3 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-6xl flex flex-col h-full max-h-[900px] justify-between py-2 sm:py-5 md:py-8">
+        {/* Układ asymetryczny: Lewo Wykres SVG (kol. 1–7), Prawo Lista etapów 01–04 (kol. 8–12) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-8">
           
-          {/* Nagłówek sekcji wyrównany do lewej z przyciskiem szybkiego pominięcia */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-3 max-w-6xl shrink-0 mb-2 sm:mb-5 lg:mb-7">
-            <div className="text-left max-w-2xl">
-              <RevealHeading
-                as="h2"
-                text="Architektura serwisu a tempo rozwoju firmy"
-                className="text-lg sm:text-2xl lg:text-3xl font-bold font-heading tracking-tight text-ink"
-              />
-              <p className="mt-1 text-xs sm:text-sm text-ink-muted leading-relaxed hidden sm:block">
-                Przewiń stronę lub kliknij wybrany etap, aby zobaczyć tempo wzrostu.
-              </p>
+          {/* LEWA KOLUMNA: Wykres SVG w karcie */}
+          <div className="lg:col-span-7 rounded-2xl border border-line bg-card p-4 sm:p-6 lg:p-8 shadow-card flex flex-col justify-between relative overflow-hidden">
+            <div className="flex items-center justify-between border-b border-line/60 pb-3 mb-2 text-xs font-mono text-ink-muted select-none">
+              <span className="font-semibold text-accent-text">Krzywa wzrostu konwersji</span>
+              <span className="text-[10px] uppercase tracking-wider">Ilustracja</span>
             </div>
-            <button
-              type="button"
-              onClick={skipPastChart}
-              className="self-start sm:self-auto text-xs font-mono text-ink-muted hover:text-accent-text transition-colors inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text rounded-md px-2.5 py-1 border border-line bg-surface hover:bg-surface/80 cursor-pointer"
-              aria-label="Pomiń wykres i przejdź do kolejnej sekcji"
-            >
-              <span>Pomiń wykres</span>
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </button>
-          </div>
 
-          {/* Główny układ: Wykres (7 kolumn na md) + Lista etapów (5 kolumn na md) */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-6 lg:gap-8 items-center my-auto">
-            
-            {/* Lewa kolumna: Wykres z symetrycznym paddingiem w karcie */}
-            <div className="md:col-span-7 lg:col-span-8 rounded-2xl border border-line bg-surface/80 shadow-card p-3 sm:p-5 lg:p-7 flex flex-col justify-between relative overflow-hidden">
-              <div className="relative w-full aspect-[16/9] select-none">
-                <svg
-                  viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
-                  className="w-full h-full overflow-visible"
-                  role="img"
-                  aria-label="Wykres zależności rozwoju biznesu od jakości wdrożenia strony"
-                >
-                  <defs>
-                    {/* Gradient pionowy dla wypełnienia pod krzywą */}
-                    <linearGradient id="area-vertical-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.25" />
-                      <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.0" />
-                    </linearGradient>
+            <div className="relative w-full aspect-[16/10] select-none">
+              <svg
+                viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
+                className="w-full h-full overflow-visible select-none"
+                role="img"
+                aria-label="Wykres etapów wzrostu biznesu"
+              >
+                <defs>
+                  <linearGradient id="growth-area-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.22" />
+                    <stop offset="60%" stopColor="var(--accent)" stopOpacity="0.06" />
+                    <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.0" />
+                  </linearGradient>
 
-                    {/* Gradient dla linii głównej */}
-                    <linearGradient id="curve-stroke-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.7" />
-                      <stop offset="100%" stopColor="var(--accent)" stopOpacity="1.0" />
-                    </linearGradient>
+                  <linearGradient id="growth-stroke-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="var(--accent)" stopOpacity="1.0" />
+                  </linearGradient>
+                </defs>
 
-                    {/* Maska z miękką prawą krawędzią synchronizowaną z czubkiem */}
-                    <linearGradient
-                      id="mask-soft-edge"
-                      ref={maskGradRef}
-                      gradientUnits="userSpaceOnUse"
-                      x1={BOUNDS.xMin}
-                      y1="0"
-                      x2={BOUNDS.xMin + 50}
-                      y2="0"
-                    >
-                      <stop offset="0%" stopColor="white" stopOpacity="1" />
-                      <stop offset="100%" stopColor="white" stopOpacity="0" />
-                    </linearGradient>
-
-                    <mask id="soft-reveal-mask">
-                      <rect
-                        x="0"
-                        y="0"
-                        width={VIEWBOX.width}
-                        height={VIEWBOX.height}
-                        fill="url(#mask-soft-edge)"
-                      />
-                    </mask>
-                  </defs>
-
-                  {/* Siatka pomocnicza i osie współrzędnych */}
-                  <GridAndAxes />
-
-                  {/* Linia odniesienia ("Strona bez optymalizacji") */}
-                  <motion.path
-                    d={REFERENCE_PATH_D}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeOpacity="0.3"
-                    strokeWidth="1.75"
-                    strokeDasharray="4 4"
-                    vectorEffect="non-scaling-stroke"
-                    style={{ pathLength: smoothProgress }}
-                  />
-                  <text
-                    x={BOUNDS.xMax}
-                    y={BOUNDS.yBaseline - 25}
-                    textAnchor="end"
-                    className="text-[10px] font-mono fill-ink-muted select-none"
-                  >
-                    Strona bez optymalizacji
-                  </text>
-
-                  {/* Wypełnienie pod krzywą z miękkim zakończeniem */}
-                  <g mask="url(#soft-reveal-mask)">
-                    <path d={AREA_PATH_D} fill="url(#area-vertical-grad)" />
-                  </g>
-
-                  {/* Poświata krzywej (szeroki duplikat o niskim kryciu bez filtrów SVG) */}
-                  <motion.path
-                    d={CURVE_PATH_D}
-                    fill="none"
-                    stroke="var(--accent)"
-                    strokeWidth="8"
-                    strokeOpacity="0.16"
-                    strokeLinecap="round"
-                    vectorEffect="non-scaling-stroke"
-                    style={{ pathLength: smoothProgress }}
-                  />
-
-                  {/* Główna krzywa wzrostu */}
-                  <motion.path
-                    ref={mainPathRef}
-                    d={CURVE_PATH_D}
-                    fill="none"
-                    stroke="url(#curve-stroke-grad)"
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
-                    vectorEffect="non-scaling-stroke"
-                    style={{ pathLength: smoothProgress }}
-                  />
-
-                  {/* Pionowa przerywana linia zrzutowana z kropki na oś X */}
+                {/* Przerywane poziome linie siatki */}
+                {[110, 190, 270].map((y, idx) => (
                   <line
-                    ref={guideLineRef}
+                    key={idx}
+                    x1={BOUNDS.xMin}
+                    y1={y}
+                    x2={BOUNDS.xMax}
+                    y2={y}
                     stroke="currentColor"
+                    strokeOpacity="0.08"
+                    strokeDasharray="4 4"
                     strokeWidth="1"
-                    strokeDasharray="3 3"
-                    className="text-ink-muted/50"
                     vectorEffect="non-scaling-stroke"
                   />
+                ))}
 
-                  {/* Kamienie milowe na wykresie z liniami łączącymi */}
-                  {MILESTONES.map((m, idx) => {
-                    // Wyznaczenie pozycji markera na znormalizowanej krzywej
-                    const targetX = BOUNDS.xMin + (NORMALIZED_POINTS[idx * 3] || NORMALIZED_POINTS[NORMALIZED_POINTS.length - 1]).x * (BOUNDS.xMax - BOUNDS.xMin);
-                    const targetY = BOUNDS.yBaseline - (NORMALIZED_POINTS[idx * 3] || NORMALIZED_POINTS[NORMALIZED_POINTS.length - 1]).y * (BOUNDS.yBaseline - BOUNDS.yTop);
+                {/* Oś X */}
+                <line
+                  x1={BOUNDS.xMin}
+                  y1={BOUNDS.yBaseline}
+                  x2={BOUNDS.xMax}
+                  y2={BOUNDS.yBaseline}
+                  stroke="currentColor"
+                  strokeOpacity="0.25"
+                  strokeWidth="1"
+                  vectorEffect="non-scaling-stroke"
+                />
 
-                    return (
-                      <g
-                        key={m.step}
-                        ref={(el) => { svgMilestonesRef.current[idx] = el; }}
-                        data-state="future"
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => scrollToMilestone(m.threshold)}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            scrollToMilestone(m.threshold);
-                          }
-                        }}
-                        aria-label={`${m.step}. ${m.title}`}
-                        className="transition-all duration-300 group cursor-pointer focus-visible:outline-none"
-                      >
-                        {/* Linia łącząca marker z etykietą (ukryta na mobile dla maksymalnej czytelności) */}
-                        <line
-                          x1={targetX}
-                          y1={targetY}
-                          x2={targetX + m.labelDx}
-                          y2={targetY + m.labelDy + 13}
-                          stroke="currentColor"
-                          strokeDasharray="2 2"
-                          strokeWidth="1"
-                          className="text-line group-data-[state=reached]:text-accent/60 group-hover:text-accent/70 hidden sm:inline transition-colors duration-200"
-                        />
+                {/* Podpisy osi */}
+                <text
+                  x={BOUNDS.xMax}
+                  y={BOUNDS.yBaseline + 22}
+                  textAnchor="end"
+                  className="text-[11px] font-mono font-medium fill-ink-muted select-none"
+                >
+                  Czas →
+                </text>
+                <text
+                  x={BOUNDS.xMin - 12}
+                  y={BOUNDS.yTop + 10}
+                  transform={`rotate(-90 ${BOUNDS.xMin - 12} ${BOUNDS.yTop + 10})`}
+                  textAnchor="end"
+                  className="text-[11px] font-mono font-medium fill-ink-muted select-none hidden sm:inline"
+                >
+                  Wzrost zapytań ↑
+                </text>
 
-                        {/* Punkt na krzywej */}
-                        <circle
-                          cx={targetX}
-                          cy={targetY}
-                          r="4"
-                          className="fill-surface stroke-line stroke-2 group-data-[state=reached]:fill-accent group-data-[state=reached]:stroke-surface group-hover:fill-accent transition-colors duration-200"
-                        />
+                {/* Linia odniesienia ("Strona bez optymalizacji") */}
+                <path
+                  d={REFERENCE_PATH_D}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeOpacity="0.3"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 4"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <text
+                  x={BOUNDS.xMax}
+                  y={BOUNDS.yBaseline - 50}
+                  textAnchor="end"
+                  className="text-[10px] font-mono fill-ink-muted/80 select-none"
+                >
+                  Strona bez optymalizacji
+                </text>
 
-                        {/* Etykieta kamienia milowego (widoczna od sm: w górę) */}
-                        <g transform={`translate(${targetX + m.labelDx}, ${targetY + m.labelDy})`} className="hidden sm:inline">
-                          <rect
-                            x={-m.width / 2}
-                            y="-13"
-                            width={m.width}
-                            height="26"
-                            rx="7"
-                            className="fill-surface stroke-line stroke-1 group-data-[state=reached]:stroke-accent/60 group-hover:stroke-accent/70 transition-colors duration-200"
-                          />
-                          <text
-                            x="0"
-                            y="0"
-                            textAnchor="middle"
-                            dominantBaseline="central"
-                            className="text-[10px] sm:text-[11px] font-heading font-semibold fill-ink group-data-[state=reached]:fill-accent-text group-hover:fill-accent-text leading-none select-none transition-colors duration-200"
-                          >
-                            {m.step}. {m.title}
-                          </text>
-                        </g>
-                      </g>
-                    );
-                  })}
+                {/* Wypełnienie pod krzywą */}
+                <motion.path
+                  d={AREA_PATH_D}
+                  fill="url(#growth-area-gradient)"
+                  initial={{ opacity: 0 }}
+                  animate={animateProgress ? { opacity: 1 } : { opacity: 1 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                />
 
-                  {/* Czubek krzywej: Koralowa kropka z pierścieniem pulsacyjnym - ZAWSZE NA SAMEJ GÓRZE WARSTW */}
-                  <g
-                    ref={tipGroupRef}
-                    data-chart-tip="true"
-                    transform="translate(70.00, 369.30)"
-                    className="pointer-events-none transition-opacity duration-150"
-                  >
-                    <circle
-                      r="14"
-                      className="fill-coral/25 animate-ping motion-reduce:hidden"
-                    />
-                    <circle
-                      r="6"
-                      className="fill-coral stroke-surface stroke-2 shadow-sm"
-                    />
-                  </g>
-                </svg>
-              </div>
-            </div>
+                {/* Główna krzywa wzrostu (rysuje się raz po wejściu w widok) */}
+                <motion.path
+                  d={CURVE_PATH_D}
+                  fill="none"
+                  stroke="url(#growth-stroke-gradient)"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  vectorEffect="non-scaling-stroke"
+                  initial={{ pathLength: 0 }}
+                  animate={animateProgress ? { pathLength: 1 } : { pathLength: 1 }}
+                  transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+                />
 
-            {/* Prawa kolumna: Lista kroków 01-04 z pionowym wskaźnikiem postępu */}
-            <div className="md:col-span-5 lg:col-span-4 flex flex-col justify-between h-full space-y-3 sm:space-y-4 lg:space-y-6 md:pl-2">
-              <div className="relative pl-5 sm:pl-6 space-y-2 sm:space-y-3 lg:space-y-4">
-                {/* Oś pionowa postępu */}
-                <div className="absolute left-2 top-2 bottom-2 w-[2px] bg-line rounded-full overflow-hidden">
-                  <div
-                    ref={verticalProgressRef}
-                    className="w-full bg-accent transition-all duration-75 rounded-full"
-                    style={{ height: "0%" }}
-                  />
-                </div>
-
-                {/* 4 kroki procesu jako interaktywne etapy */}
+                {/* Kamienie milowe na krzywej */}
                 {MILESTONES.map((m, idx) => {
-                  const isActive = activeStepIndex === idx;
+                  const pt = scalePoint({ x: m.xPct, y: m.yPct });
+                  const isSelected = activeStep === idx;
 
                   return (
-                    <button
+                    <g
                       key={m.step}
-                      type="button"
-                      onClick={() => scrollToMilestone(m.threshold)}
-                      ref={(el) => { stepItemsRef.current[idx] = el; }}
-                      className={cn(
-                        "group w-full block text-left transition-all duration-200 rounded-lg p-1.5 sm:p-2 -ml-1.5 sm:-ml-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text cursor-pointer",
-                        isActive ? "translate-x-1 bg-surface/80 shadow-xs" : "hover:bg-surface/40"
-                      )}
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setActiveStep(idx)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setActiveStep(idx);
+                        }
+                      }}
+                      className="cursor-pointer group focus-visible:outline-none"
+                      aria-label={`${m.step}. ${m.title}`}
                     >
-                      <div className="flex items-center gap-2">
-                        <span className={cn(
-                          "font-mono text-xs font-bold transition-colors",
-                          isActive ? "text-accent-text" : "text-ink-muted group-hover:text-ink"
-                        )}>
+                      {/* Pionowa przerywana linia zrzutowana na oś */}
+                      <line
+                        x1={pt.x}
+                        y1={pt.y}
+                        x2={pt.x}
+                        y2={BOUNDS.yBaseline}
+                        stroke="currentColor"
+                        strokeDasharray="2 2"
+                        strokeWidth="1"
+                        className={cn(
+                          "transition-colors duration-200",
+                          isSelected ? "text-accent/70" : "text-line/60 group-hover:text-line"
+                        )}
+                      />
+
+                      {/* Punkt na krzywej */}
+                      <circle
+                        cx={pt.x}
+                        cy={pt.y}
+                        r={isSelected ? 6 : 4.5}
+                        className={cn(
+                          "transition-all duration-200 stroke-2",
+                          isSelected
+                            ? "fill-accent stroke-surface scale-110"
+                            : "fill-surface stroke-accent/80 group-hover:fill-accent"
+                        )}
+                      />
+
+                      {/* Etykieta etapu nad punktem (widoczna na sm+) */}
+                      <g transform={`translate(${pt.x}, ${pt.y - 24})`} className="hidden sm:inline">
+                        <rect
+                          x="-45"
+                          y="-10"
+                          width="90"
+                          height="20"
+                          rx="5"
+                          className={cn(
+                            "stroke-1 transition-colors duration-200",
+                            isSelected
+                              ? "fill-surface stroke-accent shadow-xs"
+                              : "fill-surface/90 stroke-line group-hover:stroke-accent/50"
+                          )}
+                        />
+                        <text
+                          x="0"
+                          y="4"
+                          textAnchor="middle"
+                          className={cn(
+                            "text-[10px] font-mono font-bold select-none transition-colors",
+                            isSelected ? "fill-accent-text" : "fill-ink-muted group-hover:fill-ink"
+                          )}
+                        >
+                          {m.step}. {m.title.split(" ")[0]}
+                        </text>
+                      </g>
+                    </g>
+                  );
+                })}
+
+                {/* Czubek krzywej z koralową kropką i pulsacją */}
+                <g
+                  transform={`translate(${SCALED_POINTS[SCALED_POINTS.length - 1].x}, ${SCALED_POINTS[SCALED_POINTS.length - 1].y})`}
+                  className="pointer-events-none"
+                >
+                  <circle
+                    r="10"
+                    className="fill-coral/20"
+                  />
+                  <circle
+                    r="5.5"
+                    className="fill-coral stroke-surface stroke-2 shadow-sm"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          {/* PRAWA KOLUMNA: Interaktywna lista 4 etapów */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-4 text-left">
+            <div className="space-y-3">
+              {MILESTONES.map((m, idx) => {
+                const isActive = activeStep === idx;
+                return (
+                  <div
+                    key={m.step}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setActiveStep(idx)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setActiveStep(idx);
+                      }
+                    }}
+                    className={cn(
+                      "p-3.5 sm:p-4 rounded-xl border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
+                      isActive
+                        ? "bg-card border-accent/40 shadow-card translate-x-1"
+                        : "bg-surface/30 border-transparent hover:bg-surface/70"
+                    )}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <span
+                          className={cn(
+                            "font-mono text-xs font-bold",
+                            isActive ? "text-accent-text" : "text-ink-muted"
+                          )}
+                        >
                           {m.step}
                         </span>
-                        <h3 className={cn(
-                          "font-heading font-bold text-xs sm:text-sm lg:text-base transition-colors",
-                          isActive ? "text-ink font-extrabold" : "text-ink group-hover:text-accent-text"
-                        )}>
+                        <h3
+                          className={cn(
+                            "font-heading font-bold text-sm sm:text-base leading-tight",
+                            isActive ? "text-ink" : "text-ink/80"
+                          )}
+                        >
                           {m.title}
                         </h3>
                       </div>
-                      <p className={cn(
-                        "mt-0.5 sm:mt-1 text-[11px] sm:text-xs text-ink-muted leading-relaxed max-w-sm transition-all",
-                        isActive ? "block" : "hidden md:block"
-                      )}>
-                        {m.desc}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
+                      <span className="text-[10px] font-mono text-ink-muted uppercase">
+                        Krok 0{idx + 1}
+                      </span>
+                    </div>
+                    <p className="mt-1.5 text-xs text-ink-muted leading-relaxed pl-6">
+                      {m.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
 
-              {/* Końcowe CTA zsynchronizowane z etapami */}
-              <div className="pt-1">
-                <Link href="/kontakt" className="inline-block w-full">
-                  <InteractiveHoverButton className="w-full">
-                    Zaplanujmy Twój wzrost
-                  </InteractiveHoverButton>
-                </Link>
-              </div>
+            {/* CTA pod listą */}
+            <div className="pt-2">
+              <Link href="/kontakt" className="block w-full sm:w-auto">
+                <InteractiveHoverButton className="w-full sm:w-auto">
+                  Zaplanujmy Twój wzrost
+                </InteractiveHoverButton>
+              </Link>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-// Komponent osi i siatki pomocniczej (wspólny dla obu motywów)
-function GridAndAxes() {
-  return (
-    <g className="select-none pointer-events-none">
-      {/* Przerywane poziome linie siatki */}
-      {GRID_Y_LINES.map((y, idx) => (
-        <line
-          key={idx}
-          x1={BOUNDS.xMin}
-          y1={y}
-          x2={BOUNDS.xMax}
-          y2={y}
-          stroke="currentColor"
-          strokeOpacity="0.08"
-          strokeDasharray="4 4"
-          strokeWidth="1"
-          vectorEffect="non-scaling-stroke"
-        />
-      ))}
-
-      {/* Subtelna oś X */}
-      <line
-        x1={BOUNDS.xMin}
-        y1={BOUNDS.yBaseline}
-        x2={BOUNDS.xMax}
-        y2={BOUNDS.yBaseline}
-        stroke="currentColor"
-        strokeOpacity="0.22"
-        strokeWidth="1"
-        vectorEffect="non-scaling-stroke"
-      />
-
-      {/* Podpisy osi */}
-      <text
-        x={BOUNDS.xMax}
-        y={BOUNDS.yBaseline + 20}
-        textAnchor="end"
-        className="text-xs font-mono font-medium fill-ink/80 select-none"
-      >
-        Czas →
-      </text>
-
-      <text
-        x={BOUNDS.xMin - 14}
-        y={BOUNDS.yTop + 10}
-        transform={`rotate(-90 ${BOUNDS.xMin - 14} ${BOUNDS.yTop + 10})`}
-        textAnchor="end"
-        className="text-xs font-mono font-medium fill-ink/80 select-none hidden sm:inline"
-      >
-        Rozwój biznesu →
-      </text>
-    </g>
-  );
-}
-
-// Statyczne definicje dla widoku bez animacji
-function StaticChartDefs() {
-  return (
-    <defs>
-      <linearGradient id="static-area-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.22" />
-        <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.0" />
-      </linearGradient>
-    </defs>
+    </section>
   );
 }

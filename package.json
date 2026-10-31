@@ -11,7 +11,9 @@
     "typecheck": "tsc --noEmit",
     "audit:generator": "node scripts/audit-generator-traces.mjs",
     "audit:seo": "node scripts/deep-seo-audit.mjs",
-    "check:placeholders": "node scripts/check-placeholders.mjs"
+    "check:placeholders": "node scripts/check-placeholders.mjs",
+    "prebuild": "node scripts/generate-clean-code-html.mjs",
+    "predev": "node scripts/generate-clean-code-html.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -40,6 +42,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
+    "shiki": "^4.5.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

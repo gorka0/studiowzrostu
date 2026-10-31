@@ -47,6 +47,12 @@
   --color-coral: var(--coral);
   --color-coral-text: var(--coral-text);
   --color-coral-foreground: var(--coral-foreground);
+  --color-darkband-bg: var(--darkband-bg);
+  --color-darkband-foreground: var(--darkband-foreground);
+  --color-darkband-muted: var(--darkband-muted);
+  --color-darkband-line: var(--darkband-line);
+  --color-darkband-accent: var(--darkband-accent);
+  --color-darkband-accent-text: var(--darkband-accent-text);
 
   /* Własna skala promieni i cieni o szwajcarskim charakterze */
   --radius-subtle: 4px;
@@ -105,6 +111,13 @@
   --coral-text: #B83E0A;
   --coral-foreground: #FFFFFF;
 
+    /* Pas ciemny w motywie jasnym: głęboka zieleń ~#0F2A1F z jasnym tekstem */
+  --darkband-bg: #0F2A1F;
+  --darkband-foreground: #F2F8F4;
+  --darkband-muted: #A3C2B3;
+  --darkband-line: rgba(255, 255, 255, 0.12);
+  --darkband-accent: #2ECC71;
+  --darkband-accent-text: #4ADE9C;
   --radius: 0.75rem;
 }
 
@@ -143,6 +156,13 @@
   --coral: #FF7A45;
   --coral-text: #FF8F5E;
   --coral-foreground: #0B1410;
+  /* Pas ciemny w motywie ciemnym: powierzchnia nieco jaśniejsza od tła z obrysem akcentu */
+  --darkband-bg: #112019;
+  --darkband-foreground: #EDF5F1;
+  --darkband-muted: #9BB3A6;
+  --darkband-line: rgba(46, 204, 113, 0.22);
+  --darkband-accent: #2ECC71;
+  --darkband-accent-text: #4ADE9C;
 }
 
 @layer base {
@@ -232,8 +252,37 @@
     stroke-dashoffset: 1600;
     animation: drawHeroCurve 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  html.js .hero-bg-area {
-    opacity: 0;
-    animation: fadeHeroArea 1.6s ease-out 0.2s forwards;
+}
+
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
+}
+
+/* Shiki dual-theme support for dark mode */
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
 }

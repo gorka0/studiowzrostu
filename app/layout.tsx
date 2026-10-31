@@ -15,14 +15,14 @@ import "./globals.css";
 const fontHeading = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
-  display: "optional",
+  display: "swap",
   preload: true,
 });
 
 const fontSans = Instrument_Sans({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
-  display: "optional",
+  display: "swap",
   preload: true,
 });
 

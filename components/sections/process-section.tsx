@@ -1,7 +1,10 @@
+"use client";
+
 import * as React from "react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeader } from "@/components/ui/section-header";
+import { motion, useInView, useReducedMotion } from "motion/react";
 
 const PROCESS_STEPS = [
   {
@@ -31,16 +34,23 @@ const PROCESS_STEPS = [
 ];
 
 export function ProcessSection() {
+  const sectionRef = React.useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.25 });
+  const shouldReduceMotion = useReducedMotion();
+
+  const animateTimeline = isInView && !shouldReduceMotion;
+
   return (
-    <Section spacing="default" className="bg-surface/50 border-b border-line">
+    <Section ref={sectionRef} spacing="default" className="bg-background border-b border-line">
       <Container>
         <SectionHeader
           title="Przejrzysty proces współpracy w 4 etapach"
           description="Na każdym etapie wiesz dokładnie, co robimy i na czym stoimy. Bez zbędnego żargonu i bez przedłużających się ustaleń."
+          align="left"
         />
 
         {/* Pasek orientacyjnej osi czasu */}
-        <div className="mb-10 p-4 rounded-xl border border-line bg-surface flex flex-col sm:flex-row items-baseline justify-between gap-3 text-xs">
+        <div className="mb-10 sm:mb-14 p-4 rounded-xl border border-line bg-surface/80 flex flex-col sm:flex-row items-baseline justify-between gap-3 text-xs text-left">
           <div className="font-mono text-accent-text font-semibold uppercase tracking-wider">
             Orientacyjna oś czasu: 3–4 dni robocze
           </div>
@@ -49,30 +59,75 @@ export function ProcessSection() {
           </div>
         </div>
 
-        {/* 4 kroki w poziomym układzie architektonicznym z wyraźną numeracją */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* DESKTOP (≥1024px): Pozioma oś czasu z 4 węzłami i linią postępu */}
+        <div className="hidden lg:block relative mt-8 mb-4">
+          {/* Pozioma linia bazowa */}
+          <div className="absolute top-[52px] left-[6%] right-[6%] h-[2px] bg-line/80 z-0">
+            {/* Animowana linia postępu */}
+            <motion.div
+              className="h-full bg-accent"
+              initial={{ width: "0%" }}
+              animate={animateTimeline ? { width: "100%" } : { width: "100%" }}
+              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            />
+          </div>
+
+          <div className="grid grid-cols-4 gap-8 relative z-10">
+            {PROCESS_STEPS.map((step) => (
+              <div key={step.number} className="flex flex-col text-left space-y-4">
+                {/* Nad węzłem: Etykieta dnia (SZKIC do edycji) */}
+                <div className="h-7 flex items-center">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-accent/10 text-accent-text border border-accent/20">
+                    {step.day}
+                  </span>
+                </div>
+
+                {/* Węzeł na linii poziomej */}
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full border-2 border-line bg-card shadow-xs flex items-center justify-center font-mono text-xs font-bold text-ink shrink-0 group-hover:border-accent">
+                    <span className="w-2.5 h-2.5 rounded-full bg-accent" />
+                  </div>
+                  <span className="font-mono text-xs font-bold text-ink-muted/80">
+                    Krok {step.number}
+                  </span>
+                </div>
+
+                {/* Pod węzłem: Tytuł i opis etapu */}
+                <div className="space-y-2 pt-2">
+                  <h3 className="font-heading font-bold text-lg text-ink">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs text-ink-muted leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* MOBILE (<1024px): Pionowa oś czasu z węzłami */}
+        <div className="lg:hidden relative pl-6 border-l-2 border-line/80 space-y-8 text-left mt-6">
           {PROCESS_STEPS.map((step) => (
-            <div
-              key={step.number}
-              className="flex flex-col justify-between border-t border-line pt-6 space-y-4 text-left"
-            >
-              <div className="flex items-baseline justify-between">
-                <span className="font-mono text-2xl font-bold text-accent-text">
-                  {step.number}
-                </span>
-                <span className="font-mono text-xs text-ink-muted">
+            <div key={step.number} className="relative space-y-2">
+              {/* Węzeł na pionowej linii */}
+              <div className="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full border-2 border-surface bg-accent shadow-xs" />
+
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-accent/10 text-accent-text border border-accent/20">
                   {step.day}
+                </span>
+                <span className="font-mono text-xs font-bold text-ink-muted">
+                  Krok {step.number}
                 </span>
               </div>
 
-              <div className="space-y-2">
-                <h3 className="font-heading font-bold text-lg text-ink">
-                  {step.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
+              <h3 className="font-heading font-bold text-base sm:text-lg text-ink">
+                {step.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
+                {step.desc}
+              </p>
             </div>
           ))}
         </div>

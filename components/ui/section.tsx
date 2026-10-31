@@ -3,12 +3,14 @@ import { cn } from "@/lib/utils";
 
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   spacing?: "sm" | "default" | "lg" | "none";
+  ref?: React.Ref<HTMLElement>;
 }
 
 export function Section({
   spacing = "default",
   className,
   children,
+  ref,
   ...props
 }: SectionProps) {
   const spacingClasses = {
@@ -20,6 +22,7 @@ export function Section({
 
   return (
     <section
+      ref={ref}
       className={cn("w-full relative content-auto", spacingClasses[spacing], className)}
       {...props}
     >
