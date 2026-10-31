@@ -62,7 +62,7 @@ export function WhyUsSection() {
       <Container className="relative z-10">
         {/* Nagłówek sekcji wyrównany do lewej */}
         <div className="text-left max-w-2xl mb-10 sm:mb-12">
-          <div className="font-mono text-xs font-semibold uppercase tracking-wider text-darkband-accent-text mb-2">
+          <div className="font-mono text-xs font-medium text-darkband-accent-text mb-2">
             Zasady współpracy
           </div>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl text-darkband-foreground tracking-tight">
@@ -79,11 +79,11 @@ export function WhyUsSection() {
           {/* BLOK 1: Czas realizacji 3–4 dni (szerokość 6/12 na desktopie) */}
           <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 rounded-2xl border border-darkband-line bg-darkband-bg/80 backdrop-blur-xs flex flex-col justify-between space-y-6 text-left">
             <div className="space-y-4">
-              <div className="font-mono text-xs uppercase tracking-wider text-darkband-accent-text font-semibold">
+              <div className="font-mono text-xs text-darkband-accent-text font-medium">
                 01 / Termin wdrożenia
               </div>
 
-              <div className="font-heading font-extrabold text-5xl sm:text-6xl md:text-7xl text-darkband-accent-text tracking-tight leading-none">
+              <div className="font-heading font-medium text-5xl sm:text-6xl md:text-7xl text-darkband-accent-text tracking-tight leading-none tabular-nums">
                 3–4 dni
               </div>
 
@@ -139,11 +139,11 @@ export function WhyUsSection() {
           {/* BLOK 2: Cena z góry (szerokość 6/12 na desktopie) */}
           <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 rounded-2xl border border-darkband-line bg-darkband-bg/80 backdrop-blur-xs flex flex-col justify-between space-y-6 text-left">
             <div className="space-y-4">
-              <div className="font-mono text-xs uppercase tracking-wider text-darkband-accent-text font-semibold">
+              <div className="font-mono text-xs text-darkband-accent-text font-medium">
                 02 / Zasady rozliczeń
               </div>
 
-              <div className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl text-darkband-foreground tracking-tight leading-none pt-2">
+              <div className="font-heading font-medium text-4xl sm:text-5xl md:text-6xl text-darkband-foreground tracking-tight leading-none pt-2 tabular-nums">
                 Cena z góry
               </div>
 
@@ -184,7 +184,7 @@ export function WhyUsSection() {
                 <span className="text-xs font-mono text-darkband-foreground font-semibold">
                   Suma inwestycji:
                 </span>
-                <span className="text-xs font-mono font-bold text-darkband-accent-text uppercase tracking-wider">
+                <span className="text-xs font-mono font-medium text-darkband-accent-text">
                   Ustalona z góry
                 </span>
               </div>

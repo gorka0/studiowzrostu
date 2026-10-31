@@ -102,7 +102,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           {/* 1. Problem klienta */}
           <div className="mt-16 p-8 rounded-2xl border border-line bg-surface space-y-4">
-            <div className="font-mono text-xs uppercase tracking-wider text-accent-text font-semibold">
+            <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
               Wyzwania i bariery wzrostu
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
@@ -165,7 +165,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           {/* 4. Efekty biznesowe (jakościowo) */}
           <div className="mt-20 p-8 sm:p-10 rounded-2xl border border-line bg-surface space-y-6">
-            <div className="font-mono text-xs uppercase tracking-wider text-accent-text font-semibold">
+            <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
               Rezultaty wdrożenia dla firmy
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
@@ -197,7 +197,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <div className="mt-20 pt-10 border-t border-line grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Inne usługi */}
             <div className="p-6 rounded-xl border border-line bg-surface space-y-3">
-              <div className="font-mono text-xs uppercase tracking-wider text-ink-muted">
+              <div className="font-mono text-xs font-mono text-xs font-medium text-ink-muted">
                 Zobacz także
               </div>
               <div className="space-y-2">
@@ -216,7 +216,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             {/* Powiązany artykuł na blogu */}
             <div className="p-6 rounded-xl border border-line bg-surface space-y-3 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="font-mono text-xs uppercase tracking-wider text-accent-text font-semibold">
+                <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
                   Wiedza z bloga
                 </div>
                 {relatedPost && (
@@ -242,7 +242,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             {/* Realizacje / Projekty */}
             <div className="p-6 rounded-xl border border-line bg-surface space-y-3 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="font-mono text-xs uppercase tracking-wider text-accent-text font-semibold">
+                <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
                   Koncepcja wdrożenia
                 </div>
                 <h3 className="font-heading font-bold text-sm sm:text-base text-ink">
@@ -266,7 +266,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           {/* Końcowe CTA usługi */}
           <div className="mt-16 p-8 rounded-2xl border border-line bg-surface text-center space-y-4">
-            <div className="font-mono text-xs uppercase tracking-wider text-accent-text font-semibold">
+            <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
               Realizacja w 3–4 dni robocze • Stała wycena z góry
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">

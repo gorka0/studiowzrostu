@@ -44,7 +44,7 @@ export default function PrivacyPolicyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-12 items-start">
             {/* Spis treści (Sticky Sidebar na desktopie - 4 kolumny) */}
             <aside className="lg:col-span-4 sticky top-24 rounded-2xl border border-border bg-card p-5 space-y-3 hidden lg:block">
-              <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground font-heading flex items-center gap-1.5">
+              <div className="text-xs font-semibold font-medium text-muted-foreground font-heading flex items-center gap-1.5">
                 <Info className="h-4 w-4 text-accent-text" />
                 <span>Spis treści</span>
               </div>

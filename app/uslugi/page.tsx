@@ -40,7 +40,7 @@ export default function ServicesOverviewPage() {
                 <div>
                   <CardHeader className="space-y-3">
                     <div className="flex items-center justify-between text-xs font-mono text-ink-muted">
-                      <span className="text-accent-text font-semibold uppercase tracking-wider">Dedykowane wdrożenie</span>
+                      <span className="text-accent-text font-semibold font-mono text-xs font-medium">Dedykowane wdrożenie</span>
                       <span>Next.js / React</span>
                     </div>
 

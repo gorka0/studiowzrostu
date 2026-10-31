@@ -92,7 +92,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
       setSubmitStatus("success");
       setStatusMessage(
         result.message ||
-          "Dziękujemy za wiadomość! Odpowiemy na Twoje zapytanie w ciągu 24 godzin."
+          "Dziękujemy za wiadomość. Odpowiemy na Twoje zapytanie w ciągu 24 godzin."
       );
       reset();
       fetchFreshToken();
@@ -122,7 +122,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           <>
             <CheckCircle2 className="h-5 w-5 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold">Wiadomość została wysłana!</div>
+              <div className="font-bold">Wiadomość została wysłana.</div>
               <div className="text-xs sm:text-sm mt-0.5">{statusMessage}</div>
             </div>
           </>
@@ -311,7 +311,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           <Button
             type="submit"
             disabled={submitStatus === "submitting"}
-            className="w-full sm:w-auto min-w-[200px] h-11 px-8 rounded-xl font-semibold bg-accent-text text-white hover:bg-accent transition-all cursor-pointer shadow-xs"
+            className="w-full sm:w-auto min-w-[200px] h-11 px-8 rounded-xl font-medium bg-accent-text text-white hover:bg-accent transition-colors duration-150 cursor-pointer shadow-xs active:scale-[0.98]"
           >
             {submitStatus === "submitting" ? (
               <span className="flex items-center gap-2">
@@ -351,7 +351,7 @@ export function ContactInfoBlock() {
             <Phone className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Telefon</div>
+            <div className="text-xs font-mono text-muted-foreground font-medium">Telefon</div>
             <div className="font-medium text-foreground">{siteConfig.contact.phone}</div>
           </div>
         </a>
@@ -361,7 +361,7 @@ export function ContactInfoBlock() {
             <Clock className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Czas odpowiedzi</div>
+            <div className="text-xs font-mono text-muted-foreground font-medium">Czas odpowiedzi</div>
             <div className="font-medium text-foreground">Maksymalnie 24 godziny</div>
           </div>
         </div>
@@ -371,7 +371,7 @@ export function ContactInfoBlock() {
             <MapPin className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Obszar działania</div>
+            <div className="text-xs font-mono text-muted-foreground font-medium">Obszar działania</div>
             <div className="text-xs text-foreground font-medium leading-relaxed mt-0.5">
               Współpraca w 100% zdalna: Cała Polska
             </div>

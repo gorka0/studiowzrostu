@@ -96,7 +96,7 @@ export function CopyEmailButton({
         title="Kliknij, aby skopiować adres e-mail do schowka"
         aria-label={`Skopiuj adres e-mail ${email} do schowka`}
         className={cn(
-          "w-full flex items-center gap-3 p-3 rounded-xl border transition-all duration-200 group text-left cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+          "w-full flex items-center gap-3 p-3 rounded-xl border transition-colors duration-150 group text-left cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
           isCopied
             ? "border-accent bg-accent/5 ring-1 ring-accent/30"
             : "border-border/80 bg-background hover:border-accent hover:bg-surface-subtle",
@@ -106,7 +106,7 @@ export function CopyEmailButton({
       >
         <div
           className={cn(
-            "h-9 w-9 rounded-lg flex items-center justify-center transition-all duration-200 shrink-0",
+            "h-9 w-9 rounded-lg flex items-center justify-center transition-colors duration-150 shrink-0",
             isCopied
               ? "bg-accent text-accent-foreground scale-105"
               : "bg-accent/10 text-accent-text group-hover:scale-105"
@@ -120,12 +120,12 @@ export function CopyEmailButton({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2">
-            <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+            <span className="text-xs font-mono text-muted-foreground font-medium">
               E-mail
             </span>
             {isCopied && (
               <span className="text-[11px] font-mono text-accent-text font-semibold animate-in fade-in duration-200">
-                Skopiowano!
+                Skopiowano
               </span>
             )}
           </div>
@@ -169,11 +169,11 @@ export function CopyEmailButton({
         <span className="group-hover:underline">{email}</span>
         <span
           className={cn(
-            "text-[10px] font-mono px-2 py-0.5 rounded bg-accent/10 text-accent-text border border-accent/20 transition-all duration-200",
+            "text-[10px] font-mono px-2 py-0.5 rounded bg-accent/10 text-accent-text border border-accent/20 transition-colors duration-150",
             isCopied ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
           )}
         >
-          Skopiowano!
+          Skopiowano
         </span>
         <span role="status" aria-live="polite" className="sr-only">
           {isCopied ? "Skopiowano adres e-mail do schowka" : ""}
@@ -199,7 +199,7 @@ export function CopyEmailButton({
         <span>{email}</span>
         {isCopied && (
           <span className="text-[11px] font-mono text-accent-text animate-in fade-in duration-200">
-            (Skopiowano!)
+            (Skopiowano)
           </span>
         )}
         <span role="status" aria-live="polite" className="sr-only">
@@ -217,7 +217,7 @@ export function CopyEmailButton({
       aria-label={`Skopiuj adres e-mail ${email} do schowka`}
       className={cn(
         "inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl border border-line bg-surface text-ink text-xs sm:text-sm font-medium",
-        "hover:border-accent hover:bg-surface-subtle transition-all duration-200 cursor-pointer select-none group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+        "hover:border-accent hover:bg-surface-subtle transition-colors duration-150 cursor-pointer select-none group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
         isCopied && "border-accent bg-accent/5",
         className
       )}
@@ -245,7 +245,7 @@ export function CopyEmailButton({
             isCopied ? "opacity-100" : "opacity-0 pointer-events-none select-none"
           )}
         >
-          Skopiowano adres e-mail!
+          Skopiowano adres e-mail.
         </span>
       </span>
       <span role="status" aria-live="polite" className="sr-only">

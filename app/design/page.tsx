@@ -185,7 +185,7 @@ export default function DesignPage() {
 
             {/* Badges & Eyebrows */}
             <div className="space-y-3">
-              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Eyebrows & Etykiety</h4>
+              <h4 className="text-sm font-medium text-muted-foreground font-mono">Eyebrows i etykiety</h4>
               <div className="flex flex-wrap items-center gap-3">
                 <Eyebrow variant="growth">Nowość w ofercie</Eyebrow>
                 <Eyebrow variant="coral">Rekomendowane rozwiązanie</Eyebrow>
@@ -199,7 +199,7 @@ export default function DesignPage() {
 
             {/* Przyciski standardowe i interaktywne */}
             <div className="space-y-3 pt-4 border-t border-border">
-              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Przyciski</h4>
+              <h4 className="text-sm font-medium text-muted-foreground font-mono">Przyciski</h4>
               <div className="flex flex-wrap items-center gap-4">
                 <Button size="default" className="rounded-full bg-primary text-accent-text-foreground hover:bg-primary/90">
                   <span>Rozpocznij projekt</span>
@@ -259,7 +259,7 @@ export default function DesignPage() {
               </Card>
 
               <Card className="border-primary/30 relative overflow-hidden">
-                <div className="absolute top-0 right-0 px-3 py-1 bg-primary text-accent-text-foreground text-[10px] font-bold rounded-bl-xl uppercase tracking-wider">
+                <div className="absolute top-0 right-0 px-2.5 py-0.5 bg-primary text-accent-text-foreground text-[10px] font-mono font-medium rounded-bl-lg">
                   Popularne
                 </div>
                 <CardHeader>

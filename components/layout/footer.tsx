@@ -29,7 +29,7 @@ export function Footer() {
 
           {/* Kolumna 2: Nawigacja */}
           <div className="space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-wider text-foreground font-heading">
+            <div className="text-xs font-medium text-foreground font-heading">
               Studio
             </div>
             <ul className="space-y-2 text-sm text-muted-foreground">
@@ -63,7 +63,7 @@ export function Footer() {
 
           {/* Kolumna 3: Kontakt (wyłącznie z site.config) */}
           <div className="space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-wider text-foreground font-heading">
+            <div className="text-xs font-medium text-foreground font-heading">
               Kontakt
             </div>
             <ul className="space-y-2 text-sm text-muted-foreground">
@@ -88,7 +88,7 @@ export function Footer() {
 
           {/* Kolumna 4: Informacje prawne i cookies */}
           <div className="space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-wider text-foreground font-heading">
+            <div className="text-xs font-medium text-foreground font-heading">
               Prawne
             </div>
             <ul className="space-y-2 text-sm text-muted-foreground">

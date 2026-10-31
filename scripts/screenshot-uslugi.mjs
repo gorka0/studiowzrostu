@@ -1,42 +1,83 @@
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const { chromium } = require("d:/home/strony/studio-wzrostu-concepts/node_modules/playwright");
+import fs from "fs";
+import { spawn } from "child_process";
 
-async function capture() {
-  const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext({
-    viewport: { width: 1440, height: 900 },
-    deviceScaleFactor: 2,
+const CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+const PORT = 9230;
+
+async function main() {
+  const p = spawn(CHROME_PATH, [
+    "--headless=new",
+    "--disable-gpu",
+    `--remote-debugging-port=${PORT}`,
+    "about:blank",
+  ]);
+
+  await new Promise((r) => setTimeout(r, 1500));
+  const res = await fetch(`http://127.0.0.1:${PORT}/json/version`);
+  const { webSocketDebuggerUrl } = await res.json();
+  const ws = new WebSocket(webSocketDebuggerUrl);
+  await new Promise((r) => (ws.onopen = r));
+
+  let id = 1;
+  const send = (method, params = {}) =>
+    new Promise((resolve, reject) => {
+      const curId = id++;
+      const h = (evt) => {
+        const msg = JSON.parse(evt.data);
+        if (msg.id === curId) {
+          ws.removeEventListener("message", h);
+          if (msg.error) reject(msg.error);
+          else resolve(msg.result);
+        }
+      };
+      ws.addEventListener("message", h);
+      ws.send(JSON.stringify({ id: curId, method, params }));
+    });
+
+  const t = await send("Target.createTarget", { url: "about:blank" });
+  const pageWs = new WebSocket(`ws://127.0.0.1:${PORT}/devtools/page/${t.targetId}`);
+  await new Promise((r) => (pageWs.onopen = r));
+
+  let pageId = 1;
+  const pageSend = (method, params = {}) =>
+    new Promise((resolve, reject) => {
+      const curId = pageId++;
+      const h = (evt) => {
+        const msg = JSON.parse(evt.data);
+        if (msg.id === curId) {
+          pageWs.removeEventListener("message", h);
+          if (msg.error) reject(msg.error);
+          else resolve(msg.result);
+        }
+      };
+      pageWs.addEventListener("message", h);
+      pageWs.send(JSON.stringify({ id: curId, method, params }));
+    });
+
+  await pageSend("Page.enable");
+  await pageSend("DOM.enable");
+  await pageSend("Emulation.setDeviceMetricsOverride", {
+    width: 1440,
+    height: 1000,
+    deviceScaleFactor: 1,
+    mobile: false,
   });
-  const page = await context.newPage();
-  await page.goto("http://localhost:3000/uslugi", { waitUntil: "networkidle" });
-  
-  // Zaakceptuj cookies żeby nie zasłaniały widoku
-  const acceptBtn = page.locator("button:has-text('Akceptuj wszystkie')");
-  if (await acceptBtn.isVisible()) {
-    await acceptBtn.click();
-    await page.waitForTimeout(500);
-  }
-  
-  // Znajdź pierwszą kartę usługi
-  const card = page.locator("main .grid > div").first();
-  await card.scrollIntoViewIfNeeded();
-  
-  const footer = card.locator(".border-t");
-  await footer.screenshot({ path: "C:/Users/tomek/.gemini/antigravity/brain/0205575c-fb82-4d99-a6a2-6b4502c090c5/fixed-footer-crop.png" });
-  await card.screenshot({ path: "C:/Users/tomek/.gemini/antigravity/brain/0205575c-fb82-4d99-a6a2-6b4502c090c5/fixed-card-full.png" });
 
-  // Blog card
-  await page.goto("http://localhost:3000/blog", { waitUntil: "networkidle" });
-  const blogCard = page.locator("main .grid > div").first();
-  await blogCard.scrollIntoViewIfNeeded();
-  await blogCard.screenshot({ path: "C:/Users/tomek/.gemini/antigravity/brain/0205575c-fb82-4d99-a6a2-6b4502c090c5/fixed-blog-card.png" });
+  await pageSend("Page.navigate", { url: "http://localhost:3000" });
+  await new Promise((r) => setTimeout(r, 2500));
 
-  console.log("Screenshots captured!");
-  await browser.close();
+  await pageSend("Runtime.evaluate", {
+    expression: "document.querySelector('#uslugi').scrollIntoView({ behavior: 'instant', block: 'start' });",
+  });
+  await new Promise((r) => setTimeout(r, 1000));
+
+  const shot = await pageSend("Page.captureScreenshot", { format: "png" });
+  fs.writeFileSync("screenshots/uslugi-scrolled-viewport.png", Buffer.from(shot.data, "base64"));
+  console.log("Saved screenshots/uslugi-scrolled-viewport.png, size:", fs.statSync("screenshots/uslugi-scrolled-viewport.png").size);
+
+  ws.close();
+  pageWs.close();
+  p.kill();
 }
 
-capture().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+main();

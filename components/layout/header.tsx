@@ -46,10 +46,10 @@ export function Header() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header className="sticky top-3 sm:top-4 z-40 w-full px-3 sm:px-6 transition-all duration-300">
+    <header className="sticky top-3 sm:top-4 z-40 w-full px-3 sm:px-6 transition-colors duration-150">
       <div
         className={cn(
-          "mx-auto max-w-5xl rounded-full border transition-all duration-300",
+          "mx-auto max-w-5xl rounded-full border transition-colors duration-150",
           "px-3.5 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between",
           isScrolled
             ? "border-border/90 bg-background/90 shadow-sm backdrop-blur-md"
@@ -95,7 +95,7 @@ export function Header() {
           {/* Desktop CTA */}
           <Link
             href="/kontakt"
-            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-xs h-8 bg-accent-text text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-all shadow-xs"
+            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-medium text-xs h-8 bg-accent-text text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-colors duration-150 shadow-xs"
           >
             <span>Wycena</span>
             <ArrowUpRight className="ml-1 h-3.5 w-3.5" />

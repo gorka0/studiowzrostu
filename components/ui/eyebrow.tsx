@@ -29,7 +29,7 @@ export function Eyebrow({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-semibold tracking-wide uppercase select-none transition-colors",
+        "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md border text-xs font-mono font-medium select-none transition-colors",
         variantStyles[variant],
         className
       )}
@@ -37,7 +37,7 @@ export function Eyebrow({
     >
       {withDot && (
         <span
-          className={cn("h-1.5 w-1.5 rounded-full animate-pulse", dotColors[variant])}
+          className={cn("h-1.5 w-1.5 rounded-full shrink-0", dotColors[variant])}
           aria-hidden="true"
         />
       )}

@@ -51,7 +51,7 @@ export function ProcessSection() {
 
         {/* Pasek orientacyjnej osi czasu */}
         <div className="mb-10 sm:mb-14 p-4 rounded-xl border border-line bg-surface/80 flex flex-col sm:flex-row items-baseline justify-between gap-3 text-xs text-left">
-          <div className="font-mono text-accent-text font-semibold uppercase tracking-wider">
+          <div className="font-mono text-xs font-medium text-accent-text">
             Orientacyjna oś czasu: 3–4 dni robocze
           </div>
           <div className="text-ink-muted">

@@ -79,7 +79,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
             {/* Nagłówek artykułu */}
             <header className="space-y-5 border-b border-line pb-8">
               <div className="flex items-center gap-2 text-xs font-mono">
-                <span className="text-accent-text font-semibold uppercase tracking-wider">
+                <span className="text-accent-text font-semibold font-mono text-xs font-medium">
                   {post.category}
                 </span>
                 <span className="text-ink-muted">•</span>

@@ -81,11 +81,10 @@ export function CtaSection() {
         {/* Koralowy punkt zwieńczenia z pulsacją - po prawej stronie na szczycie */}
         <div className="absolute top-[8%] right-[4%] sm:right-[6%] flex items-center gap-2">
           <span className="relative flex h-3.5 w-3.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-coral opacity-75" />
-            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-coral shadow-md" />
+            <span className="relative inline-flex rounded-full size-2.5 bg-coral shadow-xs" />
           </span>
-          <span className="text-[11px] font-mono text-darkband-accent-text uppercase tracking-wider font-bold hidden sm:inline">
-            Cel: Stały wzrost
+          <span className="text-xs font-mono text-darkband-accent-text font-medium hidden sm:inline">
+            Cel: stały wzrost
           </span>
         </div>
       </div>
@@ -98,7 +97,7 @@ export function CtaSection() {
           <div className="lg:col-span-5 text-left space-y-6">
             <div className="space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-darkband-line bg-darkband-bg/80 text-[11px] font-mono font-semibold text-darkband-accent-text">
-                <span className="w-1.5 h-1.5 rounded-full bg-darkband-accent animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-darkband-accent" />
                 Darmowa konsultacja techniczna
               </div>
 

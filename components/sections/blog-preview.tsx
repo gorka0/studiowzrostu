@@ -22,7 +22,7 @@ function BlogCoverIllustration({ slug }: { slug: string }) {
 
         {/* Duża typografia liczbowa */}
         <svg className="relative z-10 w-24 h-16 select-none pointer-events-none" viewBox="0 0 100 60" aria-hidden="true">
-          <text x="0" y="52" className="font-heading font-black text-6xl fill-ink/20 tracking-tighter select-none">
+          <text x="0" y="52" className="font-heading font-medium text-5xl fill-ink/15 tracking-tight tabular-nums select-none">
             01
           </text>
         </svg>
@@ -51,7 +51,7 @@ function BlogCoverIllustration({ slug }: { slug: string }) {
         </svg>
 
         <svg className="relative z-10 w-24 h-16 select-none pointer-events-none" viewBox="0 0 100 60" aria-hidden="true">
-          <text x="0" y="52" className="font-heading font-black text-6xl fill-ink/20 tracking-tighter select-none">
+          <text x="0" y="52" className="font-heading font-medium text-5xl fill-ink/15 tracking-tight tabular-nums select-none">
             02
           </text>
         </svg>
@@ -79,7 +79,7 @@ function BlogCoverIllustration({ slug }: { slug: string }) {
       </svg>
 
       <svg className="relative z-10 w-24 h-16 select-none pointer-events-none" viewBox="0 0 100 60" aria-hidden="true">
-        <text x="0" y="52" className="font-heading font-black text-6xl fill-ink/20 tracking-tighter select-none">
+        <text x="0" y="52" className="font-heading font-medium text-5xl fill-ink/15 tracking-tight tabular-nums select-none">
           03
         </text>
       </svg>
@@ -125,7 +125,7 @@ export function BlogPreviewSection() {
           {latestPosts.map((post) => (
             <article
               key={post.slug}
-              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-card hover:border-accent/60 transition-all duration-200 shadow-card text-left"
+              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-card hover:border-accent/60 transition-colors duration-150 shadow-card text-left"
             >
               <div>
                 {/* Okładka typograficzna SVG/CSS */}
@@ -133,7 +133,7 @@ export function BlogPreviewSection() {
 
                 <div className="p-5 sm:p-6 space-y-3">
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-accent-text font-semibold uppercase tracking-wider">
+                    <span className="text-accent-text font-mono text-xs font-medium">
                       {post.category}
                     </span>
                     <div className="flex items-center gap-1.5 text-ink-muted">

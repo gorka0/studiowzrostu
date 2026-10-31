@@ -107,7 +107,7 @@ export function AudienceSection() {
                   onClick={() => setActiveTab(idx)}
                   onKeyDown={(e) => handleKeyDown(e, idx)}
                   className={cn(
-                    "flex items-start gap-3.5 p-4 rounded-xl text-left transition-all duration-200 border cursor-pointer shrink-0 lg:shrink w-[260px] sm:w-[280px] lg:w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
+                    "flex items-start gap-3.5 p-4 rounded-xl text-left transition-colors duration-150 border cursor-pointer shrink-0 lg:shrink w-[260px] sm:w-[280px] lg:w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
                     isSelected
                       ? "bg-surface border-accent/40 shadow-xs translate-x-0 lg:translate-x-1"
                       : "bg-surface/30 border-transparent hover:bg-surface/70 text-ink-muted hover:text-ink"
@@ -147,7 +147,7 @@ export function AudienceSection() {
               {/* Opis i Kluczowy rezultat */}
               <div className="space-y-4 text-left">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-xs font-bold text-accent-text uppercase tracking-wider">
+                  <span className="font-mono text-xs font-medium text-accent-text">
                     {currentSegment.number} / Profil klienta
                   </span>
                 </div>
@@ -159,7 +159,7 @@ export function AudienceSection() {
                 </p>
 
                 <div className="pt-4 border-t border-line/70">
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-ink-muted mb-1">
+                  <div className="text-[11px] font-mono text-ink-muted mb-1">
                     Kluczowy rezultat wdrożenia
                   </div>
                   <p className="text-sm text-ink font-semibold leading-relaxed">
@@ -172,7 +172,7 @@ export function AudienceSection() {
               <div className="mt-2 pt-4 border-t border-line/60">
                 <div className="flex items-center justify-between mb-3 text-[11px] font-mono text-ink-muted">
                   <span>Dedykowana struktura makiety</span>
-                  <span className="text-[10px] uppercase tracking-wider text-accent-text font-bold">
+                  <span className="text-[11px] font-mono text-accent-text font-medium">
                     Wireframe CSS
                   </span>
                 </div>

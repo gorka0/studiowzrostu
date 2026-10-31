@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
-import { Check } from "lucide-react";
 import { HIGHLIGHTED_CODE_HTML } from "@/content/clean-code-html";
 
 export function CleanCodeSection() {
@@ -12,7 +11,7 @@ export function CleanCodeSection() {
           
           {/* LEWA KOLUMNA (kol. 1–5): Szkic copy powiązany z hasłem z hero */}
           <div className="lg:col-span-5 text-left space-y-4">
-            <div className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-text">
+            <div className="font-mono text-xs font-medium text-accent-text">
               Fundament technologiczny
             </div>
 
@@ -28,21 +27,7 @@ export function CleanCodeSection() {
               W efekcie Twoja strona jest bezpieczna, błyskawiczna w renderowaniu i łatwa w utrzymaniu przez lata – bez ryzyka awarii przy aktualizacjach.
             </p>
 
-            {/* 3 zwięzłe fakty */}
-            <div className="pt-2 space-y-2 text-xs font-mono text-ink">
-              <div className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-accent shrink-0" />
-                <span>Zero ciężkich wtyczek spowalniających bazę</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-accent shrink-0" />
-                <span>Semantyczny HTML5 z pełnym wsparciem A11y</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-accent shrink-0" />
-                <span>100% praw autorskich do czystego kodu projektu</span>
-              </div>
-            </div>
+            
           </div>
 
           {/* PRAWA KOLUMNA (kol. 6–12): Okno edytora kodu z podświetleniem Shiki */}
@@ -59,7 +44,7 @@ export function CleanCodeSection() {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-accent-text font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-accent/10 border border-accent/20">
+                  <span className="text-[11px] font-mono text-accent-text font-medium px-2 py-0.5 rounded bg-accent/10 border border-accent/20">
                     TypeScript
                   </span>
                 </div>

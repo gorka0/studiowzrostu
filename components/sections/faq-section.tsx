@@ -45,7 +45,7 @@ export function FaqSection() {
           
           {/* LEWA KOLUMNA: Sticky (kol. 1–5) */}
           <div className="lg:col-span-5 text-left lg:sticky lg:top-24 space-y-4">
-            <div className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-text">
+            <div className="font-mono text-xs font-medium text-accent-text">
               Najczęstsze pytania (FAQ)
             </div>
 
@@ -107,7 +107,7 @@ export function FaqSection() {
                     role="region"
                     aria-labelledby={buttonId}
                     className={cn(
-                      "grid transition-all duration-200 ease-in-out px-2",
+                      "grid transition-[grid-template-rows] duration-150 ease-out px-2",
                       isOpen ? "grid-rows-[1fr] opacity-100 pb-4" : "grid-rows-[0fr] opacity-0"
                     )}
                   >

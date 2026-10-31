@@ -92,7 +92,7 @@ function ServiceIllustration({ slug }: { slug: string }) {
         <text
           x="20"
           y="54"
-          className="font-mono text-[8px] font-bold uppercase tracking-wider fill-accent-text"
+          className="font-mono text-[8.5px] font-medium fill-accent-text"
         >
           DEDYKOWANY SERWIS WWW · NEXT.JS
         </text>
@@ -196,7 +196,7 @@ function ServiceIllustration({ slug }: { slug: string }) {
 
         {/* Górny pasek kontekstu */}
         <line x1="1" y1="28" x2="379" y2="28" stroke="var(--line)" strokeWidth="1" />
-        <text x="16" y="18" className="font-mono text-[8px] font-bold uppercase tracking-wider fill-accent-text">
+        <text x="16" y="18" className="font-mono text-[8.5px] font-medium fill-accent-text">
           LEJEK KAMPANII ADS ➔ LANDING PAGE
         </text>
         <rect x="286" y="6" width="78" height="16" rx="3" fill="color-mix(in oklab, var(--accent) 12%, transparent)" stroke="var(--accent)" strokeWidth="1" />
@@ -274,17 +274,17 @@ function ServiceIllustration({ slug }: { slug: string }) {
           {/* Metryka 1 */}
           <rect width="108" height="42" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
           <text x="12" y="16" className="font-mono text-[7.5px] fill-ink-muted">Średnia konwersja</text>
-          <text x="12" y="32" className="font-mono text-[14px] font-black fill-accent-text">+34%</text>
+          <text x="12" y="32" className="font-mono text-[14px] font-medium fill-accent-text tabular-nums">+34%</text>
 
           {/* Metryka 2 */}
           <rect x="120" width="112" height="42" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
           <text x="132" y="16" className="font-mono text-[7.5px] fill-ink-muted">Koszt leada (CPA)</text>
-          <text x="132" y="32" className="font-mono text-[14px] font-black fill-accent-text">-42%</text>
+          <text x="132" y="32" className="font-mono text-[14px] font-medium fill-accent-text tabular-nums">-42%</text>
 
           {/* Metryka 3 */}
           <rect x="244" width="108" height="42" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--background)" />
           <text x="256" y="16" className="font-mono text-[7.5px] fill-ink-muted">Czas ładowania</text>
-          <text x="256" y="32" className="font-mono text-[14px] font-black fill-accent-text">0.4s</text>
+          <text x="256" y="32" className="font-mono text-[14px] font-medium fill-accent-text tabular-nums">0.4s</text>
         </g>
       </svg>
     );
@@ -312,7 +312,7 @@ function ServiceIllustration({ slug }: { slug: string }) {
 
         {/* Belka Google Search Console */}
         <line x1="1" y1="28" x2="379" y2="28" stroke="var(--line)" strokeWidth="1" />
-        <text x="16" y="18" className="font-mono text-[8px] font-bold uppercase tracking-wider fill-accent-text">
+        <text x="16" y="18" className="font-mono text-[8.5px] font-medium fill-accent-text">
           GOOGLE SEARCH CONSOLE · AUDYT SEO
         </text>
         <rect x="296" y="6" width="68" height="16" rx="3" fill="color-mix(in oklab, var(--accent) 12%, transparent)" stroke="var(--accent)" strokeWidth="1" />
@@ -346,7 +346,7 @@ function ServiceIllustration({ slug }: { slug: string }) {
               Dedykowane strony firmowe w czystym Next.js. Błyskawiczny czas ładowania poniżej 1s,
             </text>
             <text x="0" y="68" className="font-sans text-[8px] fill-ink-muted leading-tight">
-              pełne techniczne SEO i wysoka konwersja dla firm z całej Polski. Zamów wycenę!
+              pełne techniczne SEO i wysoka konwersja dla firm z całej Polski. Zamów wycenę.
             </text>
           </g>
         </g>
@@ -408,7 +408,7 @@ function ServiceIllustration({ slug }: { slug: string }) {
 
       {/* Belka tytułowa */}
       <line x1="1" y1="28" x2="379" y2="28" stroke="var(--line)" strokeWidth="1" />
-      <text x="16" y="18" className="font-mono text-[8px] font-bold uppercase tracking-wider fill-accent-text">
+      <text x="16" y="18" className="font-mono text-[8.5px] font-medium fill-accent-text">
         ARCHITEKTURA PRZED I PO
       </text>
       <rect x="282" y="6" width="82" height="16" rx="3" fill="color-mix(in oklab, var(--accent) 12%, transparent)" stroke="var(--accent)" strokeWidth="1" />
@@ -486,7 +486,7 @@ function ServiceIllustration({ slug }: { slug: string }) {
         <circle cx="15" cy="15" r="4.5" fill="var(--accent)" />
         <path d="M 13 15 l 1.5 1.5 l 3 -3" stroke="white" strokeWidth="1" fill="none" />
         <text x="26" y="18.5" className="font-mono text-[8px] font-bold fill-ink">
-          Gwarancja zachowania pozycji w Google: <tspan className="fill-accent-text font-black">Pełna mapa przekierowań 301</tspan>
+          Gwarancja zachowania pozycji w Google: <tspan className="fill-accent-text font-medium">Pełna mapa przekierowań 301</tspan>
         </text>
       </g>
     </svg>
@@ -525,7 +525,7 @@ export function ServicesBento() {
                   onPointerEnter={() => setHoveredIdx(idx)}
                   onClick={() => setHoveredIdx(idx)}
                   className={cn(
-                    "group transition-all duration-200 text-left cursor-pointer",
+                    "group transition-colors duration-150 text-left cursor-pointer",
                     isHovered ? "bg-surface/80" : "hover:bg-surface/40"
                   )}
                 >
@@ -578,7 +578,7 @@ export function ServicesBento() {
                           {service.tagline}
                         </div>
                         <div className="space-y-1.5 pt-1">
-                          <div className="text-[11px] font-mono text-ink-muted uppercase tracking-wider font-semibold">
+                          <div className="text-[11px] font-mono text-ink-muted font-medium">
                             W ramach wdrożenia:
                           </div>
                           {service.solution.deliverables.slice(0, 3).map((item) => (
@@ -609,7 +609,7 @@ export function ServicesBento() {
               {/* Belka informacyjna konsoli */}
               <div className="flex items-center justify-between px-5 py-3 border-b border-line bg-surface-subtle/50 text-xs font-mono">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                   <span className="text-accent-text font-bold">
                     SCHEMAT // 0{hoveredIdx + 1}
                   </span>
@@ -618,7 +618,7 @@ export function ServicesBento() {
                     {activeService.title}
                   </span>
                 </div>
-                <span className="text-[10px] uppercase tracking-wider text-ink-muted font-bold shrink-0">
+                <span className="text-[11px] font-mono text-ink-muted shrink-0">
                   ARCHITEKTURA
                 </span>
               </div>
@@ -644,7 +644,7 @@ export function ServicesBento() {
 
                 {/* Kluczowe elementy wdrożenia */}
                 <div className="pt-2 border-t border-line/60 space-y-2">
-                  <div className="text-[10.5px] font-mono text-ink-muted uppercase tracking-wider font-semibold">
+                  <div className="text-[11px] font-mono text-ink-muted font-medium">
                     Kluczowe elementy wdrożenia:
                   </div>
                   <div className="grid grid-cols-1 gap-1.5">

@@ -48,14 +48,14 @@ export function PerformanceSection() {
         <div className="mt-8 rounded-2xl border border-line bg-card p-5 sm:p-8 shadow-card text-left space-y-6">
           <div className="flex items-center justify-between border-b border-line/70 pb-3 text-xs font-mono text-ink-muted">
             <span className="font-semibold text-ink">Porównanie szybkości renderowania w smartfonie</span>
-            <span className="text-[10px] uppercase text-accent-text tracking-wider">Ilustracja</span>
+            <span className="text-[11px] font-mono text-ink-muted">Ilustracja</span>
           </div>
 
           <div className="space-y-6 overflow-x-auto no-scrollbar pb-2" aria-hidden="true">
             
             {/* Rząd 1: Szybka strona (Studio Wzrostu - Next.js) */}
             <div className="space-y-2 min-w-[580px]">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold text-accent-text">
+              <div className="flex items-center gap-2 text-xs font-mono font-medium text-accent-text">
                 <Zap className="h-4 w-4 text-accent shrink-0" />
                 <span>Szybka strona (Next.js / czysty kod) — treść widoczna od klatki 1</span>
               </div>
@@ -83,7 +83,7 @@ export function PerformanceSection() {
                       </div>
                     </div>
                     {/* Status badge */}
-                    <div className="text-[8px] font-mono text-accent-text font-bold text-right">
+                    <div className="text-[8px] font-mono text-accent-text text-right font-medium">
                       {frame === 1 ? "Start" : "100% gotowa"}
                     </div>
                   </motion.div>
@@ -93,7 +93,7 @@ export function PerformanceSection() {
 
             {/* Rząd 2: Wolna strona (tradycyjny szablon) */}
             <div className="space-y-2 min-w-[580px] pt-2 border-t border-line/60">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold text-ink-muted">
+              <div className="flex items-center gap-2 text-xs font-mono font-medium text-ink-muted">
                 <AlertTriangle className="h-4 w-4 text-coral shrink-0" />
                 <span>Wolna strona (ciężki szablon) — opóźnione renderowanie i biały ekran</span>
               </div>

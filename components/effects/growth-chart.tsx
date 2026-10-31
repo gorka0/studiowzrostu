@@ -119,7 +119,7 @@ export function GrowthChart() {
           <div className="lg:col-span-7 rounded-2xl border border-line bg-card p-4 sm:p-6 lg:p-8 shadow-card flex flex-col justify-between relative overflow-hidden">
             <div className="flex items-center justify-between border-b border-line/60 pb-3 mb-2 text-xs font-mono text-ink-muted select-none">
               <span className="font-semibold text-accent-text">Krzywa wzrostu konwersji</span>
-              <span className="text-[10px] uppercase tracking-wider">Ilustracja</span>
+              <span className="text-[11px] font-mono text-ink-muted">Ilustracja</span>
             </div>
 
             <div className="relative w-full aspect-[16/10] select-none">
@@ -298,7 +298,7 @@ export function GrowthChart() {
                           y="4"
                           textAnchor="middle"
                           className={cn(
-                            "text-[9.5px] font-mono font-bold select-none transition-colors",
+                            "text-[9.5px] font-mono font-medium select-none transition-colors",
                             isSelected ? "fill-accent-text" : "fill-ink-muted group-hover:fill-ink"
                           )}
                         >
@@ -345,7 +345,7 @@ export function GrowthChart() {
                       }
                     }}
                     className={cn(
-                      "p-3.5 sm:p-4 rounded-xl border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
+                      "p-3.5 sm:p-4 rounded-xl border transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
                       isActive
                         ? "bg-card border-accent/40 shadow-card translate-x-1"
                         : "bg-surface/30 border-transparent hover:bg-surface/70"

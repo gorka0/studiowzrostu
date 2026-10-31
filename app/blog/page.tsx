@@ -40,7 +40,7 @@ export default function BlogListPage() {
                 <div>
                   <CardHeader className="space-y-3">
                     <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-accent-text font-semibold uppercase tracking-wider">{post.category}</span>
+                      <span className="text-accent-text font-semibold font-mono text-xs font-medium">{post.category}</span>
                       <div className="flex items-center gap-1.5 text-ink-muted">
                         <Clock className="h-3.5 w-3.5" />
                         <span>{post.readingTime}</span>

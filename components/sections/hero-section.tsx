@@ -246,7 +246,7 @@ export function HeroSection() {
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             
             {/* Główny nagłówek H1 */}
-            <h1 className="font-heading font-bold text-ink tracking-tight text-pretty text-left text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] leading-[1.08]">
+            <h1 className="font-heading font-semibold text-ink tracking-tight text-pretty text-left text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] leading-[1.08]">
               Nowoczesne strony internetowe dla rozwijających się firm.{" "}
               <span className="text-accent-text block sm:inline">
                 Czysty kod nastawiony na wzrost.
@@ -302,7 +302,7 @@ export function HeroSection() {
                       Widoczność w wyszukiwarce
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] tracking-wider uppercase text-ink-muted bg-surface px-1.5 py-0.5 rounded border border-line select-none">
+                  <span className="font-mono text-[11px] text-ink-muted bg-surface px-1.5 py-0.5 rounded border border-line select-none">
                     Ilustracja
                   </span>
                 </div>
@@ -349,7 +349,7 @@ export function HeroSection() {
                       Zapytania
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] tracking-wider uppercase text-ink-muted bg-surface px-1.5 py-0.5 rounded border border-line select-none">
+                  <span className="font-mono text-[11px] text-ink-muted bg-surface px-1.5 py-0.5 rounded border border-line select-none">
                     Ilustracja
                   </span>
                 </div>
@@ -364,7 +364,7 @@ export function HeroSection() {
                       >
                         {isTop && (
                           <span
-                            className="absolute -top-1.5 size-2 rounded-full bg-coral animate-pulse motion-reduce:hidden"
+                            className="absolute -top-1.5 size-2 rounded-full bg-coral"
                             aria-hidden="true"
                           />
                         )}

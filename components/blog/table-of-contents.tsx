@@ -60,7 +60,7 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
         className
       )}
     >
-      <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-ink mb-4 pb-3 border-b border-line">
+      <div className="flex items-center gap-2 text-xs font-mono font-medium text-ink mb-4 pb-3 border-b border-line">
         <List className="h-4 w-4 text-accent-text" />
         <span>Spis treści</span>
       </div>
