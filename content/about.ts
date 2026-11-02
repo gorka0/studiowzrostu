@@ -32,7 +32,7 @@ export const aboutContent: AboutContent = {
   commitments: [
     "Brak pośredników – bezpośredni kontakt z inżynierem prowadzącym projekt",
     "Rozliczenie etapowe po odbiorze kolejnych części serwisu",
-    "100% własności kodu źródłowego i brak umów wiążących",
+    "Pełna własność kodu źródłowego i brak umów wiążących",
   ],
   principles: [
     {

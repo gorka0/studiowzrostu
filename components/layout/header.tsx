@@ -20,16 +20,53 @@ export function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const progressBarRef = React.useRef<HTMLDivElement>(null);
+  const [isHidden, setIsHidden] = React.useState(false);
+  const lastScrollY = React.useRef(0);
 
   React.useEffect(() => {
+    let rafId: number | null = null;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const curY = window.scrollY;
+        const nextScrolled = curY > 15;
+        setIsScrolled((prev) => (prev !== nextScrolled ? nextScrolled : prev));
+
+        // Direct DOM update to eliminate 60-120 React re-renders per second
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maxScroll > 0 ? Math.min(1, Math.max(0, curY / maxScroll)) : 0;
+        if (progressBarRef.current) {
+          progressBarRef.current.style.transform = `scaleX(${progress})`;
+        }
+
+        // Check input focus guard
+        const isFormFocused =
+          document.activeElement &&
+          ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName);
+
+        if (!isMobileMenuOpen && !isFormFocused && curY > 90) {
+          if (curY > lastScrollY.current + 6) {
+            setIsHidden((prev) => (!prev ? true : prev));
+          } else if (curY < lastScrollY.current - 6) {
+            setIsHidden((prev) => (prev ? false : prev));
+          }
+        } else {
+          setIsHidden((prev) => (prev ? false : prev));
+        }
+
+        lastScrollY.current = curY;
+      });
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [isMobileMenuOpen]);
 
   // Zablokuj scrollowanie tła przy otwartym menu mobilnym
   React.useEffect(() => {
@@ -46,11 +83,17 @@ export function Header() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header className="sticky top-3 sm:top-4 z-40 w-full px-3 sm:px-6 transition-colors duration-150">
+    <header
+      className={cn(
+        "sticky top-3 sm:top-4 z-40 w-full px-4 sm:px-6 lg:px-8",
+        "transition-transform duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:transition-none",
+        isHidden ? "-translate-y-24" : "translate-y-0"
+      )}
+    >
       <div
         className={cn(
-          "mx-auto max-w-5xl rounded-full border transition-colors duration-150",
-          "px-3.5 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between",
+          "mx-auto max-w-[1240px] rounded-full border transition-colors duration-150 relative overflow-hidden",
+          "px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 flex items-center justify-between",
           isScrolled
             ? "border-border/90 bg-background/90 shadow-sm backdrop-blur-md"
             : "border-border/60 bg-background/70 backdrop-blur-sm"
@@ -74,7 +117,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
+                  "px-3 py-1.5 rounded-full text-[15px] font-medium transition-colors",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isActive
                     ? "text-accent-text font-semibold bg-accent/10"
@@ -95,7 +138,7 @@ export function Header() {
           {/* Desktop CTA */}
           <Link
             href="/kontakt"
-            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-medium text-xs h-8 bg-accent-text text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-colors duration-150 shadow-xs"
+            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-[14px] h-9 bg-accent-text text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-colors duration-150 shadow-xs active:scale-[0.98]"
           >
             <span>Wycena</span>
             <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
@@ -105,7 +148,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center h-8 w-8 rounded-full border border-border bg-background text-foreground hover:bg-muted/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-full border border-border bg-background text-foreground hover:bg-muted/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.98] cursor-pointer"
             aria-label={isMobileMenuOpen ? "Zamknij menu" : "Otwórz menu"}
             aria-expanded={isMobileMenuOpen}
           >
@@ -115,6 +158,18 @@ export function Header() {
               <Menu className="h-4 w-4" />
             )}
           </button>
+        </div>
+
+        {/* B4 Pasek postępu przewijania pod nagłówkiem (transform: scaleX) */}
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-4 right-4 h-[2px] bg-accent/20 rounded-full overflow-hidden pointer-events-none"
+        >
+          <div
+            ref={progressBarRef}
+            className="h-full bg-accent origin-left transition-transform duration-75 ease-out"
+            style={{ transform: "scaleX(0)" }}
+          />
         </div>
       </div>
 
@@ -151,12 +206,12 @@ export function Header() {
             <Link
               href="/kontakt"
               onClick={closeMobileMenu}
-              className="flex items-center justify-center w-full py-3 rounded-xl font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+              className="flex items-center justify-center w-full py-3 rounded-xl font-semibold bg-accent-text text-white hover:bg-accent transition-colors active:scale-[0.98] min-h-[44px]"
             >
               <span>Porozmawiajmy o projekcie</span>
               <ArrowUpRight className="ml-2 h-4 w-4" />
             </Link>
-            <div className="text-center text-xs text-muted-foreground">
+            <div className="text-center text-[13px] text-muted-foreground">
               Studio Wzrostu – Nowoczesne strony w Next.js
             </div>
           </div>

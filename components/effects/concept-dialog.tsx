@@ -93,7 +93,7 @@ export function ConceptDialog({ project, trigger }: ConceptDialogProps) {
             {/* Pasek adresu przeglądarki */}
             <div className="bg-surface-subtle border-b border-line px-3.5 py-2 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-ink-muted px-2.5 py-0.5 rounded bg-surface border border-line">
+                <span className="text-xs font-sans font-medium text-ink-muted px-2.5 py-0.5 rounded bg-surface border border-line">
                   koncepcja.example
                 </span>
               </div>

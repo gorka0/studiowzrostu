@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { CopyEmailButton } from "@/components/ui/copy-email-button";
 import { siteConfig } from "@/site.config";
-import { Phone, Clock, MapPin, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Phone, Clock, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ContactFormProps {
@@ -123,7 +123,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
             <CheckCircle2 className="h-5 w-5 shrink-0 mt-0.5" />
             <div>
               <div className="font-bold">Wiadomość została wysłana.</div>
-              <div className="text-xs sm:text-sm mt-0.5">{statusMessage}</div>
+              <div className="text-[13px] sm:text-[16px] mt-0.5">{statusMessage}</div>
             </div>
           </>
         )}
@@ -132,7 +132,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
             <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
             <div>
               <div className="font-bold">Nie udało się wysłać formularza</div>
-              <div className="text-xs sm:text-sm mt-0.5">{statusMessage}</div>
+              <div className="text-[13px] sm:text-[16px] mt-0.5">{statusMessage}</div>
             </div>
           </>
         )}
@@ -155,7 +155,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Imię */}
           <div className="space-y-1.5">
-            <label htmlFor="name" className="text-xs font-semibold text-foreground">
+            <label htmlFor="name" className="text-[16px] font-semibold text-foreground">
               Imię i nazwisko <span className="text-coral-text">*</span>
             </label>
             <input
@@ -165,35 +165,36 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
               placeholder="np. Jan Kowalski"
               disabled={submitStatus === "submitting"}
               className={cn(
-                "w-full rounded-xl border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "w-full rounded-xl border bg-background px-3.5 py-3 text-[16px] sm:text-sm min-h-[48px] text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 errors.name ? "border-destructive focus-visible:ring-destructive" : "border-border"
               )}
               {...register("name")}
             />
             {errors.name && (
-              <p className="text-xs text-destructive">{errors.name.message}</p>
+              <p className="text-[13px] text-destructive">{errors.name.message}</p>
             )}
           </div>
 
           {/* E-mail */}
           <div className="space-y-1.5">
-            <label htmlFor="email" className="text-xs font-semibold text-foreground">
+            <label htmlFor="email" className="text-[16px] font-semibold text-foreground">
               E-mail <span className="text-coral">*</span>
             </label>
             <input
               id="email"
               type="email"
+              inputMode="email"
               autoComplete="email"
               placeholder="np. jan@twojafirma.pl"
               disabled={submitStatus === "submitting"}
               className={cn(
-                "w-full rounded-xl border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "w-full rounded-xl border bg-background px-3.5 py-3 text-[16px] sm:text-sm min-h-[48px] text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 errors.email ? "border-destructive focus-visible:ring-destructive" : "border-border"
               )}
               {...register("email")}
             />
             {errors.email && (
-              <p className="text-xs text-destructive">{errors.email.message}</p>
+              <p className="text-[13px] text-destructive">{errors.email.message}</p>
             )}
           </div>
         </div>
@@ -202,26 +203,27 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Telefon */}
             <div className="space-y-1.5">
-              <label htmlFor="phone" className="text-xs font-semibold text-foreground">
-                Numer telefonu <span className="text-xs text-muted-foreground font-normal">(opcjonalnie)</span>
+              <label htmlFor="phone" className="text-[16px] font-semibold text-foreground">
+                Numer telefonu <span className="text-[13px] text-muted-foreground font-normal">(opcjonalnie)</span>
               </label>
               <input
                 id="phone"
                 type="tel"
+                inputMode="tel"
                 autoComplete="tel"
                 placeholder="+48 ..."
                 disabled={submitStatus === "submitting"}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-3 text-[16px] sm:text-sm min-h-[48px] text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 {...register("phone")}
               />
               {errors.phone && (
-                <p className="text-xs text-destructive">{errors.phone.message}</p>
+                <p className="text-[13px] text-destructive">{errors.phone.message}</p>
               )}
             </div>
 
             {/* Rodzaj projektu */}
             <div className="space-y-1.5">
-              <label htmlFor="projectType" className="text-xs font-semibold text-foreground">
+              <label htmlFor="projectType" className="text-[16px] font-semibold text-foreground">
                 Czego potrzebujesz? <span className="text-coral">*</span>
               </label>
               <select
@@ -243,8 +245,8 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
         {!compact && (
           /* Orientacyjny budżet */
           <div className="space-y-1.5">
-            <label htmlFor="budget" className="text-xs font-semibold text-foreground">
-              Orientacyjny budżet <span className="text-xs text-muted-foreground font-normal">(opcjonalnie)</span>
+            <label htmlFor="budget" className="text-[16px] font-semibold text-foreground">
+              Orientacyjny budżet <span className="text-[13px] text-muted-foreground font-normal">(opcjonalnie)</span>
             </label>
             <select
               id="budget"
@@ -263,7 +265,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
 
         {/* Wiadomość */}
         <div className="space-y-1.5">
-          <label htmlFor="message" className="text-xs font-semibold text-foreground">
+          <label htmlFor="message" className="text-[16px] font-semibold text-foreground">
             W czym możemy pomóc? <span className="text-coral">*</span>
           </label>
           <textarea
@@ -272,25 +274,25 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
             placeholder="Opisz krótko swoją firmę, obecną stronę lub oczekiwania co do nowego projektu..."
             disabled={submitStatus === "submitting"}
             className={cn(
-              "w-full rounded-xl border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-y",
+              "w-full rounded-xl border bg-background px-3.5 py-3 text-[16px] sm:text-sm min-h-[96px] text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-y",
               errors.message ? "border-destructive focus-visible:ring-destructive" : "border-border"
             )}
             {...register("message")}
           />
           {errors.message && (
-            <p className="text-xs text-destructive">{errors.message.message}</p>
+            <p className="text-[13px] text-destructive">{errors.message.message}</p>
           )}
         </div>
 
         {/* Checkbox zgody RODO (NIEZAZNACZONY domyślnie) */}
         <div className="pt-2">
-          <label className="flex items-start gap-3 cursor-pointer group">
+          <label className="flex items-start gap-3 cursor-pointer group py-2 min-h-[44px]">
             <input
               type="checkbox"
               className="mt-1 h-4 w-4 rounded border-border text-accent-text focus:ring-accent-text accent-accent cursor-pointer shrink-0"
               {...register("consent")}
             />
-            <span className="text-xs text-muted-foreground leading-snug select-none">
+            <span className="text-[13px] text-muted-foreground leading-snug select-none">
               Wyrażam zgodę na przetwarzanie moich danych osobowych w celu udzielenia odpowiedzi na przesłane zapytanie. Szczegóły znajdują się w{" "}
               <Link
                 href="/polityka-prywatnosci"
@@ -302,7 +304,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
             </span>
           </label>
           {errors.consent && (
-            <p className="text-xs text-destructive mt-1.5">{errors.consent.message}</p>
+            <p className="text-[13px] text-destructive mt-1.5">{errors.consent.message}</p>
           )}
         </div>
 
@@ -311,7 +313,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           <Button
             type="submit"
             disabled={submitStatus === "submitting"}
-            className="w-full sm:w-auto min-w-[200px] h-11 px-8 rounded-xl font-medium bg-accent-text text-white hover:bg-accent transition-colors duration-150 cursor-pointer shadow-xs active:scale-[0.98]"
+            className="w-full sm:w-auto min-w-[200px] h-12 min-h-[48px] px-8 rounded-xl font-semibold bg-accent-text text-white hover:bg-accent transition-colors duration-150 cursor-pointer shadow-xs active:scale-[0.98]"
           >
             {submitStatus === "submitting" ? (
               <span className="flex items-center gap-2">
@@ -351,7 +353,7 @@ export function ContactInfoBlock() {
             <Phone className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-xs font-mono text-muted-foreground font-medium">Telefon</div>
+            <div className="text-[13px] font-medium text-muted-foreground">Telefon</div>
             <div className="font-medium text-foreground">{siteConfig.contact.phone}</div>
           </div>
         </a>
@@ -361,25 +363,15 @@ export function ContactInfoBlock() {
             <Clock className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-xs font-mono text-muted-foreground font-medium">Czas odpowiedzi</div>
-            <div className="font-medium text-foreground">Maksymalnie 24 godziny</div>
+            <div className="text-[13px] font-medium text-muted-foreground">Czas odpowiedzi</div>
+            <div className="font-medium text-foreground">W dni robocze</div>
           </div>
         </div>
 
-        <div className="flex items-start gap-3 p-3 rounded-xl border border-border/80 bg-background">
-          <div className="h-9 w-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent-text shrink-0">
-            <MapPin className="h-4 w-4" />
-          </div>
-          <div>
-            <div className="text-xs font-mono text-muted-foreground font-medium">Obszar działania</div>
-            <div className="text-xs text-foreground font-medium leading-relaxed mt-0.5">
-              Współpraca w 100% zdalna: Cała Polska
-            </div>
-          </div>
-        </div>
+
       </div>
 
-      <div className="pt-4 border-t border-border text-xs text-muted-foreground">
+      <div className="pt-4 border-t border-border text-[13px] text-muted-foreground">
         Założyciel i główny inżynier: <strong className="text-foreground">{siteConfig.owner}</strong>
       </div>
     </div>

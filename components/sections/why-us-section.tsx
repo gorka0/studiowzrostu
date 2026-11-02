@@ -1,18 +1,33 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
-import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
-import { Check } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { motion, useInView, useReducedMotion } from "motion/react";
+import { cn } from "@/lib/utils";
 
-const TIMELINE_SEGMENTS = [
-  { day: "Dzień 1", title: "Brief i zakres" },
-  { day: "Dzień 2", title: "Układ i teksty" },
-  { day: "Dzień 3", title: "Kod i testy" },
-  { day: "Dzień 4", title: "Publikacja" },
+const PROCESS_STEPS = [
+  {
+    day: "Dzień 1",
+    title: "Brief i cele",
+    desc: "Ustalamy cele biznesowe, profil klientów i zbieramy materiały wyjściowe.",
+  },
+  {
+    day: "Dzień 2",
+    title: "Układ i teksty",
+    desc: "Planujemy logiczny układ podstron i porządkujemy treść oferty dla czytelności.",
+  },
+  {
+    day: "Dzień 3",
+    title: "Budowa i testy",
+    desc: "Kodujemy stronę w Next.js, dopracowujemy responsywność i formularze.",
+  },
+  {
+    day: "Dzień 4",
+    title: "Odbiór i start",
+    desc: "Weryfikujemy działanie serwisu, podpinamy domenę z certyfikatem SSL i uruchamiamy.",
+  },
 ];
 
 const OFFER_ROWS = [
@@ -26,17 +41,18 @@ export function WhyUsSection() {
   const sectionRef = React.useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const shouldReduceMotion = useReducedMotion();
+  const [isSpecOpen, setIsSpecOpen] = React.useState(false);
 
   const animateTimeline = isInView && !shouldReduceMotion;
 
   return (
     <Section
       ref={sectionRef}
-      spacing="default"
-      id="dlaczego-my"
-      className="relative border-b border-darkband-line bg-darkband-bg text-darkband-foreground overflow-hidden"
+      spacing="none"
+      id="proces"
+      className="relative border-b border-darkband-line bg-darkband-bg text-darkband-foreground overflow-clip py-8 sm:py-12 lg:py-16 text-[15px]"
     >
-      {/* Subtelna kratka SVG w tle ciemnego pasa (niskie krycie ~4%) */}
+      {/* Subtelna kratka SVG w tle ciemnego pasa */}
       <svg
         className="pointer-events-none absolute inset-0 h-full w-full select-none z-0 opacity-40"
         aria-hidden="true"
@@ -60,153 +76,231 @@ export function WhyUsSection() {
       </svg>
 
       <Container className="relative z-10">
-        {/* Nagłówek sekcji wyrównany do lewej */}
-        <div className="text-left max-w-2xl mb-10 sm:mb-12">
-          <div className="font-mono text-xs font-medium text-darkband-accent-text mb-2">
-            Zasady współpracy
+        {/* Wstęp sekcji: 1 zdanie (≤ 20 słów) */}
+        <div className="text-left max-w-2xl mb-6 sm:mb-8">
+          <div className="text-[13px] font-semibold text-darkband-accent-text mb-1.5">
+            Zasady i przebieg współpracy
           </div>
-          <h2 className="font-heading font-bold text-3xl sm:text-4xl text-darkband-foreground tracking-tight">
+          <h2 className="font-heading font-bold text-[clamp(1.75rem,7vw,2.25rem)] text-darkband-foreground tracking-tight leading-tight">
             Dlaczego Studio Wzrostu
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-darkband-muted leading-relaxed">
-            Dwie zasady, na których opieramy każde wdrożenie: precyzyjny czas realizacji i pełna przejrzystość budżetu.
+          <p className="mt-2 text-[15px] sm:text-[15px] text-darkband-muted leading-[1.55]">
+            Dwie zasady, na których opieramy wdrożenia: precyzyjny czas realizacji i stała cena ustalona z góry.
           </p>
         </div>
 
-        {/* Dwa asymetryczne bloki oparte na mocnej typografii */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* Dwa fakty = duże hasło + 1 zdanie */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
           
-          {/* BLOK 1: Czas realizacji 3–4 dni (szerokość 6/12 na desktopie) */}
-          <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 rounded-2xl border border-darkband-line bg-darkband-bg/80 backdrop-blur-xs flex flex-col justify-between space-y-6 text-left">
-            <div className="space-y-4">
-              <div className="font-mono text-xs text-darkband-accent-text font-medium">
-                01 / Termin wdrożenia
-              </div>
-
-              <div className="font-heading font-medium text-5xl sm:text-6xl md:text-7xl text-darkband-accent-text tracking-tight leading-none tabular-nums">
-                3–4 dni
-              </div>
-
-              <h3 className="font-heading font-bold text-xl sm:text-2xl text-darkband-foreground">
-                Tyle zwykle zajmuje nam przygotowanie strony
-              </h3>
-
-              <p className="text-sm sm:text-base text-darkband-muted leading-relaxed">
-                Pracujemy w krótkich, dobrze zaplanowanych etapach. Od momentu ustalenia zakresu skupiamy się wyłącznie na Twoim projekcie, bez ciągnących się tygodniami przestojów.
-              </p>
+          {/* FAKT 1: Czas realizacji 3–4 dni (4 segmenty Dzień 1–4 wypełniają się kolejno) */}
+          <div className="lg:col-span-6 p-5 sm:p-7 rounded-2xl border border-darkband-line bg-darkband-bg/90 space-y-4 text-left">
+            <div className="text-[13px] text-darkband-accent-text font-semibold uppercase tracking-wider">
+              Termin wdrożenia
             </div>
 
-            {/* Mini oś czasu z 4 segmentami wypełniającymi się w widoku */}
-            <div className="p-4 rounded-xl border border-darkband-line bg-darkband-bg/90 space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono text-darkband-muted">
-                <span className="font-semibold text-darkband-foreground">Etapy wdrożenia</span>
-                <span className="text-[10px] uppercase text-darkband-accent-text">Oś czasu</span>
-              </div>
+            <div className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-darkband-accent-text tracking-tight leading-none tabular-nums">
+              3–4 dni
+            </div>
 
+            <p className="text-[15px] text-darkband-muted leading-[1.5]">
+              Tyle standardowo zajmuje nam przygotowanie gotowej strony od akceptacji założeń i otrzymania materiałów.
+            </p>
+
+            {/* B3: 4 segmenty Dzień 1–4 wypełniają się kolejno po wejściu w widok */}
+            <div className="pt-2 space-y-1.5">
               <div className="grid grid-cols-4 gap-2">
-                {TIMELINE_SEGMENTS.map((seg, idx) => (
-                  <div key={seg.day} className="space-y-1.5">
-                    {/* Pasek postępu segmentu */}
-                    <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                {[1, 2, 3, 4].map((d) => (
+                  <div key={d} className="space-y-1">
+                    <div className="h-1.5 bg-darkband-line rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full bg-darkband-accent rounded-full"
+                        className="h-full bg-darkband-accent"
                         initial={{ width: "0%" }}
                         animate={animateTimeline ? { width: "100%" } : { width: "100%" }}
                         transition={{
-                          duration: 0.6,
-                          delay: idx * 0.15,
-                          ease: "easeOut",
+                          duration: 0.45,
+                          delay: (d - 1) * 0.18,
+                          ease: [0.2, 0.7, 0.2, 1],
                         }}
                       />
                     </div>
-                    <div className="text-[10px] font-mono font-bold text-darkband-foreground truncate">
-                      {seg.day}
-                    </div>
-                    <div className="text-[9px] text-darkband-muted truncate">
-                      {seg.title}
-                    </div>
+                    <span className="text-[13px] font-sans font-medium text-darkband-muted block">
+                      Dzień {d}
+                    </span>
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Adnotacja z warunkami */}
-            <div className="pt-4 border-t border-darkband-line text-xs font-mono text-darkband-muted leading-relaxed">
-              Warunki: dotyczy standardowej strony firmowej lub landing page, liczone od akceptacji wyceny i dostarczenia kompletu materiałów.
             </div>
           </div>
 
-          {/* BLOK 2: Cena z góry (szerokość 6/12 na desktopie) */}
-          <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 rounded-2xl border border-darkband-line bg-darkband-bg/80 backdrop-blur-xs flex flex-col justify-between space-y-6 text-left">
-            <div className="space-y-4">
-              <div className="font-mono text-xs text-darkband-accent-text font-medium">
-                02 / Zasady rozliczeń
-              </div>
-
-              <div className="font-heading font-medium text-4xl sm:text-5xl md:text-6xl text-darkband-foreground tracking-tight leading-none pt-2 tabular-nums">
-                Cena z góry
-              </div>
-
-              <h3 className="font-heading font-bold text-xl sm:text-2xl text-darkband-foreground">
-                Wycenę znasz, zanim cokolwiek zaczniemy
-              </h3>
-
-              <p className="text-sm sm:text-base text-darkband-muted leading-relaxed">
-                Przed startem prac definiujemy zakres techniczny serwisu. Wiesz dokładnie, co wchodzi w skład wdrożenia i za co płacisz.
-              </p>
+          {/* FAKT 2: Cena z góry */}
+          <div className="lg:col-span-6 p-5 sm:p-7 rounded-2xl border border-darkband-line bg-darkband-bg/90 space-y-4 text-left">
+            <div className="text-[13px] text-darkband-accent-text font-semibold uppercase tracking-wider">
+              Zasady rozliczeń
             </div>
 
-            {/* Mała karta oferty bez kwot (Ilustracja) */}
-            <div className="p-4 rounded-xl border border-darkband-line bg-darkband-bg/90 space-y-2.5">
-              <div className="flex items-center justify-between text-xs font-mono border-b border-darkband-line pb-2">
-                <span className="font-semibold text-darkband-foreground">Specyfikacja zlecenia</span>
-                <span className="text-[10px] uppercase text-darkband-muted tracking-wider">
-                  Ilustracja
-                </span>
-              </div>
+            <div className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-darkband-foreground tracking-tight leading-none">
+              Cena z góry
+            </div>
 
-              <div className="space-y-2 text-xs font-mono">
-                {OFFER_ROWS.map((row) => (
-                  <div key={row.item} className="flex items-center justify-between py-1 border-b border-darkband-line/40">
-                    <span className="text-darkband-muted flex items-center gap-2">
-                      <Check className="h-3.5 w-3.5 text-darkband-accent shrink-0" />
-                      <span>{row.item}</span>
-                    </span>
-                    <span className="text-darkband-foreground font-semibold text-[11px]">
-                      {row.status}
-                    </span>
+            <p className="text-[15px] text-darkband-muted leading-[1.5]">
+              Dokładny koszt wdrożenia znasz przed startem prac, bez ukrytych opłat i niespodziewanych dopłat.
+            </p>
+
+            {/* Karta 'Specyfikacja zlecenia' akordeon z animacją grid-template-rows */}
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => setIsSpecOpen(!isSpecOpen)}
+                className="inline-flex items-center gap-2 text-[15px] font-semibold text-darkband-accent-text hover:underline min-h-[44px] py-1 cursor-pointer active:scale-[0.98]"
+                aria-expanded={isSpecOpen}
+              >
+                <span>Co obejmuje wycena</span>
+                <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", isSpecOpen && "rotate-180")} />
+              </button>
+
+              <div
+                className={cn(
+                  "accordion-grid",
+                  isSpecOpen && "open"
+                )}
+              >
+                <div className="accordion-inner">
+                  <div className="mt-2.5 pt-2 border-t border-darkband-line/60 space-y-2 text-[15px]">
+                    {OFFER_ROWS.map((row, idx) => (
+                      <motion.div
+                        key={row.item}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={isSpecOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
+                        transition={{ delay: idx * 0.08, duration: 0.2 }}
+                        className="flex items-center justify-between py-1.5 border-b border-darkband-line/40"
+                      >
+                        <span className="text-darkband-muted flex items-center gap-2">
+                          <Check className="h-4 w-4 text-darkband-accent shrink-0" />
+                          <span>{row.item}</span>
+                        </span>
+                        <span className="text-darkband-foreground font-semibold text-[13px]">
+                          {row.status}
+                        </span>
+                      </motion.div>
+                    ))}
+
+                    {/* Na końcu podświetla się 'Suma: ustalona z góry' */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={isSpecOpen ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.98 }}
+                      transition={{ delay: 0.35, duration: 0.25 }}
+                      className="mt-2 pt-2 flex items-center justify-between border-t border-darkband-accent/50 px-1 py-1.5"
+                    >
+                      <span className="text-[15px] text-darkband-foreground font-semibold">
+                        Suma inwestycji:
+                      </span>
+                      <span className="text-[15px] font-bold text-darkband-accent-text">
+                        Ustalona z góry
+                      </span>
+                    </motion.div>
                   </div>
-                ))}
+                </div>
               </div>
-
-              {/* Pasek sumy końcowej */}
-              <div className="mt-2 pt-2 flex items-center justify-between bg-darkband-accent/15 border border-darkband-accent/30 rounded-lg px-3 py-2">
-                <span className="text-xs font-mono text-darkband-foreground font-semibold">
-                  Suma inwestycji:
-                </span>
-                <span className="text-xs font-mono font-medium text-darkband-accent-text">
-                  Ustalona z góry
-                </span>
-              </div>
-            </div>
-
-            {/* Adnotacja o wycenie */}
-            <div className="pt-4 border-t border-darkband-line text-xs font-mono text-darkband-muted leading-relaxed">
-              Zakres wyceny: specyfikacja poszczególnych elementów ustalana indywidualnie przed startem prac na podstawie wstępnej analizy.
             </div>
           </div>
         </div>
 
-        {/* CTA pod blokami */}
-        <div className="mt-10 sm:mt-12 pt-8 border-t border-darkband-line flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
-          <div className="text-sm text-darkband-muted">
-            Chcesz poznać wycenę i najbliższy dostępny termin realizacji dla Twojej firmy?
+        {/* JEDNA stopka warunków pod sekcją czasu i ceny (jedno zdanie) */}
+        <div className="mt-5 text-[13px] text-darkband-muted/80 text-left">
+          Warunki: dotyczy standardowej strony lub landing page po dostarczeniu materiałów; zakres potwierdzamy w specyfikacji.
+        </div>
+
+        {/* OŚ PROCESU: 4 etapy, tytuł + zdanie ≤ 12 słów, jeden znacznik Dzień N */}
+        <div className="mt-8 pt-6 border-t border-darkband-line/80 text-left">
+          <div className="mb-6">
+            <span className="text-[13px] font-semibold text-darkband-accent-text block mb-1">
+              Etapy realizacji
+            </span>
+            <h3 className="font-heading font-bold text-[20px] sm:text-[20px] text-darkband-foreground">
+              Przebieg wdrożenia dzień po dniu
+            </h3>
           </div>
-          <Link href="/kontakt" className="w-full sm:w-auto shrink-0">
-            <InteractiveHoverButton className="w-full sm:w-auto">
-              Zapytaj o termin i wycenę
-            </InteractiveHoverButton>
-          </Link>
+
+          {/* Desktop (≥1024px): Pozioma oś czasu */}
+          <div className="hidden lg:block relative my-6">
+            <div className="absolute top-[40px] left-[5%] right-[5%] h-[2px] bg-darkband-line z-0">
+              <motion.div
+                className="h-full bg-darkband-accent"
+                initial={{ width: "0%" }}
+                animate={animateTimeline ? { width: "100%" } : { width: "100%" }}
+                transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1] }}
+              />
+            </div>
+
+            <div className="grid grid-cols-4 gap-6 relative z-10">
+              {PROCESS_STEPS.map((step, idx) => (
+                <div key={step.day} className="flex flex-col space-y-3">
+                  <div className="h-6 flex items-center">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-[13px] font-bold bg-darkband-accent/20 text-darkband-accent-text border border-darkband-accent/30">
+                      {step.day}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0.6 }}
+                      animate={animateTimeline ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
+                      transition={{ delay: idx * 0.25, duration: 0.3 }}
+                      className="w-7 h-7 rounded-full border-2 border-darkband-accent bg-darkband-bg flex items-center justify-center shrink-0 shadow-sm"
+                    >
+                      <span className="w-2.5 h-2.5 rounded-full bg-darkband-accent" />
+                    </motion.div>
+                  </div>
+
+                  <div className="space-y-1 pt-1">
+                    <h4 className="font-heading font-bold text-[15px] text-darkband-foreground">
+                      {step.title}
+                    </h4>
+                    <p className="text-[15px] text-darkband-muted leading-[1.5]">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile (<1024px): Pionowa oś czasu */}
+          <div className="lg:hidden relative space-y-4 my-3 text-left pl-7">
+            {/* Pionowa linia wypełniająca się przy przewijaniu */}
+            <div className="absolute left-[8px] top-2 bottom-4 w-[2px] bg-darkband-line/80 z-0">
+              <motion.div
+                className="w-full bg-darkband-accent origin-top"
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 1.0, ease: [0.2, 0.7, 0.2, 1] }}
+              />
+            </div>
+
+            {PROCESS_STEPS.map((step, idx) => (
+              <div key={step.day} className="relative space-y-1">
+                {/* Węzeł zapalający się przy scrollowaniu */}
+                <motion.div
+                  initial={{ scale: 0.7, opacity: 0.5 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ delay: idx * 0.15, duration: 0.3 }}
+                  className="absolute -left-[27px] top-1 w-4 h-4 rounded-full border-2 border-darkband-bg bg-darkband-accent z-10 shadow-sm"
+                />
+                
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-[13px] font-bold bg-darkband-accent/20 text-darkband-accent-text border border-darkband-accent/30">
+                  {step.day}
+                </span>
+                <h4 className="font-heading font-bold text-[15px] text-darkband-foreground pt-0.5">
+                  {step.title}
+                </h4>
+                <p className="text-[15px] text-darkband-muted leading-[1.5]">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </Section>

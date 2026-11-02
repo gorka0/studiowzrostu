@@ -20,7 +20,7 @@ export function SectionHeader({
   return (
     <div
       className={cn(
-        "flex flex-col mb-12 md:mb-16",
+        "flex flex-col mb-6 sm:mb-8 md:mb-12",
         align === "center" ? "items-center text-center mx-auto" : "items-start text-left",
         "max-w-3xl",
         className
@@ -28,18 +28,18 @@ export function SectionHeader({
       {...props}
     >
       {HeadingTag === "h1" ? (
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-heading">
+        <h1 className="text-[clamp(1.75rem,7vw,2.25rem)] font-bold tracking-tight text-foreground font-heading leading-tight">
           {title}
         </h1>
       ) : (
         <RevealHeading
           as={HeadingTag}
           text={title}
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground font-heading"
+          className="text-[clamp(1.75rem,7vw,2.25rem)] font-bold tracking-tight text-foreground font-heading leading-tight"
         />
       )}
       {description && (
-        <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed text-balance">
+        <p className="mt-2.5 sm:mt-3 text-[15px] text-muted-foreground leading-[1.55] text-balance">
           {description}
         </p>
       )}

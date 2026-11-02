@@ -1,13 +1,17 @@
+"use client";
+
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Eye } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { conceptProjects, type ConceptProject } from "@/content/projects";
 import { BeforeAfterSlider } from "@/components/effects/before-after-slider";
 import { ConceptDialog } from "@/components/effects/concept-dialog";
+import { useReducedMotion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 interface ProjectsSectionProps {
   id?: string;
@@ -20,24 +24,110 @@ export function ProjectsPreview({
   className,
   isStandalonePage = false,
 }: ProjectsSectionProps) {
+  const [activeSlide, setActiveSlide] = React.useState(0);
+  const carouselRef = React.useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const hasNudged = React.useRef(false);
+
+  const handleScroll = () => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const cardWidth = el.offsetWidth * 0.86;
+    const scrollPos = el.scrollLeft;
+    const newIndex = Math.round(scrollPos / cardWidth);
+    if (newIndex !== activeSlide && newIndex >= 0 && newIndex < conceptProjects.length) {
+      setActiveSlide(newIndex);
+    }
+  };
+
+  const scrollToSlide = (idx: number) => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const card = el.children[idx] as HTMLElement;
+    if (card) {
+      card.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      setActiveSlide(idx);
+    }
+  };
+
+  // B5: Jednorazowa podpowiedź przesunięcia po wejściu w widok (karta 2 przytrzaśnięcie)
+  React.useEffect(() => {
+    if (shouldReduceMotion || hasNudged.current || isStandalonePage) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting && !hasNudged.current) {
+          hasNudged.current = true;
+          const el = carouselRef.current;
+          if (el && window.innerWidth < 1024) {
+            setTimeout(() => {
+              el.scrollBy({ left: 32, behavior: "smooth" });
+              setTimeout(() => {
+                el.scrollTo({ left: 0, behavior: "smooth" });
+              }, 400);
+            }, 300);
+          }
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (carouselRef.current) {
+      observer.observe(carouselRef.current);
+    }
+    return () => observer.disconnect();
+  }, [shouldReduceMotion, isStandalonePage]);
+
   return (
-    <Section spacing={isStandalonePage ? "sm" : "default"} id={id} className={className}>
+    <Section spacing="none" id={id} className={cn("py-6 sm:py-10 lg:py-16 text-[15px]", className)}>
       <Container>
         <SectionHeader
           as={isStandalonePage ? "h1" : "h2"}
           title="Projekty"
-          description="Trzy koncepcje własne. Firmy i treści są fikcyjne, a projekty pokazują, jak podchodzimy do układu, czytelności i szybkości."
+          description="Trzy autorskie koncepcje pokazujące nasze podejście do układu, czytelności i szybkości działania."
           align="left"
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-10 sm:mt-12">
+        {/* Karuzela na mobile (<1024px) z scroll-snap / Siatka 3 kolumn na desktopie (>=1024px) */}
+        <div
+          ref={carouselRef}
+          onScroll={handleScroll}
+          className="flex lg:grid overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none gap-4 sm:gap-6 lg:gap-8 mt-4 sm:mt-8 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 lg:grid-cols-3 no-scrollbar"
+        >
           {conceptProjects.map((project, index) => (
-            <ConceptCard
+            <div
               key={project.id}
-              project={project}
-              headingTag={isStandalonePage ? "h2" : "h3"}
-              isPriority={isStandalonePage && index === 0}
-            />
+              className="w-[86%] sm:w-[72%] lg:w-full shrink-0 snap-center flex flex-col"
+            >
+              <ConceptCard
+                project={project}
+                headingTag={isStandalonePage ? "h2" : "h3"}
+                isPriority={index === 0}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Wskaźnik kropkowy na mobile */}
+        <div
+          className="flex lg:hidden justify-center items-center gap-1 mt-4 select-none"
+          aria-label="Wskaźnik slajdów projektów"
+        >
+          {conceptProjects.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => scrollToSlide(i)}
+              aria-label={`Przejdź do projektu ${i + 1}`}
+              className="min-h-[44px] min-w-[32px] flex items-center justify-center p-1 cursor-pointer active:scale-[0.98]"
+            >
+              <span
+                className={cn(
+                  "block h-2 rounded-full transition-all duration-200",
+                  activeSlide === i ? "w-6 bg-accent" : "w-2 bg-line hover:bg-ink-muted/50"
+                )}
+              />
+            </button>
           ))}
         </div>
       </Container>
@@ -55,23 +145,24 @@ function ConceptCard({
   isPriority?: boolean;
 }) {
   const isSlider = Boolean(project.beforeImage && project.afterImage);
+  const primaryTag = project.tags[0];
 
   return (
-    <article className="group flex flex-col h-full rounded-2xl bg-surface border border-line shadow-xs hover:border-accent-text/40 hover:shadow-lg transition-all duration-300 overflow-hidden">
-      {/* 1. Atrapa okna przeglądarki */}
+    <article className="group flex flex-col h-full rounded-2xl bg-surface border border-line shadow-xs hover:border-accent-text/40 hover:shadow-lg transition-all duration-300 overflow-hidden text-left">
+      {/* 1. Belka atrap okna przeglądarki z adresem */}
       <div className="bg-surface-subtle border-b border-line px-3.5 py-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5">
-          <span className="text-xs font-mono text-ink-muted px-2 py-0.5 rounded bg-surface border border-line">
+          <span className="text-[13px] font-sans font-medium text-ink-muted px-2 py-0.5 rounded bg-surface border border-line">
             koncepcja.example
           </span>
         </div>
-        <span className="text-[11px] font-medium text-ink-muted">
+        <span className="text-[13px] font-medium text-ink-muted">
           {isSlider ? "Przed / Po" : "Desktop + Mobile"}
         </span>
       </div>
 
-      {/* 2. Zrzut ekranu (lub suwak dla koncepcji C) */}
-      <div className="relative w-full aspect-[16/10] bg-surface-subtle overflow-hidden border-b border-line">
+      {/* 2. Zrzut ekranu z delikatną paralaksą (±8px) */}
+      <div className="relative w-full aspect-[16/9] sm:aspect-[16/10] bg-surface-subtle overflow-hidden border-b border-line">
         {isSlider && project.beforeImage && project.afterImage ? (
           <BeforeAfterSlider
             beforeImage={project.beforeImage}
@@ -82,19 +173,17 @@ function ConceptCard({
             className="border-0 rounded-none h-full"
           />
         ) : (
-          <>
-            {/* Zrzut ekranu desktop - unoptimized dla krystalicznej ostrości tekstu przy małej wadze (72 KB) */}
+          <div className="relative w-full h-full">
             <Image
               src={project.desktopImage}
               alt={project.desktopAlt}
               fill
-              unoptimized
+              sizes="(max-width: 640px) 86vw, (max-width: 1024px) 72vw, 33vw"
               className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
               priority={isPriority}
               loading={isPriority ? undefined : "lazy"}
             />
 
-            {/* Makieta telefonu ze zrzutem mobile w prawym dolnym rogu (ok. 22-24% szerokości) */}
             {project.mobileImage && (
               <div
                 className="absolute -bottom-2 -right-1 w-[24%] min-w-[70px] max-w-[95px] aspect-[9/19] rounded-t-md rounded-b-none border-2 border-b-0 border-surface bg-surface shadow-xl overflow-hidden z-10 transition-transform duration-300 group-hover:-translate-y-1"
@@ -104,73 +193,58 @@ function ConceptCard({
                   src={project.mobileImage}
                   alt={project.mobileAlt || ""}
                   fill
-                  unoptimized
+                  sizes="95px"
                   className="object-cover object-top"
                   loading="lazy"
                 />
               </div>
             )}
-          </>
+          </div>
         )}
       </div>
 
-      {/* 3. Treść karty */}
-      <div className="flex flex-col flex-1 p-5 sm:p-6">
-        {/* Plakietka "Koncepcja własna" + Tagi celu/rodzaju */}
-        <ul aria-label="Kategorie projektu" className="flex flex-wrap items-center gap-1.5 mb-3 list-none p-0 m-0">
-          <li>
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-surface-subtle text-accent-text border border-line">
-              Koncepcja własna
+      {/* 3. Treść karty (max 3 style tekstu, żadnych kart w karcie) */}
+      <div className="flex flex-col flex-1 p-4 sm:p-5">
+        <div className="flex flex-wrap items-center gap-1.5 mb-2.5">
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[13px] font-medium bg-surface-subtle text-accent-text border border-line">
+            Koncepcja własna
+          </span>
+          {primaryTag && (
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-[13px] text-ink-muted bg-surface-subtle border border-line">
+              {primaryTag}
             </span>
-          </li>
-          {project.tags.map((tag) => (
-            <li key={tag}>
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] text-ink-muted bg-surface-subtle border border-line">
-                {tag}
-              </span>
-            </li>
-          ))}
-        </ul>
+          )}
+        </div>
 
-        {/* Tytuł koncepcji */}
-        <HeadingTag className="text-lg sm:text-xl font-heading font-bold text-ink group-hover:text-accent-text transition-colors leading-snug">
+        <HeadingTag className="text-[20px] font-bold font-heading text-ink group-hover:text-accent-text transition-colors leading-tight">
           {project.title}
         </HeadingTag>
 
-        {/* Krótki opis */}
-        <p className="text-xs sm:text-sm text-ink-muted mt-2 leading-relaxed">
+        <p className="mt-2 text-[15px] text-ink-muted leading-[1.5] flex-1">
           {project.shortDescription}
         </p>
 
-        {/* Adnotacja o fikcyjnych danych */}
-        <div className="mt-4 pt-3 border-t border-line/60 text-[11px] text-ink-muted">
-          {project.disclaimer}
-        </div>
+        {/* 4. Link i dialog koncepcji */}
+        <div className="pt-3 border-t border-line/60 flex items-center justify-between gap-3">
+          <Link
+            href={project.serviceUrl}
+            className="text-[13px] font-semibold text-accent-text hover:underline min-h-[44px] inline-flex items-center py-1"
+          >
+            <span>{project.serviceLabel}</span>
+          </Link>
 
-        {/* 4. Dolna belka akcji (wyrównana do dołu dzięki mt-auto) */}
-        <div className="mt-auto pt-5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-line">
-          {/* Przycisk otwierający okno Dialog */}
           <ConceptDialog
             project={project}
             trigger={
               <button
                 type="button"
-                className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-lg bg-surface-subtle hover:bg-surface border border-line text-xs font-semibold text-ink hover:text-accent-text transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold border border-line bg-surface hover:bg-surface-subtle transition-colors min-h-[44px] cursor-pointer active:scale-[0.98]"
               >
-                <Eye className="h-3.5 w-3.5 text-accent-text" />
-                <span>Zobacz koncepcję</span>
+                <Eye className="h-4 w-4" />
+                <span>Zobacz</span>
               </button>
             }
           />
-
-          {/* Link do odpowiedniej usługi */}
-          <Link
-            href={project.serviceUrl}
-            className="inline-flex items-center justify-center sm:justify-end gap-1.5 text-xs font-semibold text-accent-text hover:text-accent-text/80 transition-colors underline decoration-accent-text/40 underline-offset-4 py-1"
-          >
-            <span>{project.serviceLabel}</span>
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
         </div>
       </div>
     </article>

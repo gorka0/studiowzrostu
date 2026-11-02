@@ -33,16 +33,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/o-nas`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/blog`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/o-nas`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/kontakt`,
@@ -71,12 +71,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.lastModified),
-    changeFrequency: "monthly",
-    priority: 0.75,
-  }));
+  // Wpisy w statusie draft: true nie trafiają do sitemap
+  const blogRoutes: MetadataRoute.Sitemap = blogPosts
+    .filter((post) => !post.draft)
+    .map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.lastModified),
+      changeFrequency: "monthly",
+      priority: 0.75,
+    }));
 
   return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
 }

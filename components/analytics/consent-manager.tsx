@@ -8,18 +8,24 @@ export function ConsentManager() {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   React.useEffect(() => {
+    if (!gaId) return;
     // Sprawdź czy użytkownik ma już zapisany wybór cookies
     const stored = getStoredConsent();
     if (stored) {
       updateGoogleConsentMode(stored.analytics, stored.marketing);
     }
-  }, []);
+  }, [gaId]);
+
+  if (!gaId) {
+    return null;
+  }
 
   return (
     <>
       {/* Inicjalizacja Google Consent Mode v2 (domyślnie denied dla wszystkich kategorii) */}
-      <script
+      <Script
         id="google-consent-mode-v2"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -35,29 +41,24 @@ export function ConsentManager() {
         }}
       />
 
-      {/* Skrypt GA4 wstrzykiwany WYŁĄCZNIE, gdy zdefiniowano identyfikator NEXT_PUBLIC_GA_ID */}
-      {gaId ? (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="afterInteractive"
-          />
-          <Script
-            id="ga4-init"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-            }}
-          />
-        </>
-      ) : null}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+        strategy="afterInteractive"
+      />
+      <Script
+        id="ga4-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${gaId}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
     </>
   );
 }

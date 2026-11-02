@@ -9,6 +9,7 @@ interface RateLimitResult {
 
 const WINDOW_MS = 10 * 60 * 1000; // 10 minut
 const MAX_REQUESTS = 5; // Maksymalnie 5 zgłoszeń na 10 minut z jednego IP
+const MAX_STORE_ENTRIES = 5000; // Górny limit pamięci operacyjnej chroniący przed atakiem OOM
 
 // In-memory fallback dla środowiska lokalnego / deweloperskiego
 interface MemoryEntry {
@@ -22,6 +23,14 @@ function cleanMemoryStore() {
   const now = Date.now();
   for (const [key, value] of memoryStore.entries()) {
     if (value.resetAt <= now) {
+      memoryStore.delete(key);
+    }
+  }
+
+  // Jeśli po wyczyszczeniu wygasłych wpisów magazyn nadal przekracza limit, usuń najstarsze wpisy
+  if (memoryStore.size >= MAX_STORE_ENTRIES) {
+    const keysToDelete = Array.from(memoryStore.keys()).slice(0, Math.floor(MAX_STORE_ENTRIES * 0.2));
+    for (const key of keysToDelete) {
       memoryStore.delete(key);
     }
   }
@@ -43,11 +52,15 @@ if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) 
 
 export async function rateLimit(identifier: string): Promise<RateLimitResult> {
   const now = Date.now();
+  // Sanityzacja identyfikatora (blokada wstrzykiwania nadmiernych lub złośliwych ciągów znaków do klucza cache)
+  const safeIdentifier = (identifier || "127.0.0.1")
+    .replace(/[^a-zA-Z0-9:._-]/g, "")
+    .slice(0, 64);
 
   // Ścieżka Upstash Redis
   if (upstashClient) {
     try {
-      const key = `rl:contact:${identifier}`;
+      const key = `rl:contact:${safeIdentifier}`;
       const count = await upstashClient.incr(key);
 
       if (count === 1) {
@@ -70,19 +83,19 @@ export async function rateLimit(identifier: string): Promise<RateLimitResult> {
     }
   }
 
-  // Ścieżka in-memory fallback
-  if (memoryStore.size > 1000) {
+  // Ścieżka in-memory fallback z aktywnym czyszczeniem i zabezpieczeniem OOM
+  if (memoryStore.size >= MAX_STORE_ENTRIES * 0.8) {
     cleanMemoryStore();
   }
 
-  const existing = memoryStore.get(identifier);
+  const existing = memoryStore.get(safeIdentifier);
 
   if (!existing || existing.resetAt <= now) {
     const newEntry: MemoryEntry = {
       count: 1,
       resetAt: now + WINDOW_MS,
     };
-    memoryStore.set(identifier, newEntry);
+    memoryStore.set(safeIdentifier, newEntry);
     return {
       success: true,
       limit: MAX_REQUESTS,

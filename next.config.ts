@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV !== "production";
+
 const securityHeaders = [
   {
     key: "X-Content-Type-Options",
@@ -21,11 +23,15 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com",
+      // W dev React wymaga 'unsafe-eval' do mapowania błędów i callstacków. W produkcji 'unsafe-eval' jest całkowicie zablokowane.
+      isDev
+        ? "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com"
+        : "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: https: blob:",
+      "img-src 'self' data: blob:",
       "font-src 'self' data:",
-      "connect-src 'self' https: https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
+      // Ścisła ochrona przed eksfiltracją danych - brak wildcard https:
+      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -34,8 +40,15 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: ["lucide-react", "motion", "@base-ui/react"],
+  },
   images: {
     formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 31536000,
   },
   cacheComponents: true,
   partialPrefetching: true,
@@ -59,10 +72,29 @@ const nextConfig: NextConfig = {
         destination: "/projekty",
         permanent: true,
       },
+      {
+        source: "/blog/dlaczego-szybkosc-strony-decyduje-o-sprzedazy",
+        destination: "/blog/jak-zdobyc-wiecej-klientow-ze-strony-internetowej",
+        permanent: true,
+      },
+      {
+        source: "/blog/ile-kosztuje-nowoczesna-strona-www",
+        destination: "/blog/strona-internetowa-a-rozwoj-biznesu",
+        permanent: true,
+      },
     ];
   },
   async headers() {
     return [
+      {
+        source: "/concepts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
       {
         source: "/(.*)",
         headers: securityHeaders,

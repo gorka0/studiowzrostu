@@ -68,11 +68,17 @@
   --shadow-subtle: 0 1px 2px 0 rgba(20, 35, 28, 0.04);
   --shadow-card: 0 1px 3px 0 rgba(20, 35, 28, 0.05), 0 1px 2px -1px rgba(20, 35, 28, 0.03);
   --shadow-elevated: 0 12px 24px -6px rgba(20, 35, 28, 0.08), 0 4px 8px -4px rgba(20, 35, 28, 0.04);
+
+  /* B1 Tokeny ruchu */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 450ms;
+  --duration-slow: 700ms;
 }
 
 .content-auto {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 600px;
+  contain-intrinsic-size: auto 600px;
 }
 
 :root {
@@ -285,4 +291,209 @@ html.dark .shiki span {
   font-style: var(--shiki-dark-font-style) !important;
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* =========================================================================
+   HeroBrowser "Strona składa się sama" - Pure CSS Keyframes (≤ 2.2s total)
+   ========================================================================= */
+
+@keyframes heroWindowIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroNavIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroBarUnfold {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes heroBtnPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroBtnPulseOnce {
+  0% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 45%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@keyframes heroCardLift {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.hero-anim-window {
+  animation: heroWindowIn 350ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+}
+
+.hero-anim-nav-logo {
+  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;
+}
+.hero-anim-nav-1 {
+  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 310ms both;
+}
+.hero-anim-nav-2 {
+  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 370ms both;
+}
+.hero-anim-nav-3 {
+  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 430ms both;
+}
+.hero-anim-nav-4 {
+  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 490ms both;
+}
+.hero-anim-nav-btn {
+  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 550ms both;
+}
+
+.hero-anim-head-1 {
+  transform-origin: left;
+  animation: heroBarUnfold 300ms cubic-bezier(0.16, 1, 0.3, 1) 500ms both;
+}
+.hero-anim-head-2 {
+  transform-origin: left;
+  animation: heroBarUnfold 300ms cubic-bezier(0.16, 1, 0.3, 1) 620ms both;
+}
+.hero-anim-head-3 {
+  transform-origin: left;
+  animation: heroBarUnfold 300ms cubic-bezier(0.16, 1, 0.3, 1) 740ms both;
+}
+
+.hero-anim-desc-1 {
+  transform-origin: left;
+  animation: heroBarUnfold 250ms cubic-bezier(0.16, 1, 0.3, 1) 860ms both;
+}
+.hero-anim-desc-2 {
+  transform-origin: left;
+  animation: heroBarUnfold 250ms cubic-bezier(0.16, 1, 0.3, 1) 980ms both;
+}
+
+.hero-anim-btn {
+  animation: heroBtnPop 300ms cubic-bezier(0.16, 1, 0.3, 1) 900ms both,
+             heroBtnPulseOnce 400ms ease-out 1800ms forwards;
+}
+
+.hero-anim-graphic {
+  animation: heroBarUnfold 350ms cubic-bezier(0.16, 1, 0.3, 1) 800ms both;
+}
+
+.hero-anim-card-1 {
+  animation: heroCardLift 300ms cubic-bezier(0.16, 1, 0.3, 1) 1000ms both;
+}
+.hero-anim-card-2 {
+  animation: heroCardLift 300ms cubic-bezier(0.16, 1, 0.3, 1) 1090ms both;
+}
+.hero-anim-card-3 {
+  animation: heroCardLift 300ms cubic-bezier(0.16, 1, 0.3, 1) 1180ms both;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim-window,
+  .hero-anim-nav-logo,
+  .hero-anim-nav-1,
+  .hero-anim-nav-2,
+  .hero-anim-nav-3,
+  .hero-anim-nav-4,
+  .hero-anim-nav-btn,
+  .hero-anim-head-1,
+  .hero-anim-head-2,
+  .hero-anim-head-3,
+  .hero-anim-desc-1,
+  .hero-anim-desc-2,
+  .hero-anim-btn,
+  .hero-anim-graphic,
+  .hero-anim-card-1,
+  .hero-anim-card-2,
+  .hero-anim-card-3 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* B1 Akordeony i system ruchu */
+.accordion-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.accordion-grid[data-state="open"],
+.accordion-grid.open {
+  grid-template-rows: 1fr;
+}
+.accordion-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Przyciski stan active: scale .98 */
+button:active:not(:disabled),
+a[role="button"]:active,
+.btn-action:active {
+  transform: scale(0.98);
+  transition: transform 150ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Line reveal mask */
+.line-mask {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-grid {
+    transition: none !important;
+  }
+  button:active:not(:disabled),
+  a[role="button"]:active,
+  .btn-action:active {
+    transform: none !important;
+  }
 }

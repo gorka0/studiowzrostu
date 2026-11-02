@@ -61,7 +61,7 @@ export function BeforeAfterSlider({
         />
         {/* Etykieta Przed (WCAG AA kontrast: biały tekst na ciemnym tle) */}
         <div className="absolute top-3 left-3 z-10 pointer-events-none">
-          <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold tracking-wide rounded bg-black/85 text-white border border-white/20 shadow-sm">
+          <span className="inline-flex items-center px-2.5 py-1 text-[13px] font-semibold tracking-wide rounded bg-black/85 text-white border border-white/20 shadow-sm">
             Przed
           </span>
         </div>
@@ -85,7 +85,7 @@ export function BeforeAfterSlider({
         />
         {/* Etykieta Po (WCAG AA kontrast: biały tekst na ciemnym tle) */}
         <div className="absolute top-3 right-3 z-10 pointer-events-none">
-          <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold tracking-wide rounded bg-black/85 text-white border border-white/20 shadow-sm">
+          <span className="inline-flex items-center px-2.5 py-1 text-[13px] font-semibold tracking-wide rounded bg-black/85 text-white border border-white/20 shadow-sm">
             Po
           </span>
         </div>

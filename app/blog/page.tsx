@@ -9,7 +9,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { SpotlightCard } from "@/components/effects/spotlight-card";
 import { CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { ArrowRight, Clock, Calendar, User } from "lucide-react";
+import { ArrowRight, Clock, Calendar, User, FileText } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.blog.title,
@@ -18,6 +18,8 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function BlogListPage() {
+  const publishedPosts = blogPosts.filter((post) => !post.draft);
+
   return (
     <main id="main-content" className="flex-1 pb-16">
       <Section spacing="sm">
@@ -31,59 +33,82 @@ export default function BlogListPage() {
             align="left"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            {blogPosts.map((post) => (
-              <SpotlightCard
-                key={post.slug}
-                className="flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-surface hover:border-accent/60 transition-all duration-300 group shadow-xs"
-              >
-                <div>
-                  <CardHeader className="space-y-3">
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-accent-text font-semibold font-mono text-xs font-medium">{post.category}</span>
-                      <div className="flex items-center gap-1.5 text-ink-muted">
-                        <Clock className="h-3.5 w-3.5" />
-                        <span>{post.readingTime}</span>
+          {publishedPosts.length === 0 ? (
+            <div className="mt-12 p-8 sm:p-12 rounded-2xl border border-line bg-surface/50 text-left max-w-2xl space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent-text">
+                <FileText className="h-5 w-5" />
+              </div>
+              <h2 className="text-xl font-bold font-heading text-ink">
+                Artykuły w przygotowaniu
+              </h2>
+              <p className="text-sm sm:text-base text-ink-muted leading-relaxed">
+                Przygotowujemy aktualne, merytoryczne publikacje o architekturze stron, optymalizacji Core Web Vitals oraz technologicznym SEO. Nowe artykuły pojawią się wkrótce po zakończeniu weryfikacji redakcyjnej.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/uslugi"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-text hover:underline"
+                >
+                  <span>Sprawdź naszą ofertę wdrożeń</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+              {publishedPosts.map((post) => (
+                <SpotlightCard
+                  key={post.slug}
+                  className="flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-surface hover:border-accent/60 transition-all duration-300 group shadow-xs"
+                >
+                  <div>
+                    <CardHeader className="space-y-3">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-accent-text font-semibold text-xs font-medium">{post.category}</span>
+                        <div className="flex items-center gap-1.5 text-ink-muted">
+                          <Clock className="h-3.5 w-3.5" />
+                          <span>{post.readingTime}</span>
+                        </div>
                       </div>
-                    </div>
 
-                    <CardTitle as="h2" className="text-xl sm:text-2xl text-ink group-hover:text-accent-text transition-colors leading-tight">
-                      <Link href={`/blog/${post.slug}`}>
-                        {post.title}
-                      </Link>
-                    </CardTitle>
+                      <CardTitle as="h2" className="text-xl sm:text-2xl text-ink group-hover:text-accent-text transition-colors leading-tight">
+                        <Link href={`/blog/${post.slug}`}>
+                          {post.title}
+                        </Link>
+                      </CardTitle>
 
-                    <CardDescription className="text-sm text-ink-muted leading-relaxed">
-                      {post.excerpt}
-                    </CardDescription>
-                  </CardHeader>
-                </div>
-
-                <CardFooter className="p-0 border-t border-line bg-surface-subtle/40 transition-colors group-hover:bg-accent/5">
-                  <div className="w-full py-4 px-6 sm:px-8 flex items-center justify-between gap-4">
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-ink-muted font-mono">
-                      <div className="flex items-center gap-1.5">
-                        <User className="h-3.5 w-3.5 text-accent-text" />
-                        <span>{post.author.name}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="h-3.5 w-3.5" />
-                        <span>{post.formattedDate}</span>
-                      </div>
-                    </div>
-
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="inline-flex items-center text-xs sm:text-sm font-semibold text-accent-text hover:text-accent-text/80 transition-colors shrink-0"
-                    >
-                      <span>Przeczytaj artykuł</span>
-                      <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                    </Link>
+                      <CardDescription className="text-sm text-ink-muted leading-relaxed">
+                        {post.excerpt}
+                      </CardDescription>
+                    </CardHeader>
                   </div>
-                </CardFooter>
-              </SpotlightCard>
-            ))}
-          </div>
+
+                  <CardFooter className="p-0 border-t border-line bg-surface-subtle/40 transition-colors group-hover:bg-accent/5">
+                    <div className="w-full py-4 px-6 sm:px-8 flex items-center justify-between gap-4">
+                      <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-ink-muted">
+                        <div className="flex items-center gap-1.5">
+                          <User className="h-3.5 w-3.5 text-accent-text" />
+                          <span>{post.author.name}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Calendar className="h-3.5 w-3.5" />
+                          <span>{post.formattedDate}</span>
+                        </div>
+                      </div>
+
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="inline-flex items-center text-xs sm:text-sm font-semibold text-accent-text hover:text-accent-text/80 transition-colors shrink-0"
+                      >
+                        <span>Przeczytaj artykuł</span>
+                        <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </div>
+                  </CardFooter>
+                </SpotlightCard>
+              ))}
+            </div>
+          )}
         </Container>
       </Section>
     </main>

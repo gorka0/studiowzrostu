@@ -15,7 +15,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   home: {
     title: "Nowoczesne strony internetowe dla firm | Studio Wzrostu",
     description:
-      "Tworzymy nowoczesne strony internetowe dla firm z Bydgoszczy i całej Polski. Szybka realizacja, stała wycena z góry i pełna własność strony. Zamów bezpłatną wycenę!",
+      "Tworzymy nowoczesne i szybkie strony internetowe dla firm. Przejrzysta oferta, realizacja w 3–4 dni i stała cena z góry. Sprawdź szczegóły!",
     keywords: [
       "nowoczesne strony dla firm",
       "strony internetowe dla firm",
@@ -23,11 +23,8 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "tworzenie stron React",
       "szybka strona dla firmy",
       "optymalizacja Core Web Vitals",
-      "strony internetowe Bydgoszcz",
-      "tworzenie stron www Bydgoszcz",
-      "strona internetowa dla firmy Bydgoszcz",
       "nowoczesna strona firmowa",
-      "tworzenie stron www dla małych firm",
+      "tworzenie stron www dla firm",
       "cena strony internetowej dla firmy",
     ],
     ogTitle: "Nowoczesne strony internetowe dla firm | Studio Wzrostu",
@@ -37,15 +34,11 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   services: {
     title: "Projektowanie i tworzenie stron www | Studio Wzrostu",
     description:
-      "Kompleksowe usługi web development dla firm: dedykowane serwisy Next.js, landing page pod kampanie, audyty SEO oraz modernizacja stron. Sprawdź ofertę!",
+      "Usługi projektowania i tworzenia stron dla firm: dedykowane serwisy Next.js, landing page pod kampanie, audyty SEO oraz modernizacja stron. Sprawdź ofertę!",
     keywords: [
       "tworzenie stron www oferta",
       "projektowanie stron dla biznesu",
       "usługi web development",
-      "tworzenie stron Bydgoszcz",
-      "firma web design Bydgoszcz",
-      "agencja internetowa Bydgoszcz",
-      "strony www kujawsko-pomorskie",
       "zamów stronę internetową",
       "strona internetowa dla firmy usługowej",
     ],
@@ -56,7 +49,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   servicesWebsites: {
     title: "Nowoczesne strony internetowe – Next.js | Studio Wzrostu",
     description:
-      "Szybkie strony firmowe B2B i B2C w React i Next.js. Tworzenie serwisów dla firm z całej Polski. Wdrożenie w 3–4 dni, cena z góry. Zamów wycenę!",
+      "Szybkie strony firmowe B2B i B2C w React i Next.js. Wdrożenie w 3–4 dni, cena z góry i czysty kod bez szablonów.",
     keywords: [
       "nowoczesne strony internetowe w React i Next.js",
       "szybkie strony firmowe B2B B2C",
@@ -65,7 +58,6 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "szybka strona internetowa",
       "strona www bez wordpress",
       "strona internetowa dla firmy B2B",
-      "projektowanie stron Bydgoszcz",
     ],
     ogTitle: "Nowoczesne strony internetowe – Next.js | Studio Wzrostu",
     ogDescription:
@@ -74,128 +66,117 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   servicesLandingPage: {
     title: "Landing Page pod kampanie Ads i Meta | Studio Wzrostu",
     description:
-      "Projektujemy skuteczne landing pages pod kampanie Google Ads i Meta. Zwiększ konwersję z reklam dzięki błyskawicznemu ładowaniu. Zyskaj więcej leadów!",
+      "Projektujemy przejrzyste landing pages pod kampanie reklamowe. Prosta ścieżka do kontaktu i szybkie ładowanie na smartfonach.",
     keywords: [
       "projektowanie landing page",
       "strona lądująca pod kampanie Google Ads Meta",
-      "jak zwiększyć konwersję z reklam",
-      "landing page Bydgoszcz",
-      "strona pod kampanie Google Ads",
-      "jak zwiększyć sprzedaż przez internet",
+      "strona pod kampanie reklamowe",
+      "jak zwiększyć zapytania ze strony",
     ],
     ogTitle: "Skuteczne Landing Pages pod kampanie reklamowe | Studio Wzrostu",
     ogDescription:
-      "Zwiększ rentowność kampanii Ads i Meta dzięki landing page ładowanemu w 0.5s zoptymalizowanemu pod konwersję.",
+      "Landing page zoptymalizowany pod kątem konwersji i szybkiego ładowania na telefonach.",
   },
   servicesSeo: {
-    title: "Techniczne SEO i Pozycjonowanie stron | Studio Wzrostu",
+    title: "Techniczne SEO i optymalizacja stron | Studio Wzrostu",
     description:
-      "Audyt techniczny SEO i optymalizacja Core Web Vitals. Pozycjonowanie stron dla firm z całej Polski. Zdobądź wyższe pozycje w Google!",
+      "Audyt techniczny SEO i optymalizacja Core Web Vitals. Zadbaj o czysty kod, strukturę danych i lepszą czytelność dla wyszukiwarek.",
     keywords: [
       "techniczne SEO",
-      "pozycjonowanie stron www",
+      "optymalizacja stron www",
       "audyt SEO",
       "indeksacja Google",
       "architektura informacji",
-      "pozycjonowanie stron Bydgoszcz",
-      "SEO Bydgoszcz",
-      "widoczność w Google",
+      "widoczność w wyszukiwarce",
     ],
     ogTitle: "Techniczne SEO i audyt Core Web Vitals | Studio Wzrostu",
     ogDescription:
-      "Optymalizacja architektury kodu pod wytyczne Google. Zielone wskaźniki Core Web Vitals i wyższa widoczność w wyszukiwarce.",
+      "Optymalizacja architektury kodu pod wytyczne Google. Zielone wskaźniki Core Web Vitals i stabilna struktura serwisu.",
   },
   servicesRedesign: {
     title: "Redesign stron i modernizacja wydajności | Studio Wzrostu",
     description:
-      "Przebudowa przestarzałych serwisów na nowoczesny stos Next.js. Poprawiamy konwersję, skracamy czas ładowania i eliminujemy dług technologiczny. Sprawdź!",
+      "Przebudowa przestarzałych serwisów na nowoczesny stos Next.js. Poprawiamy czytelność, skracamy czas ładowania i dbamy o przekierowania.",
     keywords: [
       "przebudowa strony internetowej",
       "modernizacja starej strony",
       "optymalizacja szybkości strony",
       "poprawa Core Web Vitals",
-      "przebudowa strony Bydgoszcz",
       "przyspieszenie wolnej strony",
     ],
     ogTitle: "Modernizacja i przebudowa stron firmowych | Studio Wzrostu",
     ogDescription:
-      "Zamień wolną, przestarzałą stronę na nowoczesny serwis w Next.js. Wyższa sprzedaż, zero długu technologicznego.",
+      "Zamień wolną stronę na nowoczesny serwis w Next.js. Czytelny układ i sprawna nawigacja na telefonach.",
   },
   projects: {
     title: "Projekty stron internetowych dla firm | Studio Wzrostu",
     description:
-      "Autorskie koncepcje stron www i landing page od Studio Wzrostu. Zobacz, jak projektujemy nowoczesny układ, czytelność i szybkość. Poznaj nasze podejście!",
+      "Autorskie koncepcje stron www i landing page od Studio Wzrostu. Zobacz, jak projektujemy nowoczesny układ, czytelność i szybkość.",
     keywords: [
       "projekty stron internetowych",
       "nowoczesny design www",
       "przykłady stron dla firm",
       "portfolio stron Next.js",
-      "przykłady stron firmowych Bydgoszcz",
       "realizacje stron internetowych",
     ],
     ogTitle: "Koncepcje architektoniczne stron www | Studio Wzrostu",
     ogDescription:
-      "Trzy autorskie koncepcje: serwis maszyn przemysłowych B2B, landing page aplikacji i interaktywne porównanie redesignu.",
+      "Autorskie koncepcje: serwis maszyn przemysłowych B2B, landing page aplikacji i interaktywne porównanie redesignu.",
   },
   about: {
     title: "O studiu – Tomasz Górka | Studio Wzrostu",
     description:
-      "Poznaj Studio Wzrostu i założyciela Tomasza Górkę. Tworzymy dedykowane serwisy bez szablonów dla firm z całej Polski. Dowiedz się więcej!",
+      "Poznaj Studio Wzrostu i podejście do tworzenia stron. Tworzymy dedykowane serwisy bez szablonów, z naciskiem na jakość kodu.",
     keywords: [
       "studio web development",
       "Tomasz Górka",
       "tworzenie stron bez szablonów",
       "programista stron www",
-      "webmaster Bydgoszcz",
-      "studio web design Bydgoszcz",
+      "nowoczesne strony internetowe",
     ],
-    ogTitle: "O Studio Wzrostu i Tomaszu Górce | Studio Wzrostu",
+    ogTitle: "O Studio Wzrostu i podejściu do kodu | Studio Wzrostu",
     ogDescription:
       "Niezależne studio tworzące szybkie serwisy internetowe w oparciu o React, Next.js i TypeScript bez zbędnego narzutu.",
   },
   blog: {
-    title: "Blog o technologii i rozwoju biznesu | Studio Wzrostu",
+    title: "Wiedza o technologii i stronach firmowych | Studio Wzrostu",
     description:
-      "Praktyczne poradniki o tworzeniu stron www, pozyskiwaniu klientów z sieci, SEO technicznym i Core Web Vitals. Zbuduj przewagę rynkową swojej firmy!",
+      "Praktyczne artykuły o tworzeniu stron www, technologii webowej, SEO technicznym i Core Web Vitals.",
     keywords: [
-      "rozwój biznesu online",
-      "jak zdobyć więcej klientów z internetu",
-      "wzrost sprzedaży przez stronę www",
-      "dlaczego strona nie sprzedaje",
-      "jak pozyskać klientów przez internet",
-      "strona internetowa dla małej firmy poradnik",
+      "tworzenie stron www poradnik",
+      "szybkość strony internetowej",
+      "jak pozyskać zapytania ze strony",
+      "techniczne seo",
     ],
-    ogTitle: "Blog inżynieryjno-biznesowy | Studio Wzrostu",
+    ogTitle: "Wiedza techniczna i biznesowa | Studio Wzrostu",
     ogDescription:
-      "Praktyczna wiedza bez żargonu: szybkość stron, Core Web Vitals, konwersja i skuteczne pozyskiwanie zapytań ofertowych.",
+      "Praktyczna wiedza bez żargonu: szybkość stron, Core Web Vitals i skuteczne pozyskiwanie zapytań ofertowych.",
   },
   contact: {
-    title: "Kontakt i bezpłatna wycena strony | Studio Wzrostu",
+    title: "Kontakt i wycena strony | Studio Wzrostu",
     description:
-      "Skontaktuj się ze Studiem Wzrostu. Porozmawiajmy o nowej stronie dla firmy. Otrzymaj bezpłatną wycenę z góry!",
+      "Skontaktuj się ze Studiem Wzrostu. Porozmawiajmy o nowej stronie dla firmy. Otrzymaj wycenę z góry!",
     keywords: [
       "kontakt studio wzrostu",
       "wycena strony internetowej",
-      "bezpłatna konsultacja",
+      "konsultacja techniczna",
       "tworzenie stron kontakt",
-      "wycena strony Bydgoszcz",
-      "strona firmowa Bydgoszcz cena",
       "ile kosztuje strona internetowa",
     ],
-    ogTitle: "Kontakt i bezpłatna wycena wdrożenia | Studio Wzrostu",
+    ogTitle: "Kontakt i wycena wdrożenia | Studio Wzrostu",
     ogDescription:
-      "Porozmawiajmy o nowej stronie w Next.js. Bezpłatna analiza techniczna i konkretna wycena ze stałą stawką przed startem prac.",
+      "Porozmawiajmy o nowej stronie w Next.js. Analiza techniczna i konkretna wycena ze stałą stawką przed startem prac.",
   },
   privacy: {
     title: "Polityka prywatności | Studio Wzrostu",
     description:
-      "Zasady przetwarzania danych osobowych (RODO) oraz prawa osób korzystających z serwisu internetowego Studio Wzrostu. Sprawdź szczegóły ochrony danych.",
+      "Zasady przetwarzania danych osobowych (RODO) oraz prawa osób korzystających z serwisu internetowego Studio Wzrostu.",
     keywords: ["polityka prywatności", "rodo studio wzrostu"],
   },
   cookies: {
     title: "Polityka plików cookies | Studio Wzrostu",
     description:
-      "Szczegółowy wykaz plików cookies oraz technologii pamięci lokalnej w serwisie Studio Wzrostu. Dowiedz się, jak chronimy Twoją prywatność.",
+      "Szczegółowy wykaz plików cookies oraz technologii pamięci lokalnej w serwisie Studio Wzrostu.",
     keywords: ["polityka cookies", "pliki cookies studio wzrostu"],
   },
 };

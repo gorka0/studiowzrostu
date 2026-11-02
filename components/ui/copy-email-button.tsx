@@ -120,11 +120,11 @@ export function CopyEmailButton({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2">
-            <span className="text-xs font-mono text-muted-foreground font-medium">
+            <span className="text-[13px] font-sans font-medium text-muted-foreground font-medium">
               E-mail
             </span>
             {isCopied && (
-              <span className="text-[11px] font-mono text-accent-text font-semibold animate-in fade-in duration-200">
+              <span className="text-[13px] font-sans font-medium text-accent-text font-semibold animate-in fade-in duration-200">
                 Skopiowano
               </span>
             )}
@@ -169,7 +169,7 @@ export function CopyEmailButton({
         <span className="group-hover:underline">{email}</span>
         <span
           className={cn(
-            "text-[10px] font-mono px-2 py-0.5 rounded bg-accent/10 text-accent-text border border-accent/20 transition-colors duration-150",
+            "text-[13px] font-sans font-medium px-2 py-0.5 rounded bg-accent/10 text-accent-text border border-accent/20 transition-colors duration-150",
             isCopied ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
           )}
         >
@@ -198,7 +198,7 @@ export function CopyEmailButton({
       >
         <span>{email}</span>
         {isCopied && (
-          <span className="text-[11px] font-mono text-accent-text animate-in fade-in duration-200">
+          <span className="text-[13px] font-sans font-medium text-accent-text animate-in fade-in duration-200">
             (Skopiowano)
           </span>
         )}

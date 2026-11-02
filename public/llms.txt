@@ -1,12 +1,12 @@
 # Studio Wzrostu
-> Nowoczesne strony internetowe w React i Next.js dla rozwijających się firm z całej Polski.
+> Nowoczesne strony internetowe w React i Next.js dla rozwijających się firm.
 
 - Właściciel / Założyciel: Tomasz Górka
 - Domena główna: https://studiowzrostu.pl
-- Zasięg obsługi: Cała Polska (współpraca w 100% zdalna)
+- Model współpracy: Współpraca zdalna
 - Specjalizacja: Projektowanie i wdrażanie szybkich, dedykowanych stron internetowych, landing pages, audytów technicznych SEO oraz optymalizacji Core Web Vitals.
 - Stos technologiczny: Next.js (App Router), React 19, TypeScript (strict), Tailwind CSS, Base UI, Schema.org JSON-LD.
-- Standardy inżynierskie: Dedykowany kod, zero ociężałych szablonów/wtyczek, czas ładowania < 1s, pełna dostępność WCAG AA, Google Consent Mode v2, zgodność z RODO.
+- Standardy inżynierskie: Dedykowany kod, zero ociężałych szablonów/wtyczek, wysoka wydajność, pełna dostępność WCAG AA, Google Consent Mode v2, zgodność z RODO.
 
 ## Główne podstrony i usługi
 - [Strona główna](https://studiowzrostu.pl/): Prezentacja oferty, procesu realizacji (3–4 dni robocze, stała cena z góry) i wskaźników wzrostu.
@@ -18,9 +18,8 @@
 - [Projekty](https://studiowzrostu.pl/projekty): Trzy autorskie koncepcje projektowe (serwis maszyn Hartman, aplikacja do grafików Kadrowo, redesign serwisu AutoCentrum z suwakiem przed/po).
 - [O nas](https://studiowzrostu.pl/o-nas): Misja, wartości inżynierskie, transparentne zasady współpracy i profil założyciela.
 - [Blog](https://studiowzrostu.pl/blog): Artykuły eksperckie o technologii, SEO i rozwoju biznesu online:
-  - [Jak zdobyć więcej klientów ze strony internetowej](https://studiowzrostu.pl/blog/jak-zdobyc-wiecej-klientow-ze-strony-internetowej): 7 barier blokujących sprzedaż i konwersję.
-  - [Strona internetowa a rozwój biznesu](https://studiowzrostu.pl/blog/strona-internetowa-a-rozwoj-biznesu): Kiedy strona jest dźwignią wzrostu, a kiedy zbędnym kosztem.
-  - [Strona internetowa dla lokalnej firmy w Bydgoszczy](https://studiowzrostu.pl/blog/strona-dla-lokalnej-firmy-bydgoszcz-seo): Lokalne pozycjonowanie w Google, wizytówka GBP i spójność NAP.
-- [Kontakt](https://studiowzrostu.pl/kontakt): Bezpłatna wycena w 24h, formularz kontaktowy z wyborem budżetu i preferencji.
+  - [Jak zdobyć więcej klientów ze strony](https://studiowzrostu.pl/blog/jak-zdobyc-wiecej-klientow-ze-strony-internetowej): Praktyczny przewodnik o optymalizacji ścieżki klienta.
+  - [Strona internetowa a rozwój biznesu](https://studiowzrostu.pl/blog/strona-internetowa-a-rozwoj-biznesu): Kiedy stary serwis zaczyna blokować sprzedaż.
+- [Kontakt](https://studiowzrostu.pl/kontakt): Formularz zapytania ofertowego z wyborem preferencji.
 - [Polityka prywatności](https://studiowzrostu.pl/polityka-prywatnosci): Standard RODO/GDPR (wersja v1.0).
 - [Polityka cookies](https://studiowzrostu.pl/polityka-cookies): Transparentny wykaz plików cookies i Consent Mode v2.

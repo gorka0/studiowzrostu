@@ -147,7 +147,7 @@ DOWÓD ZGODY RODO:
       from: fromEmail,
       to: [toEmail],
       replyTo: data.email,
-      subject: `[Zapytanie] ${data.name} – ${projectLabel}`,
+      subject: `[Zapytanie] ${data.name.replace(/[\r\n\t]/g, " ").trim()} – ${projectLabel.replace(/[\r\n\t]/g, " ").trim()}`,
       html: htmlContent,
       text: textContent,
     });

@@ -7,39 +7,46 @@ import { ArrowRight } from "lucide-react";
 import { useCookieConsent } from "@/components/ui/cookie-banner";
 import { cn } from "@/lib/utils";
 
-const EXCLUDED_ROUTES = ["/kontakt", "/polityka-prywatnosci", "/polityka-cookies"];
+const EXCLUDED_ROUTES = ["/polityka-prywatnosci", "/polityka-cookies"];
 
 /**
  * MobileStickyCTA – Przyklejony pasek CTA na mobile (md:hidden).
- * Pojawia się po przewinięciu > 500px, chowa się automatycznie przy stopce/końcowym CTA,
- * wyłączony na /kontakt i stronach prawnych, bez kolizji z banerem Cookies.
+ * Pojawia się po przewinięciu poza hero (> 480px),
+ * chowa się w sekcji kontaktu i przy aktywnym polu formularza (klawiaturze),
+ * uwzględnia safe-area i prefers-reduced-motion.
  */
 export function MobileStickyCTA() {
   const pathname = usePathname();
   const { consent } = useCookieConsent();
   const [isScrolledPastHero, setIsScrolledPastHero] = React.useState(false);
   const [isNearBottom, setIsNearBottom] = React.useState(false);
+  const [isInputFocused, setIsInputFocused] = React.useState(false);
 
-  // Sprawdzamy czy bieżąca trasa jest wykluczona
   const isExcludedRoute = EXCLUDED_ROUTES.includes(pathname);
 
-  // 1. Scroll listener z flagą passive: true (> 500px)
+  // 1. Scroll listener (> 480px, RAF-guarded)
   React.useEffect(() => {
     if (isExcludedRoute) return;
 
+    let rafId: number | null = null;
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolledPastHero(scrollY > 500);
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const next = window.scrollY > 480;
+        setIsScrolledPastHero((prev) => (prev !== next ? next : prev));
+      });
     };
 
-    // Początkowe sprawdzenie
     handleScroll();
-
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [isExcludedRoute]);
 
-  // 2. IntersectionObserver ukrywający pasek, gdy w viewport wchodzi stopka lub końcowe CTA
+  // 2. IntersectionObserver ukrywający pasek w sekcji kontaktu / stopce
   React.useEffect(() => {
     if (isExcludedRoute) return;
 
@@ -61,21 +68,46 @@ export function MobileStickyCTA() {
     return () => observer.disconnect();
   }, [isExcludedRoute, pathname]);
 
-  // Jeśli trasa jest wykluczona, w ogóle nie renderujemy komponentu
+  // 3. Ukrywanie przy aktywnej klawiaturze / focusie formularza
+  React.useEffect(() => {
+    const handleFocusIn = (e: FocusEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT")
+      ) {
+        setIsInputFocused(true);
+      }
+    };
+
+    const handleFocusOut = () => {
+      setIsInputFocused(false);
+    };
+
+    window.addEventListener("focusin", handleFocusIn);
+    window.addEventListener("focusout", handleFocusOut);
+    return () => {
+      window.removeEventListener("focusin", handleFocusIn);
+      window.removeEventListener("focusout", handleFocusOut);
+    };
+  }, []);
+
   if (isExcludedRoute) {
     return null;
   }
 
-  // Pasek widoczny, gdy: przewinięto > 500px, nie jesteśmy przy stopce i zaakceptowano lub zamknięto cookies
   const isCookieBannerVisible = consent === null;
-  const isVisible = isScrolledPastHero && !isNearBottom && !isCookieBannerVisible;
+  const isVisible =
+    isScrolledPastHero && !isNearBottom && !isInputFocused && !isCookieBannerVisible;
 
   return (
     <aside
       aria-hidden={!isVisible}
       className={cn(
-        "md:hidden fixed bottom-0 inset-x-0 z-40 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]",
-        "bg-surface/90 backdrop-blur-md border-t border-line shadow-lg transition-all duration-300 ease-in-out",
+        "md:hidden fixed bottom-0 inset-x-0 z-40 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))]",
+        "bg-surface/95 backdrop-blur-md border-t border-line shadow-lg transition-all duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:transition-none",
         isVisible
           ? "translate-y-0 opacity-100 pointer-events-auto"
           : "translate-y-full opacity-0 pointer-events-none"
@@ -83,20 +115,20 @@ export function MobileStickyCTA() {
     >
       <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
         <div className="flex flex-col text-left">
-          <span className="text-[11px] font-mono text-ink-muted leading-tight">
-            Masz pytania?
+          <span className="text-[13px] text-ink-muted leading-tight">
+            Nowa strona firmowa
           </span>
-          <span className="text-xs sm:text-sm font-bold font-heading text-ink leading-tight">
-            Bezpłatna wycena w 24h
+          <span className="text-[15px] font-bold font-heading text-ink leading-tight">
+            Projekt w 3–4 dni
           </span>
         </div>
 
         <Link
-          href="/kontakt"
+          href="#kontakt-cta"
           tabIndex={isVisible ? 0 : -1}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-accent-text text-white text-xs font-semibold hover:bg-accent transition-colors shadow-xs shrink-0 cursor-pointer"
+          className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-accent-text text-white text-[14px] font-semibold hover:bg-accent transition-colors shadow-xs shrink-0 cursor-pointer min-h-[44px] active:scale-[0.98]"
         >
-          <span>Porozmawiajmy</span>
+          <span>Zamów wycenę</span>
           <ArrowRight className="h-3.5 w-3.5" />
         </Link>
       </div>

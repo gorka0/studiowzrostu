@@ -13,6 +13,8 @@ import { ServiceJsonLd } from "@/components/seo/json-ld";
 import { Accordion } from "@/components/ui/accordion";
 import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
 import { ArrowRight } from "lucide-react";
+import { ServiceSpeedFeature } from "@/components/sections/service-speed-feature";
+import { ServiceSeoFeature } from "@/components/sections/service-seo-feature";
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
@@ -102,7 +104,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           {/* 1. Problem klienta */}
           <div className="mt-16 p-8 rounded-2xl border border-line bg-surface space-y-4">
-            <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
+            <div className="font-sans text-xs font-sans text-xs font-medium text-accent-text font-semibold">
               Wyzwania i bariery wzrostu
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
@@ -114,7 +116,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-4">
               {service.problem.symptoms.map((symptom, idx) => (
                 <div key={symptom} className="p-3.5 rounded-xl border border-line bg-surface-subtle text-xs sm:text-sm text-ink flex items-start gap-2.5">
-                  <span className="font-mono text-xs text-accent-text font-semibold shrink-0">0{idx + 1}</span>
+                  <span className="font-sans text-xs text-accent-text font-semibold shrink-0">0{idx + 1}</span>
                   <span>{symptom}</span>
                 </div>
               ))}
@@ -135,7 +137,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   key={item}
                   className="flex items-start gap-3 p-5 rounded-xl border border-line bg-surface"
                 >
-                  <span className="font-mono text-xs text-accent-text font-semibold shrink-0 mt-0.5">
+                  <span className="font-sans text-xs text-accent-text font-semibold shrink-0 mt-0.5">
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                   <span className="text-sm sm:text-base font-medium text-ink">{item}</span>
@@ -143,6 +145,10 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               ))}
             </div>
           </div>
+
+          {/* Moduł techniczny usługi (przeniesiony ze strony głównej) */}
+          {slug === "redesign-i-wydajnosc" && <ServiceSpeedFeature />}
+          {slug === "seo-techniczne" && <ServiceSeoFeature />}
 
           {/* 3. Proces wdrożenia */}
           <div id="proces" className="mt-20 scroll-mt-24 space-y-8">
@@ -155,7 +161,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {service.process.map((step) => (
                 <div key={step.step} className="p-6 rounded-xl border border-line bg-surface space-y-3">
-                  <span className="font-mono text-xl font-bold text-accent-text">{step.step}</span>
+                  <span className="font-sans text-xl font-bold text-accent-text">{step.step}</span>
                   <h3 className="font-heading font-bold text-base text-ink">{step.title}</h3>
                   <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">{step.desc}</p>
                 </div>
@@ -165,7 +171,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           {/* 4. Efekty biznesowe (jakościowo) */}
           <div className="mt-20 p-8 sm:p-10 rounded-2xl border border-line bg-surface space-y-6">
-            <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
+            <div className="font-sans text-xs font-sans text-xs font-medium text-accent-text font-semibold">
               Rezultaty wdrożenia dla firmy
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
@@ -174,7 +180,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {service.businessBenefits.map((benefit, idx) => (
                 <div key={benefit.title} className="p-5 rounded-xl border border-line bg-surface-subtle space-y-2">
-                  <span className="font-mono text-xs text-accent-text font-semibold">0{idx + 1}</span>
+                  <span className="font-sans text-xs text-accent-text font-semibold">0{idx + 1}</span>
                   <h3 className="font-heading font-bold text-base text-ink">{benefit.title}</h3>
                   <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">{benefit.desc}</p>
                 </div>
@@ -197,7 +203,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <div className="mt-20 pt-10 border-t border-line grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Inne usługi */}
             <div className="p-6 rounded-xl border border-line bg-surface space-y-3">
-              <div className="font-mono text-xs font-mono text-xs font-medium text-ink-muted">
+              <div className="font-sans text-xs font-sans text-xs font-medium text-ink-muted">
                 Zobacz także
               </div>
               <div className="space-y-2">
@@ -216,7 +222,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             {/* Powiązany artykuł na blogu */}
             <div className="p-6 rounded-xl border border-line bg-surface space-y-3 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
+                <div className="font-sans text-xs font-sans text-xs font-medium text-accent-text font-semibold">
                   Wiedza z bloga
                 </div>
                 {relatedPost && (
@@ -242,7 +248,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             {/* Realizacje / Projekty */}
             <div className="p-6 rounded-xl border border-line bg-surface space-y-3 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
+                <div className="font-sans text-xs font-sans text-xs font-medium text-accent-text font-semibold">
                   Koncepcja wdrożenia
                 </div>
                 <h3 className="font-heading font-bold text-sm sm:text-base text-ink">
@@ -266,7 +272,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           {/* Końcowe CTA usługi */}
           <div className="mt-16 p-8 rounded-2xl border border-line bg-surface text-center space-y-4">
-            <div className="font-mono text-xs font-mono text-xs font-medium text-accent-text font-semibold">
+            <div className="font-sans text-xs font-sans text-xs font-medium text-accent-text font-semibold">
               Realizacja w 3–4 dni robocze • Stała wycena z góry
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">

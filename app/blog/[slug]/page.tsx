@@ -40,12 +40,20 @@ export async function generateMetadata({
     return buildMetadata({ title: "Nie znaleziono artykułu" });
   }
 
-  return buildMetadata({
+  const baseMeta = buildMetadata({
     title: post.seoTitle || `${post.title} | Studio Wzrostu`,
     description: post.seoDescription || post.excerpt,
     path: `/blog/${post.slug}`,
     category: post.category,
   });
+
+  return {
+    ...baseMeta,
+    robots: {
+      index: !post.draft,
+      follow: !post.draft,
+    },
+  };
 }
 
 export default async function BlogPostDetailPage({ params }: BlogPostPageProps) {
@@ -75,11 +83,18 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
         <Container size="narrow">
           <Breadcrumbs items={breadcrumbItems} className="mb-8" />
 
+          {post.draft && (
+            <div className="mb-6 p-4 rounded-xl border border-accent/30 bg-accent/10 text-xs font-semibold text-accent-text flex items-center justify-between">
+              <span>Wersja robocza artykułu (Szkic do zatwierdzenia redakcyjnego)</span>
+              <span className="uppercase tracking-wider text-[11px] font-bold">Draft · Noindex</span>
+            </div>
+          )}
+
           <article className="space-y-10">
             {/* Nagłówek artykułu */}
             <header className="space-y-5 border-b border-line pb-8">
-              <div className="flex items-center gap-2 text-xs font-mono">
-                <span className="text-accent-text font-semibold font-mono text-xs font-medium">
+              <div className="flex items-center gap-2 text-xs">
+                <span className="text-accent-text font-semibold text-xs font-medium">
                   {post.category}
                 </span>
                 <span className="text-ink-muted">•</span>
@@ -201,7 +216,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
                   <span className="font-heading font-bold text-lg text-ink">
                     {post.author.name}
                   </span>
-                  <span className="text-xs font-mono text-accent-text font-medium">
+                  <span className="text-xs text-accent-text font-medium">
                     {post.author.role}
                   </span>
                 </div>

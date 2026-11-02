@@ -15,10 +15,27 @@ export async function GET() {
 
 // POST /api/contact - Główny handler formularza kontaktowego
 export async function POST(req: NextRequest) {
-  // 1. Ekstrakcja IP i Rate Limiting
-  const forwardedFor = req.headers.get("x-forwarded-for");
+  // 0. Weryfikacja rozmiaru payloadu (ochrona przed DoS / Memory exhaustion)
+  const contentLength = req.headers.get("content-length");
+  if (contentLength && parseInt(contentLength, 10) > 50_000) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Rozmiar zapytania przekracza dopuszczalny limit (maks. 50 KB).",
+      },
+      { status: 413 }
+    );
+  }
+
+  // 1. Ekstrakcja IP i Rate Limiting (preferencja zaufanych nagłówków proxy)
+  const cfConnectingIp = req.headers.get("cf-connecting-ip");
   const realIp = req.headers.get("x-real-ip");
-  const ip = forwardedFor ? forwardedFor.split(",")[0].trim() : realIp || "127.0.0.1";
+  const forwardedFor = req.headers.get("x-forwarded-for");
+  let rawIp = cfConnectingIp || realIp;
+  if (!rawIp && forwardedFor) {
+    rawIp = forwardedFor.split(",")[0].trim();
+  }
+  const ip = (rawIp || "127.0.0.1").replace(/[^a-fA-F0-9:.]/g, "").slice(0, 45);
 
   const rateLimitResult = await rateLimit(ip);
 
@@ -82,7 +99,7 @@ export async function POST(req: NextRequest) {
 
   const data = validation.data;
 
-  // 4. Antyspam: Weryfikacja tokenu czasu (minimum 3s, maksimum 1h)
+  // 4. Antyspam: Weryfikacja tokenu czasu (minimum 3s, maksimum 1h, ochrona przed Replay)
   const tokenCheck = verifyTimeToken(data.timeToken);
   if (!tokenCheck.valid) {
     return NextResponse.json(

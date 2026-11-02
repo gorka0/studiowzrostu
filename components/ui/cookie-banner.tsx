@@ -146,7 +146,7 @@ export function CookieConsentProvider({
               <div className="h-8 w-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent-text shrink-0 mt-0.5">
                 <Cookie className="h-4 w-4" />
               </div>
-              <div className="text-xs sm:text-sm text-foreground/90 leading-relaxed">
+              <div className="text-[13px] sm:text-[14px] text-foreground/90 leading-relaxed">
                 <span>
                   Szanujemy Twoją prywatność. Wykorzystujemy niezbędne pliki cookies do prawidłowego działania strony oraz – za Twoją zgodą – opcjonalne pliki analityczne i marketingowe. Szczegóły znajdziesz w{" "}
                 </span>
@@ -165,7 +165,7 @@ export function CookieConsentProvider({
               <Button
                 type="button"
                 onClick={handleRejectAll}
-                className="flex-1 md:flex-initial h-9 px-4 text-xs font-semibold rounded-xl border border-border bg-background text-foreground hover:bg-muted/80 transition-colors"
+                className="flex-1 md:flex-initial h-9 px-4 text-[13px] font-semibold rounded-xl border border-border bg-background text-foreground hover:bg-muted/80 transition-colors"
               >
                 Odrzuć wszystkie
               </Button>
@@ -173,7 +173,7 @@ export function CookieConsentProvider({
               <Button
                 type="button"
                 onClick={handleAcceptAll}
-                className="flex-1 md:flex-initial h-9 px-4 text-xs font-semibold rounded-xl bg-accent-text text-white hover:bg-accent focus-visible:ring-2 focus-visible:ring-accent-text dark:bg-accent dark:text-background dark:hover:bg-accent/80 transition-colors shadow-xs"
+                className="flex-1 md:flex-initial h-9 px-4 text-[13px] font-semibold rounded-xl bg-accent-text text-white hover:bg-accent focus-visible:ring-2 focus-visible:ring-accent-text dark:bg-accent dark:text-background dark:hover:bg-accent/80 transition-colors shadow-xs"
               >
                 Akceptuj wszystkie
               </Button>
@@ -182,7 +182,7 @@ export function CookieConsentProvider({
                 type="button"
                 variant="ghost"
                 onClick={openPreferencesModal}
-                className="w-full sm:w-auto h-9 px-3 text-xs font-semibold rounded-xl text-foreground hover:bg-muted/60 transition-colors inline-flex items-center justify-center gap-1.5"
+                className="w-full sm:w-auto h-9 px-3 text-[13px] font-semibold rounded-xl text-foreground hover:bg-muted/60 transition-colors inline-flex items-center justify-center gap-1.5"
               >
                 <Settings className="h-3.5 w-3.5 text-foreground" />
                 <span>Dostosuj</span>
@@ -225,7 +225,7 @@ export function CookieConsentProvider({
               </button>
             </div>
 
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+            <p className="text-[13px] sm:text-[14px] text-muted-foreground leading-relaxed">
               Dostosuj, na jakie kategorie plików cookies wyrażasz zgodę. Twoja decyzja zostanie zapisana na okres maksymalnie 12 miesięcy. Możesz ją zmienić w dowolnym momencie, klikając link w stopce.
             </p>
 
@@ -237,7 +237,7 @@ export function CookieConsentProvider({
                   <div className="font-heading font-bold text-sm text-foreground">
                     Niezbędne pliki techniczne
                   </div>
-                  <span className="text-[11px] font-semibold font-mono text-accent-text px-2 py-0.5 rounded-md bg-accent/10 border border-accent/20">
+                  <span className="text-[11px] font-semibold font-sans font-medium text-accent-text px-2 py-0.5 rounded-md bg-accent/10 border border-accent/20">
                     Wymagane
                   </span>
                 </div>
@@ -296,7 +296,7 @@ export function CookieConsentProvider({
               <Button
                 type="button"
                 onClick={handleRejectAll}
-                className="w-full sm:w-auto h-10 px-4 text-xs font-semibold rounded-xl border border-border bg-background text-foreground hover:bg-muted/80 transition-colors"
+                className="w-full sm:w-auto h-10 px-4 text-[13px] font-semibold rounded-xl border border-border bg-background text-foreground hover:bg-muted/80 transition-colors"
               >
                 Odrzuć opcjonalne
               </Button>
@@ -305,7 +305,7 @@ export function CookieConsentProvider({
                 <Button
                   type="button"
                   onClick={handleSaveCustom}
-                  className="w-full sm:w-auto h-10 px-5 text-xs font-semibold rounded-xl bg-accent-text text-white hover:bg-accent dark:bg-accent dark:text-background dark:hover:bg-accent/80 transition-colors inline-flex items-center justify-center gap-1.5"
+                  className="w-full sm:w-auto h-10 px-5 text-[13px] font-semibold rounded-xl bg-accent-text text-white hover:bg-accent dark:bg-accent dark:text-background dark:hover:bg-accent/80 transition-colors inline-flex items-center justify-center gap-1.5"
                 >
                   <Check className="h-3.5 w-3.5" />
                   <span>Zapisz preferencje</span>

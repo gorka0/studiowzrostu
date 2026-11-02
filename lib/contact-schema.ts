@@ -30,56 +30,68 @@ export const BUDGET_RANGE_LABELS: Record<(typeof BUDGET_RANGES)[number], string>
   "do-ustalenia": "Do ustalenia podczas rozmowy",
 };
 
-export const contactFormSchema = z.object({
-  name: z
-    .string({ message: "Imię jest wymagane" })
-    .trim()
-    .min(2, "Imię musi zawierać minimum 2 znaki")
-    .max(100, "Imię może zawierać maksymalnie 100 znaków"),
-  email: z
-    .string({ message: "E-mail jest wymagany" })
-    .trim()
-    .email("Wprowadź poprawny e-mail")
-    .max(254, "E-mail jest zbyt długi"),
-  phone: z
-    .string()
-    .trim()
-    .max(30, "Numer telefonu jest zbyt długi")
-    .optional()
-    .or(z.literal("")),
-  projectType: z.enum(PROJECT_TYPES, {
-    message: "Wybierz rodzaj projektu z listy",
-  }),
-  budget: z
-    .enum(BUDGET_RANGES, {
-      message: "Wybierz orientacyjny budżet z listy",
-    })
-    .optional()
-    .or(z.literal("")),
-  message: z
-    .string({ message: "Treść wiadomości jest wymagana" })
-    .trim()
-    .min(10, "Wiadomość musi zawierać minimum 10 znaków")
-    .max(3000, "Wiadomość może zawierać maksymalnie 3000 znaków"),
-  consent: z
-    .boolean({
-      message: "Zgoda na kontakt jest wymagana",
-    })
-    .refine((val) => val === true, {
-      message: "Zgoda na kontakt jest wymagana do wysłania wiadomości",
+export const contactFormSchema = z
+  .object({
+    name: z
+      .string({ message: "Imię jest wymagane" })
+      .trim()
+      .min(2, "Imię musi zawierać minimum 2 znaki")
+      .max(100, "Imię może zawierać maksymalnie 100 znaków")
+      .refine((val) => !/[\r\n\t]/.test(val), {
+        message: "Imię nie może zawierać znaków nowej linii",
+      }),
+    email: z
+      .string({ message: "E-mail jest wymagany" })
+      .trim()
+      .email("Wprowadź poprawny e-mail")
+      .max(254, "E-mail jest zbyt długi")
+      .refine((val) => !/[\r\n\t]/.test(val), {
+        message: "E-mail nie może zawierać znaków nowej linii",
+      }),
+    phone: z
+      .string()
+      .trim()
+      .max(30, "Numer telefonu jest zbyt długi")
+      .refine((val) => !val || /^[0-9+\s()\-.]+$/.test(val), {
+        message: "Numer telefonu może zawierać tylko cyfry, spacje i znaki: + - ( ) .",
+      })
+      .optional()
+      .or(z.literal("")),
+    projectType: z.enum(PROJECT_TYPES, {
+      message: "Wybierz rodzaj projektu z listy",
     }),
-  // Pole antyspamowe (honeypot) - musi pozostać puste
-  honeypot: z
-    .string()
-    .max(0, "Wykryto próbę spamu (pole honeypot)")
-    .optional()
-    .or(z.literal("")),
-  // Podpisany token znacznika czasu
-  timeToken: z
-    .string({
-      message: "Brak wymaganego tokenu zabezpieczającego",
-    })
-    .min(1, "Brak tokenu zabezpieczającego"),
-});
+    budget: z
+      .enum(BUDGET_RANGES, {
+        message: "Wybierz orientacyjny budżet z listy",
+      })
+      .optional()
+      .or(z.literal("")),
+    message: z
+      .string({ message: "Treść wiadomości jest wymagana" })
+      .trim()
+      .min(10, "Wiadomość musi zawierać minimum 10 znaków")
+      .max(3000, "Wiadomość może zawierać maksymalnie 3000 znaków"),
+    consent: z
+      .boolean({
+        message: "Zgoda na kontakt jest wymagana",
+      })
+      .refine((val) => val === true, {
+        message: "Zgoda na kontakt jest wymagana do wysłania wiadomości",
+      }),
+    // Pole antyspamowe (honeypot) - musi pozostać puste
+    honeypot: z
+      .string()
+      .max(0, "Wykryto próbę spamu (pole honeypot)")
+      .optional()
+      .or(z.literal("")),
+    // Podpisany token znacznika czasu
+    timeToken: z
+      .string({
+        message: "Brak wymaganego tokenu zabezpieczającego",
+      })
+      .min(1, "Brak tokenu zabezpieczającego")
+      .max(200, "Token jest zbyt długi"),
+  })
+  .strict();
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;

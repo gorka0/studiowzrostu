@@ -11,16 +11,6 @@ export const siteConfig = {
     phone: "+48 736 943 002",
     email: "kontakt@studiowzrostu.pl",
   },
-  location: {
-    city: "Bydgoszcz",
-    region: "kujawsko-pomorskie",
-    serviceArea: [
-      "Bydgoszcz",
-      "Toruń",
-      "Województwo kujawsko-pomorskie",
-      "Cała Polska (zdalnie)",
-    ],
-  },
   social: {
     github: "",
     linkedin: "",

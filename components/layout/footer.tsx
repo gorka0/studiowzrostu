@@ -1,134 +1,114 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/site.config";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "@/components/ui/container";
-import { useCookieConsent } from "@/components/ui/cookie-banner";
+import { CookieSettingsButton } from "@/components/ui/cookie-settings-button";
 
 export function Footer() {
-  const { openPreferencesModal } = useCookieConsent();
-
   return (
-    <footer className="w-full border-t border-border bg-card/50 text-foreground transition-colors mt-auto">
-      <Container className="py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Kolumna 1: Marka & Misja */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-block">
-              <Logo size="md" />
+    <footer className="w-full border-t border-border bg-card/50 text-foreground transition-colors mt-auto pb-20 md:pb-0">
+      <Container className="pt-4 pb-16 md:py-6">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 items-start">
+          
+          {/* Lewa strona: Logo i kontakt w jednej linii */}
+          <div className="md:col-span-6 space-y-4 text-left">
+            <Link href="/" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
+              <Logo size="sm" />
             </Link>
-            <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-              {siteConfig.description}
-            </p>
-            <div className="text-xs text-muted-foreground pt-2">
-              Właściciel: <span className="font-medium text-foreground">{siteConfig.owner}</span>
+
+            {/* Kontakt w jednej linii */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] sm:text-[14px] text-muted-foreground pt-1">
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                className="hover:text-accent-text transition-colors py-1 inline-flex items-center"
+              >
+                {siteConfig.contact.email}
+              </a>
+              <span className="text-border select-none" aria-hidden="true">•</span>
+              <a
+                href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
+                className="hover:text-accent-text transition-colors py-1 inline-flex items-center"
+              >
+                {siteConfig.contact.phone}
+              </a>
             </div>
           </div>
 
-          {/* Kolumna 2: Nawigacja */}
-          <div className="space-y-3">
-            <div className="text-xs font-medium text-foreground font-heading">
-              Studio
+          {/* Prawa strona: 2 kolumny linków (Studio, Prawne) */}
+          <div className="md:col-span-6 grid grid-cols-2 gap-6 text-left">
+            
+            {/* Kolumna 1: Studio */}
+            <div className="space-y-2.5">
+              <div className="text-[13px] font-semibold text-foreground font-heading">
+                Studio
+              </div>
+              <ul className="space-y-1.5 text-[13px] sm:text-[14px] text-muted-foreground list-none p-0 m-0">
+                <li>
+                  <Link href="/uslugi" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                    Usługi
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/projekty" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                    Projekty
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/o-nas" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                    O nas
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/kontakt" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                    Kontakt
+                  </Link>
+                </li>
+              </ul>
             </div>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/uslugi" className="hover:text-accent-text transition-colors">
-                  Usługi
-                </Link>
-              </li>
-              <li>
-                <Link href="/projekty" className="hover:text-accent-text transition-colors">
-                  Projekty
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="hover:text-accent-text transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/o-nas" className="hover:text-accent-text transition-colors">
-                  O nas
-                </Link>
-              </li>
-              <li>
-                <Link href="/kontakt" className="hover:text-accent-text transition-colors">
-                  Kontakt
-                </Link>
-              </li>
-            </ul>
-          </div>
 
-          {/* Kolumna 3: Kontakt (wyłącznie z site.config) */}
-          <div className="space-y-3">
-            <div className="text-xs font-medium text-foreground font-heading">
-              Kontakt
+            {/* Kolumna 2: Prawne */}
+            <div className="space-y-2.5">
+              <div className="text-[13px] font-semibold text-foreground font-heading">
+                Prawne
+              </div>
+              <ul className="space-y-1.5 text-[13px] sm:text-[14px] text-muted-foreground list-none p-0 m-0">
+                <li>
+                  <Link
+                    href="/polityka-prywatnosci"
+                    className="hover:text-accent-text transition-colors inline-block py-0.5"
+                  >
+                    Polityka prywatności
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/polityka-cookies"
+                    className="hover:text-accent-text transition-colors inline-block py-0.5"
+                  >
+                    Polityka cookies
+                  </Link>
+                </li>
+                <li>
+                  <CookieSettingsButton />
+                </li>
+              </ul>
             </div>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className="hover:text-accent-text transition-colors"
-                >
-                  {siteConfig.contact.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
-                  className="hover:text-accent-text transition-colors"
-                >
-                  {siteConfig.contact.phone}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Kolumna 4: Informacje prawne i cookies */}
-          <div className="space-y-3">
-            <div className="text-xs font-medium text-foreground font-heading">
-              Prawne
-            </div>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link
-                  href="/polityka-prywatnosci"
-                  className="hover:text-accent-text transition-colors"
-                >
-                  Polityka prywatności
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/polityka-cookies"
-                  className="hover:text-accent-text transition-colors"
-                >
-                  Polityka cookies
-                </Link>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={openPreferencesModal}
-                  className="hover:text-accent-text transition-colors text-left cursor-pointer"
-                >
-                  Ustawienia cookies
-                </button>
-              </li>
-
-            </ul>
           </div>
         </div>
 
-        {/* Dolna belka: Prawa autorskie */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        {/* Dolna belka */}
+        <div className="mt-3.5 pt-2.5 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2 text-[13px] text-muted-foreground">
           <div>
             &copy; {siteConfig.copyrightYear} {siteConfig.name}. Wszelkie prawa zastrzeżone.
           </div>
-          <div className="font-mono text-[11px] text-muted-foreground">
-            Next.js & React • Projekt i wdrożenie dedykowane
+          <div>
+            Next.js & React • Dedykowane wdrożenie
           </div>
         </div>
       </Container>

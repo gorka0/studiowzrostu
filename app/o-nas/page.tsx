@@ -42,7 +42,7 @@ export default function AboutPage() {
             <div className="pt-6 border-t border-line space-y-3 font-medium text-ink text-sm">
               {aboutContent.commitments.map((commitment, idx) => (
                 <div key={idx} className="flex items-baseline gap-3">
-                  <span className="font-mono text-xs text-accent-text font-bold">0{idx + 1}</span>
+                  <span className="font-sans text-xs text-accent-text font-bold">0{idx + 1}</span>
                   <span>{commitment}</span>
                 </div>
               ))}
@@ -61,7 +61,7 @@ export default function AboutPage() {
                   key={val.title}
                   className="border-t border-line pt-6 space-y-3 text-left"
                 >
-                  <div className="font-mono text-xs font-semibold text-accent-text">
+                  <div className="font-sans text-xs font-semibold text-accent-text">
                     {val.number}
                   </div>
                   <h3 className="font-heading font-bold text-lg text-ink">

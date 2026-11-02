@@ -17,7 +17,7 @@ export function InteractiveHoverButton({
   return (
     <button
       className={cn(
-        "group relative inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl font-medium text-sm text-surface bg-accent hover:bg-accent/90 border border-accent/20 shadow-xs transition-colors duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text cursor-pointer select-none",
+        "group relative inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl font-semibold text-[15px] text-surface bg-accent hover:bg-accent/90 border border-accent/20 shadow-xs transition-colors duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text cursor-pointer select-none",
         className
       )}
       {...props}

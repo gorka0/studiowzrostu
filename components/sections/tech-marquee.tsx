@@ -24,7 +24,7 @@ export function TechMarquee() {
             <div className="flex items-center gap-6 sm:gap-8 shrink-0">
               {TECH_ITEMS.map((tech) => (
                 <div key={tech} className="flex items-center gap-6 sm:gap-8">
-                  <span className="font-mono text-xs sm:text-sm font-medium tracking-tight text-ink/80 hover:text-accent-text transition-colors">
+                  <span className="font-sans text-sm font-medium tracking-tight text-ink/80 hover:text-accent-text transition-colors">
                     {tech}
                   </span>
                   <span
@@ -42,7 +42,7 @@ export function TechMarquee() {
             >
               {TECH_ITEMS.map((tech, idx) => (
                 <div key={`${tech}-dup-${idx}`} className="flex items-center gap-6 sm:gap-8">
-                  <span className="font-mono text-xs sm:text-sm font-medium tracking-tight text-ink/80 hover:text-accent-text transition-colors">
+                  <span className="font-sans text-sm font-medium tracking-tight text-ink/80 hover:text-accent-text transition-colors">
                     {tech}
                   </span>
                   <span

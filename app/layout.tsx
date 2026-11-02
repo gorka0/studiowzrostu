@@ -37,25 +37,19 @@ export default function RootLayout({
     <html
       lang="pl"
       suppressHydrationWarning
-      className={`${fontHeading.variable} ${fontSans.variable} font-sans h-full antialiased`}
+      className={`${fontHeading.variable} ${fontSans.variable} font-sans h-full antialiased js`}
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.add('js');if(typeof window!=='undefined'){if('scrollRestoration' in history){history.scrollRestoration='manual';}if(!window.location.hash){window.scrollTo(0,0);}}`,
-          }}
-        />
+        <GlobalJsonLd />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground transition-colors duration-200">
+        <ScrollToTopOnReload />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange={false}
         >
-          <ScrollToTopOnReload />
-          <ConsentManager />
-          <GlobalJsonLd />
           <CookieConsentProvider>
             <SkipLink />
             <Header />
@@ -66,6 +60,7 @@ export default function RootLayout({
             <MobileStickyCTA />
           </CookieConsentProvider>
         </ThemeProvider>
+        <ConsentManager />
       </body>
     </html>
   );

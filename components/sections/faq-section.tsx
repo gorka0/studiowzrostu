@@ -39,31 +39,31 @@ export function FaqSection() {
   };
 
   return (
-    <Section spacing="default" id="faq" className="bg-background border-b border-line">
+    <Section spacing="none" id="faq" className="bg-background border-b border-line py-6 sm:py-10 lg:py-16">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* LEWA KOLUMNA: Sticky (kol. 1–5) */}
-          <div className="lg:col-span-5 text-left lg:sticky lg:top-24 space-y-4">
-            <div className="font-mono text-xs font-medium text-accent-text">
-              Najczęstsze pytania (FAQ)
+          <div className="lg:col-span-5 text-left lg:sticky lg:top-24 space-y-3">
+            <div className="text-[13px] font-semibold text-accent-text">
+              Najczęstsze pytania
             </div>
 
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl text-ink tracking-tight">
+            <h2 className="font-heading font-bold text-[clamp(1.75rem,7vw,2.25rem)] text-ink tracking-tight leading-tight">
               Wszystko, co warto wiedzieć przed startem
             </h2>
 
-            <p className="text-sm sm:text-base text-ink-muted leading-relaxed">
-              Odpowiadamy na najczęstsze pytania właścicieli firm dotyczące procesu, technologii, terminów i kosztów wdrożenia nowej strony.
+            <p className="text-[15px] text-ink-muted leading-[1.5]">
+              Odpowiedzi na najczęstsze pytania o proces, technologię Next.js, czas realizacji i zasady wyceny.
             </p>
 
-            <div className="pt-4 border-t border-line/70">
-              <div className="text-xs text-ink-muted mb-2 font-mono">
+            <div className="pt-3 border-t border-line/70">
+              <div className="text-[15px] text-ink-muted mb-1.5 font-sans">
                 Masz inne pytanie dotyczące Twojej branży?
               </div>
               <Link
                 href="/kontakt"
-                className="inline-flex items-center text-sm font-semibold text-accent-text hover:text-accent-text/80 transition-colors group"
+                className="inline-flex items-center text-[15px] font-semibold text-accent-text hover:text-accent-text/80 transition-colors group min-h-[44px] py-1 active:scale-[0.98]"
               >
                 <span>Napisz do nas lub zadzwoń</span>
                 <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -79,7 +79,7 @@ export function FaqSection() {
               const buttonId = `faq-button-${item.id}`;
 
               return (
-                <div key={item.id} className="py-2">
+                <div key={item.id} className="py-1">
                   <button
                     id={buttonId}
                     type="button"
@@ -90,7 +90,7 @@ export function FaqSection() {
                     }}
                     onClick={() => toggleItem(item.id)}
                     onKeyDown={(e) => handleKeyDown(e, idx)}
-                    className="flex w-full items-center justify-between py-4 text-left font-heading font-bold text-base sm:text-lg text-ink hover:text-accent-text transition-colors gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text rounded-lg px-2 -mx-2 cursor-pointer"
+                    className="flex w-full items-center justify-between py-3.5 sm:py-4 text-left font-heading font-bold text-[20px] text-ink hover:text-accent-text transition-colors gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text rounded-lg px-2 -mx-2 cursor-pointer active:scale-[0.98]"
                   >
                     <span>{item.question}</span>
                     <ChevronDown
@@ -107,12 +107,12 @@ export function FaqSection() {
                     role="region"
                     aria-labelledby={buttonId}
                     className={cn(
-                      "grid transition-[grid-template-rows] duration-150 ease-out px-2",
-                      isOpen ? "grid-rows-[1fr] opacity-100 pb-4" : "grid-rows-[0fr] opacity-0"
+                      "grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] px-2",
+                      isOpen ? "grid-rows-[1fr] opacity-100 pb-3.5" : "grid-rows-[0fr] opacity-0"
                     )}
                   >
                     <div className="overflow-hidden">
-                      <p className="text-xs sm:text-sm text-ink-muted leading-relaxed pt-1">
+                      <p className="text-[15px] text-ink-muted leading-[1.5] pt-0.5">
                         {item.answer}
                       </p>
                     </div>

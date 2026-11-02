@@ -29,7 +29,7 @@ export function Eyebrow({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md border text-xs font-mono font-medium select-none transition-colors",
+        "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md border text-sm font-sans font-medium select-none transition-colors",
         variantStyles[variant],
         className
       )}
