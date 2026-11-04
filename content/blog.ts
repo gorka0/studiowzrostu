@@ -55,7 +55,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Wielu przedsiębiorców inwestuje w marketing, ale nie widzi przełożenia na liczbę zapytań w skrzynce. Przyczyna często leży w samej witrynie. Poznaj 7 konkretnych barier, które utrudniają klientom kontakt.",
     date: "2026-10-18",
-    lastModified: "2026-10-28",
+    lastModified: "2026-11-04",
     formattedDate: "18 października 2026",
     readingTime: "9 min czytania",
     category: "Optymalizacja stron",
@@ -179,7 +179,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "W pewnym momencie rozwoju biznesu okazuje się, że przestarzała witryna nie budzi zaufania wymagających klientów. Jak przekształcić stronę w sprawne narzędzie komunikacji?",
     date: "2026-10-21",
-    lastModified: "2026-10-28",
+    lastModified: "2026-11-04",
     formattedDate: "21 października 2026",
     readingTime: "8 min czytania",
     category: "Strategia",

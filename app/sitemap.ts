@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const baseUrl = siteConfig.canonicalUrl;
   // Stabilna data ostatniej weryfikacji zawartości (Google nie akceptuje dynamicznego new Date() przy każdym crawlu)
-  const lastContentUpdate = new Date("2026-11-02T22:00:00.000Z");
+  const lastContentUpdate = new Date("2026-11-04T20:00:00.000Z");
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
