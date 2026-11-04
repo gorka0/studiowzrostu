@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import dynamic from "next/dynamic";
 import { Container } from "@/components/ui/container";
@@ -10,6 +12,7 @@ import { Phone, Clock } from "lucide-react";
 const ContactForm = dynamic(
   () => import("@/components/sections/contact-form").then((m) => m.ContactForm),
   {
+    ssr: false,
     loading: () => (
       <div className="h-64 flex items-center justify-center text-sm text-ink-muted">
         Ładowanie formularza...
@@ -19,8 +22,28 @@ const ContactForm = dynamic(
 );
 
 export function CtaSection() {
+  const sectionRef = React.useRef<HTMLElement>(null);
+  const [shouldLoadForm, setShouldLoadForm] = React.useState(false);
+
+  React.useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadForm(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Section
+      ref={sectionRef}
       id="kontakt-cta"
       data-section="cta"
       spacing="none"
@@ -150,7 +173,13 @@ export function CtaSection() {
               <div className="text-[20px] font-bold font-heading text-ink mb-5 pb-3 border-b border-line/60">
                 Szybkie zapytanie ofertowe
               </div>
-              <ContactForm compact={true} />
+              {shouldLoadForm ? (
+                <ContactForm compact={true} />
+              ) : (
+                <div className="h-64 flex items-center justify-center text-sm text-ink-muted">
+                  Wczytywanie formularza...
+                </div>
+              )}
             </div>
           </div>
         </div>

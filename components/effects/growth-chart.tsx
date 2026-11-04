@@ -2,7 +2,17 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+function usePrefersReducedMotion() {
+  const [reduce, setReduce] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduce(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReduce(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return reduce;
+}
 import { ArrowRight, Zap, Search, MailCheck, UserCheck } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -96,7 +106,7 @@ const getServerIsDesktopSnapshot = () => false;
 export function GrowthChart() {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const cardRefs = React.useRef<(HTMLDivElement | null)[]>([]);
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = usePrefersReducedMotion();
 
   const [activeStep, setActiveStep] = React.useState<number>(0);
   const isDesktop = React.useSyncExternalStore(
@@ -228,16 +238,19 @@ export function GrowthChart() {
                     />
 
                     {/* Dynamicznie rysowana krzywa wzrostu */}
-                    <motion.path
+                    <path
                       d={CURVE_PATH_D}
                       fill="none"
                       stroke="url(#growth-stroke-gradient-b)"
                       strokeWidth="3.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      initial={{ pathLength: 0.2 }}
-                      animate={{ pathLength: targetProgress }}
-                      transition={{ duration: 0.45, ease: [0.2, 0.7, 0.2, 1] }}
+                      pathLength="1"
+                      strokeDasharray="1"
+                      style={{
+                        strokeDashoffset: 1 - targetProgress,
+                        transition: activeStep > 0 && !shouldReduceMotion ? "stroke-dashoffset 450ms cubic-bezier(0.2, 0.7, 0.2, 1)" : "none",
+                      }}
                     />
 
                     {/* 4 Markery etapów (>= 24px średnicy, cyfry >= 13px) */}
@@ -268,7 +281,6 @@ export function GrowthChart() {
                             strokeDasharray="2 2"
                             strokeWidth="1"
                             className={cn(
-                              "transition-colors duration-200",
                               isCurrent ? "text-accent/80" : "text-line/60"
                             )}
                           />
@@ -278,7 +290,7 @@ export function GrowthChart() {
                             <circle
                               r={isCurrent ? 13 : 11}
                               className={cn(
-                                "stroke-2 transition-all duration-200",
+                                "stroke-2",
                                 isCurrent
                                   ? "fill-accent stroke-surface shadow-sm"
                                   : isReached
@@ -331,7 +343,7 @@ export function GrowthChart() {
                       cardRefs.current[idx] = el;
                     }}
                     className={cn(
-                      "p-4 sm:p-5 rounded-2xl border transition-all duration-300 text-left bg-card",
+                      "p-4 sm:p-5 rounded-2xl border transition-[transform,opacity] duration-300 text-left bg-card",
                       isDesktop
                         ? isActive
                           ? "border-accent/40 shadow-card opacity-100 scale-[1.01]"

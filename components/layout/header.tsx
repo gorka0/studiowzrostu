@@ -93,7 +93,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                prefetch={true}
+                prefetch={false}
                 className={cn(
                   "px-3 py-1.5 rounded-full text-[15px] font-medium transition-colors",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -116,7 +116,7 @@ export function Header() {
           {/* Desktop CTA */}
           <Link
             href="/kontakt"
-            prefetch={true}
+            prefetch={false}
             className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-[14px] h-9 bg-accent-text text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-colors duration-150 shadow-xs active:scale-[0.98]"
           >
             <span>Wycena</span>

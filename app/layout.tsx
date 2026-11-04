@@ -15,7 +15,7 @@ import "./globals.css";
 const fontHeading = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
-  display: "swap",
+  display: "optional",
   preload: true,
 });
 
@@ -23,7 +23,7 @@ const fontSans = Instrument_Sans({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
   display: "optional",
-  preload: true,
+  preload: false,
 });
 
 export const metadata: Metadata = buildMetadata();
@@ -42,7 +42,7 @@ export default function RootLayout({
       <head>
         <GlobalJsonLd />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-background text-foreground transition-colors duration-200">
+      <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         <ScrollToTopOnReload />
         <ThemeProvider
           attribute="class"

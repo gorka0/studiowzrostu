@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   experimental: {
-    optimizePackageImports: ["lucide-react", "motion", "@base-ui/react"],
+    optimizePackageImports: ["lucide-react", "motion", "@base-ui/react", "zod", "react-hook-form"],
   },
   images: {
     formats: ["image/avif", "image/webp"],

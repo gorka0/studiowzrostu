@@ -10,7 +10,17 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { conceptProjects, type ConceptProject } from "@/content/projects";
 import { BeforeAfterSlider } from "@/components/effects/before-after-slider";
 import { ConceptDialog } from "@/components/effects/concept-dialog";
-import { useReducedMotion } from "motion/react";
+function usePrefersReducedMotion() {
+  const [reduce, setReduce] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduce(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReduce(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return reduce;
+}
 import { cn } from "@/lib/utils";
 
 interface ProjectsSectionProps {
@@ -26,7 +36,7 @@ export function ProjectsPreview({
 }: ProjectsSectionProps) {
   const [activeSlide, setActiveSlide] = React.useState(0);
   const carouselRef = React.useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = usePrefersReducedMotion();
   const hasNudged = React.useRef(false);
 
   const handleScroll = () => {

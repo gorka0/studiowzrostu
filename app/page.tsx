@@ -1,28 +1,14 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import { buildMetadata } from "@/lib/seo";
 import { routesSeo } from "@/content/seo";
 import { HeroSection } from "@/components/sections/hero-section";
 import { TechMarquee } from "@/components/sections/tech-marquee";
-
-const ServicesBento = dynamic(() =>
-  import("@/components/sections/services-bento").then((mod) => mod.ServicesBento)
-);
-const ProjectsPreview = dynamic(() =>
-  import("@/components/sections/projects-preview").then((mod) => mod.ProjectsPreview)
-);
-const GrowthChart = dynamic(() =>
-  import("@/components/effects/growth-chart").then((mod) => mod.GrowthChart)
-);
-const WhyUsSection = dynamic(() =>
-  import("@/components/sections/why-us-section").then((mod) => mod.WhyUsSection)
-);
-const FaqSection = dynamic(() =>
-  import("@/components/sections/faq-section").then((mod) => mod.FaqSection)
-);
-const CtaSection = dynamic(() =>
-  import("@/components/sections/cta-section").then((mod) => mod.CtaSection)
-);
+import { ServicesBento } from "@/components/sections/services-bento";
+import { ProjectsPreview } from "@/components/sections/projects-preview";
+import { GrowthChart } from "@/components/effects/growth-chart";
+import { WhyUsSection } from "@/components/sections/why-us-section";
+import { FaqSection } from "@/components/sections/faq-section";
+import { CtaSection } from "@/components/sections/cta-section";
 
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.home.title,
@@ -39,22 +25,22 @@ export default function Home() {
       {/* 2. Pasek technologii (CSS marquee z maską zanikania) */}
       <TechMarquee />
 
-      {/* 3. Usługi (akordeon na mobile, układ asymetryczny 7:5 na desktopie) */}
+      {/* 3. Usługi */}
       <ServicesBento />
 
-      {/* 4. Projekty (dowód wcześniej: horyzontalna karuzela ze scroll-snap na mobile, siatka na desktopie) */}
+      {/* 4. Projekty */}
       <ProjectsPreview />
 
-      {/* 5. Rozdział "Jak rośnie firma" (monotniczny wykres wzrostu + 4 etapy z mini-wizualizacjami i linkami) */}
+      {/* 5. Rozdział "Jak rośnie firma" */}
       <GrowthChart />
 
-      {/* 6. Dlaczego Studio Wzrostu (CIEMNY PAS: 1 tydzień + Cena z góry + oś czasu Dzień 1–7) */}
+      {/* 6. Dlaczego Studio Wzrostu */}
       <WhyUsSection />
 
-      {/* 7. FAQ (4 zwięzłe pytania z odpowiedziami ≤ 2 zdania) */}
+      {/* 7. FAQ */}
       <FaqSection />
 
-      {/* 8. Końcowe CTA / Kontakt (CIEMNY PAS z kratką i formularzem) */}
+      {/* 8. Końcowe CTA / Kontakt */}
       <CtaSection />
     </main>
   );

@@ -123,7 +123,7 @@ export function ConceptDialog({ project, trigger }: ConceptDialogProps) {
                     src={project.desktopImage}
                     alt={project.desktopAlt}
                     fill
-                    unoptimized
+                    sizes="(max-width: 900px) 90vw, 800px"
                     className="object-cover object-top"
                     loading="lazy"
                   />
@@ -135,7 +135,7 @@ export function ConceptDialog({ project, trigger }: ConceptDialogProps) {
                       src={project.mobileImage}
                       alt={project.mobileAlt || project.desktopAlt}
                       fill
-                      unoptimized
+                      sizes="(max-width: 900px) 90vw, 800px"
                       className="object-cover object-top"
                       loading="lazy"
                     />

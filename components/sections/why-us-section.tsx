@@ -4,7 +4,7 @@ import * as React from "react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Check, ChevronDown } from "lucide-react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+// Native IntersectionObserver for zero-dependency GPU timeline animation
 import { cn } from "@/lib/utils";
 
 const PROCESS_STEPS = [
@@ -39,11 +39,28 @@ const OFFER_ROWS = [
 
 export function WhyUsSection() {
   const sectionRef = React.useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const shouldReduceMotion = useReducedMotion();
+  const [isInView, setIsInView] = React.useState(false);
   const [isSpecOpen, setIsSpecOpen] = React.useState(false);
 
-  const animateTimeline = isInView && !shouldReduceMotion;
+  React.useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIsInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <Section
@@ -112,15 +129,12 @@ export function WhyUsSection() {
                 {[1, 2, 3, 4, 5, 6, 7].map((d) => (
                   <div key={d} className="space-y-1">
                     <div className="h-1.5 bg-darkband-line rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-darkband-accent"
-                        initial={{ width: "0%" }}
-                        animate={animateTimeline ? { width: "100%" } : { width: "100%" }}
-                        transition={{
-                          duration: 0.35,
-                          delay: (d - 1) * 0.12,
-                          ease: [0.2, 0.7, 0.2, 1],
-                        }}
+                      <div
+                        className={cn(
+                          "h-full bg-darkband-accent origin-left transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] will-change-transform",
+                          isInView ? "scale-x-100" : "scale-x-0"
+                        )}
+                        style={{ transitionDelay: `${(d - 1) * 80}ms` }}
                       />
                     </div>
                     <span className="text-[11px] sm:text-[12px] font-sans font-medium text-darkband-muted block text-center">
@@ -167,12 +181,13 @@ export function WhyUsSection() {
                 <div className="accordion-inner">
                   <div className="mt-2.5 pt-2 border-t border-darkband-line/60 space-y-2 text-[15px]">
                     {OFFER_ROWS.map((row, idx) => (
-                      <motion.div
+                      <div
                         key={row.item}
-                        initial={{ opacity: 0, x: -6 }}
-                        animate={isSpecOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
-                        transition={{ delay: idx * 0.08, duration: 0.2 }}
-                        className="flex items-center justify-between py-1.5 border-b border-darkband-line/40"
+                        className={cn(
+                          "flex items-center justify-between py-1.5 border-b border-darkband-line/40 transition-all duration-200",
+                          isSpecOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-1.5"
+                        )}
+                        style={{ transitionDelay: isSpecOpen ? `${idx * 60}ms` : "0ms" }}
                       >
                         <span className="text-darkband-muted flex items-center gap-2">
                           <Check className="h-4 w-4 text-darkband-accent shrink-0" />
@@ -181,15 +196,16 @@ export function WhyUsSection() {
                         <span className="text-darkband-foreground font-semibold text-[13px]">
                           {row.status}
                         </span>
-                      </motion.div>
+                      </div>
                     ))}
 
                     {/* Na końcu podświetla się 'Suma: ustalona z góry' */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={isSpecOpen ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.98 }}
-                      transition={{ delay: 0.35, duration: 0.25 }}
-                      className="mt-2 pt-2 flex items-center justify-between border-t border-darkband-accent/50 px-1 py-1.5"
+                    <div
+                      className={cn(
+                        "mt-2 pt-2 flex items-center justify-between border-t border-darkband-accent/50 px-1 py-1.5 transition-all duration-300",
+                        isSpecOpen ? "opacity-100 scale-100" : "opacity-0 scale-98"
+                      )}
+                      style={{ transitionDelay: isSpecOpen ? "280ms" : "0ms" }}
                     >
                       <span className="text-[15px] text-darkband-foreground font-semibold">
                         Suma inwestycji:
@@ -197,7 +213,7 @@ export function WhyUsSection() {
                       <span className="text-[15px] font-bold text-darkband-accent-text">
                         Ustalona z góry
                       </span>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -224,11 +240,11 @@ export function WhyUsSection() {
           {/* Desktop (≥1024px): Pozioma oś czasu */}
           <div className="hidden lg:block relative my-6">
             <div className="absolute top-[40px] left-[5%] right-[5%] h-[2px] bg-darkband-line z-0">
-              <motion.div
-                className="h-full bg-darkband-accent"
-                initial={{ width: "0%" }}
-                animate={animateTimeline ? { width: "100%" } : { width: "100%" }}
-                transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1] }}
+              <div
+                className={cn(
+                  "h-full bg-darkband-accent origin-left transition-transform duration-1000 ease-[cubic-bezier(0.2,0.7,0.2,1)] will-change-transform",
+                  isInView ? "scale-x-100" : "scale-x-0"
+                )}
               />
             </div>
 
@@ -242,14 +258,15 @@ export function WhyUsSection() {
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <motion.div
-                      initial={{ scale: 0.8, opacity: 0.6 }}
-                      animate={animateTimeline ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
-                      transition={{ delay: idx * 0.25, duration: 0.3 }}
-                      className="w-7 h-7 rounded-full border-2 border-darkband-accent bg-darkband-bg flex items-center justify-center shrink-0 shadow-sm"
+                    <div
+                      className={cn(
+                        "w-7 h-7 rounded-full border-2 border-darkband-accent bg-darkband-bg flex items-center justify-center shrink-0 shadow-sm transition-all duration-300",
+                        isInView ? "scale-100 opacity-100" : "scale-75 opacity-60"
+                      )}
+                      style={{ transitionDelay: `${idx * 200}ms` }}
                     >
                       <span className="w-2.5 h-2.5 rounded-full bg-darkband-accent" />
-                    </motion.div>
+                    </div>
                   </div>
 
                   <div className="space-y-1 pt-1">
@@ -269,24 +286,23 @@ export function WhyUsSection() {
           <div className="lg:hidden relative space-y-4 my-3 text-left pl-7">
             {/* Pionowa linia wypełniająca się przy przewijaniu */}
             <div className="absolute left-[8px] top-2 bottom-4 w-[2px] bg-darkband-line/80 z-0">
-              <motion.div
-                className="w-full bg-darkband-accent origin-top"
-                initial={{ scaleY: 0 }}
-                whileInView={{ scaleY: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 1.0, ease: [0.2, 0.7, 0.2, 1] }}
+              <div
+                className={cn(
+                  "w-full bg-darkband-accent origin-top transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] will-change-transform",
+                  isInView ? "scale-y-100" : "scale-y-0"
+                )}
               />
             </div>
 
             {PROCESS_STEPS.map((step, idx) => (
               <div key={step.day} className="relative space-y-1">
                 {/* Węzeł zapalający się przy scrollowaniu */}
-                <motion.div
-                  initial={{ scale: 0.7, opacity: 0.5 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ delay: idx * 0.15, duration: 0.3 }}
-                  className="absolute -left-[27px] top-1 w-4 h-4 rounded-full border-2 border-darkband-bg bg-darkband-accent z-10 shadow-sm"
+                <div
+                  className={cn(
+                    "absolute -left-[27px] top-1 w-4 h-4 rounded-full border-2 border-darkband-bg bg-darkband-accent z-10 shadow-sm transition-all duration-300",
+                    isInView ? "scale-100 opacity-100" : "scale-70 opacity-50"
+                  )}
+                  style={{ transitionDelay: `${idx * 120}ms` }}
                 />
                 
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[13px] font-bold bg-darkband-accent/20 text-darkband-accent-text border border-darkband-accent/30">

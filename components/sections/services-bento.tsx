@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
+// Pure GPU CSS transitions for Micro-UI preview
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -434,7 +434,7 @@ export function ServicesBento() {
                   onFocus={() => setHoveredIdx(idx)}
                   tabIndex={0}
                   className={cn(
-                    "p-5 rounded-2xl border transition-all duration-200 cursor-pointer text-left",
+                    "p-5 rounded-2xl border transition-colors duration-200 cursor-pointer text-left",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
                     isSelected
                       ? "border-accent bg-surface shadow-xs ring-1 ring-accent/30"
@@ -488,18 +488,12 @@ export function ServicesBento() {
           <div className="lg:col-span-5 lg:sticky lg:top-24 w-full">
             <div className="rounded-2xl border border-line bg-surface p-3.5 sm:p-4 shadow-card min-h-[440px] flex items-center justify-center">
               <div className="w-full h-full max-w-[480px]">
-                <AnimatePresence mode="wait">
-                  <motion.div
+                <div
                     key={activeService.slug}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.2, ease: [0.2, 0.7, 0.2, 1] }}
-                    className="w-full h-full"
+                    className="w-full h-full animate-in fade-in slide-in-from-bottom-2 duration-200 ease-out will-change-[transform,opacity]"
                   >
                     <ServicePreview slug={activeService.slug} />
-                  </motion.div>
-                </AnimatePresence>
+                  </div>
               </div>
             </div>
           </div>

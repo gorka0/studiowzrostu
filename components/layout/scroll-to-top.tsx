@@ -16,7 +16,7 @@ export function ScrollToTopOnReload() {
     }
 
     // Jeśli brak kotwicy w URL, upewnij się, że jesteśmy na górze
-    if (!window.location.hash) {
+    if (window.scrollY > 0 && !window.location.hash) {
       window.scrollTo(0, 0);
     }
 

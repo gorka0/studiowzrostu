@@ -107,7 +107,7 @@ export function MobileStickyCTA() {
       aria-hidden={!isVisible}
       className={cn(
         "md:hidden fixed bottom-0 inset-x-0 z-40 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))]",
-        "bg-surface/95 backdrop-blur-md border-t border-line shadow-lg transition-all duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:transition-none",
+        "bg-surface/95 backdrop-blur-md border-t border-line shadow-lg transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:transition-none",
         isVisible
           ? "translate-y-0 opacity-100 pointer-events-auto"
           : "translate-y-full opacity-0 pointer-events-none"

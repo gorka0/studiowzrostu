@@ -253,12 +253,8 @@
   opacity: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html.js .hero-bg-curve {
-    stroke-dashoffset: 1600;
-    animation: drawHeroCurve 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-}
+/* Static GPU-composited hero curve */
+.hero-bg-curve { stroke-dashoffset: 0; }
 
 @keyframes marquee {
   0% { transform: translate3d(0, 0, 0); }
@@ -370,68 +366,63 @@ html.dark .shiki span {
 }
 
 
-.hero-anim-window {
-  animation: heroWindowIn 350ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
-}
-
-.hero-anim-nav-logo {
-  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;
-}
-.hero-anim-nav-1 {
-  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 310ms both;
-}
-.hero-anim-nav-2 {
-  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 370ms both;
-}
-.hero-anim-nav-3 {
-  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 430ms both;
-}
-.hero-anim-nav-4 {
-  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 490ms both;
-}
-.hero-anim-nav-btn {
-  animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 550ms both;
-}
-
-.hero-anim-head-1 {
-  transform-origin: left;
-  animation: heroBarUnfold 300ms cubic-bezier(0.16, 1, 0.3, 1) 500ms both;
-}
-.hero-anim-head-2 {
-  transform-origin: left;
-  animation: heroBarUnfold 300ms cubic-bezier(0.16, 1, 0.3, 1) 620ms both;
-}
-.hero-anim-head-3 {
-  transform-origin: left;
-  animation: heroBarUnfold 300ms cubic-bezier(0.16, 1, 0.3, 1) 740ms both;
-}
-
-.hero-anim-desc-1 {
-  transform-origin: left;
-  animation: heroBarUnfold 250ms cubic-bezier(0.16, 1, 0.3, 1) 860ms both;
-}
-.hero-anim-desc-2 {
-  transform-origin: left;
-  animation: heroBarUnfold 250ms cubic-bezier(0.16, 1, 0.3, 1) 980ms both;
-}
-
-.hero-anim-btn {
-  animation: heroBtnPop 300ms cubic-bezier(0.16, 1, 0.3, 1) 900ms both,
-             heroBtnPulseOnce 400ms ease-out 1800ms forwards;
-}
-
-.hero-anim-graphic {
-  animation: heroBarUnfold 350ms cubic-bezier(0.16, 1, 0.3, 1) 800ms both;
-}
-
-.hero-anim-card-1 {
-  animation: heroCardLift 300ms cubic-bezier(0.16, 1, 0.3, 1) 1000ms both;
-}
-.hero-anim-card-2 {
-  animation: heroCardLift 300ms cubic-bezier(0.16, 1, 0.3, 1) 1090ms both;
-}
-.hero-anim-card-3 {
-  animation: heroCardLift 300ms cubic-bezier(0.16, 1, 0.3, 1) 1180ms both;
+@media (min-width: 1024px) {
+  .hero-anim-window {
+    animation: heroWindowIn 350ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+  }
+  .hero-anim-nav-logo {
+    animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;
+  }
+  .hero-anim-nav-1 {
+    animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 310ms both;
+  }
+  .hero-anim-nav-2 {
+    animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 370ms both;
+  }
+  .hero-anim-nav-3 {
+    animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 430ms both;
+  }
+  .hero-anim-nav-4 {
+    animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 490ms both;
+  }
+  .hero-anim-nav-btn {
+    animation: heroNavIn 200ms cubic-bezier(0.16, 1, 0.3, 1) 550ms both;
+  }
+  .hero-anim-head-1 {
+    transform-origin: left;
+    animation: heroBarUnfold 300ms cubic-bezier(0.16, 1, 0.3, 1) 500ms both;
+  }
+  .hero-anim-head-2 {
+    transform-origin: left;
+    animation: heroBarUnfold 300ms cubic-bezier(0.16, 1, 0.3, 1) 620ms both;
+  }
+  .hero-anim-head-3 {
+    transform-origin: left;
+    animation: heroBarUnfold 300ms cubic-bezier(0.16, 1, 0.3, 1) 740ms both;
+  }
+  .hero-anim-desc-1 {
+    transform-origin: left;
+    animation: heroBarUnfold 250ms cubic-bezier(0.16, 1, 0.3, 1) 860ms both;
+  }
+  .hero-anim-desc-2 {
+    transform-origin: left;
+    animation: heroBarUnfold 250ms cubic-bezier(0.16, 1, 0.3, 1) 980ms both;
+  }
+  .hero-anim-btn {
+    animation: heroBtnPop 300ms cubic-bezier(0.16, 1, 0.3, 1) 900ms both;
+  }
+  .hero-anim-graphic {
+    animation: heroBarUnfold 350ms cubic-bezier(0.16, 1, 0.3, 1) 800ms both;
+  }
+  .hero-anim-card-1 {
+    animation: heroCardLift 300ms cubic-bezier(0.16, 1, 0.3, 1) 1000ms both;
+  }
+  .hero-anim-card-2 {
+    animation: heroCardLift 300ms cubic-bezier(0.16, 1, 0.3, 1) 1090ms both;
+  }
+  .hero-anim-card-3 {
+    animation: heroCardLift 300ms cubic-bezier(0.16, 1, 0.3, 1) 1180ms both;
+  }
 }
 
 
@@ -498,4 +489,24 @@ a[role="button"]:active,
   .btn-action:active {
     transform: none !important;
   }
+}
+
+.hero-anim-window,
+.hero-anim-nav-logo,
+.hero-anim-nav-1,
+.hero-anim-nav-2,
+.hero-anim-nav-3,
+.hero-anim-nav-4,
+.hero-anim-nav-btn,
+.hero-anim-head-1,
+.hero-anim-head-2,
+.hero-anim-head-3,
+.hero-anim-desc-1,
+.hero-anim-desc-2,
+.hero-anim-btn,
+.hero-anim-graphic,
+.hero-anim-card-1,
+.hero-anim-card-2,
+.hero-anim-card-3 {
+  will-change: transform, opacity;
 }

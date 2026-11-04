@@ -196,7 +196,7 @@ export function HeroSection() {
 
             {/* JEDEN główny przycisk CTA + link tekstowy / drugorzędny na mobile */}
             <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 w-full sm:w-auto">
-              <Link href="/kontakt" className="w-full sm:w-auto">
+              <Link href="/kontakt" prefetch={false} className="w-full sm:w-auto">
                 <InteractiveHoverButton className="w-full sm:w-auto min-h-[48px]">
                   Zamów bezpłatną wycenę
                 </InteractiveHoverButton>
@@ -204,6 +204,7 @@ export function HeroSection() {
 
               <Link
                 href="/projekty"
+                prefetch={false}
                 className="w-full sm:w-auto inline-flex items-center justify-center text-[15px] font-semibold text-ink border border-line/80 bg-surface/80 hover:bg-surface hover:text-accent-text transition-colors py-2.5 px-5 rounded-xl group min-h-[48px]"
               >
                 <span>Zobacz projekty</span>

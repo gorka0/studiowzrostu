@@ -35,13 +35,22 @@ export function CookieConsentProvider({
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    if ('requestIdleCallback' in window) {
-      const id = window.requestIdleCallback(() => setMounted(true), { timeout: 2000 });
-      return () => window.cancelIdleCallback(id);
-    } else {
-      const id = setTimeout(() => setMounted(true), 1000);
-      return () => clearTimeout(id);
-    }
+    let timer: ReturnType<typeof setTimeout>;
+    const handleTrigger = () => {
+      setMounted(true);
+      cleanup();
+    };
+    const cleanup = () => {
+      window.removeEventListener("scroll", handleTrigger);
+      window.removeEventListener("pointerdown", handleTrigger);
+      window.removeEventListener("keydown", handleTrigger);
+      clearTimeout(timer);
+    };
+    window.addEventListener("scroll", handleTrigger, { passive: true, once: true });
+    window.addEventListener("pointerdown", handleTrigger, { passive: true, once: true });
+    window.addEventListener("keydown", handleTrigger, { passive: true, once: true });
+    timer = setTimeout(handleTrigger, 4500);
+    return cleanup;
   }, []);
 
   const consent = React.useSyncExternalStore(
@@ -151,7 +160,7 @@ export function CookieConsentProvider({
           aria-label="Powiadomienie o plikach cookies"
           className="fixed bottom-3 sm:bottom-5 left-3 sm:left-6 right-3 sm:right-6 z-50 mx-auto max-w-4xl"
         >
-          <div className="rounded-2xl border border-border/90 bg-background/95 backdrop-blur-md p-4 sm:p-5 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="rounded-2xl border border-border/90 bg-card border-border p-4 sm:p-5 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-[transform,opacity] duration-300 ease-out">
             <div className="flex items-start gap-3 max-w-2xl">
               <div className="h-8 w-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent-text shrink-0 mt-0.5">
                 <Cookie className="h-4 w-4" />

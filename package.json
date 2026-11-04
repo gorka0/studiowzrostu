@@ -45,5 +45,14 @@
     "shiki": "^4.5.0",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not dead",
+    "Chrome >= 100",
+    "Safari >= 15.4",
+    "Firefox >= 100",
+    "Edge >= 100"
+  ]
 }
