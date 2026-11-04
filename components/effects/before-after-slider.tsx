@@ -60,8 +60,8 @@ export function BeforeAfterSlider({
           loading="lazy"
         />
         {/* Etykieta Przed (WCAG AA kontrast: biały tekst na ciemnym tle) */}
-        <div className="absolute top-3 left-3 z-10 pointer-events-none">
-          <span className="inline-flex items-center px-2.5 py-1 text-[13px] font-semibold tracking-wide rounded bg-black/85 text-white border border-white/20 shadow-sm">
+        <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
+          <span className="inline-flex items-center backdrop-blur-md bg-black/75 text-white px-3 py-1 rounded-full text-xs font-medium border border-white/15 shadow-sm">
             Przed
           </span>
         </div>
@@ -84,8 +84,8 @@ export function BeforeAfterSlider({
           loading="lazy"
         />
         {/* Etykieta Po (WCAG AA kontrast: biały tekst na ciemnym tle) */}
-        <div className="absolute top-3 right-3 z-10 pointer-events-none">
-          <span className="inline-flex items-center px-2.5 py-1 text-[13px] font-semibold tracking-wide rounded bg-black/85 text-white border border-white/20 shadow-sm">
+        <div className="absolute bottom-4 right-4 z-10 pointer-events-none">
+          <span className="inline-flex items-center backdrop-blur-md bg-black/75 text-white px-3 py-1 rounded-full text-xs font-medium border border-white/15 shadow-sm">
             Po
           </span>
         </div>
