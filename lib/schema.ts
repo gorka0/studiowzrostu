@@ -24,7 +24,8 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
   const websiteId = `${siteConfig.canonicalUrl}/#website`;
 
   const organization: Record<string, unknown> = {
-    "@type": "ProfessionalService",
+    "@type": ["Organization", "ProfessionalService"],
+    areaServed: "PL",
     "@id": orgId,
     name: siteConfig.name,
     legalName: siteConfig.legalName,
@@ -177,6 +178,7 @@ export function buildArticleSchema(post: BlogPost): Record<string, unknown> {
     },
     headline: post.title,
     description: post.seoDescription,
+    image: [`${siteConfig.canonicalUrl}/blog/${post.slug}/opengraph-image`],
     datePublished: post.date,
     dateModified: post.lastModified,
     inLanguage: "pl-PL",

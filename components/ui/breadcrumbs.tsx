@@ -22,7 +22,7 @@ export function Breadcrumbs({
 }: BreadcrumbsProps) {
   return (
     <>
-      <BreadcrumbListJsonLd items={items} />
+      <BreadcrumbListJsonLd items={[{ label: "Start", href: "/" }, ...items]} />
       <nav
         aria-label="Ścieżka nawigacyjna (breadcrumbs)"
         className={cn("flex items-center text-xs sm:text-sm text-muted-foreground", className)}

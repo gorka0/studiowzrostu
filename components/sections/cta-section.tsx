@@ -77,7 +77,26 @@ export function CtaSection() {
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
           />
+          {/* Koralowy punkt zwieńczenia na końcu linii (x=1320, y=65) */}
+          <circle
+            cx="1320"
+            cy="65"
+            r="6"
+            fill="var(--color-coral)"
+            stroke="var(--darkband-bg)"
+            strokeWidth="2"
+          />
         </svg>
+
+        {/* Etykieta po prawej stronie kropki (1320/1440 = 91.667%, 65/600 = 10.833%) */}
+        <div
+          className="absolute -translate-y-1/2 flex items-center pointer-events-none select-none z-10 pl-3.5"
+          style={{ left: "91.667%", top: "10.833%" }}
+        >
+          <span className="text-[12px] font-sans text-darkband-accent-text font-semibold hidden sm:inline whitespace-nowrap">
+            Cel: stały wzrost
+          </span>
+        </div>
       </div>
 
       <Container className="relative z-10">

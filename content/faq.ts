@@ -20,7 +20,7 @@ export const faqData: FaqItem[] = [
     id: "od-czego-zalezy-cena",
     question: "Od czego zależy ostateczna cena wdrożenia?",
     answer:
-      "Cenę ustalamy z góry przed startem prac. Zależy wyłącznie od liczby podstron i wymaganych funkcji.",
+      "Cenę ustalamy z góry przed startem prac (od 2 400 PLN za landing page, od 3 900 PLN za serwis firmowy). Otrzymujesz wiążącą specyfikację bez ukrytych opłat.",
   },
   {
     id: "dlaczego-react-nextjs-zamiast-szablonu",

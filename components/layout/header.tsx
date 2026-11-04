@@ -21,8 +21,6 @@ export function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const progressBarRef = React.useRef<HTMLDivElement>(null);
-  const [isHidden, setIsHidden] = React.useState(false);
-  const lastScrollY = React.useRef(0);
 
   React.useEffect(() => {
     let rafId: number | null = null;
@@ -40,23 +38,6 @@ export function Header() {
         if (progressBarRef.current) {
           progressBarRef.current.style.transform = `scaleX(${progress})`;
         }
-
-        // Check input focus guard
-        const isFormFocused =
-          document.activeElement &&
-          ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName);
-
-        if (!isMobileMenuOpen && !isFormFocused && curY > 90) {
-          if (curY > lastScrollY.current + 6) {
-            setIsHidden((prev) => (!prev ? true : prev));
-          } else if (curY < lastScrollY.current - 6) {
-            setIsHidden((prev) => (prev ? false : prev));
-          }
-        } else {
-          setIsHidden((prev) => (prev ? false : prev));
-        }
-
-        lastScrollY.current = curY;
       });
     };
 
@@ -66,7 +47,7 @@ export function Header() {
       window.removeEventListener("scroll", handleScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [isMobileMenuOpen]);
+  }, []);
 
   // Zablokuj scrollowanie tła przy otwartym menu mobilnym
   React.useEffect(() => {
@@ -84,11 +65,7 @@ export function Header() {
 
   return (
     <header
-      className={cn(
-        "sticky top-3 sm:top-4 z-40 w-full px-4 sm:px-6 lg:px-8",
-        "transition-transform duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:transition-none",
-        isHidden ? "-translate-y-24" : "translate-y-0"
-      )}
+      className="sticky top-3 sm:top-4 z-40 w-full px-4 sm:px-6 lg:px-8"
     >
       <div
         className={cn(
@@ -116,6 +93,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={true}
                 className={cn(
                   "px-3 py-1.5 rounded-full text-[15px] font-medium transition-colors",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -138,6 +116,7 @@ export function Header() {
           {/* Desktop CTA */}
           <Link
             href="/kontakt"
+            prefetch={true}
             className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-[14px] h-9 bg-accent-text text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-colors duration-150 shadow-xs active:scale-[0.98]"
           >
             <span>Wycena</span>
@@ -148,7 +127,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-full border border-border bg-background text-foreground hover:bg-muted/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.98] cursor-pointer"
+            className="md:hidden inline-flex items-center justify-center h-11 w-11 min-h-[44px] min-w-[44px] rounded-full border border-border bg-background text-foreground hover:bg-muted/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.98] cursor-pointer"
             aria-label={isMobileMenuOpen ? "Zamknij menu" : "Otwórz menu"}
             aria-expanded={isMobileMenuOpen}
           >
@@ -188,6 +167,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  prefetch={true}
                   onClick={closeMobileMenu}
                   className={cn(
                     "text-xl font-heading font-semibold py-2 px-3 rounded-xl transition-colors",
@@ -205,6 +185,7 @@ export function Header() {
           <div className="pt-6 border-t border-border space-y-4">
             <Link
               href="/kontakt"
+              prefetch={true}
               onClick={closeMobileMenu}
               className="flex items-center justify-center w-full py-3 rounded-xl font-semibold bg-accent-text text-white hover:bg-accent transition-colors active:scale-[0.98] min-h-[44px]"
             >

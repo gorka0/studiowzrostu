@@ -269,6 +269,8 @@
   display: flex;
   width: max-content;
   animation: marquee 28s linear infinite;
+  will-change: transform;
+  contain: layout paint;
 }
 
 .animate-marquee:hover {

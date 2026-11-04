@@ -15,9 +15,6 @@ export const metadata: Metadata = buildMetadata({
   path: "/o-nas",
 });
 
-export function generateStaticParams() {
-  return [];
-}
 
 export default function AboutPage() {
   return (

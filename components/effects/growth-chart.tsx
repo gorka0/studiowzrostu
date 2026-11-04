@@ -162,11 +162,11 @@ export function GrowthChart() {
             {/* STICKY WYKRES: przyklejony wyłącznie na desktopie (≥1024px) obok kart, na mobile/tablecie w naturalnym przepływie */}
             <div className="lg:col-span-6 z-20 lg:sticky lg:top-24">
               <div className="rounded-2xl border border-line bg-card p-3 sm:p-5 shadow-card flex flex-col justify-between overflow-hidden">
-                <div className="flex items-center justify-between border-b border-line/60 pb-2.5 mb-2 select-none">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-line/60 pb-2.5 mb-2 gap-1 select-none">
                   <span className="font-semibold text-accent-text text-[15px]">
                     Rozwój firmy w czasie
                   </span>
-                  <span className="text-[13px] text-ink-muted shrink-0 whitespace-nowrap">
+                  <span className="text-[12px] text-ink-muted">
                     Ilustracja, nie obietnica wyników
                   </span>
                 </div>
@@ -335,7 +335,7 @@ export function GrowthChart() {
                       isDesktop
                         ? isActive
                           ? "border-accent/40 shadow-card opacity-100 scale-[1.01]"
-                          : "border-line opacity-45 hover:opacity-75"
+                          : "border-line/70 opacity-90 hover:opacity-100 bg-surface/30"
                         : "border-line shadow-xs opacity-100"
                     )}
                   >
@@ -454,7 +454,7 @@ export function GrowthChart() {
                     {/* Krok 3: Chip "Nowe zapytanie" wsuwa się */}
                     {idx === 2 && (
                       <div className="mt-3.5 pt-1">
-                        <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-accent/15 border border-accent/40 text-[15px] font-bold text-accent-text transition-all duration-300">
+                        <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-accent/15 border border-accent/40 text-[14px] sm:text-[15px] font-bold text-[#134931] dark:text-accent-text transition-all duration-300 max-w-full flex-wrap">
                           <MailCheck className="h-4 w-4 text-accent" />
                           <span>Nowe zapytanie ofertowe z formularza</span>
                         </div>
@@ -464,7 +464,7 @@ export function GrowthChart() {
                     {/* Krok 4: Chip "Nowy klient" wsuwa się */}
                     {idx === 3 && (
                       <div className="mt-3.5 pt-1">
-                        <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-coral/15 border border-coral/40 text-[15px] font-bold text-coral-text transition-all duration-300">
+                        <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-coral/15 border border-coral/40 text-[15px] font-bold text-[#963810] dark:text-coral-text transition-all duration-300">
                           <UserCheck className="h-4 w-4 text-coral" />
                           <span>Zdecydowany stały klient</span>
                         </div>

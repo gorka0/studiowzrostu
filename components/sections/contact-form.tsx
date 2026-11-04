@@ -178,7 +178,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           {/* E-mail */}
           <div className="space-y-1.5">
             <label htmlFor="email" className="text-[16px] font-semibold text-foreground">
-              E-mail <span className="text-coral">*</span>
+              E-mail <span className="text-coral-text">*</span>
             </label>
             <input
               id="email"
@@ -224,12 +224,12 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
             {/* Rodzaj projektu */}
             <div className="space-y-1.5">
               <label htmlFor="projectType" className="text-[16px] font-semibold text-foreground">
-                Czego potrzebujesz? <span className="text-coral">*</span>
+                Czego potrzebujesz? <span className="text-coral-text">*</span>
               </label>
               <select
                 id="projectType"
                 disabled={submitStatus === "submitting"}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-[16px] sm:text-sm min-h-[48px] text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 {...register("projectType")}
               >
                 {PROJECT_TYPES.map((type) => (
@@ -266,12 +266,12 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
         {/* Wiadomość */}
         <div className="space-y-1.5">
           <label htmlFor="message" className="text-[16px] font-semibold text-foreground">
-            W czym możemy pomóc? <span className="text-coral">*</span>
+            W czym możemy pomóc? <span className="text-coral-text">*</span>
           </label>
           <textarea
             id="message"
             rows={compact ? 3 : 4}
-            placeholder="Opisz krótko swoją firmę, obecną stronę lub oczekiwania co do nowego projektu..."
+            placeholder="np. Nowa strona dla firmy budowlanej, 4 podstrony + formularz, termin do końca miesiąca..."
             disabled={submitStatus === "submitting"}
             className={cn(
               "w-full rounded-xl border bg-background px-3.5 py-3 text-[16px] sm:text-sm min-h-[96px] text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-y",

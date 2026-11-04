@@ -2,27 +2,38 @@
 
 import * as React from "react";
 import Script from "next/script";
-import { getStoredConsent, updateGoogleConsentMode } from "@/lib/cookie-consent";
+import {
+  subscribeToConsent,
+  getConsentSnapshot,
+  getConsentServerSnapshot,
+  updateGoogleConsentMode,
+} from "@/lib/cookie-consent";
 
 export function ConsentManager() {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
+  const consent = React.useSyncExternalStore(
+    subscribeToConsent,
+    getConsentSnapshot,
+    getConsentServerSnapshot
+  );
+
   React.useEffect(() => {
     if (!gaId) return;
-    // Sprawdź czy użytkownik ma już zapisany wybór cookies
-    const stored = getStoredConsent();
-    if (stored) {
-      updateGoogleConsentMode(stored.analytics, stored.marketing);
+    if (consent) {
+      updateGoogleConsentMode(consent.analytics, consent.marketing);
     }
-  }, [gaId]);
+  }, [gaId, consent]);
 
   if (!gaId) {
     return null;
   }
 
+  const isAnalyticsAllowed = Boolean(consent?.analytics);
+
   return (
     <>
-      {/* Inicjalizacja Google Consent Mode v2 (domyślnie denied dla wszystkich kategorii) */}
+      {/* Inicjalizacja Google Consent Mode v2 (domyślnie denied) */}
       <Script
         id="google-consent-mode-v2"
         strategy="afterInteractive"
@@ -41,24 +52,29 @@ export function ConsentManager() {
         }}
       />
 
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-        strategy="afterInteractive"
-      />
-      <Script
-        id="ga4-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${gaId}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
+      {/* Skrypt GA4 ładowany WYŁĄCZNIE po uzyskaniu zgody analitycznej (RODO / ePrivacy) */}
+      {isAnalyticsAllowed && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            strategy="afterInteractive"
+          />
+          <Script
+            id="ga4-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+            }}
+          />
+        </>
+      )}
     </>
   );
 }

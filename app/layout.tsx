@@ -22,7 +22,7 @@ const fontHeading = Bricolage_Grotesque({
 const fontSans = Instrument_Sans({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
-  display: "swap",
+  display: "optional",
   preload: true,
 });
 

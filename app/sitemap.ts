@@ -11,54 +11,55 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   const baseUrl = siteConfig.canonicalUrl;
-  const now = new Date();
+  // Stabilna data ostatniej weryfikacji zawartości (Google nie akceptuje dynamicznego new Date() przy każdym crawlu)
+  const lastContentUpdate = new Date("2026-11-02T22:00:00.000Z");
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: now,
+      lastModified: lastContentUpdate,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/uslugi`,
-      lastModified: now,
+      lastModified: lastContentUpdate,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/projekty`,
-      lastModified: now,
+      lastModified: lastContentUpdate,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: now,
+      lastModified: lastContentUpdate,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/o-nas`,
-      lastModified: now,
+      lastModified: lastContentUpdate,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/kontakt`,
-      lastModified: now,
+      lastModified: lastContentUpdate,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/polityka-prywatnosci`,
-      lastModified: now,
+      lastModified: lastContentUpdate,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/polityka-cookies`,
-      lastModified: now,
+      lastModified: lastContentUpdate,
       changeFrequency: "yearly",
       priority: 0.3,
     },
@@ -66,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const serviceRoutes: MetadataRoute.Sitemap = servicesList.map((service) => ({
     url: `${baseUrl}/uslugi/${service.slug}`,
-    lastModified: now,
+    lastModified: lastContentUpdate,
     changeFrequency: "monthly",
     priority: 0.85,
   }));

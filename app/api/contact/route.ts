@@ -78,12 +78,13 @@ export async function POST(req: NextRequest) {
     
     // Sprawdzenie czy wypełniono pole honeypot
     if (formattedErrors.honeypot) {
+      // Cichy sukces dla bota: nie zdradzamy obecności ani logiki pułapki antyspamowej
       return NextResponse.json(
         {
-          success: false,
-          error: "Wykryto próbę wysłania spamu (honeypot).",
+          success: true,
+          message: "Wiadomość została wysłana pomyślnie.",
         },
-        { status: 400 }
+        { status: 200 }
       );
     }
 

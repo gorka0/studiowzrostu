@@ -1,74 +1,19 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
 import { HeroBrowser } from "@/components/sections/hero-browser";
+import { HeroReflector } from "@/components/sections/hero-reflector";
 
 export function HeroSection() {
-  const heroRef = React.useRef<HTMLElement>(null);
-
-  React.useEffect(() => {
-    // Reflektor podążający za kursorem (tylko pointer: fine, rAF + CSS variables, zero re-renderów)
-    const el = heroRef.current;
-    if (
-      !el ||
-      window.matchMedia("(pointer: coarse)").matches ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
-    }
-
-    let rafId: number | null = null;
-    let targetX = -1000;
-    let targetY = -1000;
-
-    const onPointerMove = (e: PointerEvent) => {
-      const rect = el.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
-
-      if (!rafId) {
-        rafId = requestAnimationFrame(() => {
-          el.style.setProperty("--mouse-x", `${targetX}px`);
-          el.style.setProperty("--mouse-y", `${targetY}px`);
-          rafId = null;
-        });
-      }
-    };
-
-    const onPointerLeave = () => {
-      el.style.setProperty("--mouse-x", "-1000px");
-      el.style.setProperty("--mouse-y", "-1000px");
-    };
-
-    el.addEventListener("pointermove", onPointerMove, { passive: true });
-    el.addEventListener("pointerleave", onPointerLeave, { passive: true });
-
-    return () => {
-      el.removeEventListener("pointermove", onPointerMove);
-      el.removeEventListener("pointerleave", onPointerLeave);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
-
   return (
     <section
-      ref={heroRef}
       className="relative w-full border-b border-line bg-background overflow-x-clip min-h-[min(640px,calc(100svh-6.5rem))] flex flex-col justify-center py-8 sm:py-10 lg:py-12"
       aria-label="Wprowadzenie – Studio Wzrostu"
     >
-      {/* 1. TŁO: Reflektor podążający za kursorem */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 [@media(pointer:fine)]:opacity-100"
-        style={{
-          background:
-            "radial-gradient(600px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), color-mix(in oklab, var(--accent) 8%, transparent), transparent 60%)",
-        }}
-        aria-hidden="true"
-      />
+      {/* 1. TŁO: Reflektor podążający za kursorem (tylko pointer: fine) */}
+      <HeroReflector />
 
       {/* 2. TŁO: Kratka 48px z maską radial/linear i znacznikami '+' */}
       <svg

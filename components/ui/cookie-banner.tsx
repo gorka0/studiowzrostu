@@ -26,18 +26,23 @@ const CookieConsentContext = React.createContext<CookieConsentContextType>({
 
 export const useCookieConsent = () => React.useContext(CookieConsentContext);
 
-const emptySubscribe = () => () => {};
 
 export function CookieConsentProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const mounted = React.useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false
-  );
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    if ('requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(() => setMounted(true), { timeout: 2000 });
+      return () => window.cancelIdleCallback(id);
+    } else {
+      const id = setTimeout(() => setMounted(true), 1000);
+      return () => clearTimeout(id);
+    }
+  }, []);
 
   const consent = React.useSyncExternalStore(
     subscribeToConsent,
@@ -123,16 +128,21 @@ export function CookieConsentProvider({
     setIsModalOpen(false);
   };
 
-  const openPreferencesModal = () => {
+  const openPreferencesModal = React.useCallback(() => {
     setAnalyticsChecked(consent?.analytics ?? false);
     setMarketingChecked(consent?.marketing ?? false);
     setIsModalOpen(true);
-  };
+  }, [consent]);
+
+  const contextValue = React.useMemo(
+    () => ({ openPreferencesModal, consent }),
+    [openPreferencesModal, consent]
+  );
 
   const showBanner = mounted && consent === null;
 
   return (
-    <CookieConsentContext.Provider value={{ openPreferencesModal, consent }}>
+    <CookieConsentContext.Provider value={contextValue}>
       {children}
 
       {/* 1. Baner zgody (pływający pasek na dole, bez wpływu na layout/LCP) */}

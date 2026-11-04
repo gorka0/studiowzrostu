@@ -23,7 +23,7 @@ export function Section({
   return (
     <section
       ref={ref}
-      className={cn("w-full relative content-auto", spacingClasses[spacing], className)}
+      className={cn("w-full relative", spacingClasses[spacing], className)}
       {...props}
     >
       {children}

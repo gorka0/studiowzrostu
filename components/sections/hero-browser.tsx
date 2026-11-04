@@ -52,7 +52,6 @@ export function HeroBrowser({ className }: HeroBrowserProps) {
   return (
     <figure
       ref={figureRef}
-      role="img"
       aria-label="Przykładowa strona firmowa w widoku na komputerze (ilustracja)"
       className={cn(
         "relative w-full max-w-[520px] lg:max-w-none lg:w-[clamp(520px,44vw,640px)] mx-auto lg:mx-0 select-none",

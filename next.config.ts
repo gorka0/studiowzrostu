@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-const isDev = process.env.NODE_ENV !== "production";
-
 const securityHeaders = [
   {
     key: "X-Content-Type-Options",
@@ -19,24 +17,6 @@ const securityHeaders = [
     key: "X-Frame-Options",
     value: "DENY",
   },
-  {
-    key: "Content-Security-Policy",
-    value: [
-      "default-src 'self'",
-      // W dev React wymaga 'unsafe-eval' do mapowania błędów i callstacków. W produkcji 'unsafe-eval' jest całkowicie zablokowane.
-      isDev
-        ? "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com"
-        : "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob:",
-      "font-src 'self' data:",
-      // Ścisła ochrona przed eksfiltracją danych - brak wildcard https:
-      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
-      "frame-ancestors 'none'",
-      "base-uri 'self'",
-      "form-action 'self'",
-    ].join("; "),
-  },
 ];
 
 const nextConfig: NextConfig = {
@@ -50,8 +30,6 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
   },
-  cacheComponents: true,
-  partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {

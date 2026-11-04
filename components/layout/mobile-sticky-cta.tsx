@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { useCookieConsent } from "@/components/ui/cookie-banner";
 import { cn } from "@/lib/utils";
 
-const EXCLUDED_ROUTES = ["/polityka-prywatnosci", "/polityka-cookies"];
+const EXCLUDED_ROUTES = ["/polityka-prywatnosci", "/polityka-cookies", "/kontakt"];
 
 /**
  * MobileStickyCTA – Przyklejony pasek CTA na mobile (md:hidden).

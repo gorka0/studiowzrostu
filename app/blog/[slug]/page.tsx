@@ -6,7 +6,7 @@ import { blogPosts, type BlogPost } from "@/content/blog";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { ArticleJsonLd, BreadcrumbListJsonLd } from "@/components/seo/json-ld";
+import { ArticleJsonLd } from "@/components/seo/json-ld";
 import { TableOfContents } from "@/components/blog/table-of-contents";
 import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
 import {
@@ -77,7 +77,6 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
   return (
     <main id="main-content" className="flex-1 pb-16">
       <ArticleJsonLd post={post} />
-      <BreadcrumbListJsonLd items={breadcrumbItems} />
 
       <Section spacing="sm">
         <Container size="narrow">

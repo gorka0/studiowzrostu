@@ -1,15 +1,31 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { buildMetadata } from "@/lib/seo";
 import { routesSeo } from "@/content/seo";
 import { HeroSection } from "@/components/sections/hero-section";
 import { TechMarquee } from "@/components/sections/tech-marquee";
-import { ServicesBento } from "@/components/sections/services-bento";
-import { ProjectsPreview } from "@/components/sections/projects-preview";
-import { GrowthChart } from "@/components/effects/growth-chart";
-import { WhyUsSection } from "@/components/sections/why-us-section";
-import { AboutPreviewSection } from "@/components/sections/about-preview-section";
-import { FaqSection } from "@/components/sections/faq-section";
-import { CtaSection } from "@/components/sections/cta-section";
+
+const ServicesBento = dynamic(() =>
+  import("@/components/sections/services-bento").then((mod) => mod.ServicesBento)
+);
+const ProjectsPreview = dynamic(() =>
+  import("@/components/sections/projects-preview").then((mod) => mod.ProjectsPreview)
+);
+const GrowthChart = dynamic(() =>
+  import("@/components/effects/growth-chart").then((mod) => mod.GrowthChart)
+);
+const WhyUsSection = dynamic(() =>
+  import("@/components/sections/why-us-section").then((mod) => mod.WhyUsSection)
+);
+const AboutPreviewSection = dynamic(() =>
+  import("@/components/sections/about-preview-section").then((mod) => mod.AboutPreviewSection)
+);
+const FaqSection = dynamic(() =>
+  import("@/components/sections/faq-section").then((mod) => mod.FaqSection)
+);
+const CtaSection = dynamic(() =>
+  import("@/components/sections/cta-section").then((mod) => mod.CtaSection)
+);
 
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.home.title,

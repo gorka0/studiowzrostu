@@ -94,7 +94,7 @@ export function ProjectsPreview({
           onScroll={handleScroll}
           className="flex lg:grid overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none gap-4 sm:gap-6 lg:gap-8 mt-4 sm:mt-8 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 lg:grid-cols-3 no-scrollbar"
         >
-          {conceptProjects.map((project, index) => (
+          {conceptProjects.map((project) => (
             <div
               key={project.id}
               className="w-[86%] sm:w-[72%] lg:w-full shrink-0 snap-center flex flex-col"
@@ -102,7 +102,7 @@ export function ProjectsPreview({
               <ConceptCard
                 project={project}
                 headingTag={isStandalonePage ? "h2" : "h3"}
-                isPriority={index === 0}
+                isPriority={false}
               />
             </div>
           ))}
@@ -119,7 +119,7 @@ export function ProjectsPreview({
               type="button"
               onClick={() => scrollToSlide(i)}
               aria-label={`Przejdź do projektu ${i + 1}`}
-              className="min-h-[44px] min-w-[32px] flex items-center justify-center p-1 cursor-pointer active:scale-[0.98]"
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center p-1 cursor-pointer active:scale-[0.98]"
             >
               <span
                 className={cn(
@@ -184,21 +184,7 @@ function ConceptCard({
               loading={isPriority ? undefined : "lazy"}
             />
 
-            {project.mobileImage && (
-              <div
-                className="absolute -bottom-2 -right-1 w-[24%] min-w-[70px] max-w-[95px] aspect-[9/19] rounded-t-md rounded-b-none border-2 border-b-0 border-surface bg-surface shadow-xl overflow-hidden z-10 transition-transform duration-300 group-hover:-translate-y-1"
-                aria-hidden="true"
-              >
-                <Image
-                  src={project.mobileImage}
-                  alt={project.mobileAlt || ""}
-                  fill
-                  sizes="95px"
-                  className="object-cover object-top"
-                  loading="lazy"
-                />
-              </div>
-            )}
+{/* Czysty zrzut desktopowy bez tandetnych miniaturowych nakładek */}
           </div>
         )}
       </div>

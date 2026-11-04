@@ -136,7 +136,7 @@ export function BeforeAfterSlider({
         aria-valuemax={100}
         aria-valuenow={sliderPosition}
         aria-valuetext={`Pozycja suwaka: ${sliderPosition}% (lewa strona: wersja przed, prawa strona: wersja po)`}
-        className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0 p-0 touch-none"
+        className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0 p-0 touch-pan-y"
       />
     </div>
   );
