@@ -17,9 +17,6 @@ const GrowthChart = dynamic(() =>
 const WhyUsSection = dynamic(() =>
   import("@/components/sections/why-us-section").then((mod) => mod.WhyUsSection)
 );
-const AboutPreviewSection = dynamic(() =>
-  import("@/components/sections/about-preview-section").then((mod) => mod.AboutPreviewSection)
-);
 const FaqSection = dynamic(() =>
   import("@/components/sections/faq-section").then((mod) => mod.FaqSection)
 );
@@ -54,13 +51,10 @@ export default function Home() {
       {/* 6. Dlaczego Studio Wzrostu (CIEMNY PAS: 1 tydzień + Cena z góry + oś czasu Dzień 1–7) */}
       <WhyUsSection />
 
-      {/* 7. Kto za tym stoi (blok z ramką zdjęcia TG i zarysem sylwetki) */}
-      <AboutPreviewSection />
-
-      {/* 8. FAQ (4 zwięzłe pytania z odpowiedziami ≤ 2 zdania) */}
+      {/* 7. FAQ (4 zwięzłe pytania z odpowiedziami ≤ 2 zdania) */}
       <FaqSection />
 
-      {/* 9. Końcowe CTA / Kontakt (CIEMNY PAS z kratką i formularzem) */}
+      {/* 8. Końcowe CTA / Kontakt (CIEMNY PAS z kratką i formularzem) */}
       <CtaSection />
     </main>
   );
