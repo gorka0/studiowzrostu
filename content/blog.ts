@@ -153,7 +153,7 @@ export const blogPosts: BlogPost[] = [
         id: "niejasne-warunki-wspolpracy",
         heading: "Niejasne warunki i niepewność co do przebiegu zlecenia",
         paragraphs: [
-          "Klient waha się przed kontaktem, gdy nie wie, jak przebiega realizacja i jakich kosztów się spodziewać. Przedstawienie ram czasowych (np. wdrożenie w 3–4 dni) ułatwia decyzję.",
+          "Klient waha się przed kontaktem, gdy nie wie, jak przebiega realizacja i jakich kosztów się spodziewać. Przedstawienie ram czasowych (np. wdrożenie w tydzień) ułatwia decyzję.",
           "W Studio Wzrostu stosujemy zasadę stałej wyceny z góry: przed rozpoczęciem prac ustalamy zakres i budżet.",
         ],
         keyTakeaway:
@@ -164,7 +164,7 @@ export const blogPosts: BlogPost[] = [
       badge: "Usługa powiązana",
       title: "Chcesz uporządkować stronę firmową i ułatwić klientom kontakt?",
       description:
-        "W Studio Wzrostu projektujemy strony firmowe i landing pages od zera w Next.js. Wycena z góry, wdrożenie w 3–4 dni robocze i kod nastawiony na czytelność.",
+        "W Studio Wzrostu projektujemy strony firmowe i landing pages od zera w Next.js. Wycena z góry, wdrożenie w tydzień i kod nastawiony na czytelność.",
       href: "/uslugi/strony-internetowe",
       ctaText: "Poznaj ofertę tworzenia stron internetowych",
     },

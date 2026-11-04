@@ -14,7 +14,7 @@ export const faqData: FaqItem[] = [
     id: "czas-realizacji",
     question: "Ile trwa stworzenie strony internetowej dla firmy?",
     answer:
-      "Dla standardowej strony wdrożenie trwa 3–4 dni robocze. Pracujemy w ustalonym harmonogramie bez przestojów.",
+      "Dla standardowej strony wdrożenie trwa 1 tydzień (7 dni). Pracujemy w ustalonym harmonogramie bez przestojów.",
   },
   {
     id: "od-czego-zalezy-cena",

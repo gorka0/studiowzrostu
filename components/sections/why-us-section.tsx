@@ -9,22 +9,22 @@ import { cn } from "@/lib/utils";
 
 const PROCESS_STEPS = [
   {
-    day: "Dzień 1",
+    day: "Dzień 1–2",
     title: "Brief i cele",
     desc: "Ustalamy cele biznesowe, profil klientów i zbieramy materiały wyjściowe.",
   },
   {
-    day: "Dzień 2",
+    day: "Dzień 3–4",
     title: "Układ i teksty",
     desc: "Planujemy logiczny układ podstron i porządkujemy treść oferty dla czytelności.",
   },
   {
-    day: "Dzień 3",
+    day: "Dzień 5–6",
     title: "Budowa i testy",
     desc: "Kodujemy stronę w Next.js, dopracowujemy responsywność i formularze.",
   },
   {
-    day: "Dzień 4",
+    day: "Dzień 7",
     title: "Odbiór i start",
     desc: "Weryfikujemy działanie serwisu, podpinamy domenę z certyfikatem SSL i uruchamiamy.",
   },
@@ -92,24 +92,24 @@ export function WhyUsSection() {
         {/* Dwa fakty = duże hasło + 1 zdanie */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
           
-          {/* FAKT 1: Czas realizacji 3–4 dni (4 segmenty Dzień 1–4 wypełniają się kolejno) */}
+          {/* FAKT 1: Czas realizacji 1 tydzień (7 segmentów Dzień 1–7 wypełniają się kolejno) */}
           <div className="lg:col-span-6 p-5 sm:p-7 rounded-2xl border border-darkband-line bg-darkband-bg/90 space-y-4 text-left">
             <div className="text-[13px] text-darkband-accent-text font-semibold uppercase tracking-wider">
               Termin wdrożenia
             </div>
 
-            <div className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-darkband-accent-text tracking-tight leading-none tabular-nums">
-              3–4 dni
+            <div className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-darkband-accent-text tracking-tight leading-none">
+              1 tydzień
             </div>
 
             <p className="text-[15px] text-darkband-muted leading-[1.5]">
-              Tyle standardowo zajmuje nam przygotowanie gotowej strony od akceptacji założeń i otrzymania materiałów.
+              Dokładnie 7 dni – tyle standardowo zajmuje nam przygotowanie gotowej strony od akceptacji założeń i otrzymania materiałów.
             </p>
 
-            {/* B3: 4 segmenty Dzień 1–4 wypełniają się kolejno po wejściu w widok */}
+            {/* B3: 7 segmentów D1–D7 wypełniają się kolejno po wejściu w widok */}
             <div className="pt-2 space-y-1.5">
-              <div className="grid grid-cols-4 gap-2">
-                {[1, 2, 3, 4].map((d) => (
+              <div className="grid grid-cols-7 gap-1.5">
+                {[1, 2, 3, 4, 5, 6, 7].map((d) => (
                   <div key={d} className="space-y-1">
                     <div className="h-1.5 bg-darkband-line rounded-full overflow-hidden">
                       <motion.div
@@ -117,14 +117,14 @@ export function WhyUsSection() {
                         initial={{ width: "0%" }}
                         animate={animateTimeline ? { width: "100%" } : { width: "100%" }}
                         transition={{
-                          duration: 0.45,
-                          delay: (d - 1) * 0.18,
+                          duration: 0.35,
+                          delay: (d - 1) * 0.12,
                           ease: [0.2, 0.7, 0.2, 1],
                         }}
                       />
                     </div>
-                    <span className="text-[13px] font-sans font-medium text-darkband-muted block">
-                      Dzień {d}
+                    <span className="text-[11px] sm:text-[12px] font-sans font-medium text-darkband-muted block text-center">
+                      D{d}
                     </span>
                   </div>
                 ))}

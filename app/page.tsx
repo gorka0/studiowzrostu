@@ -51,7 +51,7 @@ export default function Home() {
       {/* 5. Rozdział "Jak rośnie firma" (monotniczny wykres wzrostu + 4 etapy z mini-wizualizacjami i linkami) */}
       <GrowthChart />
 
-      {/* 6. Dlaczego Studio Wzrostu (CIEMNY PAS: 3–4 dni + Cena z góry + oś czasu Dzień 1–4) */}
+      {/* 6. Dlaczego Studio Wzrostu (CIEMNY PAS: 1 tydzień + Cena z góry + oś czasu Dzień 1–7) */}
       <WhyUsSection />
 
       {/* 7. Kto za tym stoi (blok z ramką zdjęcia TG i zarysem sylwetki) */}

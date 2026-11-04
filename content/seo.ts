@@ -15,7 +15,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   home: {
     title: "Nowoczesne strony internetowe dla firm | Studio Wzrostu",
     description:
-      "Tworzymy nowoczesne i szybkie strony internetowe dla firm. Przejrzysta oferta, realizacja w 3–4 dni i stała cena z góry. Sprawdź szczegóły!",
+      "Tworzymy nowoczesne i szybkie strony internetowe dla firm. Przejrzysta oferta, realizacja w tydzień i stała cena z góry. Sprawdź szczegóły!",
     keywords: [
       "nowoczesne strony dla firm",
       "strony internetowe dla firm",
@@ -29,7 +29,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
     ],
     ogTitle: "Nowoczesne strony internetowe dla firm | Studio Wzrostu",
     ogDescription:
-      "Nowoczesne strony www w Next.js. Realizacja w 3–4 dni, stała wycena z góry i kod nastawiony na pozyskiwanie klientów.",
+      "Nowoczesne strony www w Next.js. Realizacja w tydzień, stała wycena z góry i kod nastawiony na pozyskiwanie klientów.",
   },
   services: {
     title: "Projektowanie i tworzenie stron www | Studio Wzrostu",
@@ -49,7 +49,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   servicesWebsites: {
     title: "Nowoczesne strony internetowe – Next.js | Studio Wzrostu",
     description:
-      "Szybkie strony firmowe B2B i B2C w React i Next.js. Wdrożenie w 3–4 dni, cena z góry i czysty kod bez szablonów.",
+      "Szybkie strony firmowe B2B i B2C w React i Next.js. Wdrożenie w tydzień, cena z góry i czysty kod bez szablonów.",
     keywords: [
       "nowoczesne strony internetowe w React i Next.js",
       "szybkie strony firmowe B2B B2C",
@@ -61,7 +61,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
     ],
     ogTitle: "Nowoczesne strony internetowe – Next.js | Studio Wzrostu",
     ogDescription:
-      "Dedykowane strony firmowe bez masowych szablonów. Czas realizacji 3–4 dni, wycena z góry i pełna własność kodu.",
+      "Dedykowane strony firmowe bez masowych szablonów. Czas realizacji w tydzień, wycena z góry i pełna własność kodu.",
   },
   servicesLandingPage: {
     title: "Landing Page pod kampanie Ads i Meta | Studio Wzrostu",

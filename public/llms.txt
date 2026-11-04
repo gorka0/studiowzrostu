@@ -9,7 +9,7 @@
 - Standardy inżynierskie: Dedykowany kod, zero ociężałych szablonów/wtyczek, wysoka wydajność, pełna dostępność WCAG AA, Google Consent Mode v2, zgodność z RODO.
 
 ## Główne podstrony i usługi
-- [Strona główna](https://studiowzrostu.pl/): Prezentacja oferty, procesu realizacji (3–4 dni robocze, stała cena z góry) i wskaźników wzrostu.
+- [Strona główna](https://studiowzrostu.pl/): Prezentacja oferty, procesu realizacji (1 tydzień, stała cena z góry) i wskaźników wzrostu.
 - [Usługi](https://studiowzrostu.pl/uslugi): Przegląd kompleksowej oferty studia.
   - [Nowoczesne strony internetowe](https://studiowzrostu.pl/uslugi/strony-internetowe): Dedykowane serwisy firmowe B2B/B2C w Next.js.
   - [Landing Pages](https://studiowzrostu.pl/uslugi/landing-page): Strony docelowe zoptymalizowane pod konwersję kampanii Google Ads i Meta.

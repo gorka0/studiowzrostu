@@ -85,7 +85,7 @@ export const servicesList: ServiceDetail[] = [
     faq: [
       {
         question: "Ile trwa wdrożenie nowej strony firmowej?",
-        answer: "Dla typowej strony firmowej wdrożenie zajmuje zwykle 3–4 dni robocze od momentu akceptacji założeń i dostarczenia kompletu materiałów.",
+        answer: "Dla typowej strony firmowej wdrożenie zajmuje zwykle 1 tydzień (7 dni) od momentu akceptacji założeń i dostarczenia kompletu materiałów.",
       },
       {
         question: "Gdzie utrzymywana jest strona i jak wygląda hosting?",
@@ -143,7 +143,7 @@ export const servicesList: ServiceDetail[] = [
     businessBenefits: [
       { title: "Lepsze wykorzystanie budżetu", desc: "Szybka strona ułatwia użytkownikowi dotarcie do formularza bez zbędnego czekania." },
       { title: "Większa czytelność przekazu", desc: "Brak menu rozpraszającego uwagę zatrzymuje użytkownika na ofercie." },
-      { title: "Sprawne uruchomienie", desc: "Przygotowanie typowego landing page zajmuje zwykle 3–4 dni robocze." },
+      { title: "Sprawne uruchomienie", desc: "Przygotowanie typowego landing page zajmuje zwykle do 1 tygodnia." },
     ],
     faq: [
       {

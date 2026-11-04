@@ -273,7 +273,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           {/* Końcowe CTA usługi */}
           <div className="mt-16 p-8 rounded-2xl border border-line bg-surface text-center space-y-4">
             <div className="font-sans text-xs font-sans text-xs font-medium text-accent-text font-semibold">
-              Realizacja w 3–4 dni robocze • Stała wycena z góry
+              Realizacja w tydzień • Stała wycena z góry
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
               Chcesz porozmawiać o wdrożeniu: {service.title}?

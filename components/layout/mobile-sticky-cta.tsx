@@ -119,7 +119,7 @@ export function MobileStickyCTA() {
             Nowa strona firmowa
           </span>
           <span className="text-[15px] font-bold font-heading text-ink leading-tight">
-            Projekt w 3–4 dni
+            Projekt w tydzień
           </span>
         </div>
 
