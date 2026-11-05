@@ -64,6 +64,11 @@ const nextConfig: NextConfig = {
         destination: "/blog/strona-internetowa-a-rozwoj-biznesu",
         permanent: true,
       },
+      {
+        source: "/blog/strona-www-a-rozwoj-biznesu",
+        destination: "/blog/strona-internetowa-a-rozwoj-biznesu",
+        permanent: true,
+      },
     ];
   },
   async headers() {
