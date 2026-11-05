@@ -69,6 +69,11 @@ const nextConfig: NextConfig = {
         destination: "/blog/strona-internetowa-a-rozwoj-biznesu",
         permanent: true,
       },
+      {
+        source: "/ulugi/:slug*",
+        destination: "/uslugi/:slug*",
+        permanent: true,
+      },
     ];
   },
   async headers() {
