@@ -1,6 +1,6 @@
 /**
  * Treści podstrony "O nas"
- * STATUS: Szkic do autorskiej redakcji przez Tomasza Górkę
+ * STATUS: Zespół Studio Wzrostu
  */
 
 export interface AboutContent {

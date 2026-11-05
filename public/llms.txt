@@ -1,7 +1,7 @@
 # Studio Wzrostu
 > Nowoczesne strony internetowe w React i Next.js dla rozwijających się firm.
 
-- Właściciel / Założyciel: Tomasz Górka
+- Zespół: Zespół inżynierów i projektantów Studio Wzrostu
 - Domena główna: https://studiowzrostu.pl
 - Model współpracy: Współpraca zdalna
 - Specjalizacja: Projektowanie i wdrażanie szybkich, dedykowanych stron internetowych, landing pages, audytów technicznych SEO oraz optymalizacji Core Web Vitals.
