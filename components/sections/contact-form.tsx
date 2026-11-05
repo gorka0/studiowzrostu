@@ -138,7 +138,7 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
         )}
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate aria-busy={submitStatus === "submitting"}>
         {/* Pole honeypot (ukryte przed ludźmi) */}
         <input
           type="text"
@@ -168,10 +168,12 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
                 "w-full rounded-xl border bg-background px-3.5 py-3 text-[16px] sm:text-sm min-h-[48px] text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 errors.name ? "border-destructive focus-visible:ring-destructive" : "border-border"
               )}
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? "name-error" : undefined}
               {...register("name")}
             />
             {errors.name && (
-              <p className="text-[13px] text-destructive">{errors.name.message}</p>
+              <p id="name-error" className="text-[13px] text-destructive">{errors.name.message}</p>
             )}
           </div>
 
@@ -191,10 +193,12 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
                 "w-full rounded-xl border bg-background px-3.5 py-3 text-[16px] sm:text-sm min-h-[48px] text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 errors.email ? "border-destructive focus-visible:ring-destructive" : "border-border"
               )}
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
               {...register("email")}
             />
             {errors.email && (
-              <p className="text-[13px] text-destructive">{errors.email.message}</p>
+              <p id="email-error" className="text-[13px] text-destructive">{errors.email.message}</p>
             )}
           </div>
         </div>
@@ -242,27 +246,6 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           </div>
         )}
 
-        {!compact && (
-          /* Orientacyjny budżet */
-          <div className="space-y-1.5">
-            <label htmlFor="budget" className="text-[16px] font-semibold text-foreground">
-              Orientacyjny budżet <span className="text-[13px] text-muted-foreground font-normal">(opcjonalnie)</span>
-            </label>
-            <select
-              id="budget"
-              disabled={submitStatus === "submitting"}
-              className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              {...register("budget")}
-            >
-              {BUDGET_RANGES.map((range) => (
-                <option key={range} value={range}>
-                  {BUDGET_RANGE_LABELS[range]}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-
         {/* Wiadomość */}
         <div className="space-y-1.5">
           <label htmlFor="message" className="text-[16px] font-semibold text-foreground">
@@ -277,10 +260,12 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
               "w-full rounded-xl border bg-background px-3.5 py-3 text-[16px] sm:text-sm min-h-[96px] text-foreground placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-y",
               errors.message ? "border-destructive focus-visible:ring-destructive" : "border-border"
             )}
+            aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? "message-error" : undefined}
             {...register("message")}
           />
           {errors.message && (
-            <p className="text-[13px] text-destructive">{errors.message.message}</p>
+            <p id="message-error" className="text-[13px] text-destructive">{errors.message.message}</p>
           )}
         </div>
 
@@ -304,16 +289,16 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
             </span>
           </label>
           {errors.consent && (
-            <p className="text-[13px] text-destructive mt-1.5">{errors.consent.message}</p>
+            <p id="consent-error" className="text-[13px] text-destructive mt-1.5">{errors.consent.message}</p>
           )}
         </div>
 
-        {/* Przycisk wysyłki - wysoki kontrast tła akcentu tekstowego z białym tekstem (6.54:1) */}
-        <div className="pt-3">
+        {/* Przycisk wysyłki i transparentna gwarancja stałej ceny */}
+        <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <Button
             type="submit"
             disabled={submitStatus === "submitting"}
-            className="w-full sm:w-auto min-w-[200px] h-12 min-h-[48px] px-8 rounded-xl font-semibold bg-accent-text text-white hover:bg-accent transition-colors duration-150 cursor-pointer shadow-xs active:scale-[0.98]"
+            className="w-full sm:w-auto min-w-[200px] h-12 min-h-[48px] px-8 rounded-xl font-semibold bg-accent-text text-white dark:bg-accent dark:text-neutral-950 hover:bg-accent dark:hover:bg-accent/90 transition-colors duration-150 cursor-pointer shadow-xs active:scale-[0.98]"
           >
             {submitStatus === "submitting" ? (
               <span className="flex items-center gap-2">
@@ -324,6 +309,11 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
               <span>Wyślij zapytanie</span>
             )}
           </Button>
+
+          <div className="text-[12px] sm:text-[13px] text-muted-foreground flex flex-col sm:text-right select-none">
+            <span className="font-semibold text-foreground">Wdrożenia od 900 zł netto</span>
+            <span>Stała cena w umowie · Wycena w 24h</span>
+          </div>
         </div>
       </form>
     </div>
@@ -364,7 +354,7 @@ export function ContactInfoBlock() {
           </div>
           <div>
             <div className="text-[13px] font-medium text-muted-foreground">Czas odpowiedzi</div>
-            <div className="font-medium text-foreground">W dni robocze</div>
+            <div className="font-medium text-foreground">Do 24h w dni robocze</div>
           </div>
         </div>
 
@@ -372,7 +362,7 @@ export function ContactInfoBlock() {
       </div>
 
       <div className="pt-4 border-t border-border text-[13px] text-muted-foreground">
-        Założyciel i główny inżynier: <strong className="text-foreground">{siteConfig.owner}</strong>
+        Realizacja i nadzór inżynierski: <strong className="text-foreground">Zespół Studio Wzrostu</strong>
       </div>
     </div>
   );

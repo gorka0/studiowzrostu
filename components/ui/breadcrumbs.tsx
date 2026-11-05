@@ -27,7 +27,7 @@ export function Breadcrumbs({
         aria-label="Ścieżka nawigacyjna (breadcrumbs)"
         className={cn("flex items-center text-xs sm:text-sm text-muted-foreground", className)}
       >
-        <ol className="flex items-center space-x-1.5 sm:space-x-2">
+        <ol className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           <li className="inline-flex items-center">
             <Link
               href="/"

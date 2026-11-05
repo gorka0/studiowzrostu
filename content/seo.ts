@@ -124,12 +124,12 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
       "Autorskie koncepcje: serwis maszyn przemysłowych B2B, landing page aplikacji i interaktywne porównanie redesignu.",
   },
   about: {
-    title: "O studiu – Tomasz Górka | Studio Wzrostu",
+    title: "O nas – Zespół inżynierów i projektantów | Studio Wzrostu",
     description:
       "Poznaj Studio Wzrostu i podejście do tworzenia stron. Tworzymy dedykowane serwisy bez szablonów, z naciskiem na jakość kodu.",
     keywords: [
       "studio web development",
-      "Tomasz Górka",
+      "zespół web development",
       "tworzenie stron bez szablonów",
       "programista stron www",
       "nowoczesne strony internetowe",

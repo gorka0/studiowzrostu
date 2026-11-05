@@ -33,11 +33,10 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
     logo: `${siteConfig.canonicalUrl}/icon.svg`,
     image: `${siteConfig.canonicalUrl}/opengraph-image`,
     email: siteConfig.contact.email,
-    priceRange: "$$",
+    priceRange: "od 900 PLN",
     founder: {
-      "@type": "Person",
-      name: siteConfig.owner,
-      jobTitle: "Założyciel i Lead Developer",
+      "@type": "Organization",
+      name: "Zespół Studio Wzrostu",
       url: `${siteConfig.canonicalUrl}/o-nas`,
     },
     knowsAbout: [
@@ -184,9 +183,8 @@ export function buildArticleSchema(post: BlogPost): Record<string, unknown> {
     inLanguage: "pl-PL",
     mainEntityOfPage: postUrl,
     author: {
-      "@type": "Person",
+      "@type": "Organization",
       name: post.author.name,
-      jobTitle: post.author.role,
       url: `${siteConfig.canonicalUrl}/o-nas`,
     },
     publisher: {

@@ -9,7 +9,12 @@ import { Section } from "@/components/ui/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { conceptProjects, type ConceptProject } from "@/content/projects";
 import { BeforeAfterSlider } from "@/components/effects/before-after-slider";
-import { ConceptDialog } from "@/components/effects/concept-dialog";
+import dynamic from "next/dynamic";
+
+const ConceptDialog = dynamic(
+  () => import("@/components/effects/concept-dialog").then((m) => m.ConceptDialog),
+  { ssr: false }
+);
 function usePrefersReducedMotion() {
   const [reduce, setReduce] = React.useState(false);
   React.useEffect(() => {

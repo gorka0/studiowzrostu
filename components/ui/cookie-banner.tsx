@@ -35,22 +35,7 @@ export function CookieConsentProvider({
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    const handleTrigger = () => {
-      setMounted(true);
-      cleanup();
-    };
-    const cleanup = () => {
-      window.removeEventListener("scroll", handleTrigger);
-      window.removeEventListener("pointerdown", handleTrigger);
-      window.removeEventListener("keydown", handleTrigger);
-      clearTimeout(timer);
-    };
-    window.addEventListener("scroll", handleTrigger, { passive: true, once: true });
-    window.addEventListener("pointerdown", handleTrigger, { passive: true, once: true });
-    window.addEventListener("keydown", handleTrigger, { passive: true, once: true });
-    timer = setTimeout(handleTrigger, 4500);
-    return cleanup;
+    setMounted(true);
   }, []);
 
   const consent = React.useSyncExternalStore(
@@ -131,7 +116,7 @@ export function CookieConsentProvider({
   const handleSaveCustom = () => {
     saveConsent({
       analytics: analyticsChecked,
-      marketing: marketingChecked,
+      marketing: false,
       version: siteConfig.policyVersion,
     });
     setIsModalOpen(false);
@@ -158,7 +143,7 @@ export function CookieConsentProvider({
       {showBanner && (
         <aside
           aria-label="Powiadomienie o plikach cookies"
-          className="fixed bottom-3 sm:bottom-5 left-3 sm:left-6 right-3 sm:right-6 z-50 mx-auto max-w-4xl"
+          className="fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] sm:bottom-5 left-3 sm:left-6 right-3 sm:right-6 z-50 mx-auto max-w-4xl"
         >
           <div className="rounded-2xl border border-border/90 bg-card border-border p-4 sm:p-5 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-[transform,opacity] duration-300 ease-out">
             <div className="flex items-start gap-3 max-w-2xl">
@@ -167,7 +152,7 @@ export function CookieConsentProvider({
               </div>
               <div className="text-[13px] sm:text-[14px] text-foreground/90 leading-relaxed">
                 <span>
-                  Szanujemy Twoją prywatność. Wykorzystujemy niezbędne pliki cookies do prawidłowego działania strony oraz – za Twoją zgodą – opcjonalne pliki analityczne i marketingowe. Szczegóły znajdziesz w{" "}
+                  Szanujemy Twoją prywatność. Wykorzystujemy niezbędne pliki cookies do prawidłowego działania strony oraz – za Twoją zgodą – opcjonalne pliki analityczne. Szczegóły znajdziesz w{" "}
                 </span>
                 <Link
                   href="/polityka-cookies"
@@ -184,7 +169,7 @@ export function CookieConsentProvider({
               <Button
                 type="button"
                 onClick={handleRejectAll}
-                className="flex-1 md:flex-initial h-9 px-4 text-[13px] font-semibold rounded-xl border border-border bg-background text-foreground hover:bg-muted/80 transition-colors"
+                className="flex-1 md:flex-initial h-11 sm:h-9 min-h-[44px] sm:min-h-[36px] px-4 text-[13px] font-semibold rounded-xl border border-border bg-background text-foreground hover:bg-muted/80 transition-colors"
               >
                 Odrzuć wszystkie
               </Button>
@@ -192,7 +177,7 @@ export function CookieConsentProvider({
               <Button
                 type="button"
                 onClick={handleAcceptAll}
-                className="flex-1 md:flex-initial h-9 px-4 text-[13px] font-semibold rounded-xl bg-accent-text text-white hover:bg-accent focus-visible:ring-2 focus-visible:ring-accent-text dark:bg-accent dark:text-background dark:hover:bg-accent/80 transition-colors shadow-xs"
+                className="flex-1 md:flex-initial h-11 sm:h-9 min-h-[44px] sm:min-h-[36px] px-4 text-[13px] font-semibold rounded-xl bg-accent-text text-white hover:bg-accent focus-visible:ring-2 focus-visible:ring-accent-text dark:bg-accent dark:text-neutral-950 dark:hover:bg-accent/90 transition-colors shadow-xs"
               >
                 Akceptuj wszystkie
               </Button>
@@ -201,7 +186,7 @@ export function CookieConsentProvider({
                 type="button"
                 variant="ghost"
                 onClick={openPreferencesModal}
-                className="w-full sm:w-auto h-9 px-3 text-[13px] font-semibold rounded-xl text-foreground hover:bg-muted/60 transition-colors inline-flex items-center justify-center gap-1.5"
+                className="w-full sm:w-auto h-11 sm:h-9 min-h-[44px] sm:min-h-[36px] px-3 text-[13px] font-semibold rounded-xl text-foreground hover:bg-muted/60 transition-colors inline-flex items-center justify-center gap-1.5"
               >
                 <Settings className="h-3.5 w-3.5 text-foreground" />
                 <span>Dostosuj</span>
@@ -286,28 +271,6 @@ export function CookieConsentProvider({
                   Pomagają nam zrozumieć, które sekcje serwisu są najbardziej przydatne dla odwiedzających. Dane są zbierane anonimowo za pośrednictwem Google Analytics 4 z aktywnym trybem Consent Mode v2.
                 </p>
               </div>
-
-              {/* Kategoria 3: Marketingowe */}
-              <div className="p-4 rounded-2xl border border-border/80 bg-background space-y-2">
-                <div className="flex items-center justify-between">
-                  <label
-                    htmlFor="cookies-marketing"
-                    className="font-heading font-bold text-sm text-foreground cursor-pointer"
-                  >
-                    Marketing i reklama
-                  </label>
-                  <input
-                    id="cookies-marketing"
-                    type="checkbox"
-                    checked={marketingChecked}
-                    onChange={(e) => setMarketingChecked(e.target.checked)}
-                    className="h-4 w-4 rounded border-border text-accent-text focus:ring-accent-text accent-accent cursor-pointer"
-                  />
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Używane do mierzenia skuteczności kampanii reklamowych w wyszukiwarce Google oraz zapobiegania wielokrotnemu wyświetlaniu tych samych reklam.
-                </p>
-              </div>
             </div>
 
             {/* Przyciski akcji modala */}
@@ -324,7 +287,7 @@ export function CookieConsentProvider({
                 <Button
                   type="button"
                   onClick={handleSaveCustom}
-                  className="w-full sm:w-auto h-10 px-5 text-[13px] font-semibold rounded-xl bg-accent-text text-white hover:bg-accent dark:bg-accent dark:text-background dark:hover:bg-accent/80 transition-colors inline-flex items-center justify-center gap-1.5"
+                  className="w-full sm:w-auto h-10 px-5 text-[13px] font-semibold rounded-xl bg-accent-text text-white hover:bg-accent dark:bg-accent dark:text-neutral-950 dark:hover:bg-accent/90 transition-colors inline-flex items-center justify-center gap-1.5"
                 >
                   <Check className="h-3.5 w-3.5" />
                   <span>Zapisz preferencje</span>

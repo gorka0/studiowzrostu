@@ -5,7 +5,12 @@ import { HeroSection } from "@/components/sections/hero-section";
 import { TechMarquee } from "@/components/sections/tech-marquee";
 import { ServicesBento } from "@/components/sections/services-bento";
 import { ProjectsPreview } from "@/components/sections/projects-preview";
-import { GrowthChart } from "@/components/effects/growth-chart";
+import dynamic from "next/dynamic";
+
+const GrowthChart = dynamic(
+  () => import("@/components/effects/growth-chart").then((m) => m.GrowthChart),
+  { ssr: true }
+);
 import { WhyUsSection } from "@/components/sections/why-us-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { CtaSection } from "@/components/sections/cta-section";

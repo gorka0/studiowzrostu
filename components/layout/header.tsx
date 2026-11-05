@@ -49,16 +49,23 @@ export function Header() {
     };
   }, []);
 
-  // Zablokuj scrollowanie tła przy otwartym menu mobilnym
+  // Zablokuj scrollowanie tła przy otwartym menu mobilnym i obsłuż klawisz Escape
   React.useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setIsMobileMenuOpen(false);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
     } else {
       document.body.style.overflow = "";
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [isMobileMenuOpen]);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -117,7 +124,7 @@ export function Header() {
           <Link
             href="/kontakt"
             prefetch={false}
-            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-[14px] h-9 bg-accent-text text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-colors duration-150 shadow-xs active:scale-[0.98]"
+            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-[14px] h-9 bg-accent-text text-white dark:bg-accent dark:text-neutral-950 hover:bg-accent dark:hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-colors duration-150 shadow-xs active:scale-[0.98]"
           >
             <span>Wycena</span>
             <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
@@ -187,7 +194,7 @@ export function Header() {
               href="/kontakt"
               prefetch={true}
               onClick={closeMobileMenu}
-              className="flex items-center justify-center w-full py-3 rounded-xl font-semibold bg-accent-text text-white hover:bg-accent transition-colors active:scale-[0.98] min-h-[44px]"
+              className="flex items-center justify-center w-full py-3 rounded-xl font-semibold bg-accent-text text-white dark:bg-accent dark:text-neutral-950 hover:bg-accent transition-colors active:scale-[0.98] min-h-[44px]"
             >
               <span>Porozmawiajmy o projekcie</span>
               <ArrowUpRight className="ml-2 h-4 w-4" />

@@ -15,15 +15,15 @@ import "./globals.css";
 const fontHeading = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
-  display: "optional",
-  preload: true,
+  display: "swap",
+  preload: false,
 });
 
 const fontSans = Instrument_Sans({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
-  display: "optional",
-  preload: false,
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = buildMetadata();

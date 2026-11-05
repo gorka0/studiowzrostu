@@ -214,9 +214,11 @@ export function HeroSection() {
 
             {/* Jedna linia faktów w jednym wierszu (zredukowana pusta przestrzeń pod nią) */}
             <div className="mt-6 pt-4 border-t border-line/70 flex flex-wrap items-center gap-2.5 text-[13px] text-ink-muted/90 select-none">
-              <span>Strona w tydzień</span>
+              <span>Strona w 7 dni</span>
               <span className="text-line select-none font-sans" aria-hidden="true">·</span>
-              <span>Cena z góry</span>
+              <span>Wdrożenia od 900 zł netto</span>
+              <span className="text-line select-none font-sans" aria-hidden="true">·</span>
+              <span>Stała cena w umowie</span>
               <span className="text-line select-none font-sans" aria-hidden="true">·</span>
               <span>Czysty kod</span>
             </div>

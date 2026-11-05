@@ -20,17 +20,17 @@ export interface AboutContent {
 
 export const aboutContent: AboutContent = {
   status: "szkic_do_redakcji",
-  author: "Tomasz Górka",
+  author: "Zespół Studio Wzrostu",
   heading: "Tworzymy serwisy, które bezpośrednio wspierają rozwój firm",
   subheading:
     "Studio Wzrostu powstało z prostego założenia: rozwijająca się firma zasługuje na szybką, dopracowaną stronę bez długu technologicznego i szablonowego chaosu.",
   paragraphs: [
-    "Nazywam się Tomasz Górka i założyłem Studio Wzrostu, aby pomóc przedsiębiorcom w budowie niezależnych, szybkich serwisów w oparciu o czysty kod.",
+    "Jesteśmy zespołem inżynierów i projektantów Studio Wzrostu. Pomagamy przedsiębiorcom w budowie niezależnych, szybkich serwisów firmowych w oparciu o czysty kod.",
     "Współczesny klient oczekuje błyskawicznej odpowiedzi. Każda sekunda opóźnienia w ładowaniu oferty na smartfonie zmniejsza szansę na pozyskanie zapytania.",
     "Dlatego tworzymy strony w oparciu o czysty, nowoczesny kod bez powolnych wtyczek. Łączymy stabilne technologie z przejrzystym projektem graficznym.",
   ],
   commitments: [
-    "Brak pośredników – bezpośredni kontakt z inżynierem prowadzącym projekt",
+    "Brak pośredników – bezpośredni kontakt z inżynierami prowadzącymi projekt",
     "Rozliczenie etapowe po odbiorze kolejnych części serwisu",
     "Pełna własność kodu źródłowego i brak umów wiążących",
   ],
@@ -52,5 +52,5 @@ export const aboutContent: AboutContent = {
     },
   ],
   quote:
-    "Nie zatrudniamy anonimowych podwykonawców. Osobiście odpowiadam za jakość architektury i kod każdego serwisu wychodzącego ze studia.",
+    "Nie zatrudniamy anonimowych podwykonawców. Bezpośrednio odpowiadamy za jakość architektury i kod każdego serwisu wychodzącego z naszego studia.",
 };

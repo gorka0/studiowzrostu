@@ -60,9 +60,9 @@ export const blogPosts: BlogPost[] = [
     readingTime: "9 min czytania",
     category: "Optymalizacja stron",
     author: {
-      name: "Tomasz Górka",
-      role: "Założyciel Studio Wzrostu",
-      bio: "Projektant i programista systemów webowych. W Studio Wzrostu pomaga firmom budować szybkie serwisy internetowe oparte o czysty kod Next.js.",
+      name: "Zespół Studio Wzrostu",
+      role: "Inżynieria i projektowanie webowe",
+      bio: "Projektanci i programiści systemów webowych. W Studio Wzrostu tworzymy dedykowane serwisy internetowe dla rozwijających się firm, oparte o czysty kod Next.js i bezkompromisową szybkość.",
     },
     lead:
       "Gdy potencjalny klient trafia na stronę firmową, w ciągu pierwszych kilku sekund decyduje, czy zostanie na niej dłużej, czy zamknie kartę i przejdzie do konkurencji. Przeanalizowaliśmy najczęstsze błędy technologiczne i architektoniczne, które sprawiają, że nawet przyzwoity ruch nie przekłada się na realne zapytania ofertowe.",
@@ -184,9 +184,9 @@ export const blogPosts: BlogPost[] = [
     readingTime: "8 min czytania",
     category: "Strategia",
     author: {
-      name: "Tomasz Górka",
-      role: "Założyciel Studio Wzrostu",
-      bio: "Projektant i inżynier systemów webowych. W Studio Wzrostu tworzy dedykowane serwisy oparte o czysty kod Next.js.",
+      name: "Zespół Studio Wzrostu",
+      role: "Inżynieria i projektowanie webowe",
+      bio: "Projektanci i inżynierowie systemów webowych. W Studio Wzrostu tworzymy dedykowane serwisy oparte o czysty kod Next.js i przejrzystą architekturę informacji.",
     },
     lead:
       "Gdy firma wchodzi na poziom, w którym walczy o większe zlecenia, a kontrahenci sprawdzają markę przed podpisaniem umowy, szablonowa witryna może być wąskim gardłem. Oto jak podejść do modernizacji serwisu.",

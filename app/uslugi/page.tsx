@@ -31,6 +31,24 @@ export default function ServicesOverviewPage() {
             align="left"
           />
 
+          {/* Baner transparentnej polityki cenowej */}
+          <div className="mt-8 p-4 sm:p-5 rounded-2xl border border-line bg-surface/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="font-heading font-bold text-ink text-base">
+                Przejrzyste zasady wyceny i stała stawka w umowie
+              </div>
+              <p className="text-xs sm:text-sm text-ink-muted">
+                Dedykowane strony firmowe wdrażamy od <strong>900 zł netto</strong>. Każdy projekt ma z góry zdefiniowany zakres, harmonogram i gwarancję braku ukrytych dopłat.
+              </p>
+            </div>
+            <Link
+              href="/kontakt"
+              className="inline-flex items-center justify-center shrink-0 px-4 py-2.5 rounded-xl bg-accent-text text-white dark:bg-accent dark:text-neutral-950 font-semibold text-xs sm:text-sm hover:bg-accent transition-colors min-h-[44px]"
+            >
+              Zamów wycenę
+            </Link>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             {servicesList.map((service) => (
               <SpotlightCard

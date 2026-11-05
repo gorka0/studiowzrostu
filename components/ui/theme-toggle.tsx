@@ -28,8 +28,8 @@ export function ThemeToggle({ className, size = "default" }: ThemeToggleProps) {
   };
 
   const sizeClasses = {
-    sm: "h-8 w-8 rounded-full",
-    default: "h-9 w-9 rounded-full",
+    sm: "h-9 w-9 sm:h-8 sm:w-8 rounded-full min-h-[36px] min-w-[36px]",
+    default: "h-10 w-10 sm:h-9 sm:w-9 rounded-full min-h-[44px] min-w-[44px] sm:min-h-[36px] sm:min-w-[36px]",
   };
 
   if (!mounted) {

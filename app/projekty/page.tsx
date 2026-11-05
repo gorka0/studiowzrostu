@@ -18,10 +18,7 @@ export default function ProjectsPage() {
       <div className="pt-6 sm:pt-8">
         <Container>
           <Breadcrumbs
-            items={[
-              { label: "Strona główna", href: "/" },
-              { label: "Projekty" },
-            ]}
+            items={[{ label: "Projekty" }]}
           />
         </Container>
       </div>

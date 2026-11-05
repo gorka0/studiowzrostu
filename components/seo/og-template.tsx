@@ -118,7 +118,7 @@ export function createOgImage({
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <span style={{ color: "#FBFAF6", fontWeight: 600 }}>studiowzrostu.pl</span>
             <span>•</span>
-            <span>Tomasz Górka</span>
+            <span>Zespół Studio Wzrostu</span>
             <span>•</span>
             <span>React / Next.js / TypeScript</span>
           </div>

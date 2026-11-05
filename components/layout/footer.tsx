@@ -45,27 +45,27 @@ export function Footer() {
               </div>
               <ul className="space-y-1.5 text-[13px] sm:text-[14px] text-muted-foreground list-none p-0 m-0">
                 <li>
-                  <Link href="/uslugi" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                  <Link href="/uslugi" className="hover:text-accent-text transition-colors inline-flex items-center min-h-[36px] sm:min-h-[28px] py-1">
                     Usługi
                   </Link>
                 </li>
                 <li>
-                  <Link href="/projekty" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                  <Link href="/projekty" className="hover:text-accent-text transition-colors inline-flex items-center min-h-[36px] sm:min-h-[28px] py-1">
                     Projekty
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                  <Link href="/blog" className="hover:text-accent-text transition-colors inline-flex items-center min-h-[36px] sm:min-h-[28px] py-1">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="/o-nas" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                  <Link href="/o-nas" className="hover:text-accent-text transition-colors inline-flex items-center min-h-[36px] sm:min-h-[28px] py-1">
                     O nas
                   </Link>
                 </li>
                 <li>
-                  <Link href="/kontakt" className="hover:text-accent-text transition-colors inline-block py-0.5">
+                  <Link href="/kontakt" className="hover:text-accent-text transition-colors inline-flex items-center min-h-[36px] sm:min-h-[28px] py-1">
                     Kontakt
                   </Link>
                 </li>
@@ -81,7 +81,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/polityka-prywatnosci"
-                    className="hover:text-accent-text transition-colors inline-block py-0.5"
+                    className="hover:text-accent-text transition-colors inline-flex items-center min-h-[36px] sm:min-h-[28px] py-1"
                   >
                     Polityka prywatności
                   </Link>
@@ -89,7 +89,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/polityka-cookies"
-                    className="hover:text-accent-text transition-colors inline-block py-0.5"
+                    className="hover:text-accent-text transition-colors inline-flex items-center min-h-[36px] sm:min-h-[28px] py-1"
                   >
                     Polityka cookies
                   </Link>

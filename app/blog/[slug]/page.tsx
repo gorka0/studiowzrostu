@@ -13,6 +13,7 @@ import {
   Calendar,
   Clock,
   User,
+  Users,
   ArrowLeft,
   ArrowRight,
   Bookmark,
@@ -111,7 +112,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
                   className="flex items-center gap-2 hover:text-accent-text transition-colors group"
                 >
                   <div className="h-7 w-7 rounded-full bg-surface-subtle border border-line flex items-center justify-center text-accent-text font-bold">
-                    <User className="h-3.5 w-3.5" />
+                    <Users className="h-3.5 w-3.5" />
                   </div>
                   <div>
                     <span className="font-semibold text-ink group-hover:text-accent-text transition-colors">
@@ -208,7 +209,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
             {/* Wizytówka autora (E-E-A-T) */}
             <div className="mt-16 p-6 sm:p-8 rounded-2xl border border-line bg-surface flex flex-col sm:flex-row items-center sm:items-start gap-5 shadow-xs">
               <div className="h-16 w-16 rounded-full bg-surface-subtle border border-line flex items-center justify-center text-accent-text shrink-0">
-                <User className="h-8 w-8" />
+                <Users className="h-8 w-8" />
               </div>
               <div className="space-y-2 text-center sm:text-left">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
