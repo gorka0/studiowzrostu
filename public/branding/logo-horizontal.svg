@@ -2,22 +2,22 @@
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Instrument+Sans:wght@500;600;700&amp;display=swap');
-      .title-text { font-family: 'Bricolage Grotesque', -apple-system, sans-serif; font-weight: 800; font-size: 82px; letter-spacing: -2.5px; fill: #14231C; }
+      .title-text { font-family: 'Bricolage Grotesque', -apple-system, sans-serif; font-weight: 800; font-size: 84px; letter-spacing: -2.8px; fill: #14231C; }
       .title-accent { fill: #188755; }
-      .tagline-text { font-family: 'Instrument Sans', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 4.5px; fill: #5A6F62; }
+      .tagline-text { font-family: 'Instrument Sans', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 4.8px; fill: #5A6F62; }
     </style>
   </defs>
   <rect width="1200" height="360" fill="#FBFAF6"/>
-  <g transform="translate(240, 105)">
-    <!-- Sygnet (Scale 4.68x to 150x150) -->
-    <g transform="scale(4.68)">
+  <g transform="translate(230, 105)">
+    <!-- Sygnet (Scale 4.375x to 140x140) -->
+    <g transform="scale(4.375)">
       <rect x="3.5" y="19" width="6" height="9" rx="3" fill="#A0ABA4" opacity="0.6"/>
       <rect x="13" y="12" width="6" height="16" rx="3" fill="#188755"/>
       <rect x="22.5" y="5" width="6" height="23" rx="3" fill="#14231C"/>
       <circle cx="25.5" cy="5.5" r="2.5" fill="#D94E14"/>
     </g>
     <!-- Text block -->
-    <g transform="translate(190, 0)">
+    <g transform="translate(180, 0)">
       <text x="0" y="85" class="title-text">
         Studio <tspan class="title-accent">Wzrostu</tspan>
       </text>
