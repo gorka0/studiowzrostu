@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Instrument+Sans:wght@500;600;700&amp;display=swap');
+      .title-text { font-family: 'Bricolage Grotesque', -apple-system, sans-serif; font-weight: 800; font-size: 92px; letter-spacing: -2.5px; fill: #14231C; }
+      .title-accent { fill: #188755; }
+      .tagline-text { font-family: 'Instrument Sans', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: 4px; fill: #5A6F62; }
+      .badge-text { font-family: 'Instrument Sans', sans-serif; font-weight: 600; font-size: 19px; fill: #136B43; }
+    </style>
+  </defs>
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  
+  <!-- Subtle Grid -->
+  <g stroke="#14231C" stroke-opacity="0.035" stroke-width="1">
+    <line x1="240" y1="0" x2="240" y2="1080"/>
+    <line x1="480" y1="0" x2="480" y2="1080"/>
+    <line x1="600" y1="0" x2="600" y2="1080"/>
+    <line x1="840" y1="0" x2="840" y2="1080"/>
+    <line x1="0" y1="240" x2="1080" y2="240"/>
+    <line x1="0" y1="480" x2="1080" y2="480"/>
+    <line x1="0" y1="600" x2="1080" y2="600"/>
+    <line x1="0" y1="840" x2="1080" y2="840"/>
+  </g>
+
+  <!-- Centered Sygnet (Scale 6.875x from 32x32 to 220x220, placed at x=430, y=260) -->
+  <g transform="translate(430, 260) scale(6.875)">
+    <!-- Bar 1: grey -->
+    <rect x="3.5" y="19" width="6" height="9" rx="3" fill="#A0ABA4" opacity="0.6"/>
+    <!-- Bar 2: accent green -->
+    <rect x="13" y="12" width="6" height="16" rx="3" fill="#188755"/>
+    <!-- Bar 3: dark ink -->
+    <rect x="22.5" y="5" width="6" height="23" rx="3" fill="#14231C"/>
+    <!-- Coral circle -->
+    <circle cx="25.5" cy="5.5" r="2.5" fill="#D94E14"/>
+  </g>
+
+  <!-- Brand Typography -->
+  <text x="540" y="620" text-anchor="middle" class="title-text">
+    Studio <tspan class="title-accent">Wzrostu</tspan>
+  </text>
+  <text x="540" y="690" text-anchor="middle" class="tagline-text">
+    NOWOCZESNE STRONY INTERNETOWE
+  </text>
+
+  <!-- Pill Badge -->
+  <g transform="translate(345, 760)">
+    <rect width="390" height="48" rx="24" fill="#188755" fill-opacity="0.08" stroke="#188755" stroke-opacity="0.25" stroke-width="1.5"/>
+    <circle cx="28" cy="24" r="4" fill="#188755"/>
+    <text x="44" y="30.5" class="badge-text">Czysty kod Next.js • Od 900 zł netto</text>
+  </g>
+</svg>
