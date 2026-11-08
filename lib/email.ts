@@ -57,8 +57,9 @@ export async function sendContactEmail(
   }
 
   const resend = new Resend(apiKey);
-  const toEmail = process.env.CONTACT_TO_EMAIL || siteConfig.contact.email;
-  const fromEmail = process.env.CONTACT_FROM_EMAIL || "formularz@studiowzrostu.pl";
+  const toEmail = process.env.CONTACT_TO_EMAIL || "tomek.kielbaska12@gmail.com";
+  const fromEmail =
+    process.env.CONTACT_FROM_EMAIL || "Studio Wzrostu <onboarding@resend.dev>";
 
   const safeName = escapeHtml(data.name);
   const safeEmail = escapeHtml(data.email);
