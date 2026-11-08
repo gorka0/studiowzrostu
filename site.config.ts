@@ -4,8 +4,8 @@ export const siteConfig = {
   tagline: "Nowoczesne strony internetowe dla rozwijających się firm",
   description:
     "Tworzymy szybkie, nowoczesne strony internetowe dla firm. Pomagamy zdobywać klientów i budować zaufanie w sieci.",
-  domain: "https://studiowzrostu.pl",
-  canonicalUrl: "https://studiowzrostu.pl",
+  domain: "https://www.studiowzrostu.pl",
+  canonicalUrl: "https://www.studiowzrostu.pl",
   owner: "Zespół Studio Wzrostu",
   contact: {
     phone: "+48 736 943 002",
