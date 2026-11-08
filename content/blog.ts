@@ -271,4 +271,128 @@ export const blogPosts: BlogPost[] = [
       ctaText: "Umów bezpłatną konsultację techniczną",
     },
   },
+  {
+    slug: "ile-kosztuje-strona-internetowa-dla-firmy",
+    draft: false,
+    title: "Ile kosztuje strona internetowa dla firmy w 2026 roku? Ceny, pułapki i realny koszt wdrożenia",
+    seoTitle: "Ile kosztuje strona www dla firmy w 2026? Ceny i wycena | Studio Wzrostu",
+    seoDescription:
+      "Dowiedz się, ile kosztuje strona www dla firmy. Dedykowany czysty kod od 900 zł netto oraz wyceny rozbudowanych systemów i aplikacji webowych.",
+    excerpt:
+      "Ceny stron internetowych wahają się od kilkuset złotych do kilkudziesięciu tysięcy. Skąd biorą się te różnice? Dlaczego dedykowana strona od 900 zł netto to wyjątkowo uczciwy start i kiedy systemy wymagają wyższego budżetu?",
+    date: "2026-11-08",
+    lastModified: "2026-11-08",
+    formattedDate: "8 listopada 2026",
+    readingTime: "10 min czytania",
+    category: "Cennik i doradztwo",
+    author: {
+      name: "Zespół Studio Wzrostu",
+      role: "Inżynieria i projektowanie webowe",
+      bio: "Projektanci i inżynierowie systemów webowych. W Studio Wzrostu tworzymy dedykowane serwisy internetowe i aplikacje webowe w oparciu o czysty kod Next.js i przewidywalne zasady rozliczeń.",
+    },
+    lead:
+      "Na rynku tworzenia stron internetowych rozstrzał cenowy bywa dezorientujący: od szablonów z kreatora za 'parę groszy' z ukrytymi abonamentami, przez oferty agencji za 15 000 zł, po dedykowane rozwiązania inżynieryjne. W Studio Wzrostu wychodzimy z transparentnego założenia: solidna, autorska strona firmowa na czystym kodzie może powstać w wyjątkowo niskiej, uczciwej cenie bazowej od 900 zł netto. Jednocześnie bardziej wymagające serwisy, portale i rozbudowane systemy webowe wymagają proporcjonalnie większego nakładu inżynieryjnego. Wyjaśniamy, skąd biorą się te różnice i jak uniknąć kosztownych pułapek.",
+    sections: [
+      {
+        id: "baza-od-900-zl-uczciwy-start-na-czystym-kodzie",
+        heading: "Baza od 900 zł netto – dlaczego to niska, uczciwa cena za czysty kod",
+        paragraphs: [
+          "Dla wielu przedsiębiorców 900 zł netto za stronę napisaną od zera w Next.js i React brzmi zaskakująco tanio. Na rynku krąży przekonanie, że dedykowane kodowanie musi wiązać się z fakturami na kwoty rzędu 5 000 – 10 000 zł. Jak to możliwe, że proponujemy tak dostępną stawkę?",
+          "Odpowiedź tkwi w inżynierii i wyeliminowaniu agencji pośredników. Nie korzystamy z ociężałych szablonów WordPressa, które wymagają łatania dziesiątek konfliktów wtyczek. Zamiast tego stworzyliśmy modułową, ultra-wydajną bibliotekę własnych komponentów w React i Tailwind CSS. Pozwala nam to postawić czystą, zoptymalizowaną stronę w kilka dni roboczych bez powielania pracy.",
+          "W cenie od 900 zł netto przedsiębiorca otrzymuje w 100% autorski serwis wizytówkowy lub landing page: czas ładowania poniżej 0.5 sekundy, wynik 95-100/100 w Google Lighthouse, pełną responsywność na smartfonach, zabezpieczony formularz kontaktowy z powiadomieniami e-mail i zero ukrytych kosztów. To niska i w pełni uczciwa cena, która pozwala firmie wejść na rynek z profesjonalną technologią bez zamrażania budżetu.",
+        ],
+        bullets: [
+          "Brak comiesięcznych abonamentów za kreatory (Wix, Webflow) czy płatne wtyczki.",
+          "Ultra-szybki Server-Side Rendering w Next.js z ładowaniem poniżej 0.5s.",
+          "Pełna własność kodu źródłowego przekazywana klientowi w repozytorium GitHub.",
+          "Błyskawiczne wdrożenie – gotowy serwis zazwyczaj w ciągu 7 dni roboczych.",
+        ],
+        keyTakeaway:
+          "900 zł netto to niska, bezkompromisowa jakość bazowa dla stron firmowych i landing page'y, możliwa dzięki nowoczesnej architekturze komponentowej.",
+      },
+      {
+        id: "kiedy-strona-musi-kosztowac-wiecej-zaawansowane-systemy",
+        heading: "Kiedy strona musi kosztować więcej? Bardziej wymagające serwisy i systemy",
+        paragraphs: [
+          "Stawka 900 zł netto doskonale sprawdza się w przypadku stron typu One-Page, przejrzystych wizytówek usługowych oraz dedykowanych landing page'y pod kampanie reklamowe. Trzeba jednak powiedzieć wprost: bardziej wymagające serwisy internetowe i zaawansowane systemy webowe kosztują i muszą kosztować więcej.",
+          "Gdy firma potrzebuje rozbudowanego portalu z bazą wiedzy, wielojęzyczności, autoryzacji użytkowników, paneli klienta, integracji z systemami magazynowymi (ERP) czy systemami zarządzania relacjami (CRM), nakład pracy inżynieryjnej rośnie wielokrotnie. Taki projekt przestaje być prostą stroną informacyjną, a staje się dedykowaną aplikacją webową.",
+          "Zaawansowane systemy wymagają precyzyjnego modelowania relacyjnych baz danych (np. PostgreSQL), projektowania bezpiecznych punktów końcowych API, audytów podatności oraz testów integracyjnych. W Studio Wzrostu wyceniamy takie wdrożenia indywidualnie – zawsze w oparciu o dokładną specyfikację, gwarantując stałą cenę przed wbiciem pierwszej linii kodu.",
+        ],
+        bullets: [
+          "Dedykowane kalkulatory kosztów, interaktywne konfiguratory produktów i zaawansowane filtry.",
+          "Panele użytkowników z autoryzacją (Auth0, Supabase) i obsługą ról uprawnień.",
+          "Wielostronicowe serwisy korporacyjne z dziesiątkami dedykowanych podstron ofertowych pod SEO.",
+          "Bezpośrednie integracje API: systemy płatności, kalendarze rezerwacji, fakturowanie, CRM.",
+        ],
+        keyTakeaway:
+          "Złożone systemy i portale wymagają zaawansowanej architektury danych i setek godzin inżynierii, dlatego ich koszt jest wyższy i wyceniany projektowo.",
+        internalLink: {
+          text: "Zobacz, jak podchodzimy do dedykowanych wdrożeń:",
+          href: "/uslugi/strony-internetowe",
+          anchorText: "oferta dedykowanych stron internetowych",
+        },
+      },
+      {
+        id: "pulapka-tanich-szablonow-pozorna-oszczednosc",
+        heading: "Pułapka 'tanich' szablonów i kreatorów: pozorna oszczędność",
+        paragraphs: [
+          "Wielu przedsiębiorców skuszonych obietnicą strony za 'kilkaset złotych na WordPressie' lub abonamentem w kreatorze (Wix, Squarespace) po kilku miesiącach odkrywa realne koszty takiego wyboru. Gotowe motywy są tworzone uniwersalnie dla wszystkich, co oznacza gigantyczny balast zbędnego kodu.",
+          "Skutki to drastycznie wolne ładowanie na telefonach, spadki pozycji w Google i ciągłe awarie po aktualizacjach wtyczek. Dodatkowo popularne CMS-y są głównym celem zautomatyzowanych ataków hakerskich. Koszt ciągłego 'leczenia' zawirusowanej strony, płatnych licencji na wtyczki i abonamentów za serwery szybko przewyższa koszt profesjonalnego wdrożenia.",
+          "W czystym kodzie Next.js nie ma podatnych wtyczek ani przestarzałego PHP. Witryna jest kompilowana do czystych, statycznych i zoptymalizowanych plików. Dzięki temu hosting na globalnych sieciach brzegowych (Edge CDN) jest bezawaryjny i bezpłatny lub kosztuje grosze.",
+        ],
+        bullets: [
+          "Brak ryzyka włamań przez podatne wtyczki zewnętrznych autorów.",
+          "Brak konieczności opłacania comiesięcznych abonamentów za podstawowe funkcje.",
+          "Zero długu technologicznego – strona nie zwalnia i nie wymaga ciągłych napraw.",
+        ],
+        keyTakeaway:
+          "Pozornie tani szablon z czasem generuje wysokie koszty utrzymania. Dedykowany czysty kod to jednorazowy, bezpieczny wydatek.",
+      },
+      {
+        id: "z-czego-sklada-sie-uczciwa-wycena",
+        heading: "Z czego składa się uczciwa wycena w Studio Wzrostu?",
+        paragraphs: [
+          "Dla nas uczciwość to brak gwiazdek i ukrytych opłat w umowie. Niezależnie od tego, czy zlecasz stronę bazową za 900 zł netto, czy zaawansowany system za kilkanaście tysięcy złotych, zasady są identyczne: stała wycena, jasne terminy i rozliczenie etapowe.",
+          "W cenie każdego wdrożenia zawarte są kluczowe filary inżynierii: projekt UI dopasowany do urządzeń mobilnych, czysty semantyczny kod, konfiguracja metadanych i znaczników strukturalnych Schema.org (JSON-LD) dla Google, generowanie sitemap.xml oraz zabezpieczony formularz kontaktowy zintegrowany z Twoją skrzynką.",
+          "Nie pobieramy pełnej kwoty z góry. Prace dzielimy na etapy: zaliczka na rozpoczęcie prac, prezentacja wersji roboczej na testowej domenie i rozliczenie końcowe dopiero po Twojej akceptacji i wdrożeniu na domenę główną.",
+        ],
+        bullets: [
+          "Stała cena gwarantowana w umowie – kwota nie ulegnie zmianie w trakcie prac.",
+          "Rozliczenie etapowe oparte o realny postęp wdrożenia.",
+          "Pełna dokumentacja i przekazanie 100% praw autorskich oraz repozytorium kodu.",
+        ],
+        keyTakeaway:
+          "Uczciwa wycena opiera się na przejrzystym zakresie prac i rozliczeniu etapowym bez ukrytych abonamentów.",
+      },
+      {
+        id: "jak-wybrac-rozwiazanie-dla-swojej-firmy",
+        heading: "Jak dobrać odpowiedni wariant do etapu rozwoju Twojej firmy?",
+        paragraphs: [
+          "Nie każda firma potrzebuje od razu skomplikowanego portalu. Jeśli prowadzisz działalność usługową, jesteś specjalistą, rzemieślnikiem lub rozwijasz lokalny biznes – pakiet bazowy od 900 zł netto jest najbardziej racjonalnym biznesowo krokiem. Zapewnia błyskawiczną obecność w sieci na poziomie technologicznym, którego nie powstydziłyby się firmy technologiczne z Doliny Krzemowej.",
+          "Jeśli natomiast Twój model biznesowy wymaga automatyzacji procesów, sprzedaży wielu produktów, dedykowanych integracji z bazami danych lub wielostronicowych silosów tematycznych pod pozycjonowanie – skontaktuj się z nami w sprawie dedykowanej wyceny systemu.",
+          "Zamiast przepłacać za niepotrzebne moduły, wspólnie określamy minimalny skuteczny zakres (MVP), który szybko zaczyna generować zapytania ofertowe.",
+        ],
+        bullets: [
+          "Strona firmowa / Landing page (od 900 zł netto) – natychmiastowe wdrożenie, niska cena, bezkompromisowa jakość kodu.",
+          "Serwis wielostronicowy / B2B (wycena indywidualna) – rozbudowane portfolio usług i strategie pozycjonowania.",
+          "Dedykowane aplikacje i systemy webowe – automatyzacja procesów biznesowych, integracje API i panele klienta.",
+        ],
+        keyTakeaway:
+          "Zacznij od formatu dopasowanego do Twoich bieżących celów. Dzięki czystemu kodowi w Next.js rozbudowa serwisu w przyszłości jest bezproblemowa.",
+        internalLink: {
+          text: "Chcesz poznać precyzyjną wycenę dla swojego projektu?",
+          href: "/kontakt",
+          anchorText: "skontaktuj się i otrzymaj bezpłatną kalkulację",
+        },
+      },
+    ],
+    relatedService: {
+      badge: "Wycena i doradztwo",
+      title: "Potrzebujesz szybkiej, dedykowanej strony lub wyceny rozbudowanego systemu?",
+      description:
+        "Tworzymy strony na czystym kodzie Next.js od 900 zł netto oraz dedykowane systemy webowe. Skontaktuj się z nami – przygotujemy bezpłatną kalkulację dopasowaną do Twoich celów biznesowych.",
+      href: "/kontakt",
+      ctaText: "Poproś o bezpłatną wycenę",
+    },
+  },
 ];
