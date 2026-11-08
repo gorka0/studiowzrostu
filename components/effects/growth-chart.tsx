@@ -170,7 +170,7 @@ export function GrowthChart() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
             
             {/* STICKY WYKRES: przyklejony wyłącznie na desktopie (≥1024px) obok kart, na mobile/tablecie w naturalnym przepływie */}
-            <div className="lg:col-span-6 z-20 lg:sticky lg:top-24">
+            <div className="hidden lg:block lg:col-span-6 z-20 lg:sticky lg:top-24">
               <div className="rounded-2xl border border-line bg-card p-3 sm:p-5 shadow-card flex flex-col justify-between overflow-hidden">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-line/60 pb-2.5 mb-2 gap-1 select-none">
                   <span className="font-semibold text-accent-text text-[15px]">
@@ -332,7 +332,7 @@ export function GrowthChart() {
             </div>
 
             {/* PRAWA KOLUMNA: 4 kroki (na mobile/tablecie naturalna lista bez dimowania, na desktopie scrollytelling) */}
-            <div className="lg:col-span-6 space-y-4 sm:space-y-6 lg:space-y-16 pt-4 lg:pt-0">
+            <div className="w-full max-w-2xl mx-auto lg:max-w-none lg:col-span-6 space-y-4 sm:space-y-6 lg:space-y-16">
               {MILESTONES.map((m, idx) => {
                 const isActive = activeStep === idx;
 
@@ -353,15 +353,15 @@ export function GrowthChart() {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
-                        <span className="font-sans text-[13px] font-bold text-accent-text">
+                        <span className="font-sans text-[12px] font-bold text-accent-text px-2 py-0.5 rounded-md bg-accent/10 border border-accent/20 shrink-0">
                           {m.step}
                         </span>
-                        <h3 className="font-heading font-bold text-[19px] sm:text-[20px] text-ink leading-tight">
+                        <h3 className="font-heading font-bold text-[18px] sm:text-[20px] text-ink leading-tight">
                           {m.title}
                         </h3>
                       </div>
-                      <span className="text-[13px] font-sans text-ink-muted">
-                        Krok {idx + 1}
+                      <span className="text-[12px] sm:text-[13px] font-sans text-ink-muted shrink-0 ml-2">
+                        Krok {idx + 1} z 4
                       </span>
                     </div>
 
