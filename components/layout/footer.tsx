@@ -108,7 +108,7 @@ export function Footer() {
             &copy; {siteConfig.copyrightYear} {siteConfig.name}. Wszelkie prawa zastrzeżone.
           </div>
           <div>
-            Next.js & React • Dedykowane wdrożenie
+            <Link href="/uslugi/strony-internetowe-bydgoszcz" className="hover:text-accent-text transition-colors">Strony internetowe Bydgoszcz</Link> • Next.js & React
           </div>
         </div>
       </Container>

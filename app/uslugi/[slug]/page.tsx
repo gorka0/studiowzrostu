@@ -38,6 +38,7 @@ export async function generateMetadata({
 
   const routeMap: Record<string, keyof typeof routesSeo> = {
     "strony-internetowe": "servicesWebsites",
+    "strony-internetowe-bydgoszcz": "servicesBydgoszcz",
     "landing-page": "servicesLandingPage",
     "seo-techniczne": "servicesSeo",
     "redesign-i-wydajnosc": "servicesRedesign",

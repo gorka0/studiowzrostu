@@ -292,6 +292,74 @@ export const servicesList: ServiceDetail[] = [
       href: "/projekty",
     },
   },
+  {
+    slug: "strony-internetowe-bydgoszcz",
+    title: "Tworzenie stron internetowych Bydgoszcz",
+    tagline: "Nowoczesne, szybkie strony www dla firm z Bydgoszczy i regionu kujawsko-pomorskiego",
+    shortDescription:
+      "Dedykowane strony internetowe dla firm w Bydgoszczy. Czysty kod Next.js, ładowanie poniżej 0.5s, wdrożenie w 7 dni, cena od 900 zł netto.",
+    problem: {
+      heading: "Dlaczego lokalne strony firmowe w Bydgoszczy nie generują zapytań?",
+      description:
+        "Większość firmowych stron w Bydgoszczy i okolicach powstaje na ociężałych szablonach WordPressa z dziesiątkami zbędnych wtyczek. Na telefonach ładują się ponad 4 sekundy, a klienci szukający usług w Bydgoszczy rezygnują z kontaktu i przechodzą do konkurencji.",
+      symptoms: [
+        "Słaba widoczność w wynikach wyszukiwania na frazy lokalne (Bydgoszcz i okolice)",
+        "Długi czas ładowania na smartfonach powodujący natychmiastowe opuszczenie witryny",
+        "Wysokie koszty comiesięcznych abonamentów u agencji za podstawowy serwis",
+      ],
+    },
+    solution: {
+      heading: "Dedykowana strona dla Twojej firmy w Bydgoszczy",
+      description:
+        "Wdrażamy autorskie strony internetowe w oparciu o czysty kod Next.js i TypeScript. Zoptymalizowana struktura pod lokalne SEO sprawia, że przedsiębiorcy z Bydgoszczy zdobywają przewagę technologiczną i wyższe pozycje w wyszukiwarkach bez ponoszenia kosztów drogich agencji.",
+      deliverables: [
+        "Indywidualny, szwajcarski projekt graficzny dopasowany do Twojej branży w Bydgoszczy",
+        "Architektura Next.js z czasem ładowania poniżej 0.5s (100/100 Core Web Vitals)",
+        "Techniczne SEO zoptymalizowane pod Bydgoszcz, Fordon, Śródmieście i województwo kujawsko-pomorskie",
+        "Zabezpieczony formularz kontaktowy przesyłający zapytania wprost do Twojej skrzynki e-mail",
+        "100% własności kodu przekazywane w prywatnym repozytorium GitHub bez abonamentów",
+      ],
+    },
+    process: [
+      { step: "01", title: "Analiza konkurencji w Bydgoszczy", desc: "Sprawdzamy lokalny rynek, słowa kluczowe i definiujemy strukturę oferty." },
+      { step: "02", title: "Projekt makiety i treści", desc: "Układamy hierarchię informacji nastawioną na lokalne zapytania ofertowe." },
+      { step: "03", title: "Kodowanie w Next.js", desc: "Piszemy czysty kod i konfigurujemy lokalne znaczniki Schema.org." },
+      { step: "04", title: "Wdrożenie w 7 dni", desc: "Publikujemy serwis na Twojej domenie, podpinamy SSL i zgłaszamy do Google." },
+    ],
+    businessBenefits: [
+      { title: "Przewaga nad lokalną konkurencją", desc: "Podczas gdy rywale w Bydgoszczy korzystają z wolnych motywów, Twoja witryna ładuje się błyskawicznie." },
+      { title: "Więcej telefonów i zleceń z regionu", desc: "Zoptymalizowana ścieżka mobilna ułatwia mieszkańcom Bydgoszczy natychmiastowy kontakt." },
+      { title: "Uczciwa cena od 900 zł netto", desc: "Stała stawka w umowie, brak ukrytych kosztów i pełna własność serwisu bez abonamentów." },
+    ],
+    faq: [
+      {
+        question: "Dla kogo w Bydgoszczy dedykowana jest ta oferta?",
+        answer: "Tworzymy strony dla lokalnych firm usługowych, specjalistów, rzemieślników, gabinetów oraz rozwijających się przedsiębiorstw z Bydgoszczy i regionu, które chcą profesjonalnego wizerunku w sieci.",
+      },
+      {
+        question: "Ile kosztuje strona internetowa dla firmy w Bydgoszczy?",
+        answer: "Pakiet bazowy na czystym kodzie Next.js to koszt od 900 zł netto. Bardziej wymagające portale, systemy rezerwacji i aplikacje wyceniamy indywidualnie przed rozpoczęciem prac.",
+      },
+      {
+        question: "Czy pomagacie w konfiguracji profilu Google Moja Firma w Bydgoszczy?",
+        answer: "Tak. Doradzamy, jak optymalnie skonfigurować wizytówkę w Mapach Google, wgrać logo i połączyć profil z nową stroną internetową.",
+      },
+      {
+        question: "Jak wygląda współpraca, jeśli działacie zdalnie?",
+        answer: "Współpraca przebiega w 100% online lub telefonicznie. Otrzymujesz bezpośredni kontakt do programisty, podgląd roboczy na żywo i gotową stronę w 7 dni roboczych.",
+      },
+    ],
+    relatedServices: [
+      { slug: "strony-internetowe", title: "Nowoczesne strony dla firm" },
+      { slug: "seo-techniczne", title: "SEO techniczne i Core Web Vitals" },
+    ],
+    relatedBlogSlug: "ile-kosztuje-strona-internetowa-dla-firmy",
+    relatedProject: {
+      title: "Interaktywne makiety portfolio",
+      description: "Zobacz przykłady nowoczesnych układów stron realizowanych na czystym kodzie.",
+      href: "/projekty",
+    },
+  },
 ];
 
 export const servicesData = servicesList.map((s) => ({

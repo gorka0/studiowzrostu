@@ -25,7 +25,10 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
 
   const organization: Record<string, unknown> = {
     "@type": ["Organization", "ProfessionalService"],
-    areaServed: "PL",
+    areaServed: [
+      { "@type": "Country", name: "Polska" },
+      { "@type": "City", name: "Bydgoszcz", sameAs: "https://pl.wikipedia.org/wiki/Bydgoszcz" }
+    ],
     "@id": orgId,
     name: siteConfig.name,
     legalName: siteConfig.legalName,
@@ -142,6 +145,9 @@ export function buildServiceSchema(service: ServiceDetail): Record<string, unkno
     name: service.title,
     description: service.shortDescription,
     serviceType: "Tworzenie stron internetowych",
+    areaServed: service.slug.includes("bydgoszcz")
+      ? { "@type": "City", name: "Bydgoszcz", sameAs: "https://pl.wikipedia.org/wiki/Bydgoszcz" }
+      : { "@type": "Country", name: "Polska" },
     provider: {
       "@id": orgId,
     },

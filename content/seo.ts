@@ -46,6 +46,23 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
     ogDescription:
       "Dedykowane strony w React i Next.js, landing page pod kampanie oraz audyty techniczne SEO. Poznaj naszą ofertę.",
   },
+    servicesBydgoszcz: {
+    title: "Strony internetowe Bydgoszcz – Tworzenie stron www | Studio Wzrostu",
+    description:
+      "Nowoczesne strony internetowe dla firm w Bydgoszczy. Czysty kod Next.js, czas ładowania < 0.5s, realizacja w 7 dni i stała cena od 900 zł netto.",
+    keywords: [
+      "strony internetowe Bydgoszcz",
+      "tworzenie stron Bydgoszcz",
+      "projektowanie stron www Bydgoszcz",
+      "strony www Bydgoszcz cennik",
+      "strona internetowa dla firmy Bydgoszcz",
+      "tworzenie stron internetowych Bydgoszcz",
+      "tanie strony internetowe Bydgoszcz",
+    ],
+    ogTitle: "Strony internetowe Bydgoszcz | Czysty kod od 900 zł – Studio Wzrostu",
+    ogDescription:
+      "Dedykowane strony www dla firm z Bydgoszczy i kujawsko-pomorskiego. Nowoczesny kod Next.js, błyskawiczne ładowanie i realizacja w 7 dni.",
+  },
   servicesWebsites: {
     title: "Nowoczesne strony internetowe – Next.js | Studio Wzrostu",
     description:
