@@ -157,7 +157,7 @@ DOWÓD ZGODY RODO:
       console.error("Resend API error:", resError.message);
       return {
         success: false,
-        error: `Błąd podczas doręczania wiadomości e-mail: ${resError.message}`, debug: resError,
+        error: resError.message || "Błąd podczas doręczania wiadomości e-mail.",
       };
     }
 
