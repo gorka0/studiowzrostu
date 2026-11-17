@@ -224,8 +224,8 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* PRAWA KOLUMNA (kol. 7–12): Okno przeglądarki z makietą strony i telefonem */}
-          <div className="lg:col-span-6 w-full flex items-center justify-center lg:justify-end mt-4 lg:mt-0">
+          {/* PRAWA KOLUMNA (kol. 7–12): Okno przeglądarki z makietą strony (widoczne tylko na desktopie ≥1024px) */}
+          <div className="hidden lg:flex lg:col-span-6 w-full items-center justify-end">
             <HeroBrowser />
           </div>
 
