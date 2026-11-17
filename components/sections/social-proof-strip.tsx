@@ -9,10 +9,10 @@ import * as React from "react";
  */
 
 const STATS = [
-  { value: 7, suffix: " dni", label: "czas realizacji" },
+  { value: 7, suffix: " dni", label: "realizacja" },
   { value: 900, suffix: " zł", label: "cena od (netto)" },
-  { value: 100, suffix: "%", label: "stała cena w umowie" },
-  { value: 3, suffix: "+", label: "zrealizowane projekty" },
+  { value: 100, suffix: "%", label: "stała cena" },
+  { value: 3, suffix: "+", label: "projekty" },
 ] as const;
 
 function useCountUp(target: number, duration = 900, active: boolean) {
@@ -68,12 +68,14 @@ function StatItem({
   const count = useCountUp(value, 800, delayedActive);
 
   return (
-    <div className="flex flex-col items-center sm:items-start gap-0.5 min-w-[80px]">
-      <div className="font-heading font-bold text-[1.35rem] sm:text-[1.6rem] leading-none text-ink tracking-tight tabular-nums">
+    <div className="flex flex-col gap-1">
+      {/* Liczba — zawsze 1 linia, baseline wyrównana w rzędzie */}
+      <div className="font-heading font-bold text-[1.25rem] sm:text-[1.5rem] leading-none text-ink tracking-tight tabular-nums whitespace-nowrap">
         {count}
         <span className="text-accent">{suffix}</span>
       </div>
-      <div className="text-[11px] sm:text-[12px] text-ink-muted font-sans uppercase tracking-wider leading-tight">
+      {/* Etykieta — max 2 linie, stały min-height żeby rzędy były równe */}
+      <div className="text-[10px] sm:text-[11px] text-ink-muted font-sans uppercase tracking-wider leading-[1.3] min-h-[2.6em]">
         {label}
       </div>
     </div>
@@ -110,23 +112,18 @@ export function SocialProofStrip() {
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex flex-row items-center justify-around sm:justify-start sm:gap-10 md:gap-14 overflow-x-auto scrollbar-none">
+        {/* Grid 4 kolumn — liczby zawsze w jednym rzędzie, etykiety w rzędzie poniżej */}
+        <div className="grid grid-cols-4 gap-x-4 sm:gap-x-10 md:gap-x-14">
+          {/* Rząd 1: liczby wyrównane do basline */}
           {STATS.map((stat, i) => (
-            <React.Fragment key={stat.label}>
-              <StatItem
-                value={stat.value}
-                suffix={stat.suffix}
-                label={stat.label}
-                active={active}
-                delay={i * 120}
-              />
-              {i < STATS.length - 1 && (
-                <div
-                  className="hidden sm:block w-px h-8 bg-line/60 shrink-0"
-                  aria-hidden="true"
-                />
-              )}
-            </React.Fragment>
+            <StatItem
+              key={stat.label}
+              value={stat.value}
+              suffix={stat.suffix}
+              label={stat.label}
+              active={active}
+              delay={i * 120}
+            />
           ))}
         </div>
       </div>
