@@ -193,7 +193,8 @@ function ConceptCard({
               src={project.desktopImage}
               alt={project.desktopAlt}
               fill
-              sizes="(max-width: 640px) 86vw, (max-width: 1024px) 72vw, 33vw"
+              unoptimized
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 720px"
               className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
               priority={isPriority}
               loading={isPriority ? undefined : "lazy"}
