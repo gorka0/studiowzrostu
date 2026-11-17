@@ -510,3 +510,96 @@ a[role="button"]:active,
 .hero-anim-card-3 {
   will-change: transform, opacity;
 }
+
+
+/* =========================================================
+   Premium UI micro-interactions — Studio Wzrostu v2
+   ========================================================= */
+
+/* Karty usług: lewy accent border reveal on hover */
+.service-card {
+  position: relative;
+  transition: box-shadow 250ms cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 250ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--accent);
+  border-radius: 0 2px 2px 0;
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity 220ms cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .service-card:hover {
+    box-shadow: 0 4px 16px -4px rgba(24, 135, 85, 0.12), 0 1px 4px -1px rgba(20, 35, 28, 0.06);
+    transform: translateY(-1px);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Count-up numbers: tabular-nums system-wide */
+[data-countup] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Scrollbar hide utility */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe area padding bottom for sticky bars */
+.safe-area-pb {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* Eyebrow border-left variant */
+.eyebrow-line {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+  border-left: 2px solid var(--accent);
+  padding-left: 10px;
+  color: var(--accent-text);
+}
+
+/* Animated underline for inline links (premium feel) */
+.link-underline {
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-card::before,
+  .link-underline {
+    transition: none !important;
+    animation: none !important;
+  }
+}

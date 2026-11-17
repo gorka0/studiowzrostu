@@ -128,8 +128,7 @@ export function CtaSection() {
           {/* Lewa kolumna: Opis i dane kontaktowe */}
           <div className="lg:col-span-5 text-left space-y-6">
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-darkband-line bg-darkband-bg/80 text-[13px] font-semibold text-darkband-accent-text">
-                <span className="w-1.5 h-1.5 rounded-full bg-darkband-accent" />
+              <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-darkband-accent-text border-l-2 border-darkband-accent pl-2.5 leading-none">
                 Darmowa konsultacja techniczna
               </div>
 
