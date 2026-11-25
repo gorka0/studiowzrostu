@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
 import { HeroBrowser } from "@/components/sections/hero-browser";
 import { HeroReflector } from "@/components/sections/hero-reflector";
+import { HeroCurveBg } from "@/components/sections/hero-curve-bg";
 
 export function HeroSection() {
   return (
@@ -88,61 +89,8 @@ export function HeroSection() {
         </g>
       </svg>
 
-      {/* 3. TŁO: Duży rosnący wykres w tle (DESKTOP ≥1024px, nie zmieniony wizualnie) */}
-      <div className="hidden lg:block pointer-events-none absolute inset-0 z-0 h-full w-full select-none overflow-hidden" aria-hidden="true">
-        <svg
-          viewBox="0 0 1440 680"
-          preserveAspectRatio="none"
-          className="h-full w-full overflow-visible"
-        >
-          <defs>
-            <linearGradient
-              id="hero-bg-curve-area-grad"
-              x1="0"
-              y1="0"
-              x2="0"
-              y2="1"
-            >
-              <stop
-                offset="0%"
-                stopColor="var(--accent)"
-                stopOpacity="0.10"
-              />
-              <stop
-                offset="70%"
-                stopColor="var(--accent)"
-                stopOpacity="0.03"
-              />
-              <stop
-                offset="100%"
-                stopColor="var(--accent)"
-                stopOpacity="0.0"
-              />
-            </linearGradient>
-          </defs>
-
-          {/* Półprzezroczysty obszar pod krzywą */}
-          <path
-            d="M 0 620 C 360 580, 680 460, 960 300 C 1140 190, 1240 140, 1310 100 L 1310 680 L 0 680 Z"
-            fill="url(#hero-bg-curve-area-grad)"
-            className="hero-bg-area"
-          />
-
-          {/* Linia krzywej w akcencie ok. 45% krycia (biegnie ZA oknem) */}
-          <path
-            d="M 0 620 C 360 580, 680 460, 960 300 C 1140 190, 1240 140, 1310 100"
-            fill="none"
-            stroke="var(--accent)"
-            strokeOpacity="0.45"
-            strokeWidth="3"
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-            className="hero-bg-curve"
-          />
-
-          {/* Koniec linii (usunięto oderwaną kropkę) */}
-        </svg>
-      </div>
+      {/* 3. TŁO: Duży rosnący wykres w tle ze scroll-parallax (DESKTOP ≥1024px) */}
+      <HeroCurveBg />
 
       {/* 3b. TŁO: Łagodna niska krzywa w dolnej części hero (MOBILE <1024px, za makietą, krycie max 12%, kołowa kropka) */}
       <div className="lg:hidden pointer-events-none absolute bottom-0 inset-x-0 z-0 h-[240px] w-full select-none overflow-hidden" aria-hidden="true">

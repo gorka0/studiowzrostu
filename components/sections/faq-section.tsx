@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { LayoutGroup, motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { faqData } from "@/content/faq";
@@ -10,13 +11,14 @@ import { cn } from "@/lib/utils";
 
 export function FaqSection() {
   const [openId, setOpenId] = React.useState<string | null>(faqData[0]?.id || null);
+  const prefersReducedMotion = useReducedMotion();
   const buttonRefs = React.useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
-  const toggleItem = (id: string) => {
+  const toggleFaqItem = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+  const onItemKeyDown = (e: React.KeyboardEvent, index: number) => {
     let nextIndex = index;
     if (e.key === "ArrowDown") {
       e.preventDefault();
@@ -42,8 +44,6 @@ export function FaqSection() {
     <Section spacing="none" id="faq" className="bg-background border-b border-line py-6 sm:py-10 lg:py-16">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
-          {/* LEWA KOLUMNA: Sticky (kol. 1–5) */}
           <div className="lg:col-span-5 text-left lg:sticky lg:top-24 space-y-3">
             <div className="text-[13px] font-semibold text-accent-text">
               Najczęstsze pytania
@@ -71,56 +71,69 @@ export function FaqSection() {
             </div>
           </div>
 
-          {/* PRAWA KOLUMNA: Akordeon (kol. 6–12) */}
-          <div className="lg:col-span-7 w-full text-left divide-y divide-line border-t border-b border-line">
-            {faqData.map((item, idx) => {
-              const isOpen = openId === item.id;
-              const contentId = `faq-content-${item.id}`;
-              const buttonId = `faq-button-${item.id}`;
+          <LayoutGroup id="faq-active-group">
+            <div className="lg:col-span-7 w-full text-left divide-y divide-line border-t border-b border-line">
+              {faqData.map((item, idx) => {
+                const isOpen = openId === item.id;
+                const contentId = `faq-content-${item.id}`;
+                const buttonId = `faq-button-${item.id}`;
 
-              return (
-                <div key={item.id} className="py-1">
-                  <button
-                    id={buttonId}
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={contentId}
-                    ref={(el) => {
-                      buttonRefs.current[item.id] = el;
-                    }}
-                    onClick={() => toggleItem(item.id)}
-                    onKeyDown={(e) => handleKeyDown(e, idx)}
-                    className="flex w-full items-center justify-between py-3.5 sm:py-4 text-left font-heading font-bold text-[20px] text-ink hover:text-accent-text transition-colors gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text rounded-lg px-2 -mx-2 cursor-pointer active:scale-[0.98]"
-                  >
-                    <span>{item.question}</span>
-                    <ChevronDown
-                      className={cn(
-                        "h-4 w-4 text-ink-muted shrink-0 transition-transform duration-200",
-                        isOpen ? "rotate-180 text-accent-text" : ""
-                      )}
-                    />
-                  </button>
-
-                  {/* Treść zawsze w DOM, animowana w CSS grid transition */}
-                  <div
-                    id={contentId}
-                    role="region"
-                    aria-labelledby={buttonId}
-                    className={cn(
-                      "grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] px-2",
-                      isOpen ? "grid-rows-[1fr] opacity-100 pb-3.5" : "grid-rows-[0fr] opacity-0"
+                return (
+                  <div key={item.id} className="relative py-1 pl-3">
+                    {isOpen && (
+                      <motion.div
+                        layoutId="faq-active-bar"
+                        transition={
+                          prefersReducedMotion
+                            ? { duration: 0 }
+                            : { type: "spring", stiffness: 360, damping: 32 }
+                        }
+                        aria-hidden="true"
+                        className="absolute left-0 top-3 bottom-3 w-[2.5px] rounded-full bg-accent"
+                      />
                     )}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="text-[15px] text-ink-muted leading-[1.5] pt-0.5">
-                        {item.answer}
-                      </p>
+
+                    <button
+                      id={buttonId}
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={contentId}
+                      ref={(el) => {
+                        buttonRefs.current[item.id] = el;
+                      }}
+                      onClick={() => toggleFaqItem(item.id)}
+                      onKeyDown={(e) => onItemKeyDown(e, idx)}
+                      className="flex w-full items-center justify-between py-3.5 sm:py-4 text-left font-heading font-bold text-[20px] text-ink hover:text-accent-text transition-colors gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text rounded-lg px-2 -mx-2 cursor-pointer active:scale-[0.98]"
+                    >
+                      <span>{item.question}</span>
+                      <ChevronDown
+                        className={cn(
+                          "h-4 w-4 text-ink-muted shrink-0 transition-transform duration-200",
+                          isOpen ? "rotate-180 text-accent-text" : ""
+                        )}
+                      />
+                    </button>
+
+                    <div
+                      id={contentId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      className={cn(
+                        "grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] px-2",
+                        isOpen ? "grid-rows-[1fr] opacity-100 pb-3.5" : "grid-rows-[0fr] opacity-0"
+                      )}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="text-[15px] text-ink-muted leading-[1.5] pt-0.5">
+                          {item.answer}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          </LayoutGroup>
         </div>
       </Container>
     </Section>

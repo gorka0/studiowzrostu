@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LayoutGroup, motion, useReducedMotion } from "motion/react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -18,13 +19,15 @@ const NAV_LINKS = [
 
 export function Header() {
   const pathname = usePathname();
+  const prefersReducedMotion = useReducedMotion();
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [hoveredHref, setHoveredHref] = React.useState<string | null>(null);
   const progressBarRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     let rafId: number | null = null;
-    const handleScroll = () => {
+    const onScrollUpdate = () => {
       if (rafId) return;
       rafId = requestAnimationFrame(() => {
         rafId = null;
@@ -32,7 +35,7 @@ export function Header() {
         const nextScrolled = curY > 15;
         setIsScrolled((prev) => (prev !== nextScrolled ? nextScrolled : prev));
 
-        // Direct DOM update to eliminate 60-120 React re-renders per second
+        // Bezpośrednia aktualizacja DOM zapobiega wielokrotnym re-renderom przy przewijaniu
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
         const progress = maxScroll > 0 ? Math.min(1, Math.max(0, curY / maxScroll)) : 0;
         if (progressBarRef.current) {
@@ -41,27 +44,27 @@ export function Header() {
       });
     };
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    onScrollUpdate();
+    window.addEventListener("scroll", onScrollUpdate, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", onScrollUpdate);
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
-  // Zablokuj scrollowanie tła przy otwartym menu mobilnym i obsłuż klawisz Escape
+  // Blokada przewijania tła i obsługa Escape dla otwartego menu na telefonie
   React.useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
-      const handleKeyDown = (e: KeyboardEvent) => {
+      const onKeyDown = (e: KeyboardEvent) => {
         if (e.key === "Escape") {
           setIsMobileMenuOpen(false);
         }
       };
-      window.addEventListener("keydown", handleKeyDown);
+      window.addEventListener("keydown", onKeyDown);
       return () => {
         document.body.style.overflow = "";
-        window.removeEventListener("keydown", handleKeyDown);
+        window.removeEventListener("keydown", onKeyDown);
       };
     } else {
       document.body.style.overflow = "";
@@ -71,9 +74,7 @@ export function Header() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header
-      className="sticky top-3 sm:top-4 z-40 w-full px-4 sm:px-6 lg:px-8"
-    >
+    <header className="sticky top-3 sm:top-4 z-40 w-full px-4 sm:px-6 lg:px-8">
       <div
         className={cn(
           "mx-auto max-w-[1240px] rounded-full border transition-colors duration-150 relative overflow-hidden",
@@ -90,47 +91,70 @@ export function Header() {
           <Logo size="sm" />
         </Link>
 
-        <nav
-          className="hidden md:flex items-center gap-1 lg:gap-2"
-          aria-label="Nawigacja główna"
-        >
-          {NAV_LINKS.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                prefetch={false}
-                className={cn(
-                  "px-3 py-1.5 rounded-full text-[15px] font-medium transition-colors",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                  isActive
-                    ? "text-accent-text font-semibold bg-accent/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
-                )}
-                aria-current={isActive ? "page" : undefined}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <LayoutGroup id="header-nav-pills">
+          <nav
+            className="hidden md:flex items-center gap-1 lg:gap-1.5"
+            aria-label="Nawigacja główna"
+            onMouseLeave={() => setHoveredHref(null)}
+          >
+            {NAV_LINKS.map((link) => {
+              const isActive =
+                pathname === link.href ||
+                (link.href !== "/" && pathname.startsWith(`${link.href}/`));
+              const showPill = hoveredHref ? hoveredHref === link.href : isActive;
 
-        {/* Right action cluster */}
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  prefetch={false}
+                  onMouseEnter={() => setHoveredHref(link.href)}
+                  className={cn(
+                    "relative px-3.5 py-1.5 rounded-full text-[15px] font-medium transition-colors",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    isActive
+                      ? "text-accent-text font-semibold"
+                      : showPill
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {showPill && (
+                    <motion.span
+                      layoutId="header-nav-pill"
+                      transition={
+                        prefersReducedMotion
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 380, damping: 32 }
+                      }
+                      className={cn(
+                        "absolute inset-0 rounded-full z-0",
+                        isActive && !hoveredHref
+                          ? "bg-accent/12 border border-accent/20"
+                          : "bg-muted/75 border border-line/50"
+                      )}
+                    />
+                  )}
+                  <span className="relative z-10">{link.label}</span>
+                </Link>
+              );
+            })}
+          </nav>
+        </LayoutGroup>
+
         <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle size="sm" />
 
-          {/* Desktop CTA */}
           <Link
             href="/kontakt"
             prefetch={false}
-            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-[14px] h-9 bg-accent-text text-white dark:bg-accent dark:text-neutral-950 hover:bg-accent dark:hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-colors duration-150 shadow-xs active:scale-[0.98]"
+            className="hidden sm:inline-flex items-center justify-center rounded-full px-4 font-semibold text-[14px] h-9 bg-accent-text text-white dark:bg-accent dark:text-accent-foreground hover:bg-accent dark:hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text transition-colors duration-150 shadow-xs active:scale-[0.98]"
           >
             <span>Wycena</span>
             <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
           </Link>
 
-          {/* Mobile hamburger button */}
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -146,7 +170,6 @@ export function Header() {
           </button>
         </div>
 
-        {/* B4 Pasek postępu przewijania pod nagłówkiem (transform: scaleX) */}
         <div
           aria-hidden="true"
           className="absolute bottom-0 left-4 right-4 h-[2px] bg-accent/20 rounded-full overflow-hidden pointer-events-none"
@@ -159,7 +182,6 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 top-18 z-50 md:hidden bg-background/95 backdrop-blur-xl border-t border-border px-6 py-8 flex flex-col justify-between animate-in fade-in-50 duration-200"
@@ -167,7 +189,7 @@ export function Header() {
           aria-modal="true"
           aria-label="Menu mobilne"
         >
-          <nav className="flex flex-col space-y-4" aria-label="Nawigacja mobilna">
+          <nav className="flex flex-col space-y-4" aria-label="Nawigacja w telefonie">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -194,7 +216,7 @@ export function Header() {
               href="/kontakt"
               prefetch={true}
               onClick={closeMobileMenu}
-              className="flex items-center justify-center w-full py-3 rounded-xl font-semibold bg-accent-text text-white dark:bg-accent dark:text-neutral-950 hover:bg-accent transition-colors active:scale-[0.98] min-h-[44px]"
+              className="flex items-center justify-center w-full py-3 rounded-xl font-semibold bg-accent-text text-white dark:bg-accent dark:text-accent-foreground hover:bg-accent transition-colors active:scale-[0.98] min-h-[44px]"
             >
               <span>Porozmawiajmy o projekcie</span>
               <ArrowUpRight className="ml-2 h-4 w-4" />

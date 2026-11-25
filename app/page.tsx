@@ -15,6 +15,7 @@ import { WhyUsSection } from "@/components/sections/why-us-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { CtaSection } from "@/components/sections/cta-section";
 import { FounderStrip } from "@/components/sections/founder-strip";
+import { Reveal } from "@/components/ui/reveal";
 
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.home.title,
@@ -38,7 +39,9 @@ export default function Home() {
       <ProjectsPreview />
 
       {/* 4b. Założyciel — humanizacja marki */}
-      <FounderStrip />
+      <Reveal>
+        <FounderStrip />
+      </Reveal>
 
       {/* 5. Rozdział "Jak rośnie firma" */}
       <GrowthChart />

@@ -21,9 +21,16 @@ import { cn } from "@/lib/utils";
 interface ContactFormProps {
   compact?: boolean;
   className?: string;
+  presetProjectType?: ContactFormData["projectType"];
+  estimatorSummary?: string;
 }
 
-export function ContactForm({ compact = false, className }: ContactFormProps) {
+export function ContactForm({
+  compact = false,
+  className,
+  presetProjectType,
+  estimatorSummary,
+}: ContactFormProps) {
   const [submitStatus, setSubmitStatus] = React.useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -68,15 +75,29 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
     fetchFreshToken();
   }, [fetchFreshToken]);
 
+  React.useEffect(() => {
+    if (presetProjectType) {
+      setValue("projectType", presetProjectType);
+    }
+  }, [presetProjectType, setValue]);
+
   const onSubmit = async (data: ContactFormData) => {
     setSubmitStatus("submitting");
     setStatusMessage("");
+
+    const messageWithPreset =
+      estimatorSummary && !data.message.includes("[Wybrany zakres:")
+        ? `[Wybrany zakres: ${estimatorSummary}]\n\n${data.message}`.slice(0, 3000)
+        : data.message;
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          message: messageWithPreset,
+        }),
       });
 
       const result = await res.json();
@@ -293,12 +314,22 @@ export function ContactForm({ compact = false, className }: ContactFormProps) {
           )}
         </div>
 
+        {/* Wybrany wariant z konfiguratora estymacji */}
+        {estimatorSummary && (
+          <div className="rounded-lg border border-accent/25 bg-accent/[0.05] px-3.5 py-2 text-[12.5px] text-ink flex items-center justify-between gap-2">
+            <span className="truncate">
+              <strong className="font-semibold text-accent-text">Konfiguracja:</strong>{" "}
+              {estimatorSummary}
+            </span>
+          </div>
+        )}
+
         {/* Przycisk wysyłki i transparentna gwarancja stałej ceny */}
         <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <Button
             type="submit"
             disabled={submitStatus === "submitting"}
-            className="w-full sm:w-auto min-w-[200px] h-12 min-h-[48px] px-8 rounded-xl font-semibold bg-accent-text text-white dark:bg-accent dark:text-neutral-950 hover:bg-accent dark:hover:bg-accent/90 transition-colors duration-150 cursor-pointer shadow-xs active:scale-[0.98]"
+            className="w-full sm:w-auto min-w-[200px] h-12 min-h-[48px] px-8 rounded-xl font-semibold bg-accent-text text-white dark:bg-accent dark:text-accent-foreground hover:bg-accent dark:hover:bg-accent/90 transition-colors duration-150 cursor-pointer shadow-xs active:scale-[0.98]"
           >
             {submitStatus === "submitting" ? (
               <span className="flex items-center gap-2">
