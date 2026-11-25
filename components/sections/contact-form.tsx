@@ -21,16 +21,9 @@ import { cn } from "@/lib/utils";
 interface ContactFormProps {
   compact?: boolean;
   className?: string;
-  presetProjectType?: ContactFormData["projectType"];
-  estimatorSummary?: string;
 }
 
-export function ContactForm({
-  compact = false,
-  className,
-  presetProjectType,
-  estimatorSummary,
-}: ContactFormProps) {
+export function ContactForm({ compact = false, className }: ContactFormProps) {
   const [submitStatus, setSubmitStatus] = React.useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -75,29 +68,15 @@ export function ContactForm({
     fetchFreshToken();
   }, [fetchFreshToken]);
 
-  React.useEffect(() => {
-    if (presetProjectType) {
-      setValue("projectType", presetProjectType);
-    }
-  }, [presetProjectType, setValue]);
-
   const onSubmit = async (data: ContactFormData) => {
     setSubmitStatus("submitting");
     setStatusMessage("");
-
-    const messageWithPreset =
-      estimatorSummary && !data.message.includes("[Wybrany zakres:")
-        ? `[Wybrany zakres: ${estimatorSummary}]\n\n${data.message}`.slice(0, 3000)
-        : data.message;
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          message: messageWithPreset,
-        }),
+        body: JSON.stringify(data),
       });
 
       const result = await res.json();
@@ -313,16 +292,6 @@ export function ContactForm({
             <p id="consent-error" className="text-[13px] text-destructive mt-1.5">{errors.consent.message}</p>
           )}
         </div>
-
-        {/* Wybrany wariant z konfiguratora estymacji */}
-        {estimatorSummary && (
-          <div className="rounded-lg border border-accent/25 bg-accent/[0.05] px-3.5 py-2 text-[12.5px] text-ink flex items-center justify-between gap-2">
-            <span className="truncate">
-              <strong className="font-semibold text-accent-text">Konfiguracja:</strong>{" "}
-              {estimatorSummary}
-            </span>
-          </div>
-        )}
 
         {/* Przycisk wysyłki i transparentna gwarancja stałej ceny */}
         <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
