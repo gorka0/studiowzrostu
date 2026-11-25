@@ -126,7 +126,7 @@ export function MobileStickyCTA() {
         <Link
           href={pathname === "/" ? "#kontakt-cta" : "/kontakt"}
           tabIndex={isVisible ? 0 : -1}
-          className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-accent-text text-white dark:bg-accent dark:text-neutral-950 dark:hover:bg-accent/90 text-[14px] font-semibold hover:bg-accent transition-colors shadow-xs shrink-0 cursor-pointer min-h-[44px] active:scale-[0.98]"
+          className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-accent-text text-white dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/90 text-[14px] font-semibold hover:bg-accent transition-colors shadow-xs shrink-0 cursor-pointer min-h-[44px] active:scale-[0.98]"
         >
           <span>Zamów wycenę</span>
           <ArrowRight className="h-3.5 w-3.5" />

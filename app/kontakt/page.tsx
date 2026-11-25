@@ -6,6 +6,7 @@ import { Section } from "@/components/ui/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { ContactForm, ContactInfoBlock } from "@/components/sections/contact-form";
+import { Reveal } from "@/components/ui/reveal";
 
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.contact.title,
@@ -29,14 +30,14 @@ export default function ContactPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-8">
             {/* Formularz kontaktowy (7 kolumn) */}
-            <div className="lg:col-span-7 rounded-3xl border border-border bg-card p-6 sm:p-10 shadow-xs">
+            <Reveal className="lg:col-span-7 rounded-3xl border border-border bg-card p-6 sm:p-10 shadow-xs">
               <ContactForm />
-            </div>
+            </Reveal>
 
             {/* Blok informacyjny (5 kolumn) */}
-            <div className="lg:col-span-5">
+            <Reveal delay={0.08} className="lg:col-span-5">
               <ContactInfoBlock />
-            </div>
+            </Reveal>
           </div>
         </Container>
       </Section>

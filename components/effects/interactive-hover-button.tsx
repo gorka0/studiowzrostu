@@ -5,19 +5,23 @@ import { cn } from "@/lib/utils";
 interface InteractiveHoverButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
+  variant?: "primary" | "darkband";
 }
 
 export function InteractiveHoverButton({
   children,
   className,
+  variant = "primary",
   ...props
 }: InteractiveHoverButtonProps) {
   return (
     <button
       className={cn(
         "group relative overflow-hidden inline-flex items-center justify-center gap-2.5 h-11 px-6 rounded-xl font-semibold text-[15px]",
-        "bg-accent-text text-white dark:bg-accent dark:text-accent-foreground border border-accent-text/25 dark:border-accent/30",
-        "shadow-xs transition-[transform,box-shadow,background-color] duration-200 ease-[cubic-bezier(0.2,0.7,0.2,1)]",
+        variant === "darkband"
+          ? "bg-darkband-accent text-darkband-bg border border-darkband-accent/40 hover:opacity-95"
+          : "bg-accent-text text-white dark:bg-accent dark:text-accent-foreground border border-accent-text/25 dark:border-accent/30",
+        "shadow-xs transition-[transform,box-shadow,background-color,opacity] duration-200 ease-[cubic-bezier(0.2,0.7,0.2,1)]",
         "hover:shadow-md active:scale-[0.98]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text focus-visible:ring-offset-2",
         "cursor-pointer select-none",

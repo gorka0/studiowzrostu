@@ -2,18 +2,22 @@
 
 import * as React from "react";
 import { Search } from "lucide-react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { LayoutGroup, motion, useInView, useReducedMotion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 const SEO_POINTS = [
   {
+    id: "structure",
     title: "Czytelna struktura dla wyszukiwarki",
     desc: "Logiczny podział nagłówków i semantyka HTML ułatwiają robotom indeksującym dokładne zrozumienie profilu Twoich usług.",
   },
   {
+    id: "speed",
     title: "Szybkość premiowana w wynikach",
     desc: "Algorytmy wyszukiwarek promują sprawnie działające serwisy, uwzględniając czas renderowania na urządzeniach mobilnych.",
   },
   {
+    id: "urls",
     title: "Bezpieczna architektura adresów",
     desc: "Dbamy o logiczną strukturę URL i precyzyjne przekierowania, co pozwala chronić wypracowane pozycje w wynikach wyszukiwania.",
   },
@@ -21,53 +25,138 @@ const SEO_POINTS = [
 
 export function ServiceSeoFeature() {
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
-  const shouldReduceMotion = useReducedMotion();
-  const [hasAnimatedFlip, setHasAnimatedFlip] = React.useState(false);
+  const isInView = useInView(containerRef, { once: true, amount: 0.25 });
+  const prefersReducedMotion = useReducedMotion();
+
+  const [isOptimized, setIsOptimized] = React.useState(false);
+  const [userSwitched, setUserSwitched] = React.useState(false);
+  const [focusedPoint, setFocusedPoint] = React.useState(0);
 
   React.useEffect(() => {
-    if (isInView && !shouldReduceMotion) {
-      const timer = setTimeout(() => {
-        setHasAnimatedFlip(true);
-      }, 400);
-      return () => clearTimeout(timer);
+    if (!isInView || userSwitched) return;
+    if (prefersReducedMotion) {
+      setIsOptimized(true);
+      return;
     }
-  }, [isInView, shouldReduceMotion]);
+    const timer = window.setTimeout(() => setIsOptimized(true), 450);
+    return () => window.clearTimeout(timer);
+  }, [isInView, userSwitched, prefersReducedMotion]);
 
-  const isFlipActive = shouldReduceMotion || hasAnimatedFlip;
+  const activeMode = prefersReducedMotion ? true : isOptimized;
+  const focusedId = SEO_POINTS[focusedPoint]?.id ?? "structure";
 
   return (
-    <div ref={containerRef} className="mt-16 p-6 sm:p-8 rounded-2xl border border-line bg-surface space-y-8 text-left">
-      <div className="space-y-2">
-        <div className="font-sans text-xs font-semibold text-accent-text">
-          Struktura widoczności organicznej
+    <div
+      ref={containerRef}
+      className="mt-16 p-6 sm:p-8 rounded-2xl border border-line bg-surface space-y-8 text-left"
+    >
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="space-y-2">
+          <div className="eyebrow-line">Struktura widoczności organicznej</div>
+          <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink pt-1">
+            Architektura semantyczna w wynikach wyszukiwania
+          </h2>
+          <p className="text-sm sm:text-base text-ink-muted leading-relaxed max-w-2xl">
+            Poprawne wdrożenie danych strukturalnych i metadanych sprawia, że roboty wyszukiwarek precyzyjnie kategoryzują ofertę.
+          </p>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-bold font-heading text-ink">
-          Architektura semantyczna w wynikach wyszukiwania
-        </h2>
-        <p className="text-sm sm:text-base text-ink-muted leading-relaxed max-w-2xl">
-          Poprawne wdrożenie danych strukturalnych i metadanych sprawia, że roboty wyszukiwarek precyzyjnie kategoryzują ofertę.
-        </p>
+
+        <LayoutGroup id="seo-mode-switch">
+          <div
+            role="tablist"
+            aria-label="Tryb prezentacji wyniku wyszukiwania"
+            className="inline-flex items-center p-1 rounded-xl border border-line bg-background shrink-0 self-start"
+          >
+            {[
+              { optimized: false, label: "Przed zmianami" },
+              { optimized: true, label: "Po optymalizacji" },
+            ].map((tab) => {
+              const selected = activeMode === tab.optimized;
+              return (
+                <button
+                  key={tab.label}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  onClick={() => {
+                    setUserSwitched(true);
+                    setIsOptimized(tab.optimized);
+                  }}
+                  className={cn(
+                    "relative px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer",
+                    selected ? "text-ink" : "text-ink-muted hover:text-ink"
+                  )}
+                >
+                  {selected && (
+                    <motion.span
+                      layoutId="seo-mode-pill"
+                      transition={
+                        prefersReducedMotion
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 380, damping: 32 }
+                      }
+                      className="absolute inset-0 rounded-lg bg-secondary border border-line z-0"
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </LayoutGroup>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        {/* Lewa: 3 punkty */}
-        <div className="lg:col-span-5 space-y-4">
-          <div className="divide-y divide-line/60 border-t border-b border-line/60">
-            {SEO_POINTS.map((item) => (
-              <div key={item.title} className="py-3.5 space-y-1">
-                <h3 className="font-heading font-semibold text-sm sm:text-base text-ink">
-                  {item.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+        {/* Lewa: interaktywna lista filarów SEO */}
+        <LayoutGroup id="seo-points-list">
+          <div className="lg:col-span-5 space-y-2">
+            {SEO_POINTS.map((item, idx) => {
+              const isSelected = focusedPoint === idx;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setFocusedPoint(idx)}
+                  onMouseEnter={() => setFocusedPoint(idx)}
+                  className={cn(
+                    "relative w-full text-left p-4 rounded-xl border transition-colors cursor-pointer",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
+                    isSelected
+                      ? "border-transparent"
+                      : "border-line/70 bg-background/60 hover:bg-background"
+                  )}
+                >
+                  {isSelected && (
+                    <motion.div
+                      layoutId="seo-point-active"
+                      transition={
+                        prefersReducedMotion
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 360, damping: 32 }
+                      }
+                      className="absolute inset-0 rounded-xl border border-accent bg-card shadow-xs z-0 pointer-events-none"
+                    />
+                  )}
+                  <div className="relative z-10 space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-sans text-xs font-bold text-accent-text tabular-nums">
+                        0{idx + 1}
+                      </span>
+                      <h3 className="font-heading font-semibold text-sm sm:text-base text-ink">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
           </div>
-        </div>
+        </LayoutGroup>
 
-        {/* Prawa: Makieta SERP z FLIP */}
+        {/* Prawa: interaktywna makieta SERP reagująca na przełącznik oraz wybrany punkt */}
         <div className="lg:col-span-7 w-full">
           <div className="rounded-xl border border-line bg-card overflow-hidden shadow-xs text-left">
             <div className="p-3.5 border-b border-line bg-surface flex items-center justify-between text-sm text-ink-muted">
@@ -75,29 +164,60 @@ export function ServiceSeoFeature() {
                 <Search className="h-4 w-4 text-accent" />
                 <span>Wyniki wyszukiwania</span>
               </div>
-              <span className="text-xs text-ink-muted">Ilustracja</span>
+              <span className="text-xs font-medium text-accent-text">
+                {activeMode ? "Pozycja #1" : "Pozycja #3"}
+              </span>
             </div>
 
             <div className="p-4 sm:p-5 bg-background space-y-3.5 relative min-h-[300px]">
               <motion.div
-                className="rounded-xl border border-accent/40 bg-accent/[0.04] p-3.5 sm:p-4 space-y-2 relative z-20 shadow-xs"
+                className={cn(
+                  "rounded-xl border p-3.5 sm:p-4 space-y-2 relative z-20 shadow-xs transition-colors",
+                  activeMode
+                    ? "border-accent/45 bg-accent/[0.04]"
+                    : "border-line bg-surface"
+                )}
                 initial={false}
-                animate={{ y: isFlipActive ? 0 : 130 }}
-                transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                animate={{ y: activeMode ? 0 : 148 }}
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0 }
+                    : { type: "spring", stiffness: 120, damping: 18 }
+                }
               >
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <div className="w-4 h-4 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center shrink-0">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                    </div>
+                    <div className="flex flex-col leading-tight min-w-0">
+                      <span className="text-xs font-bold text-ink">Twoja Firma</span>
+                      <span
+                        className={cn(
+                          "text-[13px] font-sans truncate rounded px-1 -mx-1 transition-colors",
+                          focusedId === "urls"
+                            ? "bg-accent/15 text-accent-text font-semibold"
+                            : "text-accent-text"
+                        )}
+                      >
+                        twojadomena.example › uslugi
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex flex-col leading-tight">
-                    <span className="text-xs font-bold text-ink">Twoja Firma</span>
-                    <span className="text-[13px] font-sans text-accent-text truncate">
-                      twojadomena.example › uslugi
+
+                  {focusedId === "speed" && (
+                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-accent/15 text-accent-text shrink-0">
+                      Core Web Vitals OK
                     </span>
-                  </div>
+                  )}
                 </div>
 
-                <h4 className="text-sm sm:text-base font-heading font-bold text-ink leading-snug">
+                <h4
+                  className={cn(
+                    "text-sm sm:text-base font-heading font-bold text-ink leading-snug rounded px-1 -mx-1 transition-colors",
+                    focusedId === "structure" && "bg-accent/10 text-accent-text"
+                  )}
+                >
                   Twoja Firma · Nowoczesne strony internetowe dla firm
                 </h4>
 
@@ -108,8 +228,12 @@ export function ServiceSeoFeature() {
 
               <motion.div
                 className="space-y-1.5 p-3 rounded-lg border border-line/60 bg-surface/30 opacity-70"
-                animate={{ y: isFlipActive ? 0 : -70 }}
-                transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                animate={{ y: activeMode ? 0 : -118 }}
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0 }
+                    : { type: "spring", stiffness: 120, damping: 18 }
+                }
               >
                 <div className="flex items-center gap-2">
                   <div className="w-3.5 h-3.5 rounded-full bg-line/60 shrink-0" />
@@ -123,9 +247,13 @@ export function ServiceSeoFeature() {
               </motion.div>
 
               <motion.div
-                className="space-y-1.5 p-3 rounded-lg border border-line/60 bg-surface/30 opacity-70"
-                animate={{ y: isFlipActive ? 0 : -70 }}
-                transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                className="space-y-1.5 p-3 rounded-lg border border-line/60 bg-surface/30 opacity-60"
+                animate={{ y: activeMode ? 0 : -118 }}
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0 }
+                    : { type: "spring", stiffness: 120, damping: 18 }
+                }
               >
                 <div className="flex items-center gap-2">
                   <div className="w-3.5 h-3.5 rounded-full bg-line/60 shrink-0" />

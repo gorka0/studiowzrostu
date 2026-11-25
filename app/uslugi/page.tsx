@@ -7,9 +7,9 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { SpotlightCard } from "@/components/effects/spotlight-card";
-import { CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { ArrowRight, Check } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/effects/interactive-hover-button";
+import { ServicesCatalog } from "@/components/sections/services-catalog";
+import { SubpageDarkCta } from "@/components/sections/subpage-dark-cta";
 
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.services.title,
@@ -32,77 +32,33 @@ export default function ServicesOverviewPage() {
           />
 
           {/* Baner transparentnej polityki cenowej */}
-          <div className="mt-8 p-4 sm:p-5 rounded-2xl border border-line bg-surface/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="font-heading font-bold text-ink text-base">
+          <div className="mt-8 p-5 sm:p-6 rounded-2xl border border-line bg-surface/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-1.5 text-left">
+              <div className="eyebrow-line">Gwarancja warunków</div>
+              <div className="font-heading font-bold text-ink text-base sm:text-lg pt-1">
                 Przejrzyste zasady wyceny i stała stawka w umowie
               </div>
-              <p className="text-xs sm:text-sm text-ink-muted">
-                Dedykowane strony firmowe wdrażamy od <strong>900 zł netto</strong>. Każdy projekt ma z góry zdefiniowany zakres, harmonogram i gwarancję braku ukrytych dopłat.
+              <p className="text-xs sm:text-sm text-ink-muted max-w-2xl leading-relaxed">
+                Dedykowane strony firmowe wdrażamy od <strong className="text-ink">900 zł netto</strong>. Każdy projekt ma z góry zdefiniowany zakres, harmonogram i brak ukrytych dopłat.
               </p>
             </div>
-            <Link
-              href="/kontakt"
-              className="inline-flex items-center justify-center shrink-0 px-4 py-2.5 rounded-xl bg-accent-text text-white dark:bg-accent dark:text-neutral-950 font-semibold text-xs sm:text-sm hover:bg-accent transition-colors min-h-[44px]"
-            >
-              Zamów wycenę
+            <Link href="/kontakt" className="shrink-0 w-full sm:w-auto">
+              <InteractiveHoverButton className="w-full sm:w-auto">
+                Zamów wycenę
+              </InteractiveHoverButton>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            {servicesList.map((service) => (
-              <SpotlightCard
-                key={service.slug}
-                className="flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-surface hover:border-accent/60 transition-all duration-300 group shadow-xs"
-              >
-                <div>
-                  <CardHeader className="space-y-3">
-                    <div className="flex items-center justify-between text-xs font-sans text-ink-muted">
-                      <span className="text-accent-text font-semibold font-sans text-xs font-medium">Dedykowane wdrożenie</span>
-                      <span>Next.js / React</span>
-                    </div>
+          <ServicesCatalog services={servicesList} />
 
-                    <CardTitle as="h2" className="text-2xl text-ink group-hover:text-accent-text transition-colors leading-tight">
-                      <Link href={`/uslugi/${service.slug}`} className="hover:text-accent-text transition-colors">
-                        {service.title}
-                      </Link>
-                    </CardTitle>
-
-                    <CardDescription className="text-sm sm:text-base text-ink-muted leading-relaxed">
-                      {service.shortDescription}
-                    </CardDescription>
-                  </CardHeader>
-
-                  <CardContent className="space-y-4">
-                    <div className="p-4 rounded-xl bg-surface-subtle border border-line text-xs sm:text-sm text-ink-muted leading-relaxed">
-                      <strong className="text-ink block mb-1">Problem, który rozwiązujemy:</strong>
-                      {service.problem.description}
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="text-xs font-semibold text-ink">Co zawiera wdrożenie:</div>
-                      {service.solution.deliverables.slice(0, 3).map((item) => (
-                        <div key={item} className="flex items-start gap-2 text-xs sm:text-sm text-ink-muted">
-                          <Check className="h-3.5 w-3.5 text-accent-text shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </div>
-
-                <CardFooter className="p-0 border-t border-line bg-surface-subtle/40 transition-colors group-hover:bg-accent/5">
-                  <Link
-                    href={`/uslugi/${service.slug}`}
-                    className="w-full py-4 px-6 sm:px-8 flex items-center justify-between font-semibold text-sm text-accent-text hover:text-accent-text/80 transition-colors"
-                  >
-                    <span>Poznaj szczegóły usługi i proces</span>
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </CardFooter>
-              </SpotlightCard>
-            ))}
-          </div>
+          <SubpageDarkCta
+            className="mt-16"
+            heading="Nie wiesz, który wariant sprawdzi się u Ciebie najlepiej?"
+            description="Opisz w skrócie profil działalności, a w 24 godziny zaproponujemy najprostszy zakres prac oraz dokładny kosztorys."
+            ctaLabel="Porozmawiajmy o projekcie"
+            secondaryLabel="Zobacz realizacje"
+            secondaryHref="/projekty"
+          />
         </Container>
       </Section>
     </main>

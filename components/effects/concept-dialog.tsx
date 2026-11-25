@@ -34,8 +34,8 @@ export function ConceptDialog({ project, trigger }: ConceptDialogProps) {
       {open && (
         <DialogContent closeLabel="Zamknij okno koncepcji" className="max-w-4xl">
         <DialogHeader>
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-subtle text-accent-text border border-line">
+          <div className="flex flex-wrap items-center gap-2.5 mb-2">
+            <span className="eyebrow-line">
               Koncepcja własna
             </span>
             {project.tags.map((tag) => (
@@ -65,7 +65,7 @@ export function ConceptDialog({ project, trigger }: ConceptDialogProps) {
                 className={cn(
                   "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
                   activeTab === "desktop"
-                    ? "bg-accent-text text-white dark:bg-accent dark:text-neutral-950 shadow-xs"
+                    ? "bg-accent-text text-white dark:bg-accent dark:text-accent-foreground shadow-xs"
                     : "bg-surface-subtle text-ink-muted hover:text-ink border border-line"
                 )}
               >
@@ -78,7 +78,7 @@ export function ConceptDialog({ project, trigger }: ConceptDialogProps) {
                 className={cn(
                   "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
                   activeTab === "mobile"
-                    ? "bg-accent-text text-white dark:bg-accent dark:text-neutral-950 shadow-xs"
+                    ? "bg-accent-text text-white dark:bg-accent dark:text-accent-foreground shadow-xs"
                     : "bg-surface-subtle text-ink-muted hover:text-ink border border-line"
                 )}
               >
@@ -164,7 +164,7 @@ export function ConceptDialog({ project, trigger }: ConceptDialogProps) {
 
           <Link
             href={project.serviceUrl}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-accent-text text-white dark:bg-accent dark:text-neutral-950 hover:bg-accent-text/90 dark:hover:bg-accent/90 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text focus-visible:ring-offset-2 underline decoration-white/40 dark:decoration-neutral-950/40 underline-offset-4"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-accent-text text-white dark:bg-accent dark:text-accent-foreground hover:bg-accent-text/90 dark:hover:bg-accent/90 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text focus-visible:ring-offset-2 underline decoration-white/40 dark:decoration-accent-foreground/40 underline-offset-4"
           >
             <span>Poznaj usługę: {project.serviceLabel}</span>
             <ArrowRight className="h-3.5 w-3.5" />

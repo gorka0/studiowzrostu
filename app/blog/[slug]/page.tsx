@@ -12,13 +12,11 @@ import { InteractiveHoverButton } from "@/components/effects/interactive-hover-b
 import {
   Calendar,
   Clock,
-  User,
   Users,
   ArrowLeft,
   ArrowRight,
   Bookmark,
   CheckCircle2,
-  Zap,
 } from "lucide-react";
 
 interface BlogPostPageProps {
@@ -237,9 +235,8 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
 
             {/* Komponent: Powiązana usługa (Callout / CTA) */}
             <div className="mt-12 p-6 sm:p-8 rounded-2xl border border-line bg-surface text-left space-y-4 shadow-md">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-xs font-medium bg-surface-subtle text-accent-text border border-line">
-                <Zap className="h-3.5 w-3.5" />
-                <span>{post.relatedService.badge}</span>
+              <div className="eyebrow-line">
+                {post.relatedService.badge}
               </div>
               <h3 className="text-xl sm:text-2xl font-bold font-heading text-ink">
                 {post.relatedService.title}

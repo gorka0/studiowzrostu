@@ -9,8 +9,6 @@ import {
   ContactFormData,
   PROJECT_TYPES,
   PROJECT_TYPE_LABELS,
-  BUDGET_RANGES,
-  BUDGET_RANGE_LABELS,
 } from "@/lib/contact-schema";
 import { Button } from "@/components/ui/button";
 import { CopyEmailButton } from "@/components/ui/copy-email-button";

@@ -207,12 +207,12 @@ function ConceptCard({
 
       {/* 3. Treść karty (max 3 style tekstu, żadnych kart w karcie) */}
       <div className="flex flex-col flex-1 p-4 sm:p-5">
-        <div className="flex flex-wrap items-center gap-1.5 mb-2.5">
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-[13px] font-medium bg-surface-subtle text-accent-text border border-line">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <span className="eyebrow-line">
             Koncepcja własna
           </span>
           {primaryTag && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-[13px] text-ink-muted bg-surface-subtle border border-line">
+            <span className="text-[12px] font-medium text-ink-muted">
               {primaryTag}
             </span>
           )}
