@@ -434,26 +434,13 @@ export function GrowthChart() {
                         </div>
 
                         <div className="flex-1 min-w-0 space-y-1">
-                          <div className="flex flex-wrap items-center justify-between gap-2">
-                            <div className="flex items-baseline gap-2 min-w-0">
-                              <span className="font-sans text-[12px] font-bold text-accent-text tabular-nums shrink-0">
-                                {m.step}
-                              </span>
-                              <h3 className="font-heading font-bold text-[17px] sm:text-[18px] text-ink leading-tight">
-                                {m.title}
-                              </h3>
-                            </div>
-
-                            <span
-                              className={cn(
-                                "hidden sm:inline-flex items-center text-[11.5px] font-medium px-2 py-0.5 rounded-md border shrink-0 tabular-nums transition-colors",
-                                isActive
-                                  ? "border-accent/30 bg-accent/10 text-accent-text"
-                                  : "border-line/70 bg-surface text-ink-muted"
-                              )}
-                            >
-                              {m.metric}
+                          <div className="flex items-baseline gap-2 min-w-0">
+                            <span className="font-sans text-[12px] font-bold text-accent-text tabular-nums shrink-0">
+                              {m.step}
                             </span>
+                            <h3 className="font-heading font-bold text-[17px] sm:text-[18px] text-ink leading-tight">
+                              {m.title}
+                            </h3>
                           </div>
 
                           <p className="text-[14px] sm:text-[14.5px] text-ink-muted leading-[1.5]">
