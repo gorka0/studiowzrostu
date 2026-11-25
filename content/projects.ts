@@ -5,6 +5,7 @@
 
 export interface ConceptProject {
   id: string;
+  domainLabel: string;
   title: string;
   shortDescription: string;
   modalDescription: string;
@@ -25,6 +26,7 @@ export interface ConceptProject {
 export const conceptProjects: ConceptProject[] = [
   {
     id: "serwis-maszyn",
+    domainLabel: "berkman.example",
     title: "Koncepcja: serwis maszyn przemysłowych",
     shortDescription:
       "Strona firmowa B2B z formularzem zapytania ofertowego już na pierwszym ekranie.",
@@ -33,16 +35,17 @@ export const conceptProjects: ConceptProject[] = [
     tags: ["Strona firmowa", "B2B", "Formularz zapytań"],
     serviceUrl: "/uslugi/strony-internetowe",
     serviceLabel: "Strony internetowe",
-    desktopImage: "/concepts/a-desktop-v2.webp",
+    desktopImage: "/concepts/a-desktop-v3.webp",
     desktopAlt:
       "Koncepcja strony serwisu maszyn przemysłowych: techniczny nagłówek, parametry realizacji i formularz zapytania na pierwszym ekranie",
-    mobileImage: "/concepts/a-mobile-v2.webp",
+    mobileImage: "/concepts/a-mobile-v3.webp",
     mobileAlt:
       "Widok mobilny koncepcji serwisu maszyn: zwarty układ formularza i natychmiastowy dostęp do telefonu alarmowego",
     disclaimer: "Firma i treści fikcyjne. Projekt koncepcyjny Studio Wzrostu.",
   },
   {
     id: "aplikacja-grafik",
+    domainLabel: "zmiana.example",
     title: "Koncepcja: aplikacja do grafików pracy",
     shortDescription:
       "Landing page jednej funkcji: jedno hasło, interfejs od razu na wierzchu, jeden przycisk.",
@@ -51,16 +54,17 @@ export const conceptProjects: ConceptProject[] = [
     tags: ["Landing page", "Produkt", "Jeden CTA"],
     serviceUrl: "/uslugi/landing-page",
     serviceLabel: "Landing page",
-    desktopImage: "/concepts/b-desktop-v2.webp",
+    desktopImage: "/concepts/b-desktop-v3.webp",
     desktopAlt:
       "Koncepcja landing page aplikacji grafikowej: wyrazisty nagłówek, podgląd interfejsu grafiku i pojedynczy przycisk akcji",
-    mobileImage: "/concepts/b-mobile-v2.webp",
+    mobileImage: "/concepts/b-mobile-v3.webp",
     mobileAlt:
       "Widok mobilny landing page aplikacji grafikowej: responsywny podgląd zmian i czytelny przycisk wypróbowania",
     disclaimer: "Firma i treści fikcyjne. Projekt koncepcyjny Studio Wzrostu.",
   },
   {
     id: "redesign-serwis-auto",
+    domainLabel: "brodzki.example",
     title: "Koncepcja: redesign serwisu samochodowego",
     shortDescription:
       "Ta sama oferta, przebudowana pod czytelność i szybkość. Przesuń suwak, żeby zobaczyć różnicę.",
@@ -69,11 +73,11 @@ export const conceptProjects: ConceptProject[] = [
     tags: ["Redesign", "Przed i po", "Czytelność"],
     serviceUrl: "/uslugi/redesign-i-wydajnosc",
     serviceLabel: "Redesign i wydajność",
-    desktopImage: "/concepts/c-po-v2.webp",
+    desktopImage: "/concepts/c-po-v3.webp",
     desktopAlt: "Koncepcja redesignu serwisu samochodowego po optymalizacji układu i typografii",
-    beforeImage: "/concepts/c-przed-v2.webp",
+    beforeImage: "/concepts/c-przed-v3.webp",
     beforeAlt: "Stara wersja strony serwisu samochodowego przed modernizacją (chaotyczny układ)",
-    afterImage: "/concepts/c-po-v2.webp",
+    afterImage: "/concepts/c-po-v3.webp",
     afterAlt: "Nowa wersja serwisu po redesignie: czysta typografia, wyrazisty nagłówek i natychmiastowy kontakt",
     disclaimer: "Firma i treści fikcyjne. Projekt koncepcyjny Studio Wzrostu.",
   },

@@ -60,9 +60,9 @@ export function BeforeAfterSlider({
           priority={false}
           loading="lazy"
         />
-        {/* Etykieta Przed (WCAG AA kontrast: biały tekst na ciemnym tle) */}
-        <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
-          <span className="inline-flex items-center backdrop-blur-md bg-black/75 text-white px-3 py-1 rounded-full text-xs font-medium border border-white/15 shadow-sm">
+        {/* Etykieta Przed (czytelny narożnik bez rozmytych pigułek) */}
+        <div className="absolute bottom-3 left-3 z-10 pointer-events-none">
+          <span className="inline-flex items-center bg-background/95 text-ink px-2.5 py-1 rounded-md text-[11px] font-semibold border border-line shadow-xs">
             Przed
           </span>
         </div>
@@ -85,9 +85,9 @@ export function BeforeAfterSlider({
           priority={false}
           loading="lazy"
         />
-        {/* Etykieta Po (WCAG AA kontrast: biały tekst na ciemnym tle) */}
-        <div className="absolute bottom-4 right-4 z-10 pointer-events-none">
-          <span className="inline-flex items-center backdrop-blur-md bg-black/75 text-white px-3 py-1 rounded-full text-xs font-medium border border-white/15 shadow-sm">
+        {/* Etykieta Po (czytelny narożnik bez rozmytych pigułek) */}
+        <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
+          <span className="inline-flex items-center bg-background/95 text-ink px-2.5 py-1 rounded-md text-[11px] font-semibold border border-line shadow-xs">
             Po
           </span>
         </div>

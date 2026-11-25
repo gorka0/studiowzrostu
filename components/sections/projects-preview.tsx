@@ -167,11 +167,11 @@ function ConceptCard({
       {/* 1. Belka atrap okna przeglądarki z adresem */}
       <div className="bg-surface-subtle border-b border-line px-3.5 py-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5">
-          <span className="text-[13px] font-sans font-medium text-ink-muted px-2 py-0.5 rounded bg-surface border border-line">
-            koncepcja.example
+          <span className="text-[12.5px] font-sans font-medium text-ink px-2 py-0.5 rounded bg-surface border border-line">
+            {project.domainLabel}
           </span>
         </div>
-        <span className="text-[13px] font-medium text-ink-muted">
+        <span className="text-[12px] font-medium text-ink-muted">
           {isSlider ? "Przed / Po" : "Desktop + Mobile"}
         </span>
       </div>
