@@ -275,7 +275,7 @@ export const blogPosts: BlogPost[] = [
     slug: "ile-kosztuje-strona-internetowa-dla-firmy",
     draft: false,
     title: "Ile kosztuje strona internetowa dla firmy w 2026 roku? Ceny, pułapki i realny koszt wdrożenia",
-    seoTitle: "Ile kosztuje strona www dla firmy w 2026? Ceny i wycena | Studio Wzrostu",
+    seoTitle: "Ile kosztuje strona internetowa w 2026? | Studio Wzrostu",
     seoDescription:
       "Dowiedz się, ile kosztuje strona www dla firmy. Dedykowany czysty kod od 900 zł netto oraz wyceny rozbudowanych systemów i aplikacji webowych.",
     excerpt:

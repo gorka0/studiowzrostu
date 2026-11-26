@@ -11,6 +11,7 @@ import { Reveal } from "@/components/ui/reveal";
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.contact.title,
   description: routesSeo.contact.description,
+  keywords: routesSeo.contact.keywords,
   path: "/kontakt",
 });
 

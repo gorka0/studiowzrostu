@@ -12,6 +12,7 @@ import { SubpageDarkCta } from "@/components/sections/subpage-dark-cta";
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.about.title,
   description: routesSeo.about.description,
+  keywords: routesSeo.about.keywords,
   path: "/o-nas",
 });
 

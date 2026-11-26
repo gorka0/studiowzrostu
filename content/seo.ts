@@ -46,8 +46,8 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
     ogDescription:
       "Dedykowane strony w React i Next.js, landing page pod kampanie oraz audyty techniczne SEO. Poznaj naszą ofertę.",
   },
-    servicesBydgoszcz: {
-    title: "Strony internetowe Bydgoszcz – Tworzenie stron www | Studio Wzrostu",
+  servicesBydgoszcz: {
+    title: "Strony internetowe Bydgoszcz – Next.js | Studio Wzrostu",
     description:
       "Nowoczesne strony internetowe dla firm w Bydgoszczy. Czysty kod Next.js, czas ładowania < 0.5s, realizacja w 7 dni i stała cena od 900 zł netto.",
     keywords: [
@@ -66,7 +66,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   servicesWebsites: {
     title: "Nowoczesne strony internetowe – Next.js | Studio Wzrostu",
     description:
-      "Szybkie strony firmowe B2B i B2C w React i Next.js. Wdrożenie w tydzień, cena z góry i czysty kod bez szablonów.",
+      "Tworzymy szybkie strony firmowe B2B i B2C w React i Next.js. Wdrożenie w 7 dni, stała wycena od 900 zł netto i czysty kod bez szablonów.",
     keywords: [
       "nowoczesne strony internetowe w React i Next.js",
       "szybkie strony firmowe B2B B2C",
@@ -158,7 +158,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   blog: {
     title: "Wiedza o technologii i stronach firmowych | Studio Wzrostu",
     description:
-      "Praktyczne artykuły o tworzeniu stron www, technologii webowej, SEO technicznym i Core Web Vitals.",
+      "Praktyczne poradniki o tworzeniu stron internetowych w Next.js, technicznym SEO, optymalizacji Core Web Vitals i skutecznym zbieraniu zapytań.",
     keywords: [
       "tworzenie stron www poradnik",
       "szybkość strony internetowej",
@@ -172,7 +172,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   contact: {
     title: "Kontakt i wycena strony | Studio Wzrostu",
     description:
-      "Skontaktuj się ze Studiem Wzrostu. Porozmawiajmy o nowej stronie dla firmy. Otrzymaj wycenę z góry!",
+      "Skontaktuj się ze Studiem Wzrostu i zamów bezpłatną wycenę strony internetowej dla firmy. Stała cena z góry i odpowiedź w dni robocze.",
     keywords: [
       "kontakt studio wzrostu",
       "wycena strony internetowej",
@@ -193,7 +193,7 @@ export const routesSeo: Record<string, RouteSeoConfig> = {
   cookies: {
     title: "Polityka plików cookies | Studio Wzrostu",
     description:
-      "Szczegółowy wykaz plików cookies oraz technologii pamięci lokalnej w serwisie Studio Wzrostu.",
+      "Szczegółowy wykaz plików cookies, zgód Consent Mode v2 oraz technologii pamięci lokalnej stosowanych w serwisie internetowym Studio Wzrostu.",
     keywords: ["polityka cookies", "pliki cookies studio wzrostu"],
   },
 };

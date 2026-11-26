@@ -14,6 +14,7 @@ import { ArrowRight, FileText } from "lucide-react";
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.blog.title,
   description: routesSeo.blog.description,
+  keywords: routesSeo.blog.keywords,
   path: "/blog",
 });
 

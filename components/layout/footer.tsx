@@ -36,7 +36,7 @@ export function Footer() {
           </div>
 
           {/* Prawa strona: 2 kolumny linków (Studio, Prawne) */}
-          <div className="md:col-span-6 grid grid-cols-2 gap-6 text-left">
+          <nav aria-label="Nawigacja w stopce" className="md:col-span-6 grid grid-cols-2 gap-6 text-left">
             
             {/* Kolumna 1: Studio */}
             <div className="space-y-2.5">
@@ -99,7 +99,7 @@ export function Footer() {
                 </li>
               </ul>
             </div>
-          </div>
+          </nav>
         </div>
 
         {/* Dolna belka */}

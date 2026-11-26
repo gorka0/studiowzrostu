@@ -51,6 +51,17 @@ export function ArticleJsonLd({ post }: { post: BlogPost }) {
   );
 }
 
+export function FaqJsonLd({ items }: { items: { question: string; answer: string }[] }) {
+  const faqSchema = buildFaqSchema(items);
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+  );
+}
+
 export function BreadcrumbListJsonLd({ items }: { items: BreadcrumbItem[] }) {
   const breadcrumbSchema = buildBreadcrumbSchema(items);
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/site.config";
 import { blogPosts, type BlogPost } from "@/content/blog";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -39,20 +40,18 @@ export async function generateMetadata({
     return buildMetadata({ title: "Nie znaleziono artykułu" });
   }
 
-  const baseMeta = buildMetadata({
+  return buildMetadata({
     title: post.seoTitle || `${post.title} | Studio Wzrostu`,
     description: post.seoDescription || post.excerpt,
     path: `/blog/${post.slug}`,
+    image: `${siteConfig.canonicalUrl}/blog/${post.slug}/opengraph-image`,
     category: post.category,
+    openGraphType: "article",
+    publishedTime: post.date,
+    modifiedTime: post.lastModified,
+    authors: [post.author.name],
+    noIndexOverride: post.draft,
   });
-
-  return {
-    ...baseMeta,
-    robots: {
-      index: !post.draft,
-      follow: !post.draft,
-    },
-  };
 }
 
 export default async function BlogPostDetailPage({ params }: BlogPostPageProps) {

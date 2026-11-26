@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { routesSeo } from "@/content/seo";
+import { siteConfig } from "@/site.config";
+import { faqData } from "@/content/faq";
+import { FaqJsonLd } from "@/components/seo/json-ld";
 import { HeroSection } from "@/components/sections/hero-section";
 import { SocialProofStrip } from "@/components/sections/social-proof-strip";
 import { ServicesBento } from "@/components/sections/services-bento";
@@ -20,12 +23,15 @@ import { Reveal } from "@/components/ui/reveal";
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.home.title,
   description: routesSeo.home.description,
+  keywords: routesSeo.home.keywords,
+  image: `${siteConfig.canonicalUrl}/opengraph-image`,
   path: "/",
 });
 
 export default function Home() {
   return (
     <main id="main-content" className="flex-1 flex flex-col w-full">
+      <FaqJsonLd items={faqData} />
       {/* 1. Hero (tło bazowe, asymetria 7:5) */}
       <HeroSection />
 

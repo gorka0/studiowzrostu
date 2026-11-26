@@ -9,6 +9,7 @@ import { CtaSection } from "@/components/sections/cta-section";
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.projects.title,
   description: routesSeo.projects.description,
+  keywords: routesSeo.projects.keywords,
   path: "/projekty",
 });
 

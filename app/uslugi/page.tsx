@@ -14,6 +14,7 @@ import { SubpageDarkCta } from "@/components/sections/subpage-dark-cta";
 export const metadata: Metadata = buildMetadata({
   title: routesSeo.services.title,
   description: routesSeo.services.description,
+  keywords: routesSeo.services.keywords,
   path: "/uslugi",
 });
 

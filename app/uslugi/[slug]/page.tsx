@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
 import { routesSeo } from "@/content/seo";
+import { siteConfig } from "@/site.config";
 import { servicesList, ServiceDetail } from "@/content/services";
 import { blogPosts } from "@/content/blog";
 import { Container } from "@/components/ui/container";
@@ -50,6 +51,8 @@ export async function generateMetadata({
   return buildMetadata({
     title: seoConfig ? seoConfig.title : `${service.title} – Studio Wzrostu`,
     description: seoConfig ? seoConfig.description : service.shortDescription,
+    keywords: seoConfig?.keywords,
+    image: `${siteConfig.canonicalUrl}/uslugi/${service.slug}/opengraph-image`,
     path: `/uslugi/${service.slug}`,
   });
 }

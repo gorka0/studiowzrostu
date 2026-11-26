@@ -8,6 +8,11 @@ export interface BuildMetadataParams {
   path?: string;
   image?: string;
   category?: string;
+  keywords?: string[];
+  openGraphType?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  authors?: string[];
   noIndexOverride?: boolean;
 }
 
@@ -17,6 +22,11 @@ export function buildMetadata({
   path = "",
   image,
   category = "STUDIO WZROSTU",
+  keywords,
+  openGraphType = "website",
+  publishedTime,
+  modifiedTime,
+  authors,
   noIndexOverride,
 }: BuildMetadataParams = {}): Metadata {
   const allowIndexing = isIndexingAllowed() && !noIndexOverride;
@@ -39,9 +49,48 @@ export function buildMetadata({
       formattedTitle
     )}&category=${encodeURIComponent(category)}`;
 
+  const openGraph: NonNullable<Metadata["openGraph"]> =
+    openGraphType === "article"
+      ? {
+          title: formattedTitle,
+          description,
+          url: canonicalUrl,
+          siteName: siteConfig.name,
+          locale: "pl_PL",
+          type: "article",
+          publishedTime,
+          modifiedTime,
+          authors,
+          images: [
+            {
+              url: ogImageUrl,
+              width: 1200,
+              height: 630,
+              alt: formattedTitle,
+            },
+          ],
+        }
+      : {
+          title: formattedTitle,
+          description,
+          url: canonicalUrl,
+          siteName: siteConfig.name,
+          locale: "pl_PL",
+          type: "website",
+          images: [
+            {
+              url: ogImageUrl,
+              width: 1200,
+              height: 630,
+              alt: formattedTitle,
+            },
+          ],
+        };
+
   return {
     title: formattedTitle,
     description,
+    ...(keywords && keywords.length > 0 ? { keywords } : {}),
     metadataBase: new URL(siteConfig.canonicalUrl),
     alternates: {
       canonical: canonicalUrl,
@@ -68,22 +117,7 @@ export function buildMetadata({
             noimageindex: true,
           },
         },
-    openGraph: {
-      title: formattedTitle,
-      description,
-      url: canonicalUrl,
-      siteName: siteConfig.name,
-      locale: "pl_PL",
-      type: "website",
-      images: [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: formattedTitle,
-        },
-      ],
-    },
+    openGraph,
     twitter: {
       card: "summary_large_image",
       title: formattedTitle,

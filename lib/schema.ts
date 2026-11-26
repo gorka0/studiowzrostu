@@ -1,5 +1,5 @@
 import { siteConfig } from "@/site.config";
-import type { ServiceDetail } from "@/content/services";
+import { servicesList, type ServiceDetail } from "@/content/services";
 import type { BlogPost } from "@/content/blog";
 import type { BreadcrumbItem } from "@/components/ui/breadcrumbs";
 
@@ -27,8 +27,14 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
     "@type": ["Organization", "ProfessionalService"],
     areaServed: [
       { "@type": "Country", name: "Polska" },
-      { "@type": "City", name: "Bydgoszcz", sameAs: "https://pl.wikipedia.org/wiki/Bydgoszcz" }
+      { "@type": "City", name: "Bydgoszcz", sameAs: "https://pl.wikipedia.org/wiki/Bydgoszcz" },
     ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bydgoszcz",
+      addressRegion: "kujawsko-pomorskie",
+      addressCountry: "PL",
+    },
     "@id": orgId,
     name: siteConfig.name,
     legalName: siteConfig.legalName,
@@ -38,8 +44,9 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
     email: siteConfig.contact.email,
     priceRange: "od 900 PLN",
     founder: {
-      "@type": "Organization",
-      name: "Zespół Studio Wzrostu",
+      "@type": "Person",
+      name: "Tomasz Górka",
+      jobTitle: "Założyciel i programista",
       url: `${siteConfig.canonicalUrl}/o-nas`,
     },
     knowsAbout: [
@@ -52,6 +59,7 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
       "Projektowanie UX/UI",
       "Strony internetowe dla firm usługowych",
       "Tworzenie stron www dla małych firm",
+      "Strony internetowe Bydgoszcz",
     ],
   };
 
@@ -61,41 +69,21 @@ export function buildGlobalGraphSchema(): Record<string, unknown> {
     "Pozycjonowanie SEO",
     "Landing page",
     "Redesign strony",
+    "Strony internetowe Bydgoszcz",
   ];
 
   organization.hasOfferCatalog = {
     "@type": "OfferCatalog",
     name: "Usługi tworzenia stron internetowych",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Strona internetowa dla firmy",
-        },
+    itemListElement: servicesList.map((service) => ({
+      "@type": "Offer",
+      url: `${siteConfig.canonicalUrl}/uslugi/${service.slug}`,
+      itemOffered: {
+        "@type": "Service",
+        name: service.title,
+        url: `${siteConfig.canonicalUrl}/uslugi/${service.slug}`,
       },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Landing Page pod kampanie reklamowe",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Techniczne SEO i optymalizacja",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Przebudowa i modernizacja strony",
-        },
-      },
-    ],
+    })),
   };
 
   if (isRealValue(siteConfig.contact.phone)) {
@@ -151,6 +139,16 @@ export function buildServiceSchema(service: ServiceDetail): Record<string, unkno
     provider: {
       "@id": orgId,
     },
+    offers: {
+      "@type": "Offer",
+      url: serviceUrl,
+      priceCurrency: "PLN",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: 900,
+        priceCurrency: "PLN",
+      },
+    },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: service.solution.heading,
@@ -172,17 +170,25 @@ export function buildServiceSchema(service: ServiceDetail): Record<string, unkno
 export function buildArticleSchema(post: BlogPost): Record<string, unknown> {
   const postUrl = `${siteConfig.canonicalUrl}/blog/${post.slug}`;
   const orgId = `${siteConfig.canonicalUrl}/#organization`;
+  const plainText = [
+    post.lead,
+    ...post.sections.flatMap((s) => [s.heading, ...s.paragraphs, ...(s.bullets ?? []), s.keyTakeaway ?? ""]),
+  ].join(" ");
+  const wordCount = plainText.trim().split(/\s+/).filter(Boolean).length;
 
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     "@id": `${postUrl}/#article`,
+    url: postUrl,
     isPartOf: {
       "@type": "WebPage",
       "@id": postUrl,
     },
     headline: post.title,
     description: post.seoDescription,
+    articleSection: post.category,
+    wordCount,
     image: [`${siteConfig.canonicalUrl}/blog/${post.slug}/opengraph-image`],
     datePublished: post.date,
     dateModified: post.lastModified,
