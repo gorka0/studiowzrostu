@@ -177,11 +177,8 @@ export function GrowthChart() {
           {/* LEWA KOLUMNA: Zsynchronizowany wykres + aktywny odczyt etapu */}
           <div className="lg:col-span-6 flex flex-col">
             <div className="flex-1 rounded-2xl border border-line bg-card p-4 sm:p-6 shadow-card flex flex-col">
-              {/* Nagłówek wykresu z odczytem aktywnego etapu */}
-              <div className="border-b border-line/60 pb-3.5 text-left space-y-1">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-text tabular-nums">
-                  Etap {activeMilestone.step} / 04 · Ilustracja procesu
-                </div>
+              {/* Nagłówek wykresu z tytułem aktywnego etapu */}
+              <div className="border-b border-line/60 pb-3.5 text-left">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeMilestone.step}
