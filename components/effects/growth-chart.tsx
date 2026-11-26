@@ -172,36 +172,21 @@ export function GrowthChart() {
           <div className="lg:col-span-6 flex flex-col">
             <div className="flex-1 rounded-2xl border border-line bg-card p-4 sm:p-6 shadow-card flex flex-col justify-between">
               {/* Nagłówek wykresu z odczytem aktywnego etapu */}
-              <div className="flex flex-wrap items-start justify-between gap-3 border-b border-line/60 pb-3.5">
-                <div className="space-y-1 text-left">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-text tabular-nums">
-                    Etap {activeMilestone.step} / 04 · Rozwój w czasie
-                  </div>
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeMilestone.step}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={prefersReducedMotion ? undefined : { opacity: 0, y: -4 }}
-                      transition={{ duration: 0.2, ease: [0.2, 0.7, 0.2, 1] }}
-                      className="font-heading font-bold text-[18px] sm:text-[20px] text-ink leading-tight"
-                    >
-                      {activeMilestone.title}
-                    </motion.div>
-                  </AnimatePresence>
+              <div className="border-b border-line/60 pb-3.5 text-left space-y-1">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-text tabular-nums">
+                  Etap {activeMilestone.step} / 04 · Rozwój w czasie
                 </div>
-
                 <AnimatePresence mode="wait">
-                  <motion.span
-                    key={activeMilestone.metric}
-                    initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.18 }}
-                    className="inline-flex items-center px-2.5 py-1 rounded-md bg-accent/10 border border-accent/25 text-[12px] font-semibold text-accent-text shrink-0"
+                  <motion.div
+                    key={activeMilestone.step}
+                    initial={prefersReducedMotion ? false : { opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={prefersReducedMotion ? undefined : { opacity: 0, y: -4 }}
+                    transition={{ duration: 0.2, ease: [0.2, 0.7, 0.2, 1] }}
+                    className="font-heading font-bold text-[18px] sm:text-[20px] text-ink leading-tight"
                   >
-                    {activeMilestone.metric}
-                  </motion.span>
+                    {activeMilestone.title}
+                  </motion.div>
                 </AnimatePresence>
               </div>
 
