@@ -15,11 +15,11 @@ import { InteractiveHoverButton } from "@/components/effects/interactive-hover-b
 import { cn } from "@/lib/utils";
 
 const NORMALIZED_POINTS = [
-  { x: 0.0, y: 0.08 },
-  { x: 0.16, y: 0.13 },
-  { x: 0.40, y: 0.27 },
-  { x: 0.68, y: 0.54 },
-  { x: 0.90, y: 0.82 },
+  { x: 0.0, y: 0.12 },
+  { x: 0.15, y: 0.20 },
+  { x: 0.40, y: 0.35 },
+  { x: 0.65, y: 0.60 },
+  { x: 0.90, y: 0.85 },
   { x: 1.0, y: 0.96 },
 ];
 
@@ -32,7 +32,7 @@ export const MILESTONES = [
     desc: "Błyskawiczne ładowanie i natychmiastowa reakcja na smartfonie budują zaufanie odwiedzającego od pierwszej sekundy.",
     linkLabel: "Zobacz analizę szybkości",
     linkHref: "/uslugi/redesign-i-wydajnosc",
-    xPct: 0.16,
+    xPct: 0.15,
     icon: Zap,
   },
   {
@@ -54,7 +54,7 @@ export const MILESTONES = [
     desc: "Przejrzysta hierarchia treści prowadzi klientów prosto do formularza wyceny lub bezpośredniego telefonu.",
     linkLabel: "Poznaj strony pod reklamy",
     linkHref: "/uslugi/landing-page",
-    xPct: 0.68,
+    xPct: 0.65,
     icon: MailCheck,
   },
   {
@@ -70,11 +70,11 @@ export const MILESTONES = [
   },
 ];
 
-const VIEWBOX = { width: 800, height: 380 };
+const VIEWBOX = { width: 640, height: 370 };
 const BOUNDS = {
-  xMin: 40,
-  xMax: 760,
-  yBaseline: 344,
+  xMin: 34,
+  xMax: 606,
+  yBaseline: 360,
   yTop: 26,
 };
 
@@ -101,6 +101,12 @@ const CURVE_PATH_D = SCALED_POINTS.reduce((acc, p1, i, pts) => {
 }, "");
 
 const AREA_PATH_D = `${CURVE_PATH_D} L ${BOUNDS.xMax} ${BOUNDS.yBaseline} L ${BOUNDS.xMin} ${BOUNDS.yBaseline} Z`;
+
+const BASELINE_START = scalePoint({ x: 0.0, y: 0.06 });
+const BASELINE_CTRL = scalePoint({ x: 0.5, y: 0.10 });
+const BASELINE_END = scalePoint({ x: 1.0, y: 0.13 });
+const BASELINE_PATH_D = `M ${BASELINE_START.x.toFixed(1)} ${BASELINE_START.y.toFixed(1)} Q ${BASELINE_CTRL.x.toFixed(1)} ${BASELINE_CTRL.y.toFixed(1)}, ${BASELINE_END.x.toFixed(1)} ${BASELINE_END.y.toFixed(1)}`;
+const GRID_LEVELS_Y = [0.25, 0.5, 0.75].map((y) => scalePoint({ x: 0, y }).y);
 
 const MILESTONE_COORDS = MILESTONES.map((m) => {
   const match =
@@ -170,11 +176,11 @@ export function GrowthChart() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch mt-4 sm:mt-6">
           {/* LEWA KOLUMNA: Zsynchronizowany wykres + aktywny odczyt etapu */}
           <div className="lg:col-span-6 flex flex-col">
-            <div className="flex-1 rounded-2xl border border-line bg-card p-4 sm:p-6 shadow-card flex flex-col justify-between">
+            <div className="flex-1 rounded-2xl border border-line bg-card p-4 sm:p-6 shadow-card flex flex-col">
               {/* Nagłówek wykresu z odczytem aktywnego etapu */}
               <div className="border-b border-line/60 pb-3.5 text-left space-y-1">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-text tabular-nums">
-                  Etap {activeMilestone.step} / 04 · Rozwój w czasie
+                  Etap {activeMilestone.step} / 04 · Ilustracja procesu
                 </div>
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -190,174 +196,216 @@ export function GrowthChart() {
                 </AnimatePresence>
               </div>
 
-              {/* Obszar wykresu SVG: warstwa bazowa + warstwa wypełnienia przycięta dokładnie do aktywnego punktu */}
-              <div className="relative w-full aspect-[16/9] my-3 sm:my-4 select-none">
-                {/* Warstwa 1: Siatka tła, linia porównawcza i przyszła trajektoria */}
-                <svg
-                  viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
-                  className="absolute inset-0 w-full h-full overflow-visible"
-                  role="img"
-                  aria-label="Wykres etapów wzrostu biznesu"
-                >
-                  {[115, 195, 275].map((y) => (
+              {/* Obszar wykresu SVG: równomiernie wyśrodkowany z czytelną osią X poniżej */}
+              <div className="flex-1 flex flex-col justify-center py-4 sm:py-5">
+                <div className="relative w-full aspect-[640/370] select-none">
+                  {/* Warstwa 1: Siatka tła, wyraźna linia bazowa i przyszła trajektoria */}
+                  <svg
+                    viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
+                    className="absolute inset-0 w-full h-full overflow-visible"
+                    role="img"
+                    aria-label="Wykres etapów wzrostu biznesu: Z naszą stroną vs Bez optymalizacji"
+                  >
+                    {GRID_LEVELS_Y.map((y) => (
+                      <line
+                        key={y}
+                        x1={BOUNDS.xMin}
+                        y1={y}
+                        x2={BOUNDS.xMax}
+                        y2={y}
+                        stroke="currentColor"
+                        strokeOpacity="0.11"
+                        strokeDasharray="4 4"
+                        strokeWidth="1"
+                        vectorEffect="non-scaling-stroke"
+                      />
+                    ))}
+
                     <line
-                      key={y}
                       x1={BOUNDS.xMin}
-                      y1={y}
+                      y1={BOUNDS.yBaseline}
                       x2={BOUNDS.xMax}
-                      y2={y}
+                      y2={BOUNDS.yBaseline}
                       stroke="currentColor"
-                      strokeOpacity="0.08"
-                      strokeDasharray="4 4"
+                      strokeOpacity="0.18"
                       strokeWidth="1"
                       vectorEffect="non-scaling-stroke"
                     />
-                  ))}
 
-                  {/* Oś bazowa (strona bez optymalizacji) */}
-                  <line
-                    x1={BOUNDS.xMin}
-                    y1={BOUNDS.yBaseline - 14}
-                    x2={BOUNDS.xMax}
-                    y2={BOUNDS.yBaseline - 38}
-                    stroke="currentColor"
-                    strokeOpacity="0.28"
-                    strokeDasharray="5 5"
-                    strokeWidth="1.5"
-                  />
-                  <text
-                    x={BOUNDS.xMax}
-                    y={BOUNDS.yBaseline - 48}
-                    textAnchor="end"
-                    className="fill-ink-muted/75 text-[12px] font-sans"
-                  >
-                    Bez zmian
-                  </text>
+                    {/* Oś bazowa (strona bez optymalizacji) — wyraźnie kontrastowa linia przerywana */}
+                    <path
+                      d={BASELINE_PATH_D}
+                      fill="none"
+                      stroke="var(--muted-foreground)"
+                      strokeOpacity="0.68"
+                      strokeDasharray="6 5"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                    <circle
+                      cx={BASELINE_END.x}
+                      cy={BASELINE_END.y}
+                      r={3.5}
+                      fill="var(--muted-foreground)"
+                      fillOpacity="0.75"
+                    />
 
-                  {/* Subtelna przerywana prognoza przyszłej ścieżki, na której osadzone są kolejne kroki */}
-                  <path
-                    d={CURVE_PATH_D}
-                    fill="none"
-                    stroke="var(--accent)"
-                    strokeOpacity="0.18"
-                    strokeDasharray="5 5"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-
-                {/* Warstwa 2: Wypełnienie i główna linia docięte dokładnie do aktywnego etapu */}
-                <div
-                  className="absolute inset-0 w-full h-full pointer-events-none transition-[clip-path] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:transition-none will-change-[clip-path]"
-                  style={{ clipPath: `inset(0 ${clipRightPct.toFixed(2)}% 0 0)` }}
-                >
-                  <svg
-                    viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
-                    className="w-full h-full overflow-visible"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      <linearGradient id="growth-area-grad-v2" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.22" />
-                        <stop offset="75%" stopColor="var(--accent)" stopOpacity="0.04" />
-                        <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.0" />
-                      </linearGradient>
-                    </defs>
-
-                    <path d={AREA_PATH_D} fill="url(#growth-area-grad-v2)" />
-
+                    {/* Przerywana prognoza dalszej ścieżki */}
                     <path
                       d={CURVE_PATH_D}
                       fill="none"
                       stroke="var(--accent)"
-                      strokeWidth="3.5"
+                      strokeOpacity="0.22"
+                      strokeDasharray="5 5"
+                      strokeWidth="2.5"
                       strokeLinecap="round"
-                      strokeLinejoin="round"
                       vectorEffect="non-scaling-stroke"
                     />
                   </svg>
-                </div>
 
-                {/* Warstwa 3: Klikalne węzły kroków na wierzchu (nigdy nie ucięte przez clipPath) */}
-                <svg
-                  viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
-                  className="absolute inset-0 w-full h-full overflow-visible z-10"
-                  aria-hidden="true"
-                >
-                  {MILESTONES.map((m, idx) => {
-                    const pt = MILESTONE_COORDS[idx];
-                    const isReached = idx <= activeStep;
-                    const isCurrent = idx === activeStep;
+                  {/* Warstwa 2: Wypełnienie i główna linia docięte dokładnie do aktywnego etapu */}
+                  <div
+                    className="absolute inset-0 w-full h-full pointer-events-none transition-[clip-path] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:transition-none will-change-[clip-path]"
+                    style={{ clipPath: `inset(0 ${clipRightPct.toFixed(2)}% 0 0)` }}
+                  >
+                    <svg
+                      viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
+                      className="w-full h-full overflow-visible"
+                      aria-hidden="true"
+                    >
+                      <defs>
+                        <linearGradient id="growth-area-grad-v2" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.22" />
+                          <stop offset="75%" stopColor="var(--accent)" stopOpacity="0.04" />
+                          <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.0" />
+                        </linearGradient>
+                      </defs>
 
-                    return (
-                      <g
-                        key={m.step}
-                        className="cursor-pointer group"
-                        onClick={() => selectStep(idx)}
-                      >
-                        <line
-                          x1={pt.x}
-                          y1={pt.y + 14}
-                          x2={pt.x}
-                          y2={BOUNDS.yBaseline}
-                          stroke="currentColor"
-                          strokeDasharray="2 3"
-                          strokeWidth="1"
-                          className={cn(
-                            "transition-colors duration-200",
-                            isCurrent ? "text-accent/70" : "text-line/70"
-                          )}
-                        />
+                      <path d={AREA_PATH_D} fill="url(#growth-area-grad-v2)" />
 
-                        <g transform={`translate(${pt.x}, ${pt.y})`}>
-                          {isCurrent && (
-                            <circle
-                              r={20}
-                              className="fill-accent/15 stroke-accent/35 stroke-1"
-                            />
-                          )}
-                          <circle
-                            r={isCurrent ? 14 : 11.5}
+                      <path
+                        d={CURVE_PATH_D}
+                        fill="none"
+                        stroke="var(--accent)"
+                        strokeWidth="3.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        vectorEffect="non-scaling-stroke"
+                      />
+                    </svg>
+                  </div>
+
+                  {/* Warstwa 3: Klikalne węzły kroków na wierzchu (nigdy nie ucięte przez clipPath) */}
+                  <svg
+                    viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
+                    className="absolute inset-0 w-full h-full overflow-visible z-10"
+                    aria-hidden="true"
+                  >
+                    {MILESTONES.map((m, idx) => {
+                      const pt = MILESTONE_COORDS[idx];
+                      const isReached = idx <= activeStep;
+                      const isCurrent = idx === activeStep;
+
+                      return (
+                        <g
+                          key={m.step}
+                          className="cursor-pointer group"
+                          onClick={() => selectStep(idx)}
+                        >
+                          <line
+                            x1={pt.x}
+                            y1={pt.y + 14}
+                            x2={pt.x}
+                            y2={BOUNDS.yBaseline + 4}
+                            stroke="currentColor"
+                            strokeDasharray="3 3"
+                            strokeWidth={isCurrent ? 1.5 : 1}
+                            vectorEffect="non-scaling-stroke"
                             className={cn(
-                              "stroke-2 transition-all duration-200",
-                              isCurrent
-                                ? "fill-accent-text stroke-surface dark:fill-accent"
-                                : isReached
-                                ? "fill-surface stroke-accent"
-                                : "fill-surface stroke-line group-hover:stroke-accent/60"
+                              "transition-colors duration-200",
+                              isCurrent ? "text-accent/70" : "text-ink-muted/25 group-hover:text-ink-muted/45"
                             )}
                           />
-                          <text
-                            x="0"
-                            y="0"
-                            textAnchor="middle"
-                            dominantBaseline="central"
-                            className={cn(
-                              "text-[13px] font-sans font-bold select-none tabular-nums",
-                              isCurrent
-                                ? "fill-white dark:fill-accent-foreground"
-                                : "fill-ink"
+
+                          <g transform={`translate(${pt.x}, ${pt.y})`}>
+                            {isCurrent && (
+                              <circle
+                                r={20}
+                                className="fill-accent/15 stroke-accent/35 stroke-1"
+                              />
                             )}
-                          >
-                            {idx + 1}
-                          </text>
+                            <circle
+                              r={isCurrent ? 14 : 11.5}
+                              className={cn(
+                                "stroke-2 transition-all duration-200",
+                                isCurrent
+                                  ? "fill-accent-text stroke-surface dark:fill-accent"
+                                  : isReached
+                                  ? "fill-surface stroke-accent"
+                                  : "fill-surface stroke-line group-hover:stroke-accent/60"
+                              )}
+                            />
+                            <text
+                              x="0"
+                              y="0"
+                              textAnchor="middle"
+                              dominantBaseline="central"
+                              className={cn(
+                                "text-[14px] font-sans font-bold select-none tabular-nums",
+                                isCurrent
+                                  ? "fill-white dark:fill-accent-foreground"
+                                  : "fill-ink"
+                              )}
+                            >
+                              {idx + 1}
+                            </text>
+                          </g>
                         </g>
-                      </g>
+                      );
+                    })}
+                  </svg>
+                </div>
+
+                {/* Czytelne etykiety osi X zsynchronizowane bezpośrednio z punktami 1-4 */}
+                <div className="relative h-6 mt-1.5 select-none">
+                  {MILESTONES.map((m, idx) => {
+                    const pt = MILESTONE_COORDS[idx];
+                    const isCurrent = idx === activeStep;
+                    return (
+                      <button
+                        key={m.step}
+                        type="button"
+                        onClick={() => selectStep(idx)}
+                        style={{ left: `${((pt.x / VIEWBOX.width) * 100).toFixed(2)}%` }}
+                        className={cn(
+                          "absolute top-0 -translate-x-1/2 whitespace-nowrap px-1.5 py-0.5 text-[11px] sm:text-[12px] font-sans transition-colors cursor-pointer",
+                          isCurrent
+                            ? "font-semibold text-accent-text"
+                            : "font-medium text-ink-muted hover:text-ink"
+                        )}
+                      >
+                        {m.shortLabel}
+                      </button>
                     );
                   })}
-                </svg>
+                </div>
               </div>
 
-              {/* Pasek dolny karty: szybkie przełączenie etapów oraz kontekstowy link */}
+              {/* Pasek dolny karty: czytelna legenda obu linii oraz kontekstowy link */}
               <div className="pt-3.5 border-t border-line/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-4 text-[12.5px] font-sans text-ink-muted">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[12.5px] font-sans">
                   <div className="flex items-center gap-2">
-                    <span className="w-3 h-1.5 bg-accent rounded-full shrink-0" />
+                    <span className="w-4 h-1 bg-accent rounded-full shrink-0" />
                     <span className="font-semibold text-ink">Z naszą stroną</span>
                   </div>
-                  <span className="text-line" aria-hidden="true">|</span>
-                  <span className="text-[12px]">Ilustracja procesu</span>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="w-5 h-0 border-t-2 border-dashed border-ink-muted/75 shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span className="font-medium text-ink-muted">Bez optymalizacji</span>
+                  </div>
                 </div>
 
                 <Link
