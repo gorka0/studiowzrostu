@@ -49,7 +49,7 @@ export function BlogCatalog({ posts }: BlogCatalogProps) {
                   aria-selected={isSelected}
                   onClick={() => setSelectedCategory(cat)}
                   className={cn(
-                    "relative px-3.5 py-1.5 rounded-lg text-xs sm:text-[13px] font-medium transition-colors cursor-pointer",
+                    "relative px-3.5 py-2 min-h-[36px] inline-flex items-center rounded-lg text-xs sm:text-[13px] font-medium transition-colors cursor-pointer",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-text",
                     isSelected ? "text-ink font-semibold" : "text-ink-muted hover:text-ink"
                   )}

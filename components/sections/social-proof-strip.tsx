@@ -10,7 +10,7 @@ import * as React from "react";
 
 const STATS = [
   { value: 7, suffix: " dni", label: "realizacja" },
-  { value: 900, suffix: " zł", label: "cena od (netto)" },
+  { value: 900, suffix: " zł", label: "od netto" },
   { value: 100, suffix: "%", label: "stała cena" },
   { value: 3, suffix: "+", label: "projekty" },
 ] as const;

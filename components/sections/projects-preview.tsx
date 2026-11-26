@@ -10,23 +10,12 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { conceptProjects, type ConceptProject } from "@/content/projects";
 import { BeforeAfterSlider } from "@/components/effects/before-after-slider";
 import dynamic from "next/dynamic";
+import { cn } from "@/lib/utils";
 
 const ConceptDialog = dynamic(
   () => import("@/components/effects/concept-dialog").then((m) => m.ConceptDialog),
   { ssr: false }
 );
-function usePrefersReducedMotion() {
-  const [reduce, setReduce] = React.useState(false);
-  React.useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduce(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setReduce(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-  return reduce;
-}
-import { cn } from "@/lib/utils";
 
 interface ProjectsSectionProps {
   id?: string;
@@ -41,8 +30,6 @@ export function ProjectsPreview({
 }: ProjectsSectionProps) {
   const [activeSlide, setActiveSlide] = React.useState(0);
   const carouselRef = React.useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = usePrefersReducedMotion();
-  const hasNudged = React.useRef(false);
 
   const handleScroll = () => {
     const el = carouselRef.current;
@@ -65,36 +52,8 @@ export function ProjectsPreview({
     }
   };
 
-  // B5: Jednorazowa podpowiedź przesunięcia po wejściu w widok (karta 2 przytrzaśnięcie)
-  React.useEffect(() => {
-    if (shouldReduceMotion || hasNudged.current || isStandalonePage) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting && !hasNudged.current) {
-          hasNudged.current = true;
-          const el = carouselRef.current;
-          if (el && window.innerWidth < 1024) {
-            setTimeout(() => {
-              el.scrollBy({ left: 32, behavior: "smooth" });
-              setTimeout(() => {
-                el.scrollTo({ left: 0, behavior: "smooth" });
-              }, 400);
-            }, 300);
-          }
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (carouselRef.current) {
-      observer.observe(carouselRef.current);
-    }
-    return () => observer.disconnect();
-  }, [shouldReduceMotion, isStandalonePage]);
-
   return (
-    <Section spacing="none" id={id} className={cn("py-6 sm:py-10 lg:py-16 text-[15px]", className)}>
+    <Section spacing="none" id={id} className={cn("scroll-mt-20 sm:scroll-mt-24 py-6 sm:py-10 lg:py-16 text-[15px]", className)}>
       <Container>
         <SectionHeader
           as={isStandalonePage ? "h1" : "h2"}

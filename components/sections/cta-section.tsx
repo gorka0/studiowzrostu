@@ -47,7 +47,7 @@ export function CtaSection() {
       id="kontakt-cta"
       data-section="cta"
       spacing="none"
-      className="relative border-t border-b border-darkband-line bg-darkband-bg text-darkband-foreground overflow-hidden py-7 sm:py-12 lg:py-18"
+      className="scroll-mt-20 sm:scroll-mt-24 relative border-t border-b border-darkband-line bg-darkband-bg text-darkband-foreground overflow-hidden py-7 sm:py-12 lg:py-18"
     >
       {/* 1. Subtelna kratka SVG w tle ciemnego pasa CTA */}
       <svg

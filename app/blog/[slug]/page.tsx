@@ -103,7 +103,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
               </h1>
 
               {/* Metadane autora i daty */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-ink-muted pt-2 border-t border-line/60">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5 text-xs text-ink-muted pt-3 border-t border-line/60">
                 <Link
                   href="/o-nas"
                   className="flex items-center gap-2 hover:text-accent-text transition-colors group"
@@ -121,12 +121,12 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
                   </div>
                 </Link>
 
-                <div className="flex items-center gap-1.5 border-l border-line pl-4">
+                <div className="flex items-center gap-1.5 sm:border-l sm:border-line sm:pl-4">
                   <Calendar className="h-3.5 w-3.5 text-accent-text" />
                   <time dateTime={post.date}>{post.formattedDate}</time>
                 </div>
 
-                <div className="flex items-center gap-1.5 border-l border-line pl-4">
+                <div className="flex items-center gap-1.5 sm:border-l sm:border-line sm:pl-4">
                   <Clock className="h-3.5 w-3.5 text-accent-text" />
                   <span>{post.readingTime}</span>
                 </div>
@@ -134,7 +134,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
             </header>
 
             {/* Wstęp (Lead) */}
-            <div className="text-lg sm:text-xl text-ink font-medium leading-relaxed italic border-l-2 border-accent-text pl-5 py-1 bg-surface-subtle/40 rounded-r-xl">
+            <div className="text-base sm:text-lg text-ink font-medium leading-relaxed border-l-2 border-accent-text px-4 sm:px-5 py-2.5 bg-surface-subtle/40 rounded-r-xl">
               {post.lead}
             </div>
 

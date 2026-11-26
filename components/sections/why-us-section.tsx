@@ -82,7 +82,7 @@ export function WhyUsSection() {
       ref={sectionRef}
       spacing="none"
       id="proces"
-      className="relative border-b border-darkband-line bg-darkband-bg text-darkband-foreground overflow-clip py-8 sm:py-12 lg:py-16 text-[15px]"
+      className="scroll-mt-20 sm:scroll-mt-24 relative border-b border-darkband-line bg-darkband-bg text-darkband-foreground overflow-clip py-8 sm:py-12 lg:py-16 text-[15px]"
     >
       {/* Subtelna kratka SVG w tle ciemnego pasa */}
       <svg

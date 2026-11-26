@@ -549,7 +549,7 @@ export function ServicesBento() {
   const activeService = servicesList[hoveredIdx] || servicesList[0];
 
   return (
-    <Section spacing="none" id="uslugi" className="border-b border-line bg-background py-6 sm:py-10 lg:py-16 text-[15px]">
+    <Section spacing="none" id="uslugi" className="scroll-mt-20 sm:scroll-mt-24 border-b border-line bg-background py-6 sm:py-10 lg:py-16 text-[15px]">
       <Container>
         <SectionHeader
           title="Jak możemy pomóc Twojej firmie urosnąć"

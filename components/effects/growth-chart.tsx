@@ -164,7 +164,7 @@ export function GrowthChart() {
       ref={sectionRef}
       id="jak-rosnie-firma"
       aria-label="Wykres ilustrujący wzrost biznesu dzięki nowoczesnej stronie"
-      className="relative w-full py-8 sm:py-12 lg:py-16 border-b border-line bg-surface/35 text-[15px]"
+      className="scroll-mt-20 sm:scroll-mt-24 relative w-full py-8 sm:py-12 lg:py-16 border-b border-line bg-surface/35 text-[15px]"
     >
       <Container>
         <SectionHeader
@@ -365,7 +365,7 @@ export function GrowthChart() {
                 </div>
 
                 {/* Czytelne etykiety osi X zsynchronizowane bezpośrednio z punktami 1-4 */}
-                <div className="relative h-6 mt-1.5 select-none">
+                <div className="relative h-9 mt-1 select-none">
                   {MILESTONES.map((m, idx) => {
                     const pt = MILESTONE_COORDS[idx];
                     const isCurrent = idx === activeStep;
@@ -376,7 +376,7 @@ export function GrowthChart() {
                         onClick={() => selectStep(idx)}
                         style={{ left: `${((pt.x / VIEWBOX.width) * 100).toFixed(2)}%` }}
                         className={cn(
-                          "absolute top-0 -translate-x-1/2 whitespace-nowrap px-1.5 py-0.5 text-[11px] sm:text-[12px] font-sans transition-colors cursor-pointer",
+                          "absolute top-0 -translate-x-1/2 whitespace-nowrap min-h-[36px] inline-flex items-center px-2 py-1.5 text-[11px] sm:text-[12px] font-sans transition-colors cursor-pointer",
                           isCurrent
                             ? "font-semibold text-accent-text"
                             : "font-medium text-ink-muted hover:text-ink"
