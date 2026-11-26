@@ -21,6 +21,7 @@ import {
   ChevronDown,
   Loader2,
   Mail,
+  MapPin,
   Phone,
   Search,
   Send,
@@ -30,7 +31,7 @@ import {
 import { cn } from "@/lib/utils";
 
 /**
- * 4 autorskie makiety Micro-UI z choreografią akcji dla prawej kolumny sekcji usług.
+ * 5 autorskich makiet Micro-UI z choreografią akcji dla prawej kolumny sekcji usług.
  */
 function ServicePreview({ slug }: { slug: string }) {
   const prefersReducedMotion = useReducedMotion();
@@ -343,6 +344,113 @@ function ServicePreview({ slug }: { slug: string }) {
 
         <div className="text-[12px] text-ink-muted text-center pt-1 font-medium">
           Bezbłędna semantyka i kod, który wyszukiwarki stawiają na szczycie
+        </div>
+      </div>
+    );
+  }
+
+  // WIDOK 05: Tworzenie stron internetowych Bydgoszcz (Lokalna mapa + profil firmy)
+  if (slug === "strony-internetowe-bydgoszcz") {
+    const pinActive = beat >= 1;
+    const leadActive = beat >= 2;
+
+    return (
+      <div className="w-full h-full flex flex-col justify-between p-4 sm:p-5 bg-background rounded-2xl border border-line text-left font-sans select-none shadow-xs space-y-3">
+        {/* Pasek lokalnego zapytania */}
+        <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-lg border border-line bg-surface text-[12px] shadow-xs">
+          <div className="flex items-center gap-2 min-w-0">
+            <MapPin className="h-3.5 w-3.5 text-accent shrink-0" />
+            <span className="font-medium text-ink truncate">Usługi w Bydgoszczy</span>
+          </div>
+          <span className="text-[10.5px] font-semibold text-accent-text shrink-0">
+            Bydgoszcz i region
+          </span>
+        </div>
+
+        {/* Schematyczna mapa miasta z rzeką i podświetlanym punktem firmy */}
+        <div className="relative h-[132px] rounded-xl border border-line bg-surface overflow-hidden">
+          <svg
+            viewBox="0 0 360 132"
+            className="w-full h-full"
+            aria-hidden="true"
+          >
+            {/* Siatka ulic */}
+            <g stroke="var(--border)" strokeWidth="1" opacity="0.65">
+              <line x1="0" y1="34" x2="360" y2="34" />
+              <line x1="0" y1="78" x2="360" y2="78" />
+              <line x1="0" y1="110" x2="360" y2="110" />
+              <line x1="72" y1="0" x2="72" y2="132" />
+              <line x1="168" y1="0" x2="168" y2="132" />
+              <line x1="274" y1="0" x2="274" y2="132" />
+            </g>
+
+            {/* Krzywa rzeki Brdy */}
+            <path
+              d="M -10 88 C 70 72, 125 102, 195 74 C 255 48, 305 64, 370 52"
+              fill="none"
+              stroke="var(--accent)"
+              strokeOpacity="0.22"
+              strokeWidth="12"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          {/* Przygaszone punkty konkurencji */}
+          <div className="absolute top-6 left-14 w-3 h-3 rounded-full bg-line border border-surface" />
+          <div className="absolute bottom-6 right-16 w-3 h-3 rounded-full bg-line border border-surface" />
+
+          {/* Główny pinez Twojej Firmy */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <motion.div
+              animate={
+                prefersReducedMotion
+                  ? undefined
+                  : { scale: pinActive ? 1.05 : 0.94, y: pinActive ? 0 : 4 }
+              }
+              transition={{ type: "spring", stiffness: 280, damping: 22 }}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-accent bg-surface shadow-elevated will-change-transform"
+            >
+              <span className="w-2.5 h-2.5 rounded-full bg-accent shrink-0" />
+              <span className="text-[11.5px] font-bold text-ink whitespace-nowrap">
+                Twoja Firma · Bydgoszcz
+              </span>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Profil lokalny i powiadomienie z regionu */}
+        <motion.div
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  borderColor: leadActive ? "var(--accent)" : "var(--border)",
+                  y: leadActive ? 0 : 2,
+                }
+          }
+          transition={{ duration: 0.25 }}
+          className="rounded-xl border bg-surface p-3 space-y-2 shadow-xs"
+        >
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[12.5px] font-bold text-ink">
+              Spójny profil lokalny + szybki kontakt
+            </span>
+            <span className="text-[10.5px] font-semibold text-accent-text tabular-nums shrink-0">
+              &lt; 0,5 s
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between pt-1.5 border-t border-line/60 text-[11px]">
+            <span className="text-ink-muted flex items-center gap-1.5">
+              <Phone className="h-3 w-3 text-accent shrink-0" />
+              <span>{leadActive ? "Zapytanie z map lokalnych · przed chwilą" : "Odbierz telefon lub wycenę"}</span>
+            </span>
+            <span className="font-semibold text-accent-text shrink-0">W 7 dni</span>
+          </div>
+        </motion.div>
+
+        <div className="text-[12px] text-ink-muted text-center pt-0.5 font-medium">
+          Strona dopasowana do klientów szukających usług w Bydgoszczy
         </div>
       </div>
     );
